@@ -4,4 +4,4 @@ export const amountGiveNowFeeTest = "$77.99";
 export const creditCardNumber = '4242 4242 4242 4242';
 export const creditCardVCV = '4242';
 export const amountTicket = 75;
-export const anotherAmountTicket = '90';
+export const anotherAmountTicket = 1;

@@ -56,18 +56,20 @@ export class TicketPage{
         let summaryTextTc = '';
         if(item == 0){
             summaryTextTc += 'Ticket #1 $33 - ' +email;
-        } else{
-            summaryTextTc += 'Ticket #1 $51 - ' +email;
+            cy.get('li').contains(summaryTextTc).should('be.visible');
+        } 
+        if (item == 1) {
+            summaryTextTc += 'Ticket #2 $51 - ' +email;
+            cy.get('li').contains(summaryTextTc).should('be.visible');
         }
-        cy.get('li').contains(summaryTextTc).should('be.visible');
+        
     }
  
     selectAmountItem(amount : string){
         cy.get(this.amountSelection).contains(amount).click();
     }
     inputOtherAmount(amount : string){
-        cy.get(this.otherAmount).type(amount);
-        
+        cy.get(this.otherAmount).type(amount);   
     }
 
     verifySummaryAmount(isTicket1:boolean, isTicket2:boolean, amount:number){

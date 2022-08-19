@@ -1,4 +1,4 @@
-import { HomePage } from "../Pages/homePage";
+/*import { HomePage } from "../Pages/homePage";
 import { DonationsTablePage } from "../Pages/donationsTablePage";
 import { DonationsAddressPage } from "../Pages/donationsAddressPage";
 import { DonationsRegisterTablePage } from "../Pages/donationsRegisterTablePage";
@@ -26,4 +26,4 @@ describe('Verify Give a hot flow', () => {
         donationsRegisterTablePage.verifyUserInformationIsDisplayed(user.firstName, user.lastName, user.email);
     })
 
-})
+})*/
