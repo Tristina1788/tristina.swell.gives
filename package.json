@@ -1,0 +1,28 @@
+{
+  "name": "cypress_tutorial",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "delete-mochawesome-folder": "rỉmraf -r ./mochawesome-report/*.json",
+    "e2e_mochawesome": "yarn cypress run --spec cypress/integration/Tests/*.js",
+    "merge-json": "npx mochawesome-merge --reportDir mochawesome-report > mochawesome1.json",
+    "encode ": "node encode.js",
+    "html-generator": "npx marge mochawesome1.json",
+    "run-test-html": " npx cypress run --reporter mochawesome && npx mochawesome-merge --reportDir mochawesome-report > mochawesome1.json node encode.js && npx merge mochawesome.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "moment": "^2.29.4",
+    "typescript": "^4.7.4"
+  },
+  "devDependencies": {
+    "@types/node": "^18.7.3",
+    "cypress": "^10.4.0",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^4.2.1"
+  }
+}

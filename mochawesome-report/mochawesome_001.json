@@ -1,0 +1,104 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-08-14T15:37:53.897Z",
+    "end": "2022-08-14T15:38:27.059Z",
+    "duration": 33162,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "e82aa825-806f-4434-b0c7-cb9797478191",
+      "title": "",
+      "fullFile": "cypress\\e2e\\1-getting-started\\testcases\\firstTest.cy.js",
+      "file": "cypress\\e2e\\1-getting-started\\testcases\\firstTest.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "b4e14fe1-fa5d-4960-b949-02bf4a15882a",
+          "title": "Verify Give a hot flow",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Verify information when Give a host",
+              "fullTitle": "Verify Give a hot flow Verify information when Give a host",
+              "timedOut": null,
+              "duration": 29548,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('https://purseandpassion.swell.gives/');\nhomePage.clickGiveAHostButton();\ndonationsTablePage.selectTicketItem('Virtual Builder Table');\ndonationsTablePage.clickNextButton();\ndonationsAddressPage.inputAddressInfor(user.firstName, user.lastName, user.email, user.phone, user.company, user.address1, user.address2, user.city, user.state, user.zip);\ndonationsRegisterTablePage.verifyEmailAdressIsDisplayed(user.email);",
+              "err": {},
+              "uuid": "ecf1e4e8-4dae-4d40-bc70-94f42f8c6479",
+              "parentUUID": "b4e14fe1-fa5d-4960-b949-02bf4a15882a",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "ecf1e4e8-4dae-4d40-bc70-94f42f8c6479"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 29548,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

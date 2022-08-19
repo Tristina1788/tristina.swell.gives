@@ -1,0 +1,5 @@
+{  
+    "watchForFileChanges": true,
+    "chromeWebSecurity":false,
+    "modifyObstructiveCode":false
+}
