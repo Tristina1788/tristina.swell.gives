@@ -12,9 +12,9 @@ let donationsRegisterTablePage =new DonationsRegisterTablePage();
 let donationsPaymentPage =new DonationsPaymentPage();
 const infors = require('../utils/infor.js')
 const user = require('../../../fixtures/address.json')
-describe('Verify Give a hot flow', () => {
+describe('Verify become a host flow', () => {
     
-    it('Verify information when Give a host',()=>{
+    it('Verify information when become a host',()=>{
         cy.visit(infors.url);
         let randomName = getRandomText();
         let randomLastName = getRandomText();

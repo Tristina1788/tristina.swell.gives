@@ -9,3 +9,7 @@ export const tableItem = "Test Table";
 export const tablePriceString = "1,201";
 export const tablePriceNumber = 1201;
 export const amountDonateTable = 75;
+export const sponsorItemName = "Test Sponsorship";
+export const sponsorItemPice = 501;
+export const personRecieveCredit = "ABC DEF";
+export const personRecieveCreditPage = "ABC.DEF";

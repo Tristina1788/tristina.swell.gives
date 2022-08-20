@@ -19,6 +19,10 @@ export class HomePage{
         cy.get(this.giveNow).click();
     }
 
+    clickChooseASponsorshipButton(){
+        cy.get(this.becomeASponser).click();
+    }
+
     clickPurchaseTickets(){
         cy.get(this.purchaseTickets).click();
     }
