@@ -38,4 +38,5 @@ export class DonationsPaymentPage{
         cy.get('h5').contains(this.textCompletedTransaction).should('be.visible');
         cy.get('h6').contains(this.textReceipEmailTickets).should('be.visible');
     }
+
 }

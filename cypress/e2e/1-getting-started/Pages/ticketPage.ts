@@ -16,8 +16,6 @@ export class TicketPage{
     ticketAddedText = ' Ticket added to your basket';
     addAnotherTicketbtn = 'Add another Ticket';
     thanksAddedTcText = 'Thanks for adding a ticket. Please be sure to complete your registration by clicking the Next Button below.';
-    sumTc1Text = 'Ticket #1 $33 - sfsf';
-    sumTc2Text = 'Ticket #2 $51 - sfsf';
     nextBtn = 'Next';
 
     verifyIsScreenSelectTickets(){
