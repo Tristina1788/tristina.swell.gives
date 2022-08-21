@@ -13,4 +13,4 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v4
         with:
-          build: nx cypress run && npx mochawesome-merge --reportDir mochawesome-report > mochawesome1.json && node encode.js && npx marge mochawesome1.json
+          build: npx cypress run && npx mochawesome-merge --reportDir mochawesome-report > mochawesome1.json && node encode.js && npx marge mochawesome1.json
