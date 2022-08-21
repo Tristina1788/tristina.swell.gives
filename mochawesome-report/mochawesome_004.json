@@ -2,14 +2,14 @@
   "stats": {
     "suites": 1,
     "tests": 2,
-    "passes": 1,
+    "passes": 2,
     "pending": 0,
-    "failures": 1,
-    "start": "2022-08-18T09:37:00.572Z",
-    "end": "2022-08-18T09:38:13.154Z",
-    "duration": 72582,
+    "failures": 0,
+    "start": "2022-08-21T10:05:18.208Z",
+    "end": "2022-08-21T10:05:43.803Z",
+    "duration": 25595,
     "testsRegistered": 2,
-    "passPercent": 50,
+    "passPercent": 100,
     "pendingPercent": 0,
     "other": 0,
     "hasOther": false,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "9fb6b7aa-4c99-432f-9e7b-eac0fcd2f286",
+      "uuid": "53e811da-4402-4052-a2e2-0b07aafba134",
       "title": "",
       "fullFile": "cypress\\e2e\\1-getting-started\\testcases\\giveNowTest.cy.js",
       "file": "cypress\\e2e\\1-getting-started\\testcases\\giveNowTest.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "8c3527ad-77a4-4a1b-ac65-aceb6794f177",
+          "uuid": "e2088efe-c1d3-48ba-9c99-8470df7b03c4",
           "title": "Verify Give Now flow",
           "fullFile": "",
           "file": "",
@@ -38,21 +38,17 @@
               "title": "Verify Give Now with all options",
               "fullTitle": "Verify Give Now flow Verify Give Now with all options",
               "timedOut": null,
-              "duration": 50387,
-              "state": "failed",
-              "speed": null,
-              "pass": false,
-              "fail": true,
+              "duration": 10286,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
               "pending": false,
               "context": null,
-              "code": "cy.visit(infors.url);\nhomePage.clickGiveNowButton();\ndonationsAmountPage.selectFee(infors.amountGiveNowTest);\ndonationsAmountPage.verifyFeeSelectionCorrect(infors.amountGiveNowTest);\ndonationsAmountPage.selectCoverTransaction();\ndonationsAmountPage.verifyAmountAfterFee(infors.amountGiveNowFeeTest);\ndonationsAmountPage.selectRecurringContribution();\ndonationsAmountPage.verifyWarningBillTimeShow();\ndonationsAmountPage.selectOption1stBill();\ndonationsAmountPage.selectfullFillGiftLater();\ndonationsAmountPage.verifyWarningFullFillShow();\ndonationsAmountPage.inputFormFullFillLater(userFullFill.firstName, userFullFill.lastName, userFullFill.email, userFullFill.phone);\ndonationsAmountPage.selectMakeGiftAnonymous();\ndonationsAmountPage.clickPledgeButton();\ndonationsAmountPage.verifyShowThankYouPledge();",
-              "err": {
-                "message": "AssertionError: Timed out retrying after 20000ms: Expected to find content: 'Thank you for your donation!' within the element: [ <h5>, 8 more... ] but never did.",
-                "estack": "AssertionError: Timed out retrying after 20000ms: Expected to find content: 'Thank you for your donation!' within the element: [ <h5>, 8 more... ] but never did.\n    at DonationsAmountPage.verifyShowThankYouPledge (https://tristina.swell.gives/__cypress/tests?p=cypress\\e2e\\1-getting-started\\testcases\\giveNowTest.cy.js:220:56)\n    at Context.eval (https://tristina.swell.gives/__cypress/tests?p=cypress\\e2e\\1-getting-started\\testcases\\giveNowTest.cy.js:344:25)",
-                "diff": null
-              },
-              "uuid": "5ab256f8-fa0e-4e77-8656-2aa9f4073882",
-              "parentUUID": "8c3527ad-77a4-4a1b-ac65-aceb6794f177",
+              "code": "cy.visit(infors.url);\nlet randomName = (0, _generalFunction.getRandomText)();\nlet randomLastName = (0, _generalFunction.getRandomText)();\nlet randomEmail = (0, _generalFunction.getRandomEmail)();\nlet randomPhone = (0, _generalFunction.getRandomNumber)();\nhomePage.clickGiveNowButton();\ndonationsAmountPage.selectFee(infors.amountGiveNowTest);\ndonationsAmountPage.verifyFeeSelectionCorrect(infors.amountGiveNowTest);\ndonationsAmountPage.selectCoverTransaction();\ndonationsAmountPage.verifyAmountAfterFee(infors.amountGiveNowFeeTest);\ndonationsAmountPage.selectRecurringContribution();\ndonationsAmountPage.verifyWarningBillTimeShow();\ndonationsAmountPage.selectOption1stBill();\ndonationsAmountPage.selectfullFillGiftLater();\ndonationsAmountPage.verifyWarningFullFillShow();\nrandomPhone;\ndonationsAmountPage.inputFormFullFillLater(randomName, randomLastName, randomEmail, randomPhone);\ndonationsAmountPage.selectMakeGiftAnonymous();\ndonationsAmountPage.clickPledgeButton();\ndonationsAmountPage.verifyShowThankYouPledge();",
+              "err": {},
+              "uuid": "5afee641-1c73-4627-b97b-b1567b7b6ec1",
+              "parentUUID": "e2088efe-c1d3-48ba-9c99-8470df7b03c4",
               "isHook": false,
               "skipped": false
             },
@@ -60,7 +56,7 @@
               "title": "Verify Give Now without option full fill later",
               "fullTitle": "Verify Give Now flow Verify Give Now without option full fill later",
               "timedOut": null,
-              "duration": 18325,
+              "duration": 13929,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -69,22 +65,21 @@
               "context": null,
               "code": "cy.visit(infors.url);\nhomePage.clickGiveNowButton();\ndonationsAmountPage.selectFee(infors.amountGiveNowTest);\ndonationsAmountPage.verifyFeeSelectionCorrect(infors.amountGiveNowTest);\ndonationsAmountPage.selectCoverTransaction();\ndonationsAmountPage.verifyAmountAfterFee(infors.amountGiveNowFeeTest);\ndonationsAmountPage.selectRecurringContribution();\ndonationsAmountPage.verifyWarningBillTimeShow();\ndonationsAmountPage.selectOption1stBill();\ndonationsAmountPage.selectMakeGiftAnonymous();\ndonationsAmountPage.clickNextButton();\ndonationsAddressPage.inputAddressInfor(user.firstName, user.lastName, user.email, user.phone, user.company, user.address1, user.address2, user.city, user.state, user.zip);\ndonationsAddressPage.clickNextButton();\ndonationsPaymentPage.inputCreditCard(infors.creditCardNumber, user.firstName, infors.creditCardVCV);\ndonationsPaymentPage.clickDonateButton(infors.amountGiveNowFeeTest);\ndonationsPaymentPage.verifyTransactionFinish();",
               "err": {},
-              "uuid": "fb013706-ad87-4a0a-8c97-e05cbfd317ac",
-              "parentUUID": "8c3527ad-77a4-4a1b-ac65-aceb6794f177",
+              "uuid": "cd29e293-2ecf-4563-b829-d0af3f0f42f5",
+              "parentUUID": "e2088efe-c1d3-48ba-9c99-8470df7b03c4",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "fb013706-ad87-4a0a-8c97-e05cbfd317ac"
+            "5afee641-1c73-4627-b97b-b1567b7b6ec1",
+            "cd29e293-2ecf-4563-b829-d0af3f0f42f5"
           ],
-          "failures": [
-            "5ab256f8-fa0e-4e77-8656-2aa9f4073882"
-          ],
+          "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 68712,
+          "duration": 24215,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000

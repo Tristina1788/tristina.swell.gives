@@ -7,7 +7,7 @@ const infors = require('../utils/infor.js')
 const user = require('../../../fixtures/address.json')
 describe('Verify user page', () => {
     
-    it('Verify user in Top Fundraisers board has correction fuction in user page',()=>{
+    it('Verify user in Top Fundraisers board has correct fuctions in user page',()=>{
         cy.visit(infors.url);
         homePage.clickFirstUserInTopFundraiser();
         usersPage.VerifyGiveNowButtonHasCorrectAction(infors.urlAction);
@@ -18,7 +18,7 @@ describe('Verify user page', () => {
         usersPage.verifyUIShowDonorInfo();
     })
 
-    it('verify user in Most Social board has correction fuction in user page',()=>{
+    it('verify user in Most Social board has correct fuctions in user page',()=>{
         cy.visit(infors.url);
         homePage.clickFirstUserInTopFundraiser();
         usersPage.VerifyGiveNowButtonHasCorrectAction(infors.urlAction);

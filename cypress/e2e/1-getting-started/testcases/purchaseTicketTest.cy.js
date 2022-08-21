@@ -37,10 +37,11 @@ describe('Verify Purchase Tickets flow', () => {
         donationsPaymentPage.inputCreditCardTicket(infors.creditCardNumber, infors.creditCardVCV);
         donationsPaymentPage.clickPurchase();
         donationsPaymentPage.verifyTransactionTicketsFinish();
-        cy.wait(60000);
+        /*cy.wait(60000);
         cy.visit(infors.url);
         homePage.verifyUserInTopFundraiser(randomName + ' ' + randomLastName,(infors.amountTicket + 33));
         homePage.verifyUserInTopSocial(randomName + ' ' + randomLastName,1);
+        */
     })
 
     it('Verify purchase multiple tickets and other amount',()=>{

@@ -10,7 +10,7 @@
     "merge-json": "npx mochawesome-merge --reportDir mochawesome-report > mochawesome1.json",
     "encode ": "node encode.js",
     "html-generator": "npx marge mochawesome1.json",
-    "run-test-html": " npx cypress run --reporter mochawesome && npx mochawesome-merge --reportDir mochawesome-report > mochawesome1.json node encode.js && npx merge mochawesome.json"
+    "run-test-html": "npx cypress run --reporter mochawesome && npx mochawesome-merge --reportDir mochawesome-report > mochawesome1.json && node encode.js && npx marge mochawesome1.json"
   },
   "keywords": [],
   "author": "",

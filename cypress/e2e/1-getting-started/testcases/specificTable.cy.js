@@ -7,7 +7,7 @@ const infors = require('../utils/infor.js')
 const user = require('../../../fixtures/address.json')
 describe('Verify table page', () => {
     
-    it('Verify user in Top table board has correction fuction in table page',()=>{
+    it('Verify user in Top table board has correct fuctions in table page',()=>{
         cy.visit(infors.url);
         homePage.clickFirstTableInTableBoard();
         tablePage.VerifyGiveNowButtonHasCorrectAction(infors.urlAction);

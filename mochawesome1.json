@@ -1,0 +1,514 @@
+{
+  "stats": {
+    "suites": 7,
+    "tests": 10,
+    "passes": 9,
+    "pending": 0,
+    "failures": 1,
+    "start": "2022-08-21T10:03:35.183Z",
+    "end": "2022-08-21T10:07:25.988Z",
+    "duration": 186812,
+    "testsRegistered": 10,
+    "passPercent": 90,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "32c8cd49-505a-4c3c-acd6-3467c724ebab",
+      "title": "",
+      "fullFile": "cypress\\e2e\\1-getting-started\\testcases\\becomeAhost.cy.js",
+      "file": "cypress\\e2e\\1-getting-started\\testcases\\becomeAhost.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "e3ea0324-4192-42a0-bb17-58ade26ed9d1",
+          "title": "Verify become a host flow",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Verify information when become a host",
+              "fullTitle": "Verify become a host flow Verify information when become a host",
+              "timedOut": null,
+              "duration": 29714,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(infors.url);\nlet randomName = (0, _generalFunction.getRandomText)();\nlet randomLastName = (0, _generalFunction.getRandomText)();\nlet randomEmail = (0, _generalFunction.getRandomEmail)();\nlet randomPhone = (0, _generalFunction.getRandomNumber)();\nhomePage.clickGiveAHostButton();\ndonationsTablePage.verifyTableIsSelectedAsDefault(infors.tableItem, infors.tablePriceString);\ndonationsTablePage.selectAmountItem(infors.amountTicket);\ndonationsTablePage.verifySummaryAmount(infors.amountDonateTable, infors.tablePriceNumber);\ndonationsTablePage.clickNextButton();\ndonationsAddressPage.inputAddressInfor(randomName, randomLastName, randomEmail, randomPhone, user.company, user.address1, user.address2, user.city, user.state, user.zip);\ndonationsAddressPage.clickNextButton();\ndonationsPaymentPage.inputCreditCardTicket(infors.creditCardNumber, infors.creditCardVCV);\ndonationsPaymentPage.clickPurchase();\ndonationsRegisterTablePage.verifyEmailAdressIsDisplayed(randomEmail);\ndonationsRegisterTablePage.clickNavigationTab('Your Table');\ndonationsRegisterTablePage.verifyUserInformationInYourTableIsDisplayed(randomName, randomLastName, randomEmail);\ndonationsRegisterTablePage.clickNavigationTab('Guest');\ndonationsRegisterTablePage.verifyUserInformationInGuestTableIsDisplayed(randomName, randomLastName, randomEmail);\nlet randomNameGuest = (0, _generalFunction.getRandomText)();\nlet randomLastNameGuest = (0, _generalFunction.getRandomText)();\nlet randomEmailGuest = (0, _generalFunction.getRandomEmail)();\ndonationsRegisterTablePage.inputGuestInformation(randomNameGuest, randomLastNameGuest, randomEmailGuest);\ndonationsRegisterTablePage.clickInviteGuestButton();\ndonationsRegisterTablePage.verifyInviteSuccess(randomNameGuest, randomLastNameGuest, randomEmailGuest);\ndonationsRegisterTablePage.clickCancelInviteGuestButton();\ndonationsRegisterTablePage.verifyCancelInviteGuestSuccess(); //cy.wait(60000);\n//cy.visit(infors.url);\n//homePage.verifyUserInTopFundraiser(randomName + ' ' + randomLastName,(infors.amountTicket));\n//homePage.verifyUserInTopSocial(randomName + ' ' + randomLastName,1);\n//homePage.verifyUserInTable(randomLastName + \" Table\",(infors.amountTicket))",
+              "err": {},
+              "uuid": "beb470cb-024f-4296-af80-4d4845be3bac",
+              "parentUUID": "e3ea0324-4192-42a0-bb17-58ade26ed9d1",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "beb470cb-024f-4296-af80-4d4845be3bac"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 29714,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "800406ff-9789-420e-9659-f40e8e593038",
+      "title": "",
+      "fullFile": "cypress\\e2e\\1-getting-started\\testcases\\chooseASponsorship.cy.js",
+      "file": "cypress\\e2e\\1-getting-started\\testcases\\chooseASponsorship.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "ad3e79a5-0d39-4002-bf07-d2510912986e",
+          "title": "Verify Choose a sponsorship flow",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Verify information when Choose a sponsorship",
+              "fullTitle": "Verify Choose a sponsorship flow Verify information when Choose a sponsorship",
+              "timedOut": null,
+              "duration": 23496,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(infors.url);\nlet randomName = (0, _generalFunction.getRandomText)();\nlet randomLastName = (0, _generalFunction.getRandomText)();\nlet randomEmail = (0, _generalFunction.getRandomEmail)();\nlet randomPhone = (0, _generalFunction.getRandomNumber)();\nhomePage.clickChooseASponsorshipButton();\nsponsorshipPage.clickSponsorItem(infors.sponsorItemName);\nsponsorshipPage.selectPersonReceiveCredit(infors.personRecieveCredit);\nsponsorshipPage.clickButtonNext();\ndonationsAddressPage.inputAddressInfor(randomName, randomLastName, randomEmail, randomPhone, user.company, user.address1, user.address2, user.city, user.state, user.zip);\ndonationsAddressPage.clickNextButton();\ndonationsPaymentPage.inputCreditCardTicket(infors.creditCardNumber, infors.creditCardVCV);\ndonationsPaymentPage.clickPurchase();\ndonationsPaymentPage.verifyTransactionFinish();\nusersPage.verifyTheUsersIsSponsor(infors.url + '/users/' + infors.personRecieveCreditPage, randomName + ' ' + randomLastName);",
+              "err": {},
+              "uuid": "718dc11c-30d4-43c5-9bc6-7b50990c2832",
+              "parentUUID": "ad3e79a5-0d39-4002-bf07-d2510912986e",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "718dc11c-30d4-43c5-9bc6-7b50990c2832"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 23496,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "53e811da-4402-4052-a2e2-0b07aafba134",
+      "title": "",
+      "fullFile": "cypress\\e2e\\1-getting-started\\testcases\\giveNowTest.cy.js",
+      "file": "cypress\\e2e\\1-getting-started\\testcases\\giveNowTest.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "e2088efe-c1d3-48ba-9c99-8470df7b03c4",
+          "title": "Verify Give Now flow",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Verify Give Now with all options",
+              "fullTitle": "Verify Give Now flow Verify Give Now with all options",
+              "timedOut": null,
+              "duration": 10286,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(infors.url);\nlet randomName = (0, _generalFunction.getRandomText)();\nlet randomLastName = (0, _generalFunction.getRandomText)();\nlet randomEmail = (0, _generalFunction.getRandomEmail)();\nlet randomPhone = (0, _generalFunction.getRandomNumber)();\nhomePage.clickGiveNowButton();\ndonationsAmountPage.selectFee(infors.amountGiveNowTest);\ndonationsAmountPage.verifyFeeSelectionCorrect(infors.amountGiveNowTest);\ndonationsAmountPage.selectCoverTransaction();\ndonationsAmountPage.verifyAmountAfterFee(infors.amountGiveNowFeeTest);\ndonationsAmountPage.selectRecurringContribution();\ndonationsAmountPage.verifyWarningBillTimeShow();\ndonationsAmountPage.selectOption1stBill();\ndonationsAmountPage.selectfullFillGiftLater();\ndonationsAmountPage.verifyWarningFullFillShow();\nrandomPhone;\ndonationsAmountPage.inputFormFullFillLater(randomName, randomLastName, randomEmail, randomPhone);\ndonationsAmountPage.selectMakeGiftAnonymous();\ndonationsAmountPage.clickPledgeButton();\ndonationsAmountPage.verifyShowThankYouPledge();",
+              "err": {},
+              "uuid": "5afee641-1c73-4627-b97b-b1567b7b6ec1",
+              "parentUUID": "e2088efe-c1d3-48ba-9c99-8470df7b03c4",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify Give Now without option full fill later",
+              "fullTitle": "Verify Give Now flow Verify Give Now without option full fill later",
+              "timedOut": null,
+              "duration": 13929,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(infors.url);\nhomePage.clickGiveNowButton();\ndonationsAmountPage.selectFee(infors.amountGiveNowTest);\ndonationsAmountPage.verifyFeeSelectionCorrect(infors.amountGiveNowTest);\ndonationsAmountPage.selectCoverTransaction();\ndonationsAmountPage.verifyAmountAfterFee(infors.amountGiveNowFeeTest);\ndonationsAmountPage.selectRecurringContribution();\ndonationsAmountPage.verifyWarningBillTimeShow();\ndonationsAmountPage.selectOption1stBill();\ndonationsAmountPage.selectMakeGiftAnonymous();\ndonationsAmountPage.clickNextButton();\ndonationsAddressPage.inputAddressInfor(user.firstName, user.lastName, user.email, user.phone, user.company, user.address1, user.address2, user.city, user.state, user.zip);\ndonationsAddressPage.clickNextButton();\ndonationsPaymentPage.inputCreditCard(infors.creditCardNumber, user.firstName, infors.creditCardVCV);\ndonationsPaymentPage.clickDonateButton(infors.amountGiveNowFeeTest);\ndonationsPaymentPage.verifyTransactionFinish();",
+              "err": {},
+              "uuid": "cd29e293-2ecf-4563-b829-d0af3f0f42f5",
+              "parentUUID": "e2088efe-c1d3-48ba-9c99-8470df7b03c4",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "5afee641-1c73-4627-b97b-b1567b7b6ec1",
+            "cd29e293-2ecf-4563-b829-d0af3f0f42f5"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 24215,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "a4131eca-d22a-4484-bbb6-6822ad1fffc0",
+      "title": "",
+      "fullFile": "cypress\\e2e\\1-getting-started\\testcases\\purchaseTicketTest.cy.js",
+      "file": "cypress\\e2e\\1-getting-started\\testcases\\purchaseTicketTest.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "2631c1ef-ee0c-4327-8239-14af719862e0",
+          "title": "Verify Purchase Tickets flow",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Verify purchase a ticket and selections amount",
+              "fullTitle": "Verify Purchase Tickets flow Verify purchase a ticket and selections amount",
+              "timedOut": null,
+              "duration": 16121,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(infors.url);\nlet randomName = (0, _generalFunction.getRandomText)();\nlet randomLastName = (0, _generalFunction.getRandomText)();\nlet randomEmail = (0, _generalFunction.getRandomEmail)();\nlet randomPhone = (0, _generalFunction.getRandomNumber)();\nhomePage.clickPurchaseTickets();\nticketPage.verifyIsScreenSelectTickets();\nticketPage.selectTestTicket(0);\nticketPage.verifyFormInforTc(0);\nticketPage.inputFormInforTc(0, randomName, randomLastName, randomEmail, randomPhone);\nticketPage.clickAddTicket(0);\nticketPage.verifyTicketIsAdded(0, randomEmail);\nticketPage.selectAmountItem('$' + infors.amountTicket);\nticketPage.verifySummaryAmount(true, false, infors.amountTicket);\nticketPage.clickButtonNext();\ndonationsAddressPage.inputAddressInforTickets(user.company, user.address1, user.address2, user.city, user.state, user.zip);\ndonationsAddressPage.clickNextButton();\ndonationsPaymentPage.inputCreditCardTicket(infors.creditCardNumber, infors.creditCardVCV);\ndonationsPaymentPage.clickPurchase();\ndonationsPaymentPage.verifyTransactionTicketsFinish();\n/*cy.wait(60000);\ncy.visit(infors.url);\nhomePage.verifyUserInTopFundraiser(randomName + ' ' + randomLastName,(infors.amountTicket + 33));\nhomePage.verifyUserInTopSocial(randomName + ' ' + randomLastName,1);\n*/",
+              "err": {},
+              "uuid": "39e5feb9-4e84-489f-8b75-406e2c6c2d96",
+              "parentUUID": "2631c1ef-ee0c-4327-8239-14af719862e0",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify purchase multiple tickets and other amount",
+              "fullTitle": "Verify Purchase Tickets flow Verify purchase multiple tickets and other amount",
+              "timedOut": null,
+              "duration": 25899,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(infors.url);\nlet randomName = (0, _generalFunction.getRandomText)();\nlet randomLastName = (0, _generalFunction.getRandomText)();\nlet randomEmail = (0, _generalFunction.getRandomEmail)();\nlet randomPhone = (0, _generalFunction.getRandomNumber)();\nhomePage.clickPurchaseTickets();\nticketPage.verifyIsScreenSelectTickets();\nticketPage.selectTestTicket(0);\nticketPage.verifyFormInforTc(0);\nticketPage.inputFormInforTc(0, randomName, randomLastName, randomEmail, randomPhone);\nticketPage.clickAddTicket(0);\nticketPage.verifyTicketIsAdded(0, randomEmail);\nticketPage.selectTestTicket(1);\nticketPage.verifyFormInforTc(1);\nticketPage.inputFormInforTc(1, randomName, randomLastName, randomEmail, randomPhone);\nticketPage.clickAddTicket(1);\nticketPage.verifyTicketIsAdded(1, randomEmail);\nticketPage.inputOtherAmount(infors.anotherAmountTicket + '.00');\nticketPage.verifySummaryAmount(true, true, infors.anotherAmountTicket);\nticketPage.clickButtonNext();\ndonationsAddressPage.inputAddressInforTickets(user.company, user.address1, user.address2, user.city, user.state, user.zip);\ndonationsAddressPage.clickNextButton();\ndonationsPaymentPage.inputCreditCardTicket(infors.creditCardNumber, infors.creditCardVCV);\ndonationsPaymentPage.clickPurchase();\ndonationsPaymentPage.verifyTransactionTicketsFinish();",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 7000ms: Expected to find content: 'Your transaction is complete.' within the element: [ <h5.title-line>, 2 more... ] but never did.",
+                "estack": "AssertionError: Timed out retrying after 7000ms: Expected to find content: 'Your transaction is complete.' within the element: [ <h5.title-line>, 2 more... ] but never did.\n    at DonationsPaymentPage.verifyTransactionTicketsFinish (https://tristina.swell.gives/__cypress/tests?p=cypress\\e2e\\1-getting-started\\testcases\\purchaseTicketTest.cy.js:190:62)\n    at Context.eval (https://tristina.swell.gives/__cypress/tests?p=cypress\\e2e\\1-getting-started\\testcases\\purchaseTicketTest.cy.js:504:26)",
+                "diff": null
+              },
+              "uuid": "ccc4488d-a35a-44a6-8bce-c7b4c9043175",
+              "parentUUID": "2631c1ef-ee0c-4327-8239-14af719862e0",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "39e5feb9-4e84-489f-8b75-406e2c6c2d96"
+          ],
+          "failures": [
+            "ccc4488d-a35a-44a6-8bce-c7b4c9043175"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 42020,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "a36e6679-2aaa-4b66-bfaf-9dc2ffbbd2b1",
+      "title": "",
+      "fullFile": "cypress\\e2e\\1-getting-started\\testcases\\specificTable.cy.js",
+      "file": "cypress\\e2e\\1-getting-started\\testcases\\specificTable.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "8fa0a8d3-28ac-43e2-825e-5ec739d9c9ae",
+          "title": "Verify table page",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Verify user in Top table board has correct fuctions in table page",
+              "fullTitle": "Verify table page Verify user in Top table board has correct fuctions in table page",
+              "timedOut": null,
+              "duration": 18671,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(infors.url);\nhomePage.clickFirstTableInTableBoard();\ntablePage.VerifyGiveNowButtonHasCorrectAction(infors.urlAction);\ntablePage.verifyPurchaseTicketsButtonHasCorrectAction(infors.urlAction);\ntablePage.verifyBecomeASponsorshipButtonHasCorrectAction(infors.urlAction);\ntablePage.verifyBecomeAHostButtonHasCorrectAction(infors.urlAction);\ntablePage.verifyBecomeAFundraiserButtonHasCorrectAction(infors.urlCheckoutAction);\ntablePage.verifyUIShowDonorInfo();",
+              "err": {},
+              "uuid": "1c816ba0-3216-4b41-af62-fbbcffea1622",
+              "parentUUID": "8fa0a8d3-28ac-43e2-825e-5ec739d9c9ae",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "1c816ba0-3216-4b41-af62-fbbcffea1622"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 18671,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "abc3c69b-c46d-4aa8-8025-d7347f63cdd3",
+      "title": "",
+      "fullFile": "cypress\\e2e\\1-getting-started\\testcases\\specificUser.cy.js",
+      "file": "cypress\\e2e\\1-getting-started\\testcases\\specificUser.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "c1cb77a6-38ea-4f28-835f-f295112a0fdd",
+          "title": "Verify user page",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Verify user in Top Fundraisers board has correct fuctions in user page",
+              "fullTitle": "Verify user page Verify user in Top Fundraisers board has correct fuctions in user page",
+              "timedOut": null,
+              "duration": 11977,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(infors.url);\nhomePage.clickFirstUserInTopFundraiser();\nusersPage.VerifyGiveNowButtonHasCorrectAction(infors.urlAction);\nusersPage.verifyPurchaseTicketsButtonHasCorrectAction(infors.urlAction);\nusersPage.verifyBecomeASponsorshipButtonHasCorrectAction(infors.urlAction);\nusersPage.verifyBecomeAHostButtonHasCorrectAction(infors.urlAction);\nusersPage.verifyBecomeAFundraiserButtonHasCorrectAction(infors.urlCheckoutAction);\nusersPage.verifyUIShowDonorInfo();",
+              "err": {},
+              "uuid": "5972ffe7-a4fc-4e3f-80b8-ad8f61f974d0",
+              "parentUUID": "c1cb77a6-38ea-4f28-835f-f295112a0fdd",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "verify user in Most Social board has correct fuctions in user page",
+              "fullTitle": "Verify user page verify user in Most Social board has correct fuctions in user page",
+              "timedOut": null,
+              "duration": 11940,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(infors.url);\nhomePage.clickFirstUserInTopFundraiser();\nusersPage.VerifyGiveNowButtonHasCorrectAction(infors.urlAction);\nusersPage.verifyPurchaseTicketsButtonHasCorrectAction(infors.urlAction);\nusersPage.verifyBecomeASponsorshipButtonHasCorrectAction(infors.urlAction);\nusersPage.verifyBecomeAHostButtonHasCorrectAction(infors.urlAction);\nusersPage.verifyBecomeAFundraiserButtonHasCorrectAction(infors.urlCheckoutAction);\nusersPage.verifyUIShowDonorInfo();",
+              "err": {},
+              "uuid": "977afe37-275b-4cf2-a93f-5c0405605265",
+              "parentUUID": "c1cb77a6-38ea-4f28-835f-f295112a0fdd",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "5972ffe7-a4fc-4e3f-80b8-ad8f61f974d0",
+            "977afe37-275b-4cf2-a93f-5c0405605265"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 23917,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "71c75adb-35ec-4320-b2be-c05ccee2481d",
+      "title": "",
+      "fullFile": "cypress\\e2e\\1-getting-started\\testcases\\becomeAFundraiser.cy.js",
+      "file": "cypress\\e2e\\1-getting-started\\testcases\\becomeAFundraiser.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "9fd32707-3b03-4973-b848-674dec686e63",
+          "title": "Verify Become A fundraiser flow",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Verify information when become a fundraiser ",
+              "fullTitle": "Verify Become A fundraiser flow Verify information when become a fundraiser ",
+              "timedOut": null,
+              "duration": 24779,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(infors.url);\nlet randomName = (0, _generalFunction.getRandomText)();\nlet randomLastName = (0, _generalFunction.getRandomText)();\nlet randomEmail = (0, _generalFunction.getRandomEmail)();\nlet randomPhone = (0, _generalFunction.getRandomNumber)();\nhomePage.clickBecomeAFundraiser();\nregisterPage.verifyRegisterPage();\nregisterPage.inputRegisterForm(randomName, randomLastName, randomPhone, randomEmail);\nregisterPage.clickRegisterButton();\nthankYouPage.verifyThankYouPageAfterFundraiserSuccess(randomName, randomLastName);\nthankYouPage.clickFundraiserUserLinks(randomName, randomLastName);",
+              "err": {},
+              "uuid": "bb09998a-5252-45a4-8987-e0bb86e116e9",
+              "parentUUID": "9fd32707-3b03-4973-b848-674dec686e63",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "bb09998a-5252-45a4-8987-e0bb86e116e9"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 24779,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

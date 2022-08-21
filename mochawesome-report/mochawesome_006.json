@@ -1,23 +1,80 @@
 {
   "stats": {
-    "suites": 0,
-    "tests": 0,
-    "passes": 0,
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
     "pending": 0,
     "failures": 0,
-    "start": "2022-08-19T10:53:13.441Z",
-    "end": "2022-08-19T10:53:13.441Z",
-    "duration": 0,
-    "testsRegistered": 0,
-    "passPercent": null,
-    "pendingPercent": null,
+    "start": "2022-08-21T10:06:36.839Z",
+    "end": "2022-08-21T10:06:56.805Z",
+    "duration": 19966,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
     "other": 0,
     "hasOther": false,
     "skipped": 0,
     "hasSkipped": false
   },
   "results": [
-    false
+    {
+      "uuid": "a36e6679-2aaa-4b66-bfaf-9dc2ffbbd2b1",
+      "title": "",
+      "fullFile": "cypress\\e2e\\1-getting-started\\testcases\\specificTable.cy.js",
+      "file": "cypress\\e2e\\1-getting-started\\testcases\\specificTable.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "8fa0a8d3-28ac-43e2-825e-5ec739d9c9ae",
+          "title": "Verify table page",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Verify user in Top table board has correct fuctions in table page",
+              "fullTitle": "Verify table page Verify user in Top table board has correct fuctions in table page",
+              "timedOut": null,
+              "duration": 18671,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(infors.url);\nhomePage.clickFirstTableInTableBoard();\ntablePage.VerifyGiveNowButtonHasCorrectAction(infors.urlAction);\ntablePage.verifyPurchaseTicketsButtonHasCorrectAction(infors.urlAction);\ntablePage.verifyBecomeASponsorshipButtonHasCorrectAction(infors.urlAction);\ntablePage.verifyBecomeAHostButtonHasCorrectAction(infors.urlAction);\ntablePage.verifyBecomeAFundraiserButtonHasCorrectAction(infors.urlCheckoutAction);\ntablePage.verifyUIShowDonorInfo();",
+              "err": {},
+              "uuid": "1c816ba0-3216-4b41-af62-fbbcffea1622",
+              "parentUUID": "8fa0a8d3-28ac-43e2-825e-5ec739d9c9ae",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "1c816ba0-3216-4b41-af62-fbbcffea1622"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 18671,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
   ],
   "meta": {
     "mocha": {
