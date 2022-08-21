@@ -1,0 +1,104 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-08-21T09:22:12.757Z",
+    "end": "2022-08-21T09:22:35.556Z",
+    "duration": 22799,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "d80af981-ab20-4c10-ac86-b2c99b7b0ca0",
+      "title": "",
+      "fullFile": "cypress\\e2e\\1-getting-started\\testcases\\chooseASponsorship.cy.js",
+      "file": "cypress\\e2e\\1-getting-started\\testcases\\chooseASponsorship.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "929fe2ed-bc4b-4940-a521-091e5b76652a",
+          "title": "Verify Choose a sponsorship flow",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Verify information when Choose a sponsorship",
+              "fullTitle": "Verify Choose a sponsorship flow Verify information when Choose a sponsorship",
+              "timedOut": null,
+              "duration": 21413,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(infors.url);\nlet randomName = (0, _generalFunction.getRandomText)();\nlet randomLastName = (0, _generalFunction.getRandomText)();\nlet randomEmail = (0, _generalFunction.getRandomEmail)();\nlet randomPhone = (0, _generalFunction.getRandomNumber)();\nhomePage.clickChooseASponsorshipButton();\nsponsorshipPage.clickSponsorItem(infors.sponsorItemName);\nsponsorshipPage.selectPersonReceiveCredit(infors.personRecieveCredit);\nsponsorshipPage.clickButtonNext();\ndonationsAddressPage.inputAddressInfor(randomName, randomLastName, randomEmail, randomPhone, user.company, user.address1, user.address2, user.city, user.state, user.zip);\ndonationsAddressPage.clickNextButton();\ndonationsPaymentPage.inputCreditCardTicket(infors.creditCardNumber, infors.creditCardVCV);\ndonationsPaymentPage.clickPurchase();\ndonationsPaymentPage.verifyTransactionFinish();\nusersPage.verifyTheUsersIsSponsor(infors.url + '/users/' + infors.personRecieveCreditPage, randomName + ' ' + randomLastName);",
+              "err": {},
+              "uuid": "b95ba499-dd63-4ae3-9f53-31e7305fe9ba",
+              "parentUUID": "929fe2ed-bc4b-4940-a521-091e5b76652a",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "b95ba499-dd63-4ae3-9f53-31e7305fe9ba"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 21413,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

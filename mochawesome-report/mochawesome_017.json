@@ -1,0 +1,123 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-08-21T09:22:44.556Z",
+    "end": "2022-08-21T09:23:09.772Z",
+    "duration": 25216,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "7ff40103-5e10-4f7d-952a-9f47c70d823e",
+      "title": "",
+      "fullFile": "cypress\\e2e\\1-getting-started\\testcases\\giveNowTest.cy.js",
+      "file": "cypress\\e2e\\1-getting-started\\testcases\\giveNowTest.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "fbac6dc3-61fc-4fb6-83ea-3076864097bc",
+          "title": "Verify Give Now flow",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Verify Give Now with all options",
+              "fullTitle": "Verify Give Now flow Verify Give Now with all options",
+              "timedOut": null,
+              "duration": 10573,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(infors.url);\nlet randomName = (0, _generalFunction.getRandomText)();\nlet randomLastName = (0, _generalFunction.getRandomText)();\nlet randomEmail = (0, _generalFunction.getRandomEmail)();\nlet randomPhone = (0, _generalFunction.getRandomNumber)();\nhomePage.clickGiveNowButton();\ndonationsAmountPage.selectFee(infors.amountGiveNowTest);\ndonationsAmountPage.verifyFeeSelectionCorrect(infors.amountGiveNowTest);\ndonationsAmountPage.selectCoverTransaction();\ndonationsAmountPage.verifyAmountAfterFee(infors.amountGiveNowFeeTest);\ndonationsAmountPage.selectRecurringContribution();\ndonationsAmountPage.verifyWarningBillTimeShow();\ndonationsAmountPage.selectOption1stBill();\ndonationsAmountPage.selectfullFillGiftLater();\ndonationsAmountPage.verifyWarningFullFillShow();\nrandomPhone;\ndonationsAmountPage.inputFormFullFillLater(randomName, randomLastName, randomEmail, randomPhone);\ndonationsAmountPage.selectMakeGiftAnonymous();\ndonationsAmountPage.clickPledgeButton();\ndonationsAmountPage.verifyShowThankYouPledge();",
+              "err": {},
+              "uuid": "6ea76141-0489-40e6-9291-a002bb511c53",
+              "parentUUID": "fbac6dc3-61fc-4fb6-83ea-3076864097bc",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify Give Now without option full fill later",
+              "fullTitle": "Verify Give Now flow Verify Give Now without option full fill later",
+              "timedOut": null,
+              "duration": 13148,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(infors.url);\nhomePage.clickGiveNowButton();\ndonationsAmountPage.selectFee(infors.amountGiveNowTest);\ndonationsAmountPage.verifyFeeSelectionCorrect(infors.amountGiveNowTest);\ndonationsAmountPage.selectCoverTransaction();\ndonationsAmountPage.verifyAmountAfterFee(infors.amountGiveNowFeeTest);\ndonationsAmountPage.selectRecurringContribution();\ndonationsAmountPage.verifyWarningBillTimeShow();\ndonationsAmountPage.selectOption1stBill();\ndonationsAmountPage.selectMakeGiftAnonymous();\ndonationsAmountPage.clickNextButton();\ndonationsAddressPage.inputAddressInfor(user.firstName, user.lastName, user.email, user.phone, user.company, user.address1, user.address2, user.city, user.state, user.zip);\ndonationsAddressPage.clickNextButton();\ndonationsPaymentPage.inputCreditCard(infors.creditCardNumber, user.firstName, infors.creditCardVCV);\ndonationsPaymentPage.clickDonateButton(infors.amountGiveNowFeeTest);\ndonationsPaymentPage.verifyTransactionFinish();",
+              "err": {},
+              "uuid": "7590827b-fd16-4e59-84a9-13a1e0fe17a1",
+              "parentUUID": "fbac6dc3-61fc-4fb6-83ea-3076864097bc",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "6ea76141-0489-40e6-9291-a002bb511c53",
+            "7590827b-fd16-4e59-84a9-13a1e0fe17a1"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 23721,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

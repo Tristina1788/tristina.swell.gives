@@ -44,11 +44,11 @@ describe('Verify become a host flow', () => {
         donationsRegisterTablePage.verifyInviteSuccess(randomNameGuest, randomLastNameGuest, randomEmailGuest);
         donationsRegisterTablePage.clickCancelInviteGuestButton();
         donationsRegisterTablePage.verifyCancelInviteGuestSuccess();
-        cy.wait(60000);
-        cy.visit(infors.url);
-        homePage.verifyUserInTopFundraiser(randomName + ' ' + randomLastName,(infors.amountTicket));
-        homePage.verifyUserInTopSocial(randomName + ' ' + randomLastName,1);
-        homePage.verifyUserInTable(randomLastName + " Table",(infors.amountTicket))
+        //cy.wait(60000);
+        //cy.visit(infors.url);
+        //homePage.verifyUserInTopFundraiser(randomName + ' ' + randomLastName,(infors.amountTicket));
+        //homePage.verifyUserInTopSocial(randomName + ' ' + randomLastName,1);
+        //homePage.verifyUserInTable(randomLastName + " Table",(infors.amountTicket))
     })
 
 })

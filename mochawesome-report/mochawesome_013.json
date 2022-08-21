@@ -1,0 +1,104 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-08-21T09:18:45.119Z",
+    "end": "2022-08-21T09:19:12.691Z",
+    "duration": 27572,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "9d567c1e-7114-4eaf-bea4-fae35c7c499b",
+      "title": "",
+      "fullFile": "cypress\\e2e\\1-getting-started\\testcases\\becomeAFundraiser.cy.js",
+      "file": "cypress\\e2e\\1-getting-started\\testcases\\becomeAFundraiser.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "57c56d8d-816b-4b9e-beb3-54b7c0a9a631",
+          "title": "Verify Become A fundraiser flow",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Verify information when become a fundraiser ",
+              "fullTitle": "Verify Become A fundraiser flow Verify information when become a fundraiser ",
+              "timedOut": null,
+              "duration": 24238,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(infors.url);\nlet randomName = (0, _generalFunction.getRandomText)();\nlet randomLastName = (0, _generalFunction.getRandomText)();\nlet randomEmail = (0, _generalFunction.getRandomEmail)();\nlet randomPhone = (0, _generalFunction.getRandomNumber)();\nhomePage.clickBecomeAFundraiser();\nregisterPage.verifyRegisterPage();\nregisterPage.inputRegisterForm(randomName, randomLastName, randomPhone, randomEmail);\nregisterPage.clickRegisterButton();\nthankYouPage.verifyThankYouPageAfterFundraiserSuccess(randomName, randomLastName);\nthankYouPage.clickFundraiserUserLinks(randomName, randomLastName);",
+              "err": {},
+              "uuid": "33a44e5e-3b4b-43c4-924b-3872bb1e606e",
+              "parentUUID": "57c56d8d-816b-4b9e-beb3-54b7c0a9a631",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "33a44e5e-3b4b-43c4-924b-3872bb1e606e"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 24238,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
