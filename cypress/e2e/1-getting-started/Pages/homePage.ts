@@ -1,5 +1,4 @@
 export class HomePage{
-    giveAHost = '#join';
     giveNow = '[value="GIVE NOW"]';
     purchaseTickets = '[value="Purchase Tickets"]';
     becomeASponser = '[value="BECOME A SPONSOR"]';
@@ -27,6 +26,10 @@ export class HomePage{
         cy.get(this.purchaseTickets).click();
     }
 
+    clickBecomeAFundraiser(){
+        cy.get(this.becomeAFund).click();
+    }
+
     verifyUserInTopFundraiser(userName:string, amount:number){
         
         cy.get(this.boardTopFundraisers).find(this.inputSearchName).type(userName);
@@ -44,6 +47,18 @@ export class HomePage{
         cy.get(this.boardTable).find(this.inputSearchName).type(userName);
         cy.get(this.boardTable).find(this.swellName).contains(userName).should('be.visible');
         //cy.get(this.boardTable).find(this.swellAmounts).contains(amount).should('be.visible');
+    }
+
+    clickFirstUserInTopFundraiser(){
+        cy.get(this.boardTopFundraisers).find(this.swellName).eq(0).click();
+    }
+
+    clickFirstUserInTopSocial(){
+        cy.get(this.boardMostSocial).find(this.swellName).eq(0).click();
+    }
+
+    clickFirstTableInTableBoard(){
+        cy.get(this.boardTable).find(this.swellName).eq(0).click();
     }
 }
 

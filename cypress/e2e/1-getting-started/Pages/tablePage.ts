@@ -1,5 +1,6 @@
-export class UsersPage{
-    giveNow = '[value="GIVE NOW"]';
+export class TablePage{
+    giveNowBtn = '.expanded';
+    giveNowText = 'To give to this Table click a Guest and donate through their page.';
     purchaseTickets = '[value="Purchase Tickets"]';
     becomeASponser = '[value="BECOME A SPONSOR"]';
     becomeAHost = '[value="BECOME A HOST"]';
@@ -9,23 +10,18 @@ export class UsersPage{
     becomeAsponsorActionForm = 'donations#/sponsorship';
     becomeAHostActionForm = 'donations#/table';
     becomeAFundraiserActionForm = 'register';
-    individuallyRaisedText = 'Individually Raised';
-    donorsReferredText = 'Donors Referred';
-    tableFundraisedText = 'Table Fundraised';
+    tableRaisedText = 'Table Raised';
     socialScoreText = 'Social Score';
-    eventFundraisedText = 'Event Fundraised';
+    totalAmountRaised = 'Total Amount Raised';
 
     verifyUIShowDonorInfo(){
-        cy.get('span').contains(this.individuallyRaisedText).should('be.visible');
-        cy.get('span').contains(this.donorsReferredText).should('be.visible');
-        cy.get('span').contains(this.tableFundraisedText).should('be.visible');
+        cy.get('span').contains(this.tableRaisedText).should('be.visible');
         cy.get('span').contains(this.socialScoreText).should('be.visible');
-        cy.get('span').contains(this.eventFundraisedText).should('be.visible');
+        cy.get('span').contains(this.totalAmountRaised).should('be.visible');
     }
+    
     VerifyGiveNowButtonHasCorrectAction(url:string){
-        cy.get(this.giveNow).should('be.visible');
-        cy.get(this.giveNow).parent().invoke('attr','action')
-        .should('eq',url+ this.giveNowActionForm);
+        cy.get(this.giveNowBtn).contains(this.giveNowText).should('be.visible');
     }
 
     verifyBecomeAHostButtonHasCorrectAction(url:string){

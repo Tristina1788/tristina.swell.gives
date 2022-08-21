@@ -1,4 +1,6 @@
 export const url = "https://tristina.swell.gives/";
+export const urlAction = "https://secure.swell.gives/tristina/";
+export const urlCheckoutAction = "https://checkout.swell.gives/tristina/";
 export const amountGiveNowTest = "$75";
 export const amountGiveNowFeeTest = "$77.99";
 export const creditCardNumber = '4242 4242 4242 4242';

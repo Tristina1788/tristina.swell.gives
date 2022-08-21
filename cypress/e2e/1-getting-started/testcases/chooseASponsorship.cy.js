@@ -1,7 +1,6 @@
 import { HomePage } from "../Pages/homePage";
 import { SponsorshipPage } from "../Pages/sponsorshipPage";
 import { DonationsAddressPage } from "../Pages/donationsAddressPage";
-import { DonationsRegisterTablePage } from "../Pages/donationsRegisterTablePage";
 import {  getRandomEmail, getRandomNumber, getRandomText} from "./generalFunction.cy"
 import { DonationsPaymentPage } from "../Pages/donationsPaymentPage";
 import { UsersPage } from "../Pages/usersPage";
