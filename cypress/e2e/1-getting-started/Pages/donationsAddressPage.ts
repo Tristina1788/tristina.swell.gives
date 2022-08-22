@@ -11,7 +11,20 @@ export class DonationsAddressPage{
     zipTextbox = 'input[name="zip"]';
     buttons = 'button[type="button"]';
     nextBtn = 'Next';
+    PreviousBtn = 'Previous';
     
+    verifyAddressInforPage(){
+        cy.get(this.fistNameTextbox).should('be.visible');
+        cy.get(this.lastNameTextbox).should('be.visible');
+        cy.get(this.emailTextbox).should('be.visible');
+        cy.get(this.phoneTextbox).should('be.visible');
+        cy.get(this.companyTextbox).should('be.visible');
+        cy.get(this.address1Textbox).should('be.visible');
+        cy.get(this.address2Textbox).should('be.visible');
+        cy.get(this.cityTextbox).should('be.visible');
+        cy.get(this.stateTextbox).should('be.visible');
+        cy.get(this.zipTextbox).should('be.visible');
+    }
     inputAddressInfor(firstName: string, lastName: string, email: string, phone: string,
         company: string, address1: string, address2: string, city: string, state: string,
         zip: string){
@@ -42,6 +55,10 @@ export class DonationsAddressPage{
 
     clickNextButton(){
         cy.get('.button').contains(this.nextBtn).click();
+    }
+
+    clickPreviousButton(){
+        cy.get('.button').contains(this.PreviousBtn).click();
     }
 }
 

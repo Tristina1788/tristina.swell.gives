@@ -20,7 +20,14 @@ export class DonationsAmountPage{
     pledgeBtn = 'Pledge';
     nextBtn = 'Next';
     textThankYouPledge = 'Thank you for your donation!';
+    PreviousBtn = 'Previous';
 
+    verifyDonationAmountPage(){
+        cy.get(this.amountSelection).should('be.visible');
+        expect(cy.get(this.coverTransactionFeeSelection)).to.exist;
+        expect(cy.get(this.recurrContributeSelection)).to.exist;
+        expect(cy.get(this.acknownSelection)).to.exist;
+    }
 
     selectFee(amount : string){
         cy.get(this.amountSelection).contains(amount).click();
@@ -84,6 +91,10 @@ export class DonationsAmountPage{
 
     clickNextButton(){
         cy.get('.button').contains(this.nextBtn).click();
+    }
+
+    clickPreviousButton(){
+        cy.get('.button').contains(this.PreviousBtn).click();
     }
 
     verifyShowThankYouPledge(amount:string){

@@ -28,7 +28,16 @@ describe('Verify Choose a sponsorship flow', () => {
             user.company, user.address1, user.address2, user.city, user.state,
             user.zip)
         donationsAddressPage.clickNextButton();
+        donationsPaymentPage.verifyPaymentPage();
         donationsPaymentPage.inputCreditCardTicket(infors.creditCardNumber, infors.creditCardVCV);
+        //start script to verify previous button
+        donationsPaymentPage.clickPreviousButton();
+        donationsAddressPage.verifyAddressInforPage();
+        donationsAddressPage.clickPreviousButton();
+        sponsorshipPage.verifySponsershipPage();
+        sponsorshipPage.clickButtonNext();
+        donationsAddressPage.clickNextButton();
+        //end script to verify previous button
         donationsPaymentPage.clickPurchase();
         donationsPaymentPage.verifyTransactionFinish();
         usersPage.verifyTheUsersIsSponsor(infors.url+'/users/'+infors.personRecieveCreditPage,randomName + ' '+randomLastName);

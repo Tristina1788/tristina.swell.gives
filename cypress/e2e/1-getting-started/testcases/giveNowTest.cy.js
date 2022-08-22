@@ -53,6 +53,7 @@ describe('Verify Give Now flow', () => {
             user.zip);
         donationsAddressPage.clickNextButton();
         donationsPaymentPage.inputCreditCard(infors.creditCardNumber, user.firstName, infors.creditCardVCV);
+        
         donationsPaymentPage.clickDonateButton(infors.amountGiveNowOtherFeeTest);
         donationsPaymentPage.verifyTransactionFinish();
     })
@@ -69,6 +70,14 @@ describe('Verify Give Now flow', () => {
             user.zip);
         donationsAddressPage.clickNextButton();
         donationsPaymentPage.inputCreditCard(infors.creditCardNumber, user.firstName, infors.creditCardVCV);
+        //start script to verify previous button
+        donationsPaymentPage.clickPreviousButton();
+        donationsAddressPage.verifyAddressInforPage();
+        donationsAddressPage.clickPreviousButton();
+        donationsAmountPage.verifyDonationAmountPage();
+        donationsAmountPage.clickNextButton();
+        donationsAddressPage.clickNextButton();
+        //end script to verify previous button
         donationsPaymentPage.clickDonateButton(infors.amountEvenGiveNowTest);
         donationsPaymentPage.verifyTransactionFailed();
     })

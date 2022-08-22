@@ -30,6 +30,14 @@ describe('Verify become a host flow', () => {
             user.zip)
         donationsAddressPage.clickNextButton();
         donationsPaymentPage.inputCreditCardTicket(infors.creditCardNumber, infors.creditCardVCV);
+        //start script to verify previous button
+        donationsPaymentPage.clickPreviousButton();
+        donationsAddressPage.verifyAddressInforPage();
+        donationsAddressPage.clickPreviousButton();
+        donationsTablePage.verifyTableDonationPage();
+        donationsTablePage.clickNextButton();
+        donationsAddressPage.clickNextButton();
+        //end script to verify previous button
         donationsPaymentPage.clickPurchase();
         donationsRegisterTablePage.verifyEmailAdressIsDisplayed(randomEmail);
         donationsRegisterTablePage.clickNavigationTab('Your Table');

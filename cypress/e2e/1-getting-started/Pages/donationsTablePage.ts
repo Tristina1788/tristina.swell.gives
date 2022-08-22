@@ -7,6 +7,12 @@ export class DonationsTablePage{
     textDonation = 'Donation of $';
     textTotal = 'Total: $';
 
+    verifyTableDonationPage() {
+        // cy.get(this.tableRadio).should('be.selected');
+         cy.get(this.tableLabel).should('be.visible');
+         cy.get(this.amountSelection).should('be.visible');
+     }
+
     verifyTableIsSelectedAsDefault(tableName: string, tablePrice: string) {
        // cy.get(this.tableRadio).should('be.selected');
         cy.get(this.tableLabel).contains(tableName).should('be.visible');

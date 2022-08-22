@@ -12,6 +12,13 @@ export class DonationsPaymentPage{
     tryAgainText ='Please try again or e-mail'//p
     emailSupport = 'info@swellfundraising.com.'//p
     alertPaymentFailed = '.alert';
+    PreviousBtn = 'Previous';
+
+    verifyPaymentPage(){
+        cy.get(this.creditCardNumber).should('be.visible');
+        cy.get(this.creditCardName).should('be.visible');
+        cy.get(this.creditCardCVC).should('be.visible');
+    }
 
     inputCreditCard(ccNumber : string, ccName : string, ccCVC : string){
         cy.get(this.creditCardNumber).type(ccNumber);
@@ -50,6 +57,10 @@ export class DonationsPaymentPage{
         cy.get(this.alertPaymentFailed).contains(this.tryAgainText).should('be.visible');
         cy.get('p').contains(this.tryAgainText).children()
         .get('a').contains(this.emailSupport).should('be.visible');
+    }
+
+    clickPreviousButton(){
+        cy.get('.button').contains(this.PreviousBtn).click();
     }
 
 }

@@ -35,6 +35,14 @@ describe('Verify Purchase Tickets flow', () => {
             user.zip);
         donationsAddressPage.clickNextButton();
         donationsPaymentPage.inputCreditCardTicket(infors.creditCardNumber, infors.creditCardVCV);
+         //start script to verify previous button
+         donationsPaymentPage.clickPreviousButton();
+         donationsAddressPage.verifyAddressInforPage();
+         donationsAddressPage.clickPreviousButton();
+         ticketPage.verifyIsScreenSelectTickets();
+         ticketPage.clickButtonNext();
+         donationsAddressPage.clickNextButton();
+         //end script to verify previous button
         donationsPaymentPage.clickPurchase();
         donationsPaymentPage.verifyTransactionTicketsFinish();
         /*cy.wait(60000);

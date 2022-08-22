@@ -5,7 +5,7 @@ export class RegisterPage{
     phoneRegisterInput = '[name="attendee_phone"]';
     emailAddress = '[name="attendee_email"]';
     registerBtn = '.nextButton';
-
+    PreviousBtn = '.Previous';
     verifyRegisterPage(){
         cy.get('h1').contains(this.registerTitle).should('be.visible');
     }
@@ -19,5 +19,9 @@ export class RegisterPage{
 
     clickRegisterButton(){
         cy.get(this.registerBtn).click();
+    }
+
+    clickPreviousButton(){
+        cy.get('.button').contains(this.PreviousBtn).click();
     }
 }

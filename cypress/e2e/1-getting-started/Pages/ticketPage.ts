@@ -17,6 +17,7 @@ export class TicketPage{
     addAnotherTicketbtn = 'Add another Ticket';
     thanksAddedTcText = 'Thanks for adding a ticket. Please be sure to complete your registration by clicking the Next Button below.';
     nextBtn = 'Next';
+    PreviousBtn = 'Previous';
 
     verifyIsScreenSelectTickets(){
         cy.get('span').contains(this.choseTcText).should('be.visible');
@@ -80,6 +81,10 @@ export class TicketPage{
 
     clickButtonNext(){
         cy.get('.button').contains(this.nextBtn).click();
+    }
+
+    clickPreviousButton(){
+        cy.get('.button').contains(this.PreviousBtn).click();
     }
 
 }
