@@ -36,14 +36,13 @@ describe('Verify Give Now flow', () => {
         donationsAmountPage.verifyShowThankYouPledge();
     })
 
-    it('Verify Give Now without option full fill later',()=>{
+    it('Verify Give Now with other amount no option full fill later ',()=>{
         cy.visit(infors.url);
         
         homePage.clickGiveNowButton();
-        donationsAmountPage.selectFee(infors.amountGiveNowTest);
-        donationsAmountPage.verifyFeeSelectionCorrect(infors.amountGiveNowTest);
+        donationsAmountPage.inputOtherAmount(infors.anotherAmountTicketGiveNow+'.00')
         donationsAmountPage.selectCoverTransaction();
-        donationsAmountPage.verifyAmountAfterFee(infors.amountGiveNowFeeTest);
+        donationsAmountPage.verifyAmountAfterFee(infors.amountGiveNowOtherFeeTest);
         donationsAmountPage.selectRecurringContribution();
         donationsAmountPage.verifyWarningBillTimeShow();
         donationsAmountPage.selectOption1stBill();
@@ -54,8 +53,26 @@ describe('Verify Give Now flow', () => {
             user.zip);
         donationsAddressPage.clickNextButton();
         donationsPaymentPage.inputCreditCard(infors.creditCardNumber, user.firstName, infors.creditCardVCV);
-        donationsPaymentPage.clickDonateButton(infors.amountGiveNowFeeTest);
+        donationsPaymentPage.clickDonateButton(infors.amountGiveNowOtherFeeTest);
         donationsPaymentPage.verifyTransactionFinish();
     })
+
+    it('Verify Give Now with fee even will make payment failed',()=>{
+        cy.visit(infors.url);
+        
+        homePage.clickGiveNowButton();
+        donationsAmountPage.selectFee(infors.amountEvenGiveNowTest);
+        donationsAmountPage.verifyFeeSelectionCorrect(infors.amountEvenGiveNowTest);
+        donationsAmountPage.clickNextButton();
+        donationsAddressPage.inputAddressInfor(user.firstName, user.lastName, user.email, user.phone,
+            user.company, user.address1, user.address2, user.city, user.state,
+            user.zip);
+        donationsAddressPage.clickNextButton();
+        donationsPaymentPage.inputCreditCard(infors.creditCardNumber, user.firstName, infors.creditCardVCV);
+        donationsPaymentPage.clickDonateButton(infors.amountEvenGiveNowTest);
+        donationsPaymentPage.verifyTransactionFailed();
+    })
+
+    
 
 })

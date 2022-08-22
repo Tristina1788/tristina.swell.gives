@@ -2,6 +2,7 @@ export class DonationsAmountPage{
     amountSelection = '.selector-button';
     divAmoutBeforeFee = '.progress_bar__flags--purchased'
     amoutBeforeFee ='.progress_bar__flags_value';
+    otherAmount ='[name="other_amount_input"]';
     amoutAfterFee = '[for="middle-label"]';
     coverTransactionFeeSelection = '#cover_fee_checkbox';
     recurrContributeSelection = '#recurring_checkbox';
@@ -27,6 +28,10 @@ export class DonationsAmountPage{
     verifyFeeSelectionCorrect(amount : string){
         expect(cy.get(this.amoutBeforeFee).contains(amount+'.00')).to.exist;
         
+    }
+
+    inputOtherAmount(amount : string){
+        cy.get(this.otherAmount).type(amount);   
     }
 
     selectCoverTransaction(){

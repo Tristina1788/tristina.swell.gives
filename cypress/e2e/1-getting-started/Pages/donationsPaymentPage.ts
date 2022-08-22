@@ -7,6 +7,11 @@ export class DonationsPaymentPage{
     textCompletedTransaction = 'Your transaction is complete.';
     textReceipEmail = 'Your receipt has been sent to your email address.';
     textReceipEmailTickets = 'Your receipt and tickets have been sent to your email address.';
+    operationFailedText ='Operation failed'//h5
+    errorPaymentText ='There was an error during the payment process'//p
+    tryAgainText ='Please try again or e-mail'//p
+    emailSupport = 'info@swellfundraising.com.'//p
+    alertPaymentFailed = '.alert';
 
     inputCreditCard(ccNumber : string, ccName : string, ccCVC : string){
         cy.get(this.creditCardNumber).type(ccNumber);
@@ -37,6 +42,14 @@ export class DonationsPaymentPage{
         cy.wait(5000);
         cy.get('h5').contains(this.textCompletedTransaction).should('be.visible');
         cy.get('h6').contains(this.textReceipEmailTickets).should('be.visible');
+    }
+
+    verifyTransactionFailed(){
+        cy.wait(4000);
+        cy.get(this.alertPaymentFailed).contains(this.operationFailedText).should('be.visible');
+        cy.get(this.alertPaymentFailed).contains(this.tryAgainText).should('be.visible');
+        cy.get('p').contains(this.tryAgainText).children()
+        .get('a').contains(this.emailSupport).should('be.visible');
     }
 
 }
