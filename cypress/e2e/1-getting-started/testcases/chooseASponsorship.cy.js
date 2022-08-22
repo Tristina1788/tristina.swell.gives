@@ -30,6 +30,27 @@ describe('Verify Choose a sponsorship flow', () => {
         donationsAddressPage.clickNextButton();
         donationsPaymentPage.verifyPaymentPage();
         donationsPaymentPage.inputCreditCardTicket(infors.creditCardNumber, infors.creditCardVCV);
+        donationsPaymentPage.clickPurchase();
+        donationsPaymentPage.verifyTransactionFinish();
+        usersPage.verifyTheUsersIsSponsor(infors.url+'/users/'+infors.personRecieveCreditPage,randomName + ' '+randomLastName);
+    })
+
+    it('Verify previous button in Choose a sponsorship',()=>{
+        cy.visit(infors.url);
+        let randomName = getRandomText();
+        let randomLastName = getRandomText();
+        let randomEmail = getRandomEmail();
+        let randomPhone = getRandomNumber();
+        homePage.clickChooseASponsorshipButton();
+        sponsorshipPage.clickSponsorItem(infors.sponsorItemName);
+        sponsorshipPage.selectPersonReceiveCredit(infors.personRecieveCredit);
+        sponsorshipPage.clickButtonNext();
+        donationsAddressPage.inputAddressInfor(randomName, randomLastName, randomEmail, randomPhone,
+            user.company, user.address1, user.address2, user.city, user.state,
+            user.zip)
+        donationsAddressPage.clickNextButton();
+        donationsPaymentPage.verifyPaymentPage();
+        donationsPaymentPage.inputCreditCardTicket(infors.creditCardNumber, infors.creditCardVCV);
         //start script to verify previous button
         donationsPaymentPage.clickPreviousButton();
         donationsAddressPage.verifyAddressInforPage();
@@ -38,9 +59,7 @@ describe('Verify Choose a sponsorship flow', () => {
         sponsorshipPage.clickButtonNext();
         donationsAddressPage.clickNextButton();
         //end script to verify previous button
-        donationsPaymentPage.clickPurchase();
-        donationsPaymentPage.verifyTransactionFinish();
-        usersPage.verifyTheUsersIsSponsor(infors.url+'/users/'+infors.personRecieveCreditPage,randomName + ' '+randomLastName);
+       
     })
 
 })

@@ -70,6 +70,22 @@ describe('Verify Give Now flow', () => {
             user.zip);
         donationsAddressPage.clickNextButton();
         donationsPaymentPage.inputCreditCard(infors.creditCardNumber, user.firstName, infors.creditCardVCV);
+        donationsPaymentPage.clickDonateButton(infors.amountEvenGiveNowTest);
+        donationsPaymentPage.verifyTransactionFailed();
+    })
+
+    it('Verify Give Now with previous button',()=>{
+        cy.visit(infors.url);
+        
+        homePage.clickGiveNowButton();
+        donationsAmountPage.selectFee(infors.amountEvenGiveNowTest);
+        donationsAmountPage.verifyFeeSelectionCorrect(infors.amountEvenGiveNowTest);
+        donationsAmountPage.clickNextButton();
+        donationsAddressPage.inputAddressInfor(user.firstName, user.lastName, user.email, user.phone,
+            user.company, user.address1, user.address2, user.city, user.state,
+            user.zip);
+        donationsAddressPage.clickNextButton();
+        donationsPaymentPage.inputCreditCard(infors.creditCardNumber, user.firstName, infors.creditCardVCV);
         //start script to verify previous button
         donationsPaymentPage.clickPreviousButton();
         donationsAddressPage.verifyAddressInforPage();
@@ -78,8 +94,6 @@ describe('Verify Give Now flow', () => {
         donationsAmountPage.clickNextButton();
         donationsAddressPage.clickNextButton();
         //end script to verify previous button
-        donationsPaymentPage.clickDonateButton(infors.amountEvenGiveNowTest);
-        donationsPaymentPage.verifyTransactionFailed();
     })
 
     

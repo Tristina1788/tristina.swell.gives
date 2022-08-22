@@ -35,6 +35,37 @@ describe('Verify Purchase Tickets flow', () => {
             user.zip);
         donationsAddressPage.clickNextButton();
         donationsPaymentPage.inputCreditCardTicket(infors.creditCardNumber, infors.creditCardVCV);
+        donationsPaymentPage.clickPurchase();
+        donationsPaymentPage.verifyTransactionTicketsFinish();
+        /*cy.wait(60000);
+        cy.visit(infors.url);
+        homePage.verifyUserInTopFundraiser(randomName + ' ' + randomLastName,(infors.amountTicket + 33));
+        homePage.verifyUserInTopSocial(randomName + ' ' + randomLastName,1);
+        */
+    })
+
+    
+    it('Verify previous button on purchase a ticket ',()=>{
+        cy.visit(infors.url);
+        
+        let randomName = getRandomText();
+        let randomLastName = getRandomText();
+        let randomEmail = getRandomEmail();
+        let randomPhone = getRandomNumber();
+        homePage.clickPurchaseTickets();
+        ticketPage.verifyIsScreenSelectTickets();
+        ticketPage.selectTestTicket(0);
+        ticketPage.verifyFormInforTc(0);
+        ticketPage.inputFormInforTc(0,randomName, randomLastName,randomEmail,randomPhone);
+        ticketPage.clickAddTicket(0);
+        ticketPage.verifyTicketIsAdded(0, randomEmail);
+        ticketPage.selectAmountItem('$'+infors.amountTicket);
+        ticketPage.verifySummaryAmount(true,false,infors.amountTicket);
+        ticketPage.clickButtonNext();
+        donationsAddressPage.inputAddressInforTickets(user.company, user.address1, user.address2, user.city, user.state,
+            user.zip);
+        donationsAddressPage.clickNextButton();
+        donationsPaymentPage.inputCreditCardTicket(infors.creditCardNumber, infors.creditCardVCV);
          //start script to verify previous button
          donationsPaymentPage.clickPreviousButton();
          donationsAddressPage.verifyAddressInforPage();
@@ -43,13 +74,7 @@ describe('Verify Purchase Tickets flow', () => {
          ticketPage.clickButtonNext();
          donationsAddressPage.clickNextButton();
          //end script to verify previous button
-        donationsPaymentPage.clickPurchase();
-        donationsPaymentPage.verifyTransactionTicketsFinish();
-        /*cy.wait(60000);
-        cy.visit(infors.url);
-        homePage.verifyUserInTopFundraiser(randomName + ' ' + randomLastName,(infors.amountTicket + 33));
-        homePage.verifyUserInTopSocial(randomName + ' ' + randomLastName,1);
-        */
+       
     })
 
     it('Verify purchase multiple tickets and other amount',()=>{

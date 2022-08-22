@@ -40,7 +40,7 @@ export class DonationsPaymentPage{
     }
 
     verifyTransactionFinish(){
-        cy.wait(3000);
+        cy.wait(4000);
         cy.get('h5').contains(this.textCompletedTransaction).should('be.visible');
         cy.get('h6').contains(this.textReceipEmail).should('be.visible');
     }

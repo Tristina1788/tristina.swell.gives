@@ -30,14 +30,6 @@ describe('Verify become a host flow', () => {
             user.zip)
         donationsAddressPage.clickNextButton();
         donationsPaymentPage.inputCreditCardTicket(infors.creditCardNumber, infors.creditCardVCV);
-        //start script to verify previous button
-        donationsPaymentPage.clickPreviousButton();
-        donationsAddressPage.verifyAddressInforPage();
-        donationsAddressPage.clickPreviousButton();
-        donationsTablePage.verifyTableDonationPage();
-        donationsTablePage.clickNextButton();
-        donationsAddressPage.clickNextButton();
-        //end script to verify previous button
         donationsPaymentPage.clickPurchase();
         donationsRegisterTablePage.verifyEmailAdressIsDisplayed(randomEmail);
         donationsRegisterTablePage.clickNavigationTab('Your Table');
@@ -57,6 +49,33 @@ describe('Verify become a host flow', () => {
         //homePage.verifyUserInTopFundraiser(randomName + ' ' + randomLastName,(infors.amountTicket));
         //homePage.verifyUserInTopSocial(randomName + ' ' + randomLastName,1);
         //homePage.verifyUserInTable(randomLastName + " Table",(infors.amountTicket))
+    })
+
+    it('Verify button Previous in become a host',()=>{
+        cy.visit(infors.url);
+        let randomName = getRandomText();
+        let randomLastName = getRandomText();
+        let randomEmail = getRandomEmail();
+        let randomPhone = getRandomNumber();
+        homePage.clickGiveAHostButton();
+        donationsTablePage.verifyTableIsSelectedAsDefault(infors.tableItem, infors.tablePriceString);
+        donationsTablePage.selectAmountItem(infors.amountTicket)
+        donationsTablePage.verifySummaryAmount(infors.amountDonateTable, infors.tablePriceNumber);
+        donationsTablePage.clickNextButton();
+        donationsAddressPage.inputAddressInfor(randomName, randomLastName, randomEmail, randomPhone,
+            user.company, user.address1, user.address2, user.city, user.state,
+            user.zip)
+        donationsAddressPage.clickNextButton();
+        donationsPaymentPage.inputCreditCardTicket(infors.creditCardNumber, infors.creditCardVCV);
+        //start script to verify previous button
+        donationsPaymentPage.clickPreviousButton();
+        donationsAddressPage.verifyAddressInforPage();
+        donationsAddressPage.clickPreviousButton();
+        donationsTablePage.verifyTableDonationPage();
+        donationsTablePage.clickNextButton();
+        donationsAddressPage.clickNextButton();
+        //end script to verify previous button
+        
     })
 
 })

@@ -50,15 +50,15 @@ export class HomePage{
     }
 
     clickFirstUserInTopFundraiser(){
-        cy.get(this.boardTopFundraisers).find(this.swellName).eq(0).click();
+        cy.get(this.boardTopFundraisers).find(this.swellName).eq(0).click({force: true});
     }
 
     clickFirstUserInTopSocial(){
-        cy.get(this.boardMostSocial).find(this.swellName).eq(0).click();
+        cy.get(this.boardMostSocial).find(this.swellName).eq(0).click({force: true});
     }
 
     clickFirstTableInTableBoard(){
-        cy.get(this.boardTable).find(this.swellName).eq(0).click();
+        cy.get(this.boardTable).find(this.swellName).eq(0).click({force: true});
     }
 }
 
