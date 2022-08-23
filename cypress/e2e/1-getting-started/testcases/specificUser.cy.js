@@ -9,6 +9,7 @@ describe('Verify user page', () => {
     
     it('Verify user in Top Fundraisers board has correct fuctions in user page',()=>{
         cy.visit(infors.url);
+        cy.wait(5000);
         homePage.clickFirstUserInTopFundraiser();
         usersPage.VerifyGiveNowButtonHasCorrectAction(infors.urlAction);
         usersPage.verifyPurchaseTicketsButtonHasCorrectAction(infors.urlAction);
@@ -20,6 +21,7 @@ describe('Verify user page', () => {
 
     it('verify user in Most Social board has correct fuctions in user page',()=>{
         cy.visit(infors.url);
+        cy.wait(5000);
         homePage.clickFirstUserInTopFundraiser();
         usersPage.VerifyGiveNowButtonHasCorrectAction(infors.urlAction);
         usersPage.verifyPurchaseTicketsButtonHasCorrectAction(infors.urlAction);
