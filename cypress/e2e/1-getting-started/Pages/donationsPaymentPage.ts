@@ -13,6 +13,13 @@ export class DonationsPaymentPage{
     emailSupport = 'info@swellfundraising.com.'//p
     alertPaymentFailed = '.alert';
     PreviousBtn = 'Previous';
+    invalidcc = '.ng-invalid #cc-number';
+    validcc = '.jp-card-valid #cc-number';
+    expiredYearcc = 'select#cc-year';
+    optionexpiredYear = 'option'; //option
+    disableBtn = 'disabled'
+    invalidCVC = '.ng-invalid';
+    validCVC = '.ng-valid';
 
     verifyPaymentPage(){
         cy.get(this.creditCardNumber).should('be.visible');
@@ -20,19 +27,54 @@ export class DonationsPaymentPage{
         cy.get(this.creditCardCVC).should('be.visible');
     }
 
+    inputExpiredYear(year : string){
+        cy.get(this.expiredYearcc).select(year);
+    }
+
+    verifyCreditCardNumberIsInvalid(){
+        cy.get(this.invalidcc).should('be.visible');
+    }
+
+    verifyCreditCardNumberIsValid(){
+        cy.get(this.validcc).should('be.visible');
+    }
+
+    verifyCreditCardVCVIsValid(){
+        cy.get(this.validCVC).should('be.visible');
+    }
+
+    verifyCreditCardVCVIsInvalid(){
+        cy.get(this.invalidCVC).should('be.visible');
+    }
+
     inputCreditCard(ccNumber : string, ccName : string, ccCVC : string){
+        cy.get(this.creditCardNumber).clear();
+        cy.get(this.creditCardName).clear();
+        cy.get(this.creditCardCVC).clear();
         cy.get(this.creditCardNumber).type(ccNumber);
         cy.get(this.creditCardName).type(ccName);
         cy.get(this.creditCardCVC).type(ccCVC);
     }
 
+    inputCreditCardNumber(ccNumber : string){
+        cy.get(this.creditCardNumber).clear();
+        cy.get(this.creditCardNumber).type(ccNumber);
+    }
+
     inputCreditCardTicket(ccNumber : string, ccCVC : string){
+        cy.get(this.creditCardNumber).clear();
+        cy.get(this.creditCardCVC).clear();
         cy.get(this.creditCardNumber).type(ccNumber);
         cy.get(this.creditCardCVC).type(ccCVC);
     }
 
+    verifyPurchaseButtonDisable(){
+        cy.get(':button').should('be.disabled');
+    }
+
     clickDonateButton(amount:string){
         cy.get('button').contains(this.donateButton+' '+amount).click();
+        
     }
 
     clickPurchase(amount:string){

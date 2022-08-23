@@ -4,17 +4,19 @@ import { DonationsAddressPage } from "../Pages/donationsAddressPage";
 import { DonationsRegisterTablePage } from "../Pages/donationsRegisterTablePage";
 import {  getRandomEmail, getRandomNumber, getRandomText} from "./generalFunction.cy"
 import { DonationsPaymentPage } from "../Pages/donationsPaymentPage";
+import { EmailPage } from "../Pages/emailPage";
 
 let homePage = new HomePage();
 let donationsTablePage =new DonationsTablePage();
 let donationsAddressPage =new DonationsAddressPage();
 let donationsRegisterTablePage =new DonationsRegisterTablePage();
 let donationsPaymentPage =new DonationsPaymentPage();
+let emailPage =new EmailPage();
 const infors = require('../utils/infor.js')
 const user = require('../../../fixtures/address.json')
 describe('Verify become a host flow', () => {
     
-    it('Verify information when become a host',()=>{
+    it('Verify information when become a host and verify payment for invalid infor and valid infor',()=>{
         cy.visit(infors.url);
         let randomName = getRandomText();
         let randomLastName = getRandomText();
@@ -29,7 +31,17 @@ describe('Verify become a host flow', () => {
             user.company, user.address1, user.address2, user.city, user.state,
             user.zip)
         donationsAddressPage.clickNextButton();
+        donationsPaymentPage.inputCreditCardNumber(infors.creditCardNumber);
+        donationsPaymentPage.verifyCreditCardVCVIsInvalid();
+        donationsPaymentPage.verifyPurchaseButtonDisable();
+        donationsPaymentPage.inputCreditCardTicket(infors.wrongCreditCardNumber, infors.creditCardVCV);
+        donationsPaymentPage.verifyCreditCardNumberIsInvalid();
+        donationsPaymentPage.verifyPurchaseButtonDisable();
         donationsPaymentPage.inputCreditCardTicket(infors.creditCardNumber, infors.creditCardVCV);
+        donationsPaymentPage.inputExpiredYear("2022");
+        donationsPaymentPage.verifyPurchaseButtonDisable();
+        donationsPaymentPage.inputExpiredYear("2023");
+        
         donationsPaymentPage.clickPurchase();
         donationsRegisterTablePage.verifyEmailAdressIsDisplayed(randomEmail);
         donationsRegisterTablePage.clickNavigationTab('Your Table');
@@ -41,6 +53,7 @@ describe('Verify become a host flow', () => {
         let randomEmailGuest = getRandomEmail();
         donationsRegisterTablePage.inputGuestInformation(randomNameGuest, randomLastNameGuest, randomEmailGuest);
         donationsRegisterTablePage.clickInviteGuestButton();
+        
         donationsRegisterTablePage.verifyInviteSuccess(randomNameGuest, randomLastNameGuest, randomEmailGuest);
         donationsRegisterTablePage.clickCancelInviteGuestButton();
         donationsRegisterTablePage.verifyCancelInviteGuestSuccess();
