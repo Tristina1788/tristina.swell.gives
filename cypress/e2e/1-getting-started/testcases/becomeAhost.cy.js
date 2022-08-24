@@ -14,6 +14,8 @@ let donationsPaymentPage =new DonationsPaymentPage();
 let emailPage =new EmailPage();
 const infors = require('../utils/infor.js')
 const user = require('../../../fixtures/address.json')
+let inboxId;
+let emailAddress;
 describe('Verify become a host flow', () => {
     
     it('Verify information when become a host and verify payment for invalid infor and valid infor',()=>{
@@ -51,12 +53,26 @@ describe('Verify become a host flow', () => {
         let randomNameGuest = getRandomText();
         let randomLastNameGuest = getRandomText();
         let randomEmailGuest = getRandomEmail();
-        donationsRegisterTablePage.inputGuestInformation(randomNameGuest, randomLastNameGuest, randomEmailGuest);
-        donationsRegisterTablePage.clickInviteGuestButton();
+        let countEmail = 0;
+        cy.createInbox().then(inbox => {
+            console.log('Test message');
+                // verify a new inbox was created
+            assert.isDefined(inbox)
         
-        donationsRegisterTablePage.verifyInviteSuccess(randomNameGuest, randomLastNameGuest, randomEmailGuest);
-        donationsRegisterTablePage.clickCancelInviteGuestButton();
-        donationsRegisterTablePage.verifyCancelInviteGuestSuccess();
+            // save the inboxId for later checking the emails
+            inboxId = inbox.id
+            emailAddress = inbox.emailAddress;
+            console.log("inbox id: "+inboxId);
+            donationsRegisterTablePage.inputGuestInformation(randomNameGuest, randomLastNameGuest, emailAddress);
+            donationsRegisterTablePage.clickInviteGuestButton();
+            cy.waitForLatestEmail(inboxId,60000).then(latestEmail => {
+                console.log(latestEmail.from);
+                expect(latestEmail.from).to.eql('info@swellfundraising.com');
+            });
+            donationsRegisterTablePage.verifyInviteSuccess(randomNameGuest, randomLastNameGuest, emailAddress);
+            donationsRegisterTablePage.clickCancelInviteGuestButton();
+            donationsRegisterTablePage.verifyCancelInviteGuestSuccess();
+        });
         //cy.wait(60000);
         //cy.visit(infors.url);
         //homePage.verifyUserInTopFundraiser(randomName + ' ' + randomLastName,(infors.amountTicket));

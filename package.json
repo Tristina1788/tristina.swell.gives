@@ -22,6 +22,8 @@
   "devDependencies": {
     "@types/node": "^18.7.3",
     "cypress": "^10.4.0",
+    "cypress-mailosaur": "^2.11.0",
+    "mailslurp-client": "^15.13.3",
     "mochawesome": "^7.1.3",
     "mochawesome-merge": "^4.2.1"
   }

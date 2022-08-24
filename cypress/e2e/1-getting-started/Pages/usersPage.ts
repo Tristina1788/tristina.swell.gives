@@ -18,7 +18,7 @@ export class UsersPage{
     verifyUIShowDonorInfo(){
         cy.get('span').contains(this.individuallyRaisedText).should('be.visible');
         cy.get('span').contains(this.donorsReferredText).should('be.visible');
-        //cy.get('span').contains(this.tableFundraisedText).should('be.visible');
+        cy.get('span').contains(this.tableFundraisedText).should('be.visible');
         cy.get('span').contains(this.socialScoreText).should('be.visible');
         cy.get('span').contains(this.eventFundraisedText).should('be.visible');
     }

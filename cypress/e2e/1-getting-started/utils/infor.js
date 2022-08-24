@@ -21,3 +21,4 @@ export const personRecieveCredit = "ABC DEF";
 export const personRecieveCreditPage = "ABC.DEF";
 export const emailGuest = "swelltesting1702@gmail.com";
 export const passGuest = "bl@ckr0ck";
+export const CYPRESS_API_KEY="2180e5ecdf3748d4e9624d9a2f3c6953849acb73641803008b73f3998542d121";

@@ -96,8 +96,13 @@ describe('Verify Purchase Tickets flow', () => {
         ticketPage.inputFormInforTc(1,randomName, randomLastName,randomEmail,randomPhone);
         ticketPage.clickAddTicket(1);
         ticketPage.verifyTicketIsAdded(1, randomEmail);
+        ticketPage.selectTestTicket(0);
+        ticketPage.verifyFormInforTc(0);
+        ticketPage.inputFormInforTc(0,randomName, randomLastName,randomEmail,randomPhone);
+        ticketPage.clickAddTicket(0);
+        ticketPage.verifyTicketIsAdded(0, randomEmail);
         ticketPage.inputOtherAmount(infors.anotherAmountTicket+'.00')
-        ticketPage.verifySummaryAmount(true,true,infors.anotherAmountTicket);
+        ticketPage.verifySummaryAmount(2, 1,infors.anotherAmountTicket);
         ticketPage.clickButtonNext();
         donationsAddressPage.inputAddressInforTickets(user.company, user.address1, user.address2, user.city, user.state,
             user.zip);

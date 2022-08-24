@@ -71,10 +71,8 @@ export class TicketPage{
         cy.get(this.otherAmount).type(amount);   
     }
 
-    verifySummaryAmount(isTicket1:boolean, isTicket2:boolean, amount:number){
-        let sumAmount = amount;
-        if(isTicket1) sumAmount = sumAmount + 33;
-        if(isTicket2) sumAmount = sumAmount + 51;
+    verifySummaryAmount(numTicket1:number, numTicket2:number, amount:number){
+        let sumAmount = amount + numTicket1 * 33 + numTicket2 * 51;
         cy.get('li').contains(this.textDonation+ ''+amount).should('be.visible');
         cy.get('span').contains(this.textTotal+ ''+sumAmount).should('be.visible');
     }
