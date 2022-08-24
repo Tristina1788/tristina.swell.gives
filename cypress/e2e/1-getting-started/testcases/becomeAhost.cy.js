@@ -53,6 +53,45 @@ describe('Verify become a host flow', () => {
         let randomNameGuest = getRandomText();
         let randomLastNameGuest = getRandomText();
         let randomEmailGuest = getRandomEmail();
+        donationsRegisterTablePage.inputGuestInformation(randomNameGuest, randomLastNameGuest, randomEmailGuest);
+        donationsRegisterTablePage.clickInviteGuestButton();
+        donationsRegisterTablePage.verifyInviteSuccess(randomNameGuest, randomLastNameGuest, randomEmailGuest);
+        donationsRegisterTablePage.clickCancelInviteGuestButton();
+        donationsRegisterTablePage.verifyCancelInviteGuestSuccess();
+        
+     
+        //cy.wait(60000);
+        //cy.visit(infors.url);
+        //homePage.verifyUserInTopFundraiser(randomName + ' ' + randomLastName,(infors.amountTicket));
+        //homePage.verifyUserInTopSocial(randomName + ' ' + randomLastName,1);
+        //homePage.verifyUserInTable(randomLastName + " Table",(infors.amountTicket))
+    })
+
+    it('Verify information when become a host and enable to send invitation to email',()=>{
+        cy.visit(infors.url);
+        let randomName = getRandomText();
+        let randomLastName = getRandomText();
+        let randomEmail = getRandomEmail();
+        let randomPhone = getRandomNumber();
+        homePage.clickGiveAHostButton();
+        donationsTablePage.verifyTableIsSelectedAsDefault(infors.tableItem, infors.tablePriceString);
+        donationsTablePage.selectAmountItem(infors.amountTicket)
+        donationsTablePage.verifySummaryAmount(infors.amountDonateTable, infors.tablePriceNumber);
+        donationsTablePage.clickNextButton();
+        donationsAddressPage.inputAddressInfor(randomName, randomLastName, randomEmail, randomPhone,
+            user.company, user.address1, user.address2, user.city, user.state,
+            user.zip)
+        donationsAddressPage.clickNextButton();
+        donationsPaymentPage.inputCreditCardTicket(infors.creditCardNumber, infors.creditCardVCV);
+        donationsPaymentPage.clickPurchase();
+        donationsRegisterTablePage.verifyEmailAdressIsDisplayed(randomEmail);
+        donationsRegisterTablePage.clickNavigationTab('Your Table');
+        donationsRegisterTablePage.verifyUserInformationInYourTableIsDisplayed(randomName, randomLastName, randomEmail);
+        donationsRegisterTablePage.clickNavigationTab('Guest');
+        donationsRegisterTablePage.verifyUserInformationInGuestTableIsDisplayed(randomName, randomLastName, randomEmail);
+        let randomNameGuest = getRandomText();
+        let randomLastNameGuest = getRandomText();
+        let randomEmailGuest = getRandomEmail();
         let countEmail = 0;
         cy.createInbox().then(inbox => {
             console.log('Test message');
