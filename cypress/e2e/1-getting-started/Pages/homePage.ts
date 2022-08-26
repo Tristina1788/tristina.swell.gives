@@ -10,6 +10,7 @@ export class HomePage{
     boardMostSocial = '[title="Most Social"]';
     boardTable = '[title="Table"]';
     inputSearchName = '[ng-model="name"]'
+    inforEvent = '.event-date'; //
     clickGiveAHostButton(){
         cy.get(this.becomeAHost).click();
     }
@@ -60,5 +61,12 @@ export class HomePage{
     clickFirstTableInTableBoard(){
         cy.get(this.boardTable).find(this.swellName).eq(0).click({force: true});
     }
+
+    verifyInforEventCorrect(date : string, time : string, location : string){
+        cy.get(this.inforEvent).contains(date +' | '+time).should('be.visible');
+        cy.get(this.inforEvent).contains(location).should('be.visible');
+    }
+
+    
 }
 

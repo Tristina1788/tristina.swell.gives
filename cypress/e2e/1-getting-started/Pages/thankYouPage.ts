@@ -15,4 +15,14 @@ export class ThankYouPage{
         let link = this.fundraiserLink+fname+'.'+lname+'"]';
         cy.get(link.toLowerCase()).click();
     }
+
+    verifyNonProfitNameSetupCorrect(nameNP : string){
+        cy.get('h1').contains(nameNP).should('be.visible');
+    }
+
+    
+    verifyNameSetupCorrect(name : string){
+        cy.get('p').contains(name).should('be.visible');
+        cy.get('a').contains(name).should('be.visible');
+    }
 }

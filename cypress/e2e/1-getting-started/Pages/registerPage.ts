@@ -6,6 +6,8 @@ export class RegisterPage{
     emailAddress = '[name="attendee_email"]';
     registerBtn = '.nextButton';
     PreviousBtn = '.Previous';
+    inforEvent = '.event-info';
+
     verifyRegisterPage(){
         cy.get('h1').contains(this.registerTitle).should('be.visible');
     }
@@ -23,5 +25,13 @@ export class RegisterPage{
 
     clickPreviousButton(){
         cy.get('.button').contains(this.PreviousBtn).click();
+    }
+
+    verifyInforEventCorrect(date : string, time : string, location : string){
+        cy.get('div').find(this.inforEvent).contains(date +' | '+ time + ' | ' + location).should('be.visible');
+    }
+
+    verifyNonProfitNameCorrect(nameNP : string){
+        cy.get('strong').contains(nameNP).should('be.visible');
     }
 }

@@ -85,4 +85,7 @@ export class TicketPage{
         cy.get('.button').contains(this.PreviousBtn).click();
     }
 
+    verifyNameSetupCorrect(name : string){
+        cy.get('h1').contains(name).should('be.visible');
+    }
 }
