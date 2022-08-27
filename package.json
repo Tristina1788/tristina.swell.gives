@@ -11,7 +11,7 @@
         "encode ": "node encode.js",
         "html-generator": "npx marge mochawesome1.json",
         "run-test-html": "npx cypress run --reporter mochawesome && npx mochawesome-merge --reportDir mochawesome-report > mochawesome1.json && node encode.js && npx marge mochawesome1.json",
-        "e2e": "npx cypress run --spec cypress\\e2e\\1-getting-started\\testcases\\becomeAFundraiser.cy.js"
+        "e2e": "npx cypress run"
     },
     "keywords": [],
     "author": "",
