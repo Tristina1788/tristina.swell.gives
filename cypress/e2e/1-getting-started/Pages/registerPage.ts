@@ -7,7 +7,20 @@ export class RegisterPage{
     registerBtn = '.nextButton';
     PreviousBtn = '.Previous';
     inforEvent = '.event-info';
+    imgEvent = '.bg-stretch';
+    imglogo = '.logo';
 
+    verifyImageLogoSetupCorrectInBranding(){
+       
+        cy.get(this.imglogo).eq(1).children('a').children('img').invoke('attr', 'src')
+        .then(link => {
+            const linkImg1 = link?.substring(link.length-29,link.length)+"" //419/1661783284-76906394.jpg
+            cy.readFile('./data/images.json').then((image)=> {
+                expect(linkImg1).to.equal(image.imageLogo);
+            });
+            
+        });
+    }
     verifyRegisterPage(){
         cy.get('h1').contains(this.registerTitle).should('be.visible');
     }
@@ -33,5 +46,18 @@ export class RegisterPage{
 
     verifyNonProfitNameCorrect(nameNP : string){
         cy.get('strong').contains(nameNP).should('be.visible');
+    }
+
+    verifyImageHeaderSetupCorrectInBranding(){
+       
+        cy.get(this.imgEvent).children('img').invoke('attr', 'src')
+        .then(link => {
+            
+            const linkImg1 = link?.substring(link.length-29,link.length)+"" //419/1661783284-76906394.jpg
+            cy.readFile('./data/images.json').then((image)=> {
+                expect(linkImg1).to.equal(image.imageHeader);
+            });
+            
+        });
     }
 }

@@ -19,9 +19,9 @@ let donationsPaymentPage = new DonationsPaymentPage();
 const infors = require('../utils/infor.js')
 const user = require('../../../fixtures/address.json')
 let detailSetupPage =new DetailSetupPage();
-describe('Verify table page', () => {
+describe('Verify setup Detail page', () => {
     
-    it('Verify user in Top table board has correct fuctions in table page',()=>{
+    it('Verify set up page in detail page and front end will update follow this setup',()=>{
         let noneProfitName = getRandomText();
         let name = getRandomText();
         let desc = getRandomText();

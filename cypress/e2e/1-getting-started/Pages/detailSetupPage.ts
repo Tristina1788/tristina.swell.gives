@@ -52,6 +52,7 @@ export class DetailSetupPage{
     clickSaveBtn(){
         cy.get('button').contains(this.saveBtn).click();
     }
+    
     VerifyUpdateFormSuccess(){
         cy.get('p').contains(this.saveSuccessTxt).should('be.visible');
     }
