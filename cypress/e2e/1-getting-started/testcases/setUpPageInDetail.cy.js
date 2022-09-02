@@ -28,10 +28,7 @@ describe('Verify setup Detail page', () => {
         let dateCurrent = getCurrentDateTime();
         let time = getCurrentTime();
         let location = getRandomLocation();
-        Cypress.on('uncaught:exception', (err, runnable) => {
-            return false;
-          });
-        detailSetupPage.visit(infors.urlManage);
+        loginManagePage.visit(infors.urlManage);
         loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         detailSetupPage.visit(infors.urlManage+'events/'+infors.idProject+'/details');
         detailSetupPage.inputNonProfitNameDetails(noneProfitName);

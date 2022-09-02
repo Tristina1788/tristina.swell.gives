@@ -13,7 +13,10 @@ export class HomePage{
     inforEvent = '.event-date'; //
     imgEvent = '.event-image';
     imglogo = '.logo';
-
+    menubar = '[role="menubar"]';
+    menuItem = '[role="menuitem"]';
+    contentPage = '.page-content-body';
+    pageNotFoundMsg = 'Page Not Found'; //h2
     
     clickGiveAHostButton(){
         cy.get(this.becomeAHost).click();
@@ -99,7 +102,39 @@ export class HomePage{
         });
     }
 
+    verifyNewPageActiveInFrontEnd(url : string, link : string, ct : string){
+        cy.get(this.menubar).find(this.menuItem).children('a').contains(link).should('be.visible');
+        cy.get(this.menubar).find(this.menuItem).children('a').contains(link).invoke('attr','href').then(text=>{
+            expect('/'+url).to.equal(text+'');
+        });
+        cy.get(this.menubar).find(this.menuItem).children('a').contains(link).click();
+        cy.get(this.contentPage).children('p').contains(ct).should('be.visible');
+    }
 
+    verifyNewPageHasCorrectOrderInFrontEnd(link : string, link1 : string){
+        cy.get(this.menubar).find(this.menuItem).children('a').contains(link)
+        .parent('li').next().children('a').contains(link1).should('be.visible');
+    }
+
+    verifyNewPageInactiveInFrontEnd(url : string, link : string, ct : string){
+        cy.get(this.menubar).find(this.menuItem).children('a').contains(link).should('not.exist');
+        cy.forceVisit(url);
+        cy.get(this.contentPage).children('p').contains(ct).should('be.visible');
+    }
+
+    verifyNewPageIsCreatedSuccessfullyInFrontEnd(url : string, link : string, ct : string){
+        cy.get(this.menubar).find(this.menuItem).children('a').contains(link).should('be.visible');
+        cy.get(this.menubar).find(this.menuItem).children('a').contains(link).invoke('attr','href').then(text=>{
+            expect('/'+url).to.equal(text+'');
+        });
+        cy.get(this.menubar).find(this.menuItem).children('a').contains(link).click();
+        cy.get(this.contentPage).children('p').contains(ct).should('be.visible');
+    }
+
+    verifyNewPageIsCDeletedSuccessfullyInFrontEnd(url : string){
+        cy.forceVisit(url);
+        cy.get('h2').contains(this.pageNotFoundMsg).should('be.visible');
+    }
     
 }
 

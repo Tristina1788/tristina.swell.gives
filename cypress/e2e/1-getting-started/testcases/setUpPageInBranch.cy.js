@@ -32,7 +32,7 @@ let branchSetupPage =new BranchSetupPage();
 describe('Verify setup branch page', () => {
     
     it('Verify set up in branch page successfully',()=>{
-        branchSetupPage.visit(infors.urlManage);
+        loginManagePage.visit(infors.urlManage);
         loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         branchSetupPage.visit(infors.urlManage+'events/'+infors.idProject+'/branding');
         branchSetupPage.verifyHaveAllUploadImages();
@@ -47,12 +47,6 @@ describe('Verify setup branch page', () => {
     })
 
     it('Verify set up page in branch page and image header and logo will update follow this setup',()=>{
-        let noneProfitName = getRandomText();
-        let name = getRandomText();
-        let desc = getRandomText();
-        let dateCurrent = getCurrentDateTime();
-        let time = getCurrentTime();
-        let location = getRandomLocation();
         Cypress.on('uncaught:exception', (err, runnable) => {
             return false;
           });
@@ -118,8 +112,6 @@ describe('Verify setup branch page', () => {
     it('Verify set up page in branch page and image profile header will update to user and table page follow this setup',()=>{
        
         cy.forceVisit(infors.url);
-
-        cy.visit(infors.url);
         homePage.clickFirstUserInTopFundraiser();
         usersPage.verifyImageHeadergoSetupCorrectInBranding();
         cy.visit(infors.url);

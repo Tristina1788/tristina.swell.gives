@@ -2,23 +2,23 @@ import { HomePage } from "../Pages/homePage";
 import { DonationsTablePage } from "../Pages/donationsTablePage";
 import { DonationsAddressPage } from "../Pages/donationsAddressPage";
 import { DonationsRegisterTablePage } from "../Pages/donationsRegisterTablePage";
-import {  getRandomEmail, getRandomNumber, getRandomText} from "./generalFunction.cy"
+import { getRandomEmail, getRandomNumber, getRandomText } from "./generalFunction.cy"
 import { DonationsPaymentPage } from "../Pages/donationsPaymentPage";
 import { EmailPage } from "../Pages/emailPage";
 
 let homePage = new HomePage();
-let donationsTablePage =new DonationsTablePage();
-let donationsAddressPage =new DonationsAddressPage();
-let donationsRegisterTablePage =new DonationsRegisterTablePage();
-let donationsPaymentPage =new DonationsPaymentPage();
-let emailPage =new EmailPage();
+let donationsTablePage = new DonationsTablePage();
+let donationsAddressPage = new DonationsAddressPage();
+let donationsRegisterTablePage = new DonationsRegisterTablePage();
+let donationsPaymentPage = new DonationsPaymentPage();
+let emailPage = new EmailPage();
 const infors = require('../utils/infor.js')
 const user = require('../../../fixtures/address.json')
 let inboxId;
 let emailAddress;
 describe('Verify become a host flow', () => {
-    
-    it('Verify information when become a host and verify payment for invalid infor and valid infor',()=>{
+
+    it('Verify information when become a host and verify payment for invalid infor and valid infor', () => {
         cy.visit(infors.url);
         let randomName = getRandomText();
         let randomLastName = getRandomText();
@@ -43,7 +43,7 @@ describe('Verify become a host flow', () => {
         donationsPaymentPage.inputExpiredYear("2022");
         donationsPaymentPage.verifyPurchaseButtonDisable();
         donationsPaymentPage.inputExpiredYear("2023");
-        
+
         donationsPaymentPage.clickPurchase();
         donationsRegisterTablePage.verifyEmailAdressIsDisplayed(randomEmail);
         donationsRegisterTablePage.clickNavigationTab('Your Table');
@@ -58,8 +58,8 @@ describe('Verify become a host flow', () => {
         donationsRegisterTablePage.verifyInviteSuccess(randomNameGuest, randomLastNameGuest, randomEmailGuest);
         donationsRegisterTablePage.clickCancelInviteGuestButton();
         donationsRegisterTablePage.verifyCancelInviteGuestSuccess();
-        
-     
+
+
         //cy.wait(60000);
         //cy.visit(infors.url);
         //homePage.verifyUserInTopFundraiser(randomName + ' ' + randomLastName,(infors.amountTicket));
@@ -67,7 +67,7 @@ describe('Verify become a host flow', () => {
         //homePage.verifyUserInTable(randomLastName + " Table",(infors.amountTicket))
     })
 
-    it('Verify information when become a host and enable to send invitation to email',()=>{
+    it('Verify information when become a host and enable to send invitation to email', () => {
         cy.visit(infors.url);
         let randomName = getRandomText();
         let randomLastName = getRandomText();
@@ -93,25 +93,38 @@ describe('Verify become a host flow', () => {
         let randomLastNameGuest = getRandomText();
         let randomEmailGuest = getRandomEmail();
         let countEmail = 0;
-        cy.createInbox().then(inbox => {
-            console.log('Test message');
-                // verify a new inbox was created
-            assert.isDefined(inbox)
-        
-            // save the inboxId for later checking the emails
-            inboxId = inbox.id
-            emailAddress = inbox.emailAddress;
-            console.log("inbox id: "+inboxId);
-            donationsRegisterTablePage.inputGuestInformation(randomNameGuest, randomLastNameGuest, emailAddress);
-            donationsRegisterTablePage.clickInviteGuestButton();
-            cy.waitForLatestEmail(inboxId,60000).then(latestEmail => {
-                console.log(latestEmail.from);
-                expect(latestEmail.from).to.eql('info@swellfundraising.com');
-            });
-            donationsRegisterTablePage.verifyInviteSuccess(randomNameGuest, randomLastNameGuest, emailAddress);
-            donationsRegisterTablePage.clickCancelInviteGuestButton();
-            donationsRegisterTablePage.verifyCancelInviteGuestSuccess();
-        });
+        // cy.createInbox().then(inbox => {
+        //     console.log('Test message');
+        //     // verify a new inbox was created
+        //     assert.isDefined(inbox)
+
+        //     // save the inboxId for later checking the emails
+        //     inboxId = inbox.id
+        //     emailAddress = inbox.emailAddress;
+        //     console.log("inbox id: " + inboxId);
+        //     donationsRegisterTablePage.inputGuestInformation(randomNameGuest, randomLastNameGuest, emailAddress);
+        //     donationsRegisterTablePage.clickInviteGuestButton();
+        //     cy.waitForLatestEmail(inboxId, 60000).then(latestEmail => {
+        //         console.log(latestEmail.from);
+        //         expect(latestEmail.from).to.eql('info@swellfundraising.com');
+        //     });
+
+        //     on("task", {
+        //         "gmail:check": async args => {
+        //             const { from, to, subject } = args;
+        //             // Find an email which has the words in 'subject', sent from 'from' email address, to 'to' email address.
+        //         }
+        //     });
+
+        //     donationsRegisterTablePage.verifyInviteSuccess(randomNameGuest, randomLastNameGuest, emailAddress);
+        //     donationsRegisterTablePage.clickCancelInviteGuestButton();
+        //     donationsRegisterTablePage.verifyCancelInviteGuestSuccess();
+        // });
+        donationsRegisterTablePage.inputGuestInformation(randomNameGuest, randomLastNameGuest, randomEmailGuest);
+        donationsRegisterTablePage.clickInviteGuestButton();
+        donationsRegisterTablePage.verifyInviteSuccess(randomNameGuest, randomLastNameGuest, randomEmailGuest);
+        donationsRegisterTablePage.clickCancelInviteGuestButton();
+        donationsRegisterTablePage.verifyCancelInviteGuestSuccess();
         //cy.wait(60000);
         //cy.visit(infors.url);
         //homePage.verifyUserInTopFundraiser(randomName + ' ' + randomLastName,(infors.amountTicket));
@@ -119,7 +132,7 @@ describe('Verify become a host flow', () => {
         //homePage.verifyUserInTable(randomLastName + " Table",(infors.amountTicket))
     })
 
-    it('Verify button Previous in become a host',()=>{
+    it('Verify button Previous in become a host', () => {
         cy.visit(infors.url);
         let randomName = getRandomText();
         let randomLastName = getRandomText();
@@ -143,7 +156,7 @@ describe('Verify become a host flow', () => {
         donationsTablePage.clickNextButton();
         donationsAddressPage.clickNextButton();
         //end script to verify previous button
-        
+
     })
 
 })
