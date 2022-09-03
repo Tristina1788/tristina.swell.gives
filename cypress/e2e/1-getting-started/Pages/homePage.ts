@@ -54,7 +54,6 @@ export class HomePage{
     verifyUserInTable(userName:string, amount:number){
         cy.get(this.boardTable).find(this.inputSearchName).type(userName);
         cy.get(this.boardTable).find(this.swellName).contains(userName).should('be.visible');
-        //cy.get(this.boardTable).find(this.swellAmounts).contains(amount).should('be.visible');
     }
 
     clickFirstUserInTopFundraiser(){

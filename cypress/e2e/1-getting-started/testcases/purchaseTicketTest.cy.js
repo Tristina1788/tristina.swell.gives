@@ -1,6 +1,6 @@
 import { HomePage } from "../Pages/homePage";
 import { TicketPage } from "../Pages/ticketPage";
-import { generalFunction, getNameRandom, getRandomEmail, getRandomNumber, getRandomText} from "./generalFunction.cy"
+import { getRandomEmail, getRandomNumber, getRandomText} from "./generalFunction.cy"
 import { DonationsAddressPage } from "../Pages/donationsAddressPage";
 import { DonationsPaymentPage } from "../Pages/donationsPaymentPage";
 
