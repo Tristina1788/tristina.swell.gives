@@ -63,8 +63,6 @@ describe('Verify setup content page', () => {
         contentManageSetupPage.verifyNewContentPageIsCreated(urlCt, linkct, infors.sortOrder, true, false, contentct);
         contentManageSetupPage.visit(infors.url);
         homePage.verifyNewPageActiveInFrontEnd(urlCt, linkct, contentct);
-        // cy.forceVisit(infors.url);
-        // homePage.verifyImageHeaderSetupCorrectInBranding();
 
     })
 
@@ -83,8 +81,6 @@ describe('Verify setup content page', () => {
         contentManageSetupPage.clickDeleteButton(urlCt+'_order');
         contentManageSetupPage.verifyDeleteSuccess();
         homePage.verifyNewPageIsCDeletedSuccessfullyInFrontEnd(infors.url + '/'+urlCt+'_order');
-        // cy.forceVisit(infors.url);
-        // homePage.verifyImageHeaderSetupCorrectInBranding();
 
     })
 
@@ -125,9 +121,6 @@ describe('Verify setup content page', () => {
         contentManageSetupPage.clickDeleteButton(urlCt);
         contentManageSetupPage.verifyDeleteSuccess();
         homePage.verifyNewPageIsCDeletedSuccessfullyInFrontEnd(infors.url + '/'+urlCt+'_update');
-
-        // cy.forceVisit(infors.url);
-        // homePage.verifyImageHeaderSetupCorrectInBranding();
         
     })
 

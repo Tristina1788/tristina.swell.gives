@@ -34,29 +34,15 @@ export class ContentSetupPage{
       
 
     inputFormContent(url : string, link : string, order : number, isActive : boolean, isHidden : boolean, ct : string){
-        /*
-        let active = 0;
-        let hidden = 0;
-        if(isActive) active = 1;
-        if(isHidden) hidden = 1;
-        */
         cy.get(this.pageUrl).type(url);
         cy.get(this.pageLink).type(link);
         cy.get(this.sortOrder).clear();
         cy.get(this.sortOrder).type(order+'');
-        /*
-        cy.get(this.activeCheckbox).invoke('val').then(val => {
-            console.log("active : "+active);
-            console.log("val : "+val);
-            if(active != val) cy.get(this.activeCheckbox).click();
-        });
-        cy.get(this.hiddenCheckbox).invoke('val').then(val => {
-            if(hidden != val) cy.get(this.hiddenCheckbox).click();
-        });
-        */
-        if(isActive) cy.get(this.activeCheckbox).click();
-        if(isHidden) cy.get(this.hiddenCheckbox).click();
-        //cy.get('textarea#content').click({force:true}).type("<h1>CONTENT Page Test</h1><p> </p><p>Hello, this is test for content page</p><p> </p>;",{force: true});
+        if(isActive) cy.get(this.activeCheckbox).check();
+        else cy.get(this.activeCheckbox).uncheck();
+        if(isHidden) cy.get(this.hiddenCheckbox).check();
+        else cy.get(this.hiddenCheckbox).uncheck();
+        
         this.getIframeBody().invoke('text',ct)
         .then(text=> {
             cy.log("text iframe:"+text);
@@ -88,28 +74,20 @@ export class ContentSetupPage{
         cy.get(this.sortOrder).invoke('val').then(val => {
             expect(val).to.equal(order);
         });
-
-        cy.get(this.sortOrder).invoke('val').then(val => {
-            expect(val).to.equal(order);
-        });
-        /*
-        cy.get(this.hiddenCheckbox  ).invoke('val').then(val => {
-            if(isHidden)
-                expect(val).to.equal('1');
-            else 
-                expect(val).to.equal('0');
-        });
-
-        cy.get(this.activeCheckbox).invoke('val').then(val => {
-            if(isActive)
-                expect(val).to.equal('1');
-            else 
-                expect(val).to.equal('0');
-        });
-        */
-        cy.get(this.content).invoke('text').then(val => {
-            expect(val).to.include(ct);
-        });
+        if(isHidden)
+            cy.get(this.hiddenCheckbox).should('be.checked');
+        else
+            cy.get(this.hiddenCheckbox).should('be.not.checked');
+        
+        if(isActive)
+            cy.get(this.activeCheckbox).should('be.checked');
+        else 
+            cy.get(this.activeCheckbox).should('be.not.checked');
+       
+        
+         cy.get(this.content).invoke('text').then(val => {
+             expect(val).to.include(ct);
+         });
         
         
     }
