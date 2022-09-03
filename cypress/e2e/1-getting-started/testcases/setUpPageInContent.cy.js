@@ -1,35 +1,12 @@
 import { HomePage } from "../Pages/homePage";
 import { ContentSetupPage } from "../Pages/contentSetupPage";
 import { ContentManageSetupPage} from "../Pages/contentManageSetupPage";
-import { getCurrentDateTime, getCurrentTime, getRandomEmail, getRandomLocation, getRandomNumber, getRandomText } from "./generalFunction.cy";
-import { ThankYouPage } from "../Pages/thankYouPage";
-import { RegisterPage } from "../Pages/registerPage";
+import { getRandomText } from "./generalFunction.cy";
 import { LoginManagePage } from "../Pages/loginManagePage";
-import { TicketPage } from "../Pages/ticketPage";
-import { DonationsAddressPage } from "../Pages/donationsAddressPage";
-import { DonationsPaymentPage } from "../Pages/donationsPaymentPage";
-import { SponsorshipPage } from "../Pages/sponsorshipPage";
-import { DonationsTablePage } from "../Pages/donationsTablePage";
-import { DonationsAmountPage } from "../Pages/donationsAmountPage";
-import { UsersPage } from "../Pages/usersPage";
-import { TablePage } from "../Pages/tablePage";
-import { utc } from "moment";
-
 let homePage = new HomePage();
-let registerPage =new RegisterPage();
-let thankYouPage =new ThankYouPage();
 let loginManagePage =new LoginManagePage();
-let ticketPage = new TicketPage();
-let donationsAddressPage = new DonationsAddressPage();
-let donationsPaymentPage = new DonationsPaymentPage();
-let sponsorshipPage =new SponsorshipPage();
-let donationsTablePage =new DonationsTablePage();
-let donationsAmountPage =new DonationsAmountPage();
-let usersPage =new UsersPage();
-let tablePage =new TablePage();
 
 const infors = require('../utils/infor.js')
-const user = require('../../../fixtures/address.json')
 let contentSetupPage =new ContentSetupPage();
 let contentManageSetupPage =new ContentManageSetupPage();
 let urlCt = getRandomText();
