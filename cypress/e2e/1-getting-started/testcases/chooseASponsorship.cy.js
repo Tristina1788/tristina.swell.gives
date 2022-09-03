@@ -32,7 +32,7 @@ describe('Verify Choose a sponsorship flow', () => {
         donationsPaymentPage.inputCreditCardTicket(infors.creditCardNumber, infors.creditCardVCV);
         donationsPaymentPage.clickPurchase();
         donationsPaymentPage.verifyTransactionFinish();
-        usersPage.verifyTheUsersIsSponsor(infors.url+'/users/'+infors.personRecieveCreditPage,randomName + ' '+randomLastName);
+        usersPage.verifyTheUsersIsSponsor(infors.url+'users/'+infors.personRecieveCreditPage,randomName + ' '+randomLastName);
     })
 
     it('Verify previous button in Choose a sponsorship',()=>{

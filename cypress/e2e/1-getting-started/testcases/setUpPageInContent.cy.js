@@ -52,8 +52,10 @@ describe('Verify setup content page', () => {
    
     
     it('Verify create content page successfully with active = true',()=>{
-       
+        loginManagePage.visit(infors.urlManage);
+        loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage+'events/'+infors.idProject+'/contents');
+        
         contentManageSetupPage.clickAddBtn();
         contentSetupPage.inputFormContent(urlCt, linkct, infors.sortOrder, true, false, contentct);
         contentSetupPage.clickSaveButton();
@@ -126,7 +128,7 @@ describe('Verify setup content page', () => {
 
         // cy.forceVisit(infors.url);
         // homePage.verifyImageHeaderSetupCorrectInBranding();
-
+        
     })
 
 })

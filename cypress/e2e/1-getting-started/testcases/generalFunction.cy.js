@@ -58,7 +58,7 @@ import { match } from "assert";
     }
 
     export function getRandomLocation(){
-        const locations = ["NewYour", "Chicago", "Denver", "Los Angeles", "Kentucky"];
+        const locations = ["NewYork", "Chicago", "Denver", "Los Angeles", "Kentucky"];
         var randomNum = Math.floor(Math.random() * 5);
         return locations[randomNum];
     }
