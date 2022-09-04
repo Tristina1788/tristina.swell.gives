@@ -13,6 +13,20 @@ export class TablePage{
     tableRaisedText = 'Table Raised';
     socialScoreText = 'Social Score';
     totalAmountRaised = 'Total Amount Raised';
+    imgEvent = '.event-image';
+
+    verifyImageHeadergoSetupCorrectInBranding(){
+       
+        cy.get(this.imgEvent).children('a').children('img').invoke('attr', 'src')
+        .then(link => {
+            
+            const linkImg1 = link?.substring(link.length-29,link.length)+"" //419/1661783284-76906394.jpg
+            cy.readFile('./data/images.json').then((image)=> {
+                expect(linkImg1).to.equal(image.imageProfile);
+            });
+            
+        });
+    }
 
     verifyUIShowDonorInfo(){
         cy.get('span').contains(this.tableRaisedText).should('be.visible');

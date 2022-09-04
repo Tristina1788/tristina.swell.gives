@@ -14,6 +14,34 @@ export class DonationsRegisterTablePage{
     inviteGuestBtn = '[data-action="invite"]';
     resendInviteBtn = '[data-action="send"]';
     cancelInviteBtn = '[data-action="cancel"]';
+    imgEvent = '.event-image';
+    imglogo = '.logo';
+
+    verifyImageLogoSetupCorrectInBranding(){
+       
+        cy.get(this.imglogo).eq(1).children('a').children('img').invoke('attr', 'src')
+        .then(link => {
+            
+            const linkImg1 = link?.substring(link.length-29,link.length)+"" //419/1661783284-76906394.jpg
+            cy.readFile('./data/images.json').then((image)=> {
+                expect(linkImg1).to.equal(image.imageLogo);
+            });
+            
+        });
+    }
+
+    verifyImageHeaderSetupCorrectInBranding(){
+       
+        cy.get(this.imgEvent).children('a').children('img').invoke('attr', 'src')
+        .then(link => {
+            
+            const linkImg1 = link?.substring(link.length-29,link.length)+"" //419/1661783284-76906394.jpg
+            cy.readFile('./data/images.json').then((image)=> {
+                expect(linkImg1).to.equal(image.imageHeader);
+            });
+            
+        });
+    }
     
     verifyEmailAdressIsDisplayed(email: string){
         cy.get(this.emailAddress).should('be.visible');

@@ -18,7 +18,37 @@ export class TicketPage{
     thanksAddedTcText = 'Thanks for adding a ticket. Please be sure to complete your registration by clicking the Next Button below.';
     nextBtn = 'Next';
     PreviousBtn = 'Previous';
+    imgEvent = '.event-image';
+    imglogo = '.logo';
+    promoCodeText = 'Have a promo code?'; //span
+    inputPromo = '[name="promo"]';
+    updatePriceBtn = 'Update prices';
 
+    verifyImageLogoSetupCorrectInBranding(){
+       
+        cy.get(this.imglogo).children('a').children('img').invoke('attr', 'src')
+        .then(link => {
+            
+            const linkImg1 = link?.substring(link.length-29,link.length)+"" //419/1661783284-76906394.jpg
+            cy.readFile('./data/images.json').then((image)=> {
+                expect(linkImg1).to.equal(image.imageLogo);
+            });
+            
+        });
+    }
+
+    verifyImageHeaderSetupCorrectInBranding(){
+       
+        cy.get(this.imgEvent).children('a').children('img').invoke('attr', 'src')
+        .then(link => {
+            
+            const linkImg1 = link?.substring(link.length-29,link.length)+"" //419/1661783284-76906394.jpg
+            cy.readFile('./data/images.json').then((image)=> {
+                expect(linkImg1).to.equal(image.imageHeader);
+            });
+            
+        });
+    }
     verifyIsScreenSelectTickets(){
         cy.get('span').contains(this.choseTcText).should('be.visible');
     }
@@ -71,8 +101,8 @@ export class TicketPage{
         cy.get(this.otherAmount).type(amount);   
     }
 
-    verifySummaryAmount(numTicket1:number, numTicket2:number, amount:number){
-        let sumAmount = amount + numTicket1 * 33 + numTicket2 * 51;
+    verifySummaryAmount(numTicket1:number, numTicket2:number, amount:number,promoDiscount : number = 0){
+        let sumAmount = amount + numTicket1 * 33 + numTicket2 * 51 - promoDiscount;
         cy.get('li').contains(this.textDonation+ ''+amount).should('be.visible');
         cy.get('span').contains(this.textTotal+ ''+sumAmount).should('be.visible');
     }
@@ -87,5 +117,16 @@ export class TicketPage{
 
     verifyNameSetupCorrect(name : string){
         cy.get('h1').contains(name).should('be.visible');
+    }
+
+    verifyPromoEnableToApplyInFrontEnd(){
+        cy.get('span').contains(this.promoCodeText).should('be.visible');
+        cy.get(this.inputPromo).should('be.visible');
+        cy.get('button').contains(this.updatePriceBtn).should('be.visible');
+    }
+
+    addPromotoTicket(code:string){
+        cy.get(this.inputPromo).type(code);
+        cy.get('button').contains(this.updatePriceBtn).click();
     }
 }

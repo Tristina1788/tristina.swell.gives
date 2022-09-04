@@ -6,6 +6,34 @@ export class SponsorshipPage{
     avaibleItem = '.available-items';
     PreviousBtn = 'Previous';
     nextBtn = 'Next';
+    imgEvent = '.event-image';
+    imglogo = '.logo';
+
+    verifyImageLogoSetupCorrectInBranding(){
+       
+        cy.get(this.imglogo).children('a').children('img').invoke('attr', 'src')
+        .then(link => {
+            
+            const linkImg1 = link?.substring(link.length-29,link.length)+"" //419/1661783284-76906394.jpg
+            cy.readFile('./data/images.json').then((image)=> {
+                expect(linkImg1).to.equal(image.imageLogo);
+            });
+            
+        });
+    }
+
+    verifyImageHeaderSetupCorrectInBranding(){
+       
+        cy.get(this.imgEvent).children('a').children('img').invoke('attr', 'src')
+        .then(link => {
+            
+            const linkImg1 = link?.substring(link.length-29,link.length)+"" //419/1661783284-76906394.jpg
+            cy.readFile('./data/images.json').then((image)=> {
+                expect(linkImg1).to.equal(image.imageHeader);
+            });
+            
+        });
+    }
 
     verifySponsershipPage(){
         cy.get(this.radioItem).should('be.visible');

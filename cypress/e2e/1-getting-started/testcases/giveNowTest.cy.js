@@ -2,7 +2,7 @@ import { HomePage } from "../Pages/homePage";
 import { DonationsAmountPage} from "../Pages/donationsAmountPage";
 import { DonationsAddressPage } from "../Pages/donationsAddressPage";
 import { DonationsPaymentPage } from "../Pages/donationsPaymentPage";
-import { generalFunction, getNameRandom, getRandomEmail, getRandomNumber, getRandomText} from "./generalFunction.cy"
+import { getRandomEmail, getRandomNumber, getRandomText} from "./generalFunction.cy"
 
 let homePage = new HomePage();
 let donationsAmountPage = new DonationsAmountPage();

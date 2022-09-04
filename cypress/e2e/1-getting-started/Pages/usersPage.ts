@@ -14,7 +14,20 @@ export class UsersPage{
     tableFundraisedText = 'Table Fundraised';
     socialScoreText = 'Social Score';
     eventFundraisedText = 'Event Fundraised';
+    imgEvent = '.event-image';
 
+    verifyImageHeadergoSetupCorrectInBranding(){
+       
+        cy.get(this.imgEvent).children('a').children('img').invoke('attr', 'src')
+        .then(link => {
+            
+            const linkImg1 = link?.substring(link.length-29,link.length)+"" //419/1661783284-76906394.jpg
+            cy.readFile('./data/images.json').then((image)=> {
+                expect(linkImg1).to.equal(image.imageProfile);
+            });
+            
+        });
+    }
     verifyUIShowDonorInfo(){
         cy.get('span').contains(this.individuallyRaisedText).should('be.visible');
         cy.get('span').contains(this.donorsReferredText).should('be.visible');
