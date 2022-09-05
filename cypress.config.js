@@ -12,7 +12,7 @@ module.exports = defineConfig({
         // use mochawesome reporter as usually
         "reporter": "junit",
         "reporterOptions": {
-            "mochaFile": "tests/test-output.xml",
+            "mochaFile": "tests/test-output.[hash].xml",
             "toConsole": true,
             "attachments": true
         },
