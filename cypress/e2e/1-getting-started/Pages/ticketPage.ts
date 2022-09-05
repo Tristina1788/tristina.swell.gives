@@ -56,6 +56,14 @@ export class TicketPage{
         cy.get(this.ticketBoxItem).eq(item).contains('SELECT').click();
     }
 
+    selectTicketName(name:string){
+        cy.get('div').contains(name).parent(this.ticketBoxItem).contains('SELECT').click();
+    }
+
+    verifyTheTicketIsNotExist(name:string){
+        cy.get('div').contains(name).should('not.exist');
+    }
+
     verifyFormInforTc(item:number){
         cy.get(this.ticketBoxItem).eq(item).find(this.firstNameTc).should('be.visible');
         cy.get(this.ticketBoxItem).eq(item).find(this.lastNameTc).should('be.visible');
@@ -65,6 +73,13 @@ export class TicketPage{
 
     selectTestTicket2(){
         cy.get(this.ticketBoxItem).eq(1).contains(this.virtualTicketLabel).click();
+    }
+
+    inputFormInforNameTc(name : string, fname : string, lname : string, email : string, phone : string){
+        cy.get('div').contains(name).parent(this.ticketBoxItem).find(this.firstNameTc).type(fname);
+        cy.get(this.lastNameTc).type(lname);
+        cy.get(this.emailTc).type(email);
+        cy.get(this.phoneTc).type(phone);
     }
 
     inputFormInforTc(item : number, fname : string, lname : string, email : string, phone : string){
@@ -78,6 +93,9 @@ export class TicketPage{
         cy.get(this.ticketBoxItem).eq(item).contains(this.AddTcBtn).click();
     }
 
+    clickAddTicketName(name:string){
+        cy.get('div').contains(name).parent(this.ticketBoxItem).contains(this.AddTcBtn).click();
+    }
 
     verifyTicketIsAdded(item:number, email : string){
         cy.get(this.ticketBoxItem).eq(item).contains(this.ticketAddedText).should('be.visible');
@@ -93,12 +111,36 @@ export class TicketPage{
         }
         
     }
+
+    verifyTicketNameIsAdded(name:string, email : string, price : number){
+        cy.get('div').contains(name).parent(this.ticketBoxItem).contains(this.ticketAddedText).should('be.visible');
+        
+        cy.get('div').contains(name).parent(this.ticketBoxItem).contains(this.addAnotherTicketbtn).should('be.visible');
+        let summaryTextTc = '';
+        summaryTextTc += 'Ticket #1 $'+price+' - ' +email;
+        cy.get('li').contains(summaryTextTc).should('be.visible');
+        
+        
+    }
+
+    verifyTicketNameIsAddedAndUsedInFrontEnd(name:string, email : string, price : number, quantity : number){
+        cy.get('div').contains(name).parent(this.ticketBoxItem).contains(this.ticketAddedText).should('be.visible');
+        cy.get('div').contains(name).find('label').contains('$'+price);
+        cy.get('div').contains(name).parent(this.ticketBoxItem).parent('div').children('span').contains('Only '+quantity+' left!')
+        
+        
+    }
  
     selectAmountItem(amount : string){
         cy.get(this.amountSelection).contains(amount).click();
     }
     inputOtherAmount(amount : string){
         cy.get(this.otherAmount).type(amount);   
+    }
+
+    verifySummaryAmountForSelectTicketName(priceTicket:number,  amount:number,promoDiscount : number = 0){
+        let sumAmount = amount + priceTicket - promoDiscount;
+        cy.get('span').contains(this.textTotal+ ''+sumAmount).should('be.visible');
     }
 
     verifySummaryAmount(numTicket1:number, numTicket2:number, amount:number,promoDiscount : number = 0){
