@@ -1,7 +1,7 @@
 export class ThankYouPage{
     titleThankYouPage  = 'Thank you for supporting';
     fundraiserText = 'Your event fundraising page is located at:'; // h3
-    fundraiserLink = '[href="https://tristina.swell.gives/users/';
+    fundraiserLink = '[href="https://tristina.swellbuilds.com/users/';
     imgEvent = '.bg-stretch';
     imglogo = '.logo';
 
