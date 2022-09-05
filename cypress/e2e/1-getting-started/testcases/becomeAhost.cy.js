@@ -19,7 +19,7 @@ let emailAddress;
 describe('Verify become a host flow', () => {
 
     it('Verify information when become a host and verify payment for invalid infor and valid infor', () => {
-        cy.visit(infors.url);
+        cy.forceVisit(infors.url);
         let randomName = getRandomText();
         let randomLastName = getRandomText();
         let randomEmail = getRandomEmail();
@@ -68,7 +68,7 @@ describe('Verify become a host flow', () => {
     })
 
     it('Verify information when become a host and enable to send invitation to email', () => {
-        cy.visit(infors.url);
+        cy.forceVisit(infors.url);
         let randomName = getRandomText();
         let randomLastName = getRandomText();
         let randomEmail = getRandomEmail();
@@ -133,7 +133,7 @@ describe('Verify become a host flow', () => {
     })
 
     it('Verify button Previous in become a host', () => {
-        cy.visit(infors.url);
+        cy.forceVisit(infors.url);
         let randomName = getRandomText();
         let randomLastName = getRandomText();
         let randomEmail = getRandomEmail();

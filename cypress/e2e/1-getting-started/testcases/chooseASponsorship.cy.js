@@ -15,7 +15,7 @@ const user = require('../../../fixtures/address.json')
 describe('Verify Choose a sponsorship flow', () => {
     
     it('Verify information when Choose a sponsorship',()=>{
-        cy.visit(infors.url);
+        cy.forceVisit(infors.url);
         let randomName = getRandomText();
         let randomLastName = getRandomText();
         let randomEmail = getRandomEmail();
@@ -36,7 +36,7 @@ describe('Verify Choose a sponsorship flow', () => {
     })
 
     it('Verify previous button in Choose a sponsorship',()=>{
-        cy.visit(infors.url);
+        cy.forceVisit(infors.url);
         let randomName = getRandomText();
         let randomLastName = getRandomText();
         let randomEmail = getRandomEmail();

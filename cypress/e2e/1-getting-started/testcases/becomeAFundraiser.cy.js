@@ -11,7 +11,7 @@ const user = require('../../../fixtures/address.json')
 describe('Verify Become A fundraiser flow', () => {
     
     it('Verify information when become a fundraiser ',()=>{
-        cy.visit(infors.url);
+        cy.forceVisit(infors.url);
         let randomName = getRandomText();
         let randomLastName = getRandomText();
         let randomEmail = getRandomEmail();

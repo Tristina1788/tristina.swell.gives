@@ -15,7 +15,7 @@ const user = require('../../../fixtures/address.json')
 describe('Verify Purchase Tickets flow', () => {
     
     it('Verify purchase a ticket and selections amount',()=>{
-        cy.visit(infors.url);
+        cy.forceVisit(infors.url);
         
         let randomName = getRandomText();
         let randomLastName = getRandomText();
@@ -46,7 +46,7 @@ describe('Verify Purchase Tickets flow', () => {
 
     
     it('Verify previous button on purchase a ticket ',()=>{
-        cy.visit(infors.url);
+        cy.forceVisit(infors.url);
         
         let randomName = getRandomText();
         let randomLastName = getRandomText();
@@ -78,7 +78,7 @@ describe('Verify Purchase Tickets flow', () => {
     })
 
     it('Verify purchase multiple tickets and other amount',()=>{
-        cy.visit(infors.url);
+        cy.forceVisit(infors.url);
         
         let randomName = getRandomText();
         let randomLastName = getRandomText();
