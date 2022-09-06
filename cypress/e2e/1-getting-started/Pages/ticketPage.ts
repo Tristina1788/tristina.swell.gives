@@ -123,9 +123,12 @@ export class TicketPage{
         
     }
 
-    verifyTicketNameIsAddedAndUsedInFrontEnd(name:string, email : string, price : number, quantity : number){
-        cy.get('div').contains(name).parent(this.ticketBoxItem).contains(this.ticketAddedText).should('be.visible');
-        cy.get('div').contains(name).find('label').contains('$'+price);
+    verifyTicketNameIsAddedAndUsedInFrontEnd(name:string, price : number, quantity : number){
+        cy.get('div').contains(name).parent(this.ticketBoxItem).should('be.visible');
+        if(price <10)
+            cy.get('div').contains(name).find('label').contains('$0'+price);
+        else
+            cy.get('div').contains(name).find('label').contains('$'+price);
         cy.get('div').contains(name).parent(this.ticketBoxItem).parent('div').children('span').contains('Only '+quantity+' left!')
         
         

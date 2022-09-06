@@ -31,9 +31,9 @@ export class ProductsManageSetupPage {
         cy.get(this.searchInput).type(searchInfor);
     }
 
-    clickEditButton(url:string){
-        cy.get(this.searchInput).type(url);
-        cy.get(this.tableList).children('tbody').children('tr').children('td').contains(url).parent('tr').children('td').find(this.editBtn).click();
+    clickEditButton(name:string){
+        cy.get(this.searchInput).type(name);
+        cy.get(this.tableList).children('tbody').children('tr').children('td').contains(name).parent('tr').children('td').find(this.editBtn).click();
         //cy.get(this.editBtn).click();
     }
 
@@ -67,7 +67,7 @@ export class ProductsManageSetupPage {
         if(ticketType !='')
             cy.get(this.tableList).children('tbody').children('tr').children('td').contains(type)
             .next().contains(name)
-            .next().contains(price +'')
+            .next().contains('$'+price +'.00')
             .next().contains(active+'')
             .next().contains(maxPro)
             .next().contains(ticketType+'')
@@ -76,7 +76,7 @@ export class ProductsManageSetupPage {
         else 
             cy.get(this.tableList).children('tbody').children('tr').children('td').contains(type)
             .next().contains(name)
-            .next().contains(price +'')
+            .next().contains('$'+price +'.00')
             .next().contains(active+'')
             .next().contains(maxPro)
             .next().next().contains(ticketPerTB)
