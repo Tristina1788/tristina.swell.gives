@@ -4,8 +4,6 @@ import { ProductsManageSetupPage } from "../Pages/productsManageSetupPage";
 import { getRandomEmail, getRandomNumber, getRandomText } from "./generalFunction.cy";
 import { LoginManagePage } from "../Pages/loginManagePage";
 import { TicketPage } from "../Pages/ticketPage";
-import { DonationsAddressPage } from "../Pages/donationsAddressPage";
-import { DonationsPaymentPage } from "../Pages/donationsPaymentPage";
 let homePage = new HomePage();
 let loginManagePage = new LoginManagePage();
 
@@ -13,8 +11,6 @@ const infors = require('../utils/infor.js')
 let productSetupPage = new ProductSetupPage();
 let productsManageSetupPage = new ProductsManageSetupPage();
 let ticketPage = new TicketPage();
-let donationsAddressPage = new DonationsAddressPage();
-let donationsPaymentPage = new DonationsPaymentPage();
 const user = require('../../../fixtures/address.json')
 let ticketProName = getRandomText();
 let priceTicket = Math.floor(Math.random() * 20) + 1;
@@ -37,7 +33,7 @@ afterEach(() => {
 });
 
 describe('Verify setup product page', () => {
-    it.only('Verify create product page create ticket product successfully', () => {
+    it.only('Verify create product page for ticket product successfully', () => {
         loginManagePage.visit(infors.urlManage);
         loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/products');
@@ -69,7 +65,7 @@ describe('Verify setup product page', () => {
 
     })
 
-    it.only('Verify update product setup page and the changing apply to frontend', () => {
+    it.only('Verify update ticket product setup page and the changing apply to frontend', () => {
         loginManagePage.visit(infors.urlManage);
         loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/products');

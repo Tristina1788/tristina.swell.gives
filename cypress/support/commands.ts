@@ -81,3 +81,4 @@ Cypress.Commands.add("restoreLocalStorage", () => {
     localStorage.setItem(key, LOCAL_STORAGE_MEMORY[key]);
   });
 });
+

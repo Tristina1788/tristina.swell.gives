@@ -9,6 +9,7 @@ describe('Verify table page', () => {
     
     it('Verify user in Top table board has correct fuctions in table page',()=>{
         cy.visit(infors.url);
+        cy.wait(5000);
         homePage.clickFirstTableInTableBoard();
         tablePage.VerifyGiveNowButtonHasCorrectAction(infors.urlAction);
         tablePage.verifyPurchaseTicketsButtonHasCorrectAction(infors.urlAction);

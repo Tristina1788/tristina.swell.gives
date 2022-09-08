@@ -101,7 +101,7 @@ export class DonationsPaymentPage{
         cy.get(':button').should('be.disabled');
     }
 
-    clickDonateButton(amount:string){
+    clickDonateButton(amount:string=""){
         cy.get('button').contains(this.donateButton+' '+amount).click();
         
     }
