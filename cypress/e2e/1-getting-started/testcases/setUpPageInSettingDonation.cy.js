@@ -91,10 +91,6 @@ describe('Verify setup setting - donation page', () => {
         
         donationsAmountPage.verifyFormApplyFromSetting(pageTitle,amount,true,true,true,true,true,true,hntitle,hndesc,hnselectiontitle,hnselectionplacehoder,
             hnselectionpMsg,true,ctitle,cSubtitle,cdesc);
-        let randomName = getRandomText();
-        let randomLastName = getRandomText();
-        let randomEmail = getRandomEmail();
-        let randomPhone = getRandomNumber();
         donationsAmountPage.selectFee(amount);
         donationsAmountPage.verifyFeeSelectionCorrect(amount);
         donationsAmountPage.selectCoverTransaction();

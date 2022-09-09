@@ -61,7 +61,7 @@ describe('Verify setup Detail page', () => {
         cy.forceVisit(infors.url);
         homePage.clickPurchaseTickets();
         ticketPage.verifyIsScreenSelectTickets();
-        ticketPage.verifyNameSetupCorrect(name);
+        //ticketPage.verifyNameSetupCorrect(name);
         ticketPage.selectTestTicket(0);
         ticketPage.verifyFormInforTc(0);
         ticketPage.inputFormInforTc(0,randomName, randomLastName,randomEmail,randomPhone);
