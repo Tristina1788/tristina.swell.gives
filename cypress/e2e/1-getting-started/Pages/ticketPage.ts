@@ -50,6 +50,7 @@ export class TicketPage{
         });
     }
     verifyIsScreenSelectTickets(){
+        cy.wait(2000);
         cy.get('span').contains(this.choseTcText).should('be.visible');
     }
     selectTestTicket(item:number){
@@ -130,8 +131,15 @@ export class TicketPage{
         else
             cy.get('div').contains(name).find('label').contains('$'+price);
         cy.get('div').contains(name).parent(this.ticketBoxItem).parent('div').children('span').contains('Only '+quantity+' left!')
-        
-        
+    }
+
+    verifyVirtualTicketNameIsAddedAndUsedInFrontEnd(name:string, price : number){
+        cy.get('div').contains(name).parent(this.ticketBoxItem).should('be.visible');
+        if(price <10)
+            cy.get('div').contains(name).find('label').contains('$0'+price);
+        else
+            cy.get('div').contains(name).find('label').contains('$'+price);
+       
     }
  
     selectAmountItem(amount : string){
@@ -173,5 +181,8 @@ export class TicketPage{
     addPromotoTicket(code:string){
         cy.get(this.inputPromo).type(code);
         cy.get('button').contains(this.updatePriceBtn).click();
+    }
+    verifyTicketGetCorrectInforFromTicketSetingForm(title: string, name: string, promo: string,teamselectiont : string, teamCreatetitle : string ,donatitle:string, enableTeam: boolean, enableDona: boolean, orderLb: string, donaLb: string) {
+        
     }
 }
