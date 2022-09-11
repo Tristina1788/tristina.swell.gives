@@ -15,7 +15,6 @@ const user = require('../../../fixtures/address.json')
 let ticketProName = getRandomText();
 let priceTicket = Math.floor(Math.random() * 20) + 1;
 let maxTicket = Math.floor(Math.random() * 20) + 1;
-let ticketPerTB = Math.floor(Math.random() * 3) + 1;
 let ticketProNameUpdate = getRandomText();
 let priceTicketUpdate = Math.floor(Math.random() * 20) + 1;
 let maxTicketUpdate = Math.floor(Math.random() * 20) + 1;
@@ -33,20 +32,20 @@ afterEach(() => {
 });
 
 describe('Verify setup product page', () => {
-    it('Verify create product page for ticket product successfully', () => {
+    it.only('Verify create product page for ticket product successfully', () => {
         loginManagePage.visit(infors.urlManage);
         loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/products');
 
         productsManageSetupPage.clickAddBtn();
-        productSetupPage.inputProductForm('Ticket', ticketProName, true, false, priceTicket, maxTicket, ticketPerTB);
+        productSetupPage.inputProductForm('Ticket', ticketProName, true, false, priceTicket, maxTicket, 0);
         productSetupPage.clickSaveBtn();
         productsManageSetupPage.verifyNewProductIsCreated('Ticket', ticketProName, true, false, priceTicket, maxTicket, 0);
 
 
     })
 
-    it('Verify ticket product can be used in frontend successfully ', () => {
+    it.only('Verify ticket product can be used in frontend successfully ', () => {
         cy.forceVisit(infors.url);
 
         let randomName = getRandomText();
@@ -65,7 +64,7 @@ describe('Verify setup product page', () => {
 
     })
 
-    it('Verify update ticket product setup page and the changing apply to frontend', () => {
+    it.only('Verify update ticket product setup page and the changing apply to frontend', () => {
         loginManagePage.visit(infors.urlManage);
         loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/products');
@@ -101,7 +100,7 @@ describe('Verify setup product page', () => {
 
     })
 
-    it('Verify delete product page successfully and the code can not be used for frontend', () => {
+    it.only('Verify delete product page successfully and the code can not be used for frontend', () => {
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/products');
         productsManageSetupPage.clickDeleteButton(ticketProNameUpdate);
         productsManageSetupPage.verifyProductPageIsNotExist(ticketProNameUpdate);
@@ -117,7 +116,7 @@ describe('Verify setup product page', () => {
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/products');
 
         productsManageSetupPage.clickAddBtn();
-        productSetupPage.inputProductForm('Virtual Ticket', ticketProName, true, false, priceTicket, maxTicket, ticketPerTB);
+        productSetupPage.inputProductForm('Virtual Ticket', ticketProName, true, false, priceTicket, maxTicket, 0);
         productSetupPage.clickSaveBtn();
         productsManageSetupPage.verifyNewProductIsCreated('Virtualticket', ticketProName, true, false, priceTicket, maxTicket, 0);
 

@@ -49,6 +49,17 @@ export class DonationsTablePage{
         cy.get('li').contains(tableName + ' - $' + tablePrice).should('be.visible');
     }
 
+    verifyTableIsExistAndSelectIt(tableName: string, tablePrice: string) {
+        // cy.get(this.tableRadio).should('be.selected');
+        cy.get(this.tableLabel).contains(tableName).prev('span').contains('$'+tablePrice).should('be.visible');
+        cy.get(this.tableLabel).contains(tableName).prev('span').contains('$'+tablePrice).prev('input').check();
+     }
+
+     verifyTableIsNotExist(tableName: string, tablePrice: string) {
+        // cy.get(this.tableRadio).should('be.selected');
+        cy.get(this.tableLabel).contains(tableName).should('be.not.exist');
+     }
+
     clickNextButton() {
         cy.get(this.nextButton).contains('Next').click();
     }

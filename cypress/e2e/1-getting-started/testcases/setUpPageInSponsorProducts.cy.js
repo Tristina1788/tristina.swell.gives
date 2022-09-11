@@ -40,7 +40,7 @@ describe('Verify setup product page for sponsor ', () => {
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/products');
 
         productsManageSetupPage.clickAddBtn();
-        productSetupPage.inputProductForm('Sponsorship', proName, true, false, proPrice, maxPro, proPerTB);
+        productSetupPage.inputProductForm('Sponsorship', proName, true, false, proPrice, maxPro, 0);
         productSetupPage.clickSaveBtn();
         productsManageSetupPage.verifyNewProductIsCreated('Sponsorship', proName, true, false, proPrice, maxPro, 0);
 
@@ -86,7 +86,7 @@ describe('Verify setup product page for sponsor ', () => {
 
     })
 
-    it.only('Verify delete sponsor product page successfully and the code can not be used for frontend', () => {
+    it('Verify delete sponsor product page successfully and the code can not be used for frontend', () => {
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/products');
         productsManageSetupPage.clickDeleteButton(proNameUpdate);
         productsManageSetupPage.verifyProductPageIsNotExist(proNameUpdate);
@@ -95,9 +95,4 @@ describe('Verify setup product page for sponsor ', () => {
         sponsorshipPage.verifySponsorNameNotExist(proNameUpdate);
 
     })
-
-
-    
-
-
 })
