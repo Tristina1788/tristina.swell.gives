@@ -17,6 +17,7 @@ export class HomePage{
     menuItem = '[role="menuitem"]';
     contentPage = '.page-content-body';
     pageNotFoundMsg = 'Page Not Found'; //h2
+    sponsorSection ='[ng-click="navigate(sponsor.url)"]';
     
     clickGiveAHostButton(){
         cy.get(this.becomeAHost).click();
@@ -133,6 +134,24 @@ export class HomePage{
     verifyNewPageIsCDeletedSuccessfullyInFrontEnd(url : string){
         cy.forceVisit(url);
         cy.get('h2').contains(this.pageNotFoundMsg).should('be.visible');
+    }
+    
+    verifySponsorSetupCorrectly(url1:String){
+        cy.wait(5000);
+        cy.get(this.sponsorSection).children('img').eq(1).invoke('attr', 'src')
+        .then(link => {
+            
+            const linkImg1 = link?.substring(link.length-29,link.length)+"" //419/1661783284-76906394.jpg
+            cy.readFile('./data/images.json').then((image)=> {
+                expect(linkImg1).to.equal(image.imageLogoSponsor);
+            });
+            
+        });
+
+        // cy.get(this.sponsorSection).children('img').eq(1).parent('div').invoke('removeAttr', 'target').click();
+        // cy.url()
+        //     .should('include', url1)
+
     }
     
 }

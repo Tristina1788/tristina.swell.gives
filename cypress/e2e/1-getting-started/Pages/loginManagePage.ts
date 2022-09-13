@@ -12,6 +12,7 @@ export class LoginManagePage {
         });
     }
     inputloginForm(email: string, pass: string) {
+        
         cy.get("body").then($body => {
             if ($body.find('button[type="submit"]').length > 0) {   
                 cy.get(this.emai).type(email);
