@@ -10,7 +10,7 @@ const infors = require('../utils/infor.js')
 const user = require('../../../fixtures/address.json')
 describe('Verify Become A fundraiser flow', () => {
     
-    it('Verify information when become a fundraiser ',()=>{
+    it.only('Verify information when become a fundraiser ',()=>{
         cy.forceVisit(infors.url);
         let randomName = getRandomText();
         let randomLastName = getRandomText();

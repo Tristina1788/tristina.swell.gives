@@ -31,7 +31,7 @@ const user = require('../../../fixtures/address.json')
 let branchSetupPage =new BranchSetupPage();
 describe('Verify setup branch page', () => {
     
-    it('Verify set up in branch page successfully',()=>{
+    it.only('Verify set up in branch page successfully',()=>{
         loginManagePage.visit(infors.urlManage);
         loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         branchSetupPage.visit(infors.urlManage+'events/'+infors.idProject+'/branding');
@@ -46,7 +46,7 @@ describe('Verify setup branch page', () => {
        // homePage.verifyImageHeaderSetupCorrectInBranding();
     })
 
-    it('Verify set up page in branch page and image header and logo will update follow this setup',()=>{
+    it.only('Verify set up page in branch page and image header and logo will update follow this setup',()=>{
         Cypress.on('uncaught:exception', (err, runnable) => {
             return false;
           });
@@ -109,7 +109,7 @@ describe('Verify setup branch page', () => {
 
     })
 
-    it('Verify set up page in branch page and image profile header will update to user and table page follow this setup',()=>{
+    it.only('Verify set up page in branch page and image profile header will update to user and table page follow this setup',()=>{
        
         cy.forceVisit(infors.url);
         homePage.clickFirstUserInTopFundraiser();

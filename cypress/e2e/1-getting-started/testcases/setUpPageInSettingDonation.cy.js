@@ -139,8 +139,8 @@ describe('Verify setup setting - donation page', () => {
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/donation');
 
         settingSetupPage.openSettingDonationPage();
-        donationSettingPage.inputFormDonationSetting(pageTitle,amount,true,true,true,true,true,true,hntitle,hndesc,hnselectiontitle,hnselectionplacehoder,
-            hnselectionpMsg,false,ctitle,cSubtitle,cdesc);
+        donationSettingPage.inputFormDonationSetting("",0,true,true,true,true,true,true,"","","","",
+            "",false,"","","");
         donationSettingPage.clickSaveButton();
         donationSettingPage.verifySaveSuccessfully();  
 

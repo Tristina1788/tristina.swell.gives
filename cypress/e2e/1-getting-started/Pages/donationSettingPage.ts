@@ -26,9 +26,11 @@ export class DonationSettingPage {
         isRequireCredit: boolean = false, ctitle: string = "", cSubtitle: string = "", cDecs: string = "") {
 
         cy.get('label').contains(this.titlePage).next('input').clear();
-        cy.get('label').contains(this.titlePage).next('input').type(title);
+        if(title != "")
+            cy.get('label').contains(this.titlePage).next('input').type(title);
         cy.get('label').contains(this.suggestedAmount).next('input').clear();
-        cy.get('label').contains(this.suggestedAmount).next('input').type(this.defaultAmount+',' + amount);
+        if(amount != 0)
+            cy.get('label').contains(this.suggestedAmount).next('input').type(this.defaultAmount+',' + amount);
         if (isAnonymous)
             cy.get('label').contains(this.enableAnonymousDona).next('input').check();
         else cy.get('label').contains(this.enableAnonymousDona).next('input').uncheck();
@@ -46,15 +48,20 @@ export class DonationSettingPage {
         if (issHonor){
             cy.get('label').contains(this.enableHonor).next('input').check();
             cy.get('label').contains(this.honorTitle).next('input').clear();
-            cy.get('label').contains(this.honorTitle).next('input').type(htitle);
+            if(htitle != "")
+                cy.get('label').contains(this.honorTitle).next('input').type(htitle);
             cy.get('label').contains(this.honorDesc).next('textarea').clear();
-            cy.get('label').contains(this.honorDesc).next('textarea').type(hdes);
+            if(hdes != "")
+                cy.get('label').contains(this.honorDesc).next('textarea').type(hdes);
             cy.get('label').contains(this.honorSelectionTitle).next('input').clear();
-            cy.get('label').contains(this.honorSelectionTitle).next('input').type(hstitle);
+            if(hstitle != "")
+                cy.get('label').contains(this.honorSelectionTitle).next('input').type(hstitle);
             cy.get('label').contains(this.honorSelectionPlacehoder).next('input').clear();
-            cy.get('label').contains(this.honorSelectionPlacehoder).next('input').type(hsPlaholder);
+            if(hsPlaholder != "")
+                cy.get('label').contains(this.honorSelectionPlacehoder).next('input').type(hsPlaholder);
             cy.get('label').contains(this.honorSelectionErrorMsg).next('input').clear();
-            cy.get('label').contains(this.honorSelectionErrorMsg).next('input').type(errorMsg);
+            if(errorMsg != "")
+                cy.get('label').contains(this.honorSelectionErrorMsg).next('input').type(errorMsg);
         }    
         else cy.get('label').contains(this.enableHonor).next('input').uncheck();
 
@@ -64,14 +71,19 @@ export class DonationSettingPage {
                 cy.get('label').contains(this.requireGiftCredit).next('input').check();
             else
                 cy.get('label').contains(this.requireGiftCredit).next('input').uncheck();
-
             cy.get('label').contains(this.creditPersionTitle).next('input').clear();
-            cy.get('label').contains(this.creditPersionTitle).next('input').type(ctitle);
+            if(ctitle != "")
+                cy.get('label').contains(this.creditPersionTitle).next('input').type(ctitle);
             cy.get('label').contains(this.creditPersionSubtitle).next('input').clear();
-            cy.get('label').contains(this.creditPersionSubtitle).next('input').type(cSubtitle);
+            if(cSubtitle != "")
+                cy.get('label').contains(this.creditPersionSubtitle).next('input').type(cSubtitle);
             cy.get('label').contains(this.creditPersionDesc).next('input').clear();
-            cy.get('label').contains(this.creditPersionDesc).next('input').type(cDecs);
+            if(cDecs != "")
+                cy.get('label').contains(this.creditPersionDesc).next('input').type(cDecs);
+            
         } else cy.get('label').contains(this.enableGifCredit).next('input').uncheck();
+
+            
     }
 
     clickSaveButton(){

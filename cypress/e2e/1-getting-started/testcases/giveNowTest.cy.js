@@ -14,7 +14,7 @@ const userFullFill = require('../../../fixtures/fullFillInfor.json')
 const user = require('../../../fixtures/address.json')
 describe('Verify Give Now flow', () => {
     
-    it('Verify Give Now with all options',()=>{
+    it.only('Verify Give Now with all options',()=>{
         cy.forceVisit(infors.url);
         let randomName = getRandomText();
         let randomLastName = getRandomText();
@@ -36,7 +36,7 @@ describe('Verify Give Now flow', () => {
         donationsAmountPage.verifyShowThankYouPledge();
     })
 
-    it('Verify Give Now with other amount no option full fill later ',()=>{
+    it.only('Verify Give Now with other amount no option full fill later ',()=>{
         cy.forceVisit(infors.url);
         
         homePage.clickGiveNowButton();
@@ -58,7 +58,7 @@ describe('Verify Give Now flow', () => {
         donationsPaymentPage.verifyTransactionFinish();
     })
 
-    it('Verify Give Now with fee even will make payment failed',()=>{
+    it.only('Verify Give Now with fee even will make payment failed',()=>{
         cy.forceVisit(infors.url);
         
         homePage.clickGiveNowButton();
@@ -74,7 +74,7 @@ describe('Verify Give Now flow', () => {
         donationsPaymentPage.verifyTransactionFailed();
     })
 
-    it('Verify Give Now with previous button',()=>{
+    it.only('Verify Give Now with previous button',()=>{
         cy.forceVisit(infors.url);
         
         homePage.clickGiveNowButton();

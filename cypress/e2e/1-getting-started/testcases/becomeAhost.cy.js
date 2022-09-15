@@ -18,7 +18,7 @@ let inboxId;
 let emailAddress;
 describe('Verify become a host flow', () => {
 
-    it('Verify information when become a host and verify payment for invalid infor and valid infor', () => {
+    it.only('Verify information when become a host and verify payment for invalid infor and valid infor', () => {
         cy.forceVisit(infors.url);
         let randomName = getRandomText();
         let randomLastName = getRandomText();
@@ -67,7 +67,7 @@ describe('Verify become a host flow', () => {
         //homePage.verifyUserInTable(randomLastName + " Table",(infors.amountTicket))
     })
 
-    it('Verify information when become a host and enable to send invitation to email', () => {
+    it.only('Verify information when become a host and enable to send invitation to email', () => {
         cy.forceVisit(infors.url);
         let randomName = getRandomText();
         let randomLastName = getRandomText();
@@ -132,7 +132,7 @@ describe('Verify become a host flow', () => {
         //homePage.verifyUserInTable(randomLastName + " Table",(infors.amountTicket))
     })
 
-    it('Verify button Previous in become a host', () => {
+    it.only('Verify button Previous in become a host', () => {
         cy.forceVisit(infors.url);
         let randomName = getRandomText();
         let randomLastName = getRandomText();

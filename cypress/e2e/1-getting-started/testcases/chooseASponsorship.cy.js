@@ -14,7 +14,7 @@ const infors = require('../utils/infor.js')
 const user = require('../../../fixtures/address.json')
 describe('Verify Choose a sponsorship flow', () => {
     
-    it('Verify information when Choose a sponsorship',()=>{
+    it.only('Verify information when Choose a sponsorship',()=>{
         cy.forceVisit(infors.url);
         let randomName = getRandomText();
         let randomLastName = getRandomText();
@@ -35,7 +35,7 @@ describe('Verify Choose a sponsorship flow', () => {
         usersPage.verifyTheUsersIsSponsor(infors.url+'users/'+infors.personRecieveCreditPage,randomName + ' '+randomLastName);
     })
 
-    it('Verify previous button in Choose a sponsorship',()=>{
+    it.only('Verify previous button in Choose a sponsorship',()=>{
         cy.forceVisit(infors.url);
         let randomName = getRandomText();
         let randomLastName = getRandomText();

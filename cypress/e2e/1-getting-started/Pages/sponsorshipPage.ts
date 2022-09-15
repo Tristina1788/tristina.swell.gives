@@ -61,5 +61,10 @@ export class SponsorshipPage{
         
     }
 
+    verifySponsorSettingCorrectly(pagetitle : string, sponsorTitle : string, sponsorLabel : string){
+        cy.get('span').contains(sponsorTitle).should('be.visible');
+        cy.get('div').contains(sponsorLabel).should('be.visible');
+    }
+
 
 }
