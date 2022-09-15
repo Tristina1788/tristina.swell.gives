@@ -1,7 +1,7 @@
 export class ThankYouPage{
     titleThankYouPage  = 'Thank you for supporting';
     fundraiserText = 'Your event fundraising page is located at:'; // h3
-    fundraiserLink = '[href="https://tristina.swellbuilds.com/users/';
+    fundraiserLink = '[href="https://tristina.swell.gives/users/';
     imgEvent = '.bg-stretch';
     imglogo = '.logo';
 
@@ -18,7 +18,7 @@ export class ThankYouPage{
         });
     }
     verifyThankYouPageAfterFundraiserSuccess(fname:string, lname:string){
-        cy.wait(4000);
+        cy.wait(6000);
         cy.get('h1').contains(this.titleThankYouPage).should('be.visible');
         cy.get('h3').contains(this.fundraiserText).should('be.visible');
         let link = this.fundraiserLink+fname+'.'+lname+'"]';

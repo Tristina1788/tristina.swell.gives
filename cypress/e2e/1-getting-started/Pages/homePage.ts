@@ -135,10 +135,33 @@ export class HomePage{
         cy.forceVisit(url);
         cy.get('h2').contains(this.pageNotFoundMsg).should('be.visible');
     }
-    
+    verifySponsorIsNotSetup(){
+        cy.get(this.sponsorSection).should('be.not.exist')
+    }
     verifySponsorSetupCorrectly(url1:String){
         cy.wait(5000);
-        cy.get(this.sponsorSection).children('img').eq(1).invoke('attr', 'src')
+        
+        cy.visit('https://tristina.swell.gives/')
+        let test;
+        cy
+            .window().then((win) => {
+                cy.spy(win, 'open').as('redirect');
+            });
+        
+        cy.get('.swiper-slide-active').click()
+        cy
+        .get('@redirect')
+        .should('be.calledWith', url1+'');
+        //cy.get('@redirect').contains(url1+'').should('be.visible')
+            // .should('have.value', 'https://secure.swell.gives/tristina/sponsor1');
+       // cy.get(this.sponsorSection).children('img').eq(1).parent('div').click()
+
+        //cy.get('@redirect').contains(url1+'').should('be.visible');
+            // .should('have.value', 'https://secure.swell.gives/tristina/sponsor1');
+        // cy.get(this.sponsorSection).children('img').eq(1).parent('div').invoke('removeAttr', 'target').click();
+        // cy.url()
+        //     .should('include', url1)
+        cy.get(this.sponsorSection).children('img').eq(0).invoke('attr', 'src')
         .then(link => {
             
             const linkImg1 = link?.substring(link.length-29,link.length)+"" //419/1661783284-76906394.jpg
@@ -148,9 +171,6 @@ export class HomePage{
             
         });
 
-        // cy.get(this.sponsorSection).children('img').eq(1).parent('div').invoke('removeAttr', 'target').click();
-        // cy.url()
-        //     .should('include', url1)
 
     }
     

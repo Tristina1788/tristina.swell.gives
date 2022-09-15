@@ -55,37 +55,78 @@ describe('Verify setup setting - ticket page', () => {
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/donation');
 
         settingSetupPage.openSettingTicketPage();
-        
+        console.log("promo1111111:"+promo);
         ticketsSettingPage.inputTicketSetingForm(title, name, promo,teamselectiont, teamCreatetitle, donatitle, true, true, orderLb, donaLb);
         ticketsSettingPage.clickSaveButton();
         ticketsSettingPage.verifySaveSuccessfully();  
         ticketsSettingPage.clickOKButton();
     })
 
-    it('Verify update setting enable apply to ticket frontend with all options ', () => {
+    it.only('Verify ticket setting enable apply to ticket frontend with all options ', () => {
         cy.forceVisit(infors.url);
         
-        // let randomName = getRandomText();
-        // let randomLastName = getRandomText();
-        // let randomEmail = getRandomEmail();
-        // let randomPhone = getRandomNumber();
-        // homePage.clickPurchaseTickets();
-        // ticketPage.verifyIsScreenSelectTickets();
-        // ticketPage.selectTestTicket(0);
-        // ticketPage.verifyFormInforTc(0);
-        // ticketPage.inputTicketSetingForm(title, name, promo,teamselectiont, teamCreatetitle, donatitle, true, true, orderLb, donaLb);
-        // ticketPage.inputFormInforTc(0,randomName, randomLastName,randomEmail,randomPhone);
-        // ticketPage.clickAddTicket(0);
-        // ticketPage.verifyTicketIsAdded(0, randomEmail);
-        // ticketPage.selectAmountItem('$'+infors.amountTicket);
-        // ticketPage.verifySummaryAmount(true,false,infors.amountTicket);
-        // ticketPage.clickButtonNext();
-        // donationsAddressPage.inputAddressInforTickets(user.company, user.address1, user.address2, user.city, user.state,
-        //     user.zip);
-        // donationsAddressPage.clickNextButton();
-        // donationsPaymentPage.inputCreditCardTicket(infors.creditCardNumber, infors.creditCardVCV);
-        // donationsPaymentPage.clickPurchase();
-        // donationsPaymentPage.verifyTransactionTicketsFinish();
+        let randomName = getRandomText();
+        let randomLastName = getRandomText();
+        let randomEmail = getRandomEmail();
+        let randomPhone = getRandomNumber();
+        homePage.clickPurchaseTickets();
+        ticketPage.verifyIsScreenSelectTickets();
+        console.log("promo2222222:"+promo);
+        ticketPage.verifyTicketGetCorrectInforFromTicketSetingForm(title, name, promo,teamselectiont, teamCreatetitle, donatitle, true, true, orderLb, donaLb);
+        ticketPage.selectTestTicket(0);
+        ticketPage.verifyFormInforTc(0);
+        ticketPage.selectNoteam();
+        ticketPage.inputFormInforTc(0,randomName, randomLastName,randomEmail,randomPhone);
+        ticketPage.clickAddTicket(0);
+        ticketPage.verifyTicketIsAdded(0, randomEmail);
+        ticketPage.selectAmountItem('$'+infors.amountTicket);
+        ticketPage.verifySummaryAmountSetup(true,false,infors.amountTicket,0,donaLb);
+        ticketPage.clickButtonNext();
+        donationsAddressPage.inputAddressInforTickets(user.company, user.address1, user.address2, user.city, user.state,
+            user.zip);
+        donationsAddressPage.clickNextButton();
+        donationsPaymentPage.inputCreditCardTicket(infors.creditCardNumber, infors.creditCardVCV);
+        donationsPaymentPage.clickPurchase();
+        donationsPaymentPage.verifyTransactionTicketsFinish();
+    })
+
+    it.only('update setting - ticket to setting ticket page with no select option successfully', () => {
+        
+        loginManagePage.visit(infors.urlManage);
+        loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
+        loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/donation');
+
+        settingSetupPage.openSettingTicketPage();
+        ticketsSettingPage.inputTicketSetingForm("", "", "", "", "", "",false, false, "", "");
+        ticketsSettingPage.clickSaveButton();
+        ticketsSettingPage.verifySaveSuccessfully();  
+        ticketsSettingPage.clickOKButton();
+
+    })
+
+    it.only('Verify ticket setting enable apply to ticket frontend with no select options ', () => {
+        cy.forceVisit(infors.url);
+        
+        let randomName = getRandomText();
+        let randomLastName = getRandomText();
+        let randomEmail = getRandomEmail();
+        let randomPhone = getRandomNumber();
+        homePage.clickPurchaseTickets();
+        ticketPage.verifyIsScreenSelectTickets();
+        ticketPage.verifyTicketGetCorrectInforFromTicketSetingForm("", "Ticket",  "Have a promo code?", "Select your team (Optional)", "New Team", "Add a donation!",false, false, "Order Summary", "Donation of");
+        ticketPage.selectTestTicket(0);
+        ticketPage.verifyFormInforTc(0);
+        ticketPage.inputFormInforTc(0,randomName, randomLastName,randomEmail,randomPhone);
+        ticketPage.clickAddTicket(0);
+        ticketPage.verifyTicketIsAdded(0, randomEmail);
+        ticketPage.verifySummaryAmountSetup(true,false,0,0,donaLb);
+        ticketPage.clickButtonNext();
+        donationsAddressPage.inputAddressInforTickets(user.company, user.address1, user.address2, user.city, user.state,
+            user.zip);
+        donationsAddressPage.clickNextButton();
+        donationsPaymentPage.inputCreditCardTicket(infors.creditCardNumber, infors.creditCardVCV);
+        donationsPaymentPage.clickPurchase();
+        donationsPaymentPage.verifyTransactionTicketsFinish();
     })
 
     it.only('update setting - ticket to default page successfully', () => {
@@ -101,4 +142,6 @@ describe('Verify setup setting - ticket page', () => {
         ticketsSettingPage.clickOKButton();
 
     })
+
+    
 })

@@ -13,7 +13,8 @@ let sponsorManageSetupPage = new SponsorManageSetupPage();
 let sponsorshipPage = new SponsorshipPage();
 const user = require('../../../fixtures/address.json')
 let sponsorName = getRandomText();
-let sponsorURL = 'https://secure.swell.gives/tristina/'+getRandomText();
+let randomeText =  getRandomText();
+let sponsorURL = 'https://secure.swell.gives/tristina/'+randomeText;
 
 Cypress.Cookies.defaults({
     preserve: 'laravel_session'
@@ -39,13 +40,10 @@ describe('Verify setup product page for sponsor ', () => {
         sponsorSetupPage.clickSaveBtn();
         sponsorSetupPage.clickOKButton();
         sponsorManageSetupPage.verifySposorIsExist(sponsorName,sponsorURL,2);
-
-
-
     })
 
     it.only('Verify sponsor product can be used in frontend successfully ', () => {
-        cy.clearLocalStorage();
+        cy.wait(3000);
         cy.forceVisit(infors.url);
         homePage.verifySponsorSetupCorrectly(sponsorURL);
 
@@ -58,6 +56,8 @@ describe('Verify setup product page for sponsor ', () => {
         sponsorManageSetupPage.clickOKButton();
         sponsorManageSetupPage.verifyCSposorPageIsNotExist(sponsorName);
         cy.forceVisit(infors.url);
+        homePage.verifySponsorIsNotSetup();
+        
         
 
     })

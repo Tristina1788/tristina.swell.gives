@@ -21,7 +21,7 @@ const user = require('../../../fixtures/address.json')
 let detailSetupPage =new DetailSetupPage();
 describe('Verify setup Detail page', () => {
     
-    it('Verify set up page in detail page and front end will update follow this setup',()=>{
+    it.only('Verify set up page in detail page and front end will update follow this setup',()=>{
         let noneProfitName = getRandomText();
         let name = getRandomText();
         let desc = getRandomText();

@@ -23,6 +23,7 @@ export class TicketPage{
     promoCodeText = 'Have a promo code?'; //span
     inputPromo = '[name="promo"]';
     updatePriceBtn = 'Update prices';
+    inputTeamName = '[name="data.teamName"]';
 
     verifyImageLogoSetupCorrectInBranding(){
        
@@ -53,6 +54,8 @@ export class TicketPage{
         cy.wait(2000);
         cy.get('span').contains(this.choseTcText).should('be.visible');
     }
+
+
     selectTestTicket(item:number){
         cy.get(this.ticketBoxItem).eq(item).contains('SELECT').click();
     }
@@ -126,18 +129,18 @@ export class TicketPage{
 
     verifyTicketNameIsAddedAndUsedInFrontEnd(name:string, price : number, quantity : number){
         cy.get('div').contains(name).parent(this.ticketBoxItem).should('be.visible');
-        if(price <10)
-            cy.get('div').contains(name).find('label').contains('$0'+price);
-        else
+        // if(price <10)
+        //     cy.get('div').contains(name).find('label').contains('$0'+price);
+        // else
             cy.get('div').contains(name).find('label').contains('$'+price);
         cy.get('div').contains(name).parent(this.ticketBoxItem).parent('div').children('span').contains('Only '+quantity+' left!')
     }
 
     verifyVirtualTicketNameIsAddedAndUsedInFrontEnd(name:string, price : number){
         cy.get('div').contains(name).parent(this.ticketBoxItem).should('be.visible');
-        if(price <10)
-            cy.get('div').contains(name).find('label').contains('$0'+price);
-        else
+        // if(price <10)
+        //     cy.get('div').contains(name).find('label').contains('$0'+price);
+        // else
             cy.get('div').contains(name).find('label').contains('$'+price);
        
     }
@@ -154,10 +157,20 @@ export class TicketPage{
         cy.get('span').contains(this.textTotal+ ''+sumAmount).should('be.visible');
     }
 
-    verifySummaryAmount(numTicket1:number, numTicket2:number, amount:number,promoDiscount : number = 0){
+    verifySummaryAmountSetup(numTicket1:number, numTicket2:number, amount:number,promoDiscount : number = 0,donaLb : string){
+        console.log("donaLb: "+donaLb);
+        let sumAmount = amount + numTicket1 * 33 + numTicket2 * 51 - promoDiscount;
+        if(amount > 0 )
+            cy.get('li').contains(donaLb+ ' $'+amount).should('be.visible');
+        cy.get('span').contains(this.textTotal+ ''+sumAmount).should('be.visible');
+        
+    }
+
+    verifySummaryAmount(numTicket1:number, numTicket2:number, amount:number,promoDiscount : number = 0,){
         let sumAmount = amount + numTicket1 * 33 + numTicket2 * 51 - promoDiscount;
         cy.get('li').contains(this.textDonation+ ''+amount).should('be.visible');
         cy.get('span').contains(this.textTotal+ ''+sumAmount).should('be.visible');
+        
     }
 
     clickButtonNext(){
@@ -182,7 +195,41 @@ export class TicketPage{
         cy.get(this.inputPromo).type(code);
         cy.get('button').contains(this.updatePriceBtn).click();
     }
-    verifyTicketGetCorrectInforFromTicketSetingForm(title: string, name: string, promo: string,teamselectiont : string, teamCreatetitle : string ,donatitle:string, enableTeam: boolean, enableDona: boolean, orderLb: string, donaLb: string) {
+
+    selectNoteam(){
+        cy.get('select').select('No team');
+    }
+    verifyTicketGetCorrectInforFromTicketSetingForm(title: string, name: string, promo: string,teamselectiont : string, teamCreatetitle : string ,donatitle:string , enableNewTeam: boolean, enableDona: boolean, orderLb: string, donaLb: string) {
+        cy.wait(3000);
+        console.log("promo:"+promo);
+        if(title!= "")
+            cy.get('h1').contains(title).should('be.visible');
+            
+        cy.get('span').contains(promo).should('be.visible');
         
+        if(enableNewTeam){
+            cy.get('span').contains(teamselectiont).should('be.visible');
+            cy.get('select').children('option').contains(teamCreatetitle).should('be.visible');
+            cy.get('select').select(teamCreatetitle);
+            cy.get(this.inputTeamName).should('be.visible');
+        } else{
+            cy.get('span').contains(teamselectiont).should('be.visible');
+            cy.get('select').children('option').contains("New Team").should('be.not.exist');
+        }
+
+        cy.get('span').contains(orderLb).should('be.exist');
+        if(enableDona){
+            cy.get('span').contains(donatitle).should('be.visible');
+            cy.get(this.amountSelection).should('be.visible');
+            cy.get(this.otherAmount).should('be.visible');
+        } else {
+            cy.get(this.amountSelection).should('be.not.exist');
+            cy.get(this.otherAmount).should('be.not.exist');   
+            cy.get('span').contains(donatitle).should('be.not.exist');
+        }
+
+        
+       
+
     }
 }
