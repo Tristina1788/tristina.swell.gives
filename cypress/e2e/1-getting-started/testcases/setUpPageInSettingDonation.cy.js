@@ -17,7 +17,7 @@ let donationsAmountPage = new DonationsAmountPage();
 let donationsAddressPage = new DonationsAddressPage();
 let donationsPaymentPage = new DonationsPaymentPage();
 let pageTitle = getRandomText();
-let amount = Math.floor(Math.random() * 20) + 1;
+let amount = Math.floor(Math.random() * 30) + 30;
 let hntitle = getRandomText();
 let hndesc = getRandomText();
 let hnselectiontitle = getRandomText();
@@ -70,7 +70,6 @@ describe('Verify setup setting - donation page', () => {
         let randomPhone = getRandomNumber();
         donationsAmountPage.selectFee(amount);
         donationsAmountPage.verifyFeeSelectionCorrect(amount);
-        donationsAmountPage.selectCoverTransaction();
         donationsAmountPage.selectRecurringContribution();
         donationsAmountPage.verifyWarningBillTimeShow();
         donationsAmountPage.selectOption1stBill();
@@ -93,7 +92,6 @@ describe('Verify setup setting - donation page', () => {
             hnselectionpMsg,true,ctitle,cSubtitle,cdesc);
         donationsAmountPage.selectFee(amount);
         donationsAmountPage.verifyFeeSelectionCorrect(amount);
-        donationsAmountPage.selectCoverTransaction();
         donationsAmountPage.selectRecurringContribution();
         donationsAmountPage.verifyWarningBillTimeShow();
         donationsAmountPage.selectOption1stBill();

@@ -111,21 +111,21 @@ export class DonationsPaymentPage{
     }
 
     verifyTransactionFinish(){
-        cy.wait(4000);
-        cy.get('h5').contains(this.textCompletedTransaction).should('be.visible');
-        cy.get('h6').contains(this.textReceipEmail).should('be.visible');
+        cy.wait(10000);
+        cy.get('h5').contains(this.textCompletedTransaction, { timeout: 20000 }).should('be.visible');
+        cy.get('h6').contains(this.textReceipEmail, { timeout: 20000 }).should('be.visible');
     }
 
     verifyTransactionTicketsFinish(){
-        cy.wait(5000);
-        cy.get('h5').contains(this.textCompletedTransaction).should('be.visible');
-        cy.get('h6').contains(this.textReceipEmailTickets).should('be.visible');
+        cy.wait(10000);
+        cy.get('h5').contains(this.textCompletedTransaction, { timeout: 20000 }).should('be.visible');
+        cy.get('h6').contains(this.textReceipEmailTickets, { timeout: 20000 }).should('be.visible');
     }
 
     verifyTransactionFailed(){
-        cy.wait(4000);
-        cy.get(this.alertPaymentFailed).contains(this.operationFailedText).should('be.visible');
-        cy.get(this.alertPaymentFailed).contains(this.tryAgainText).should('be.visible');
+        cy.wait(10000);
+        cy.get(this.alertPaymentFailed).contains(this.operationFailedText, { timeout: 20000 }).should('be.visible');
+        cy.get(this.alertPaymentFailed).contains(this.tryAgainText, { timeout: 20000 }).should('be.visible');
         cy.get('p').contains(this.tryAgainText).children()
         .get('a').contains(this.emailSupport).should('be.visible');
     }

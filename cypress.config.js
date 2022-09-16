@@ -17,7 +17,7 @@ module.exports = defineConfig({
             "attachments": true
         },
     },
-    "watchForFileChanges": true,
+    "watchForFileChanges": false,
     "chromeWebSecurity": false,
     "modifyObstructiveCode": false
 });
