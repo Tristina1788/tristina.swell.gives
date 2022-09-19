@@ -1,25 +1,51 @@
 import { HomePage } from "../Pages/homePage";
 import { TicketPage } from "../Pages/ticketPage";
+import { Mailbox } from "../Pages/mailbox";
 import { getRandomEmail, getRandomNumber, getRandomText} from "./generalFunction.cy"
 import { DonationsAddressPage } from "../Pages/donationsAddressPage";
 import { DonationsPaymentPage } from "../Pages/donationsPaymentPage";
 
 let homePage = new HomePage();
 let ticketPage = new TicketPage();
+let mailbox = new Mailbox();
 let donationsAddressPage =new DonationsAddressPage();
 let donationsPaymentPage =new DonationsPaymentPage();
 
 const infors = require('../utils/infor.js')
 const userFullFill = require('../../../fixtures/fullFillInfor.json')
 const user = require('../../../fixtures/address.json')
+let inboxId = "";
+let randomEmail = "";
+let hasMailbox = 0;
+
 describe('Verify Purchase Tickets flow', () => {
-    
+    it.only('setup mailbox inbox',()=>{
+        cy.readFile('./data/mailbox.json',{timeout:2000}).then((inbox)=> {
+            hasMailbox = inbox.hasMailbox;
+            if(hasMailbox != 1){
+                console.log("hasMailbox: "+hasMailbox);
+                cy.createInbox().then(newInbox => {
+                    console.log('Test message');
+                    // verify a new inbox was created
+                    assert.isDefined(newInbox)
+                    console.log("inbox id: " + newInbox.id);
+                    console.log("inbox.emailAddress: " + newInbox.emailAddress);
+                    cy.writeFile('./data/mailbox.json',{inboxId:newInbox.id, emailAddress:newInbox.emailAddress, hasMailbox: 1})
+                    inboxId = newInbox.inboxId;
+                    randomEmail = newInbox.emailAddress;
+                });
+            } else {
+                inboxId = inbox.inboxId;
+                randomEmail = inbox.emailAddress;
+            }
+        });
+    })
+
     it.only('Verify purchase a ticket and selections amount',()=>{
         cy.forceVisit(infors.url);
         
         let randomName = getRandomText();
         let randomLastName = getRandomText();
-        let randomEmail = getRandomEmail();
         let randomPhone = getRandomNumber();
         homePage.clickPurchaseTickets();
         ticketPage.verifyIsScreenSelectTickets();
@@ -37,6 +63,9 @@ describe('Verify Purchase Tickets flow', () => {
         donationsPaymentPage.inputCreditCardTicket(infors.creditCardNumber, infors.creditCardVCV);
         donationsPaymentPage.clickPurchase();
         donationsPaymentPage.verifyTransactionTicketsFinish();
+        console.log("======inboxId===="+inboxId);
+        mailbox.verifyMailboxGetEmailPurchaseTicketSuccess(inboxId);
+        
         /*cy.wait(60000);
         cy.visit(infors.url);
         homePage.verifyUserInTopFundraiser(randomName + ' ' + randomLastName,(infors.amountTicket + 33));
@@ -50,7 +79,6 @@ describe('Verify Purchase Tickets flow', () => {
         
         let randomName = getRandomText();
         let randomLastName = getRandomText();
-        let randomEmail = getRandomEmail();
         let randomPhone = getRandomNumber();
         homePage.clickPurchaseTickets();
         ticketPage.verifyIsScreenSelectTickets();
@@ -82,7 +110,6 @@ describe('Verify Purchase Tickets flow', () => {
         
         let randomName = getRandomText();
         let randomLastName = getRandomText();
-        let randomEmail = getRandomEmail();
         let randomPhone = getRandomNumber();
         homePage.clickPurchaseTickets();
         ticketPage.verifyIsScreenSelectTickets();
@@ -110,7 +137,7 @@ describe('Verify Purchase Tickets flow', () => {
         donationsPaymentPage.inputCreditCardTicket(infors.creditCardNumber, infors.creditCardVCV);
         donationsPaymentPage.clickPurchase();
         donationsPaymentPage.verifyTransactionTicketsFinish();
-        
+        mailbox.verifyMailboxGetEmailPurchaseMultiTicketSuccess(inboxId);
     })
     
 

@@ -52,4 +52,8 @@ export class ThankYouPage{
             
         });
     }
+
+    verifyTitlePageCorrect(title :string){
+        cy.get('h1').contains(title).should('be.visible');
+    }
 }

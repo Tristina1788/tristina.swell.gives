@@ -62,3 +62,32 @@ import { match } from "assert";
         var randomNum = Math.floor(Math.random() * 5);
         return locations[randomNum];
     }
+    export function getEmailTest(){
+        let email = "";
+        cy.readFile('./data/mailbox.json').then((inbox)=> {
+            email = inbox.emailAddress;
+        });
+        return email;
+    }
+
+    export function getInboxId(){
+        if(getEmailTest() == ""){
+            cy.createInbox().then(inbox => {
+                console.log('Test message');
+                // verify a new inbox was created
+                assert.isDefined(inbox)
+
+                // save the inboxId for later checking the emails
+                // inboxId = inbox.id
+                // emailAddress = inbox.emailAddress;
+                console.log("inbox id: " + inbox.id);
+                console.log("inbox.emailAddress: " + inbox.emailAddress);
+                cy.writeFile('./data/mailbox.json',{inboxId:inbox.id, emailAddress:inbox.emailAddress})
+            });
+        }
+        let inboxId = "";
+        cy.readFile('./data/mailbox.json').then((inbox)=> {
+            inboxId = inbox.inboxId;
+        });
+        return inboxId;
+    }

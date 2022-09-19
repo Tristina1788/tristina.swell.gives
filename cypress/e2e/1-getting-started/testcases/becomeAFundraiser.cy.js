@@ -10,6 +10,9 @@ const infors = require('../utils/infor.js')
 const user = require('../../../fixtures/address.json')
 describe('Verify Become A fundraiser flow', () => {
     
+    it.only('clear the used inbox',()=>{
+        cy.writeFile('./data/mailbox.json',{inboxId:"", emailAddress:"",hasMailbox:0 })
+    })
     it.only('Verify information when become a fundraiser ',()=>{
         cy.forceVisit(infors.url);
         let randomName = getRandomText();

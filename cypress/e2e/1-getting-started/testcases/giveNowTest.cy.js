@@ -1,10 +1,12 @@
 import { HomePage } from "../Pages/homePage";
+import { Mailbox } from "../Pages/mailbox";
 import { DonationsAmountPage} from "../Pages/donationsAmountPage";
 import { DonationsAddressPage } from "../Pages/donationsAddressPage";
 import { DonationsPaymentPage } from "../Pages/donationsPaymentPage";
-import { getRandomEmail, getRandomNumber, getRandomText} from "./generalFunction.cy"
+import { getInboxId, getRandomEmail, getRandomNumber, getRandomText} from "./generalFunction.cy"
 
 let homePage = new HomePage();
+let mailbox = new Mailbox();
 let donationsAmountPage = new DonationsAmountPage();
 let donationsAddressPage =new DonationsAddressPage();
 let donationsPaymentPage =new DonationsPaymentPage();
@@ -12,13 +14,46 @@ let donationsPaymentPage =new DonationsPaymentPage();
 const infors = require('../utils/infor.js')
 const userFullFill = require('../../../fixtures/fullFillInfor.json')
 const user = require('../../../fixtures/address.json')
+let inboxId = "";
+let randomEmail = "";
+let hasMailbox = 0;
+
+
 describe('Verify Give Now flow', () => {
     
+    it.only('setup mailbox inbox',()=>{
+        cy.readFile('./data/mailbox.json',{timeout:2000}).then((inbox)=> {
+            hasMailbox = inbox.hasMailbox;
+        });
+
+        console.log("hasMailbox: "+hasMailbox);
+        if(hasMailbox == 0){
+            console.log("randomEmail111111: "+hasMailbox);
+            cy.createInbox().then(inbox => {
+                console.log('Test message');
+                // verify a new inbox was created
+                assert.isDefined(inbox)
+    
+                // save the inboxId for later checking the emails
+                // inboxId = inbox.id
+                // emailAddress = inbox.emailAddress;
+                console.log("inbox id: " + inbox.id);
+                console.log("inbox.emailAddress: " + inbox.emailAddress);
+                cy.writeFile('./data/mailbox.json',{inboxId:inbox.id, emailAddress:inbox.emailAddress, hasMailbox: 1})
+            });
+        }
+        
+        cy.readFile('./data/mailbox.json').then((inbox)=> {
+            inboxId = inbox.inboxId;
+            randomEmail = inbox.emailAddress;
+        });
+        
+    })
     it.only('Verify Give Now with all options',()=>{
+        
         cy.forceVisit(infors.url);
         let randomName = getRandomText();
         let randomLastName = getRandomText();
-        let randomEmail = getRandomEmail();
         let randomPhone = getRandomNumber();
         homePage.clickGiveNowButton();
         donationsAmountPage.selectFee(infors.amountGiveNowTest);
@@ -34,6 +69,8 @@ describe('Verify Give Now flow', () => {
         donationsAmountPage.selectMakeGiftAnonymous();
         donationsAmountPage.clickPledgeButton();
         donationsAmountPage.verifyShowThankYouPledge();
+        mailbox.verifyMailboxGetEmailPledge(inboxId);
+        
     })
 
     it.only('Verify Give Now with other amount no option full fill later ',()=>{
@@ -48,7 +85,7 @@ describe('Verify Give Now flow', () => {
         donationsAmountPage.selectOption1stBill();
         donationsAmountPage.selectMakeGiftAnonymous();
         donationsAmountPage.clickNextButton();
-        donationsAddressPage.inputAddressInfor(user.firstName, user.lastName, user.email, user.phone,
+        donationsAddressPage.inputAddressInfor(user.firstName, user.lastName, randomEmail, user.phone,
             user.company, user.address1, user.address2, user.city, user.state,
             user.zip);
         donationsAddressPage.clickNextButton();
@@ -56,6 +93,7 @@ describe('Verify Give Now flow', () => {
         
         donationsPaymentPage.clickDonateButton(infors.amountGiveNowOtherFeeTest);
         donationsPaymentPage.verifyTransactionFinish();
+        mailbox.verifyMailboxGetEmailPurchaseSuccess(inboxId);
     })
 
     it.only('Verify Give Now with fee even will make payment failed',()=>{

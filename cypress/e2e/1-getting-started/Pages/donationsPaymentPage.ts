@@ -137,5 +137,4 @@ export class DonationsPaymentPage{
     verifyNameSetupCorrect(name : string){
         cy.get('h1').contains(name).should('be.visible');
     }
-
 }

@@ -27,6 +27,10 @@ export class DonationsAddressPage{
             
         });
     }
+
+    verifyTitlePageCorrect(title :string){
+        cy.get('h1').contains(title).should('be.visible');
+    }
     
     verifyImageHeaderSetupCorrectInBranding(){
        

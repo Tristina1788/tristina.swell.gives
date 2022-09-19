@@ -2,21 +2,44 @@ import { HomePage } from "../Pages/homePage";
 import { DonationsTablePage } from "../Pages/donationsTablePage";
 import { DonationsAddressPage } from "../Pages/donationsAddressPage";
 import { DonationsRegisterTablePage } from "../Pages/donationsRegisterTablePage";
-import { getRandomEmail, getRandomNumber, getRandomText } from "./generalFunction.cy"
+import { getEmailTest, getRandomEmail, getRandomNumber, getRandomText } from "./generalFunction.cy"
 import { DonationsPaymentPage } from "../Pages/donationsPaymentPage";
-import { EmailPage } from "../Pages/emailPage";
+import { Mailbox } from "../Pages/mailbox";
 
 let homePage = new HomePage();
 let donationsTablePage = new DonationsTablePage();
 let donationsAddressPage = new DonationsAddressPage();
 let donationsRegisterTablePage = new DonationsRegisterTablePage();
 let donationsPaymentPage = new DonationsPaymentPage();
-let emailPage = new EmailPage();
+let mailbox = new Mailbox();
 const infors = require('../utils/infor.js')
 const user = require('../../../fixtures/address.json')
-let inboxId;
-let emailAddress;
+let inboxId = "";
+let randomEmail = "";
+let hasMailbox = 0;
+
 describe('Verify become a host flow', () => {
+    it.only('setup mailbox inbox',()=>{
+        cy.readFile('./data/mailbox.json',{timeout:2000}).then((inbox)=> {
+            hasMailbox = inbox.hasMailbox;
+            if(hasMailbox != 1){
+                console.log("hasMailbox: "+hasMailbox);
+                cy.createInbox().then(newInbox => {
+                    console.log('Test message');
+                    // verify a new inbox was created
+                    assert.isDefined(newInbox)
+                    console.log("inbox id: " + newInbox.id);
+                    console.log("inbox.emailAddress: " + newInbox.emailAddress);
+                    cy.writeFile('./data/mailbox.json',{inboxId:newInbox.id, emailAddress:newInbox.emailAddress, hasMailbox: 1})
+                    inboxId = newInbox.inboxId;
+                    randomEmail = newInbox.emailAddress;
+                });
+            } else {
+                inboxId = inbox.inboxId;
+                randomEmail = inbox.emailAddress;
+            }
+        });
+    })
 
     it.only('Verify information when become a host and verify payment for invalid infor and valid infor', () => {
         cy.forceVisit(infors.url);
@@ -71,7 +94,8 @@ describe('Verify become a host flow', () => {
         cy.forceVisit(infors.url);
         let randomName = getRandomText();
         let randomLastName = getRandomText();
-        let randomEmail = getRandomEmail();
+        
+        //let randomEmail = getRandomEmail();
         let randomPhone = getRandomNumber();
         homePage.clickGiveAHostButton();
         donationsTablePage.verifyTableIsSelectedAsDefault(infors.tableItem, infors.tablePriceString);
@@ -85,43 +109,19 @@ describe('Verify become a host flow', () => {
         donationsPaymentPage.inputCreditCardTicket(infors.creditCardNumber, infors.creditCardVCV);
         donationsPaymentPage.clickPurchase();
         donationsRegisterTablePage.verifyEmailAdressIsDisplayed(randomEmail);
+        mailbox.verifyMailboxGetEmailBecomeHostSuccess(inboxId);
         donationsRegisterTablePage.clickNavigationTab('Your Table');
         donationsRegisterTablePage.verifyUserInformationInYourTableIsDisplayed(randomName, randomLastName, randomEmail);
         donationsRegisterTablePage.clickNavigationTab('Guest');
         donationsRegisterTablePage.verifyUserInformationInGuestTableIsDisplayed(randomName, randomLastName, randomEmail);
         let randomNameGuest = getRandomText();
         let randomLastNameGuest = getRandomText();
-        let randomEmailGuest = getRandomEmail();
-        let countEmail = 0;
-        // cy.createInbox().then(inbox => {
-        //     console.log('Test message');
-        //     // verify a new inbox was created
-        //     assert.isDefined(inbox)
-
-        //     // save the inboxId for later checking the emails
-        //     inboxId = inbox.id
-        //     emailAddress = inbox.emailAddress;
-        //     console.log("inbox id: " + inboxId);
-        //     donationsRegisterTablePage.inputGuestInformation(randomNameGuest, randomLastNameGuest, emailAddress);
-        //     donationsRegisterTablePage.clickInviteGuestButton();
-        //     cy.waitForLatestEmail(inboxId, 60000).then(latestEmail => {
-        //         console.log(latestEmail.from);
-        //         expect(latestEmail.from).to.eql('info@swellfundraising.com');
-        //     });
-
-        //     on("task", {
-        //         "gmail:check": async args => {
-        //             const { from, to, subject } = args;
-        //             // Find an email which has the words in 'subject', sent from 'from' email address, to 'to' email address.
-        //         }
-        //     });
-
-        //     donationsRegisterTablePage.verifyInviteSuccess(randomNameGuest, randomLastNameGuest, emailAddress);
-        //     donationsRegisterTablePage.clickCancelInviteGuestButton();
-        //     donationsRegisterTablePage.verifyCancelInviteGuestSuccess();
+        let randomEmailGuest = randomEmail;// getEmailTest();
         // });
         donationsRegisterTablePage.inputGuestInformation(randomNameGuest, randomLastNameGuest, randomEmailGuest);
         donationsRegisterTablePage.clickInviteGuestButton();
+        
+        mailbox.verifyMailboxGetEmailBecomeHostGuestSuccess(inboxId, randomName);
         donationsRegisterTablePage.verifyInviteSuccess(randomNameGuest, randomLastNameGuest, randomEmailGuest);
         donationsRegisterTablePage.clickCancelInviteGuestButton();
         donationsRegisterTablePage.verifyCancelInviteGuestSuccess();

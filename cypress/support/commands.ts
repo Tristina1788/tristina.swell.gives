@@ -2,7 +2,9 @@
 import { MailSlurp } from "../../node_modules/mailslurp-client";
 // set your api key with an environment variable `CYPRESS_API_KEY` or configure using `env` property in config file
 // (cypress prefixes environment variables with CYPRESS)
-const apiKey = '2180e5ecdf3748d4e9624d9a2f3c6953849acb73641803008b73f3998542d121';
+// const apiKey = '2180e5ecdf3748d4e9624d9a2f3c6953849acb73641803008b73f3998542d121';
+const apiKey = '3732aa032a8967c689aaa91509f0a8f63c37246b6f2427a643c020800794289a';
+//const apiKey = 'ed8b9b0aa446fb7432dba0fc9a974469e5f076006569496e08762268928169e1';
 const mailslurp = new MailSlurp({ apiKey });
 
 Cypress.Commands.add("createInbox", () => {
@@ -11,7 +13,7 @@ Cypress.Commands.add("createInbox", () => {
 
 Cypress.Commands.add("waitForLatestEmail", (inboxId) => {
   // how long we should hold connection waiting for an email to arrive
-  const timeoutMillis = 30_000;
+  const timeoutMillis = 30000;
   return mailslurp.waitForLatestEmail(inboxId, timeoutMillis)
 });
 
@@ -20,8 +22,17 @@ Cypress.Commands.add("getAllEmail", (inboxId) => {
   return mailslurp.getEmails(inboxId);
 });
 
+Cypress.Commands.add("emptyInbox", (inboxId) => {
+  // how long we should hold connection waiting for an email to arrive
+  return mailslurp.emptyInbox(inboxId);
+});
 
 
+
+Cypress.Commands.add("getEmail", (emailID) => {
+  // how long we should hold connection waiting for an email to arrive
+  return mailslurp.getEmail(emailID);
+});
 // ***********************************************
 // This example commands.ts shows you how to
 // create various custom commands and overwrite
