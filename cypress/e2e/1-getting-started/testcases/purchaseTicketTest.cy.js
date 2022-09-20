@@ -31,7 +31,7 @@ describe('Verify Purchase Tickets flow', () => {
                     console.log("inbox id: " + newInbox.id);
                     console.log("inbox.emailAddress: " + newInbox.emailAddress);
                     cy.writeFile('./data/mailbox.json',{inboxId:newInbox.id, emailAddress:newInbox.emailAddress, hasMailbox: 1})
-                    inboxId = newInbox.inboxId;
+                    inboxId = newInbox.id;
                     randomEmail = newInbox.emailAddress;
                 });
             } else {

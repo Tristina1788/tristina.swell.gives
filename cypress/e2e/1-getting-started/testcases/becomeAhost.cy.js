@@ -31,7 +31,7 @@ describe('Verify become a host flow', () => {
                     console.log("inbox id: " + newInbox.id);
                     console.log("inbox.emailAddress: " + newInbox.emailAddress);
                     cy.writeFile('./data/mailbox.json',{inboxId:newInbox.id, emailAddress:newInbox.emailAddress, hasMailbox: 1})
-                    inboxId = newInbox.inboxId;
+                    inboxId = newInbox.id;
                     randomEmail = newInbox.emailAddress;
                 });
             } else {
@@ -39,6 +39,7 @@ describe('Verify become a host flow', () => {
                 randomEmail = inbox.emailAddress;
             }
         });
+        console.log("inboxId :::::"+inboxId);
     })
 
     it.only('Verify information when become a host and verify payment for invalid infor and valid infor', () => {

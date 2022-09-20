@@ -24,30 +24,23 @@ describe('Verify Give Now flow', () => {
     it.only('setup mailbox inbox',()=>{
         cy.readFile('./data/mailbox.json',{timeout:2000}).then((inbox)=> {
             hasMailbox = inbox.hasMailbox;
+            if(hasMailbox != 1){
+                console.log("hasMailbox: "+hasMailbox);
+                cy.createInbox().then(newInbox => {
+                    console.log('Test message');
+                    // verify a new inbox was created
+                    assert.isDefined(newInbox)
+                    console.log("inbox id: " + newInbox.id);
+                    console.log("inbox.emailAddress: " + newInbox.emailAddress);
+                    cy.writeFile('./data/mailbox.json',{inboxId:newInbox.id, emailAddress:newInbox.emailAddress, hasMailbox: 1})
+                    inboxId = newInbox.id;
+                    randomEmail = newInbox.emailAddress;
+                });
+            } else {
+                inboxId = inbox.inboxId;
+                randomEmail = inbox.emailAddress;
+            }
         });
-
-        console.log("hasMailbox: "+hasMailbox);
-        if(hasMailbox == 0){
-            console.log("randomEmail111111: "+hasMailbox);
-            cy.createInbox().then(inbox => {
-                console.log('Test message');
-                // verify a new inbox was created
-                assert.isDefined(inbox)
-    
-                // save the inboxId for later checking the emails
-                // inboxId = inbox.id
-                // emailAddress = inbox.emailAddress;
-                console.log("inbox id: " + inbox.id);
-                console.log("inbox.emailAddress: " + inbox.emailAddress);
-                cy.writeFile('./data/mailbox.json',{inboxId:inbox.id, emailAddress:inbox.emailAddress, hasMailbox: 1})
-            });
-        }
-        
-        cy.readFile('./data/mailbox.json').then((inbox)=> {
-            inboxId = inbox.inboxId;
-            randomEmail = inbox.emailAddress;
-        });
-        
     })
     it.only('Verify Give Now with all options',()=>{
         
