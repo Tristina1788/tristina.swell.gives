@@ -3,8 +3,8 @@ import { MailSlurp } from "../../node_modules/mailslurp-client";
 // set your api key with an environment variable `CYPRESS_API_KEY` or configure using `env` property in config file
 // (cypress prefixes environment variables with CYPRESS)
 // const apiKey = '2180e5ecdf3748d4e9624d9a2f3c6953849acb73641803008b73f3998542d121';
-const apiKey = '3732aa032a8967c689aaa91509f0a8f63c37246b6f2427a643c020800794289a';
-//const apiKey = 'ed8b9b0aa446fb7432dba0fc9a974469e5f076006569496e08762268928169e1';
+//const apiKey = '3732aa032a8967c689aaa91509f0a8f63c37246b6f2427a643c020800794289a';
+const apiKey = 'ed8b9b0aa446fb7432dba0fc9a974469e5f076006569496e08762268928169e1';
 const mailslurp = new MailSlurp({ apiKey });
 
 Cypress.Commands.add("createInbox", () => {
