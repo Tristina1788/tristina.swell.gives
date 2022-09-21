@@ -4,7 +4,7 @@ import { DonationsAddressPage } from "../Pages/donationsAddressPage";
 import {  getRandomEmail, getRandomNumber, getRandomText} from "./generalFunction.cy"
 import { DonationsPaymentPage } from "../Pages/donationsPaymentPage";
 import { UsersPage } from "../Pages/usersPage";
-import { Mailbox } from "../Pages/Mailbox";
+import { Mailbox } from "../Pages/mailbox";
 
 let homePage = new HomePage();
 let sponsorshipPage =new SponsorshipPage();

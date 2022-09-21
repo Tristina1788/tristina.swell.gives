@@ -168,11 +168,21 @@ export class HomePage{
             cy.readFile('./data/images.json').then((image)=> {
                 expect(linkImg1).to.equal(image.imageLogoSponsor);
             });
-            
         });
-
-
     }
+
+    verifySettingButtonSuccessfully(giveNowLLb : string, purchaseLb : string, becomeHostLb : string, becomeFundraiser : string, becomeSponsor : string, isFundraiser : boolean = true){
+        cy.get('[value="'+giveNowLLb+'"]').should('be.visible');
+        cy.get('[value="'+purchaseLb+'"]').should('be.visible');
+        cy.get('[value="'+becomeHostLb+'"]').should('be.visible');
+        if(isFundraiser)
+            cy.get('[value="'+becomeFundraiser+'"]').should('be.visible');
+        else
+            cy.get('[value="'+becomeFundraiser+'"]').should('be.not.exist');
+        cy.get('[value="'+becomeSponsor+'"]').should('be.visible');
+    }
+
+
     
 }
 
