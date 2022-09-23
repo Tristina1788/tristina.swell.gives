@@ -23,7 +23,8 @@ describe('Verify Choose a sponsorship flow', () => {
     it.only('setup mailbox inbox',()=>{
         cy.readFile('./data/mailbox.json',{timeout:2000}).then((inbox)=> {
             hasMailbox = inbox.hasMailbox;
-            if(hasMailbox != 1){
+            if(hasMailbox == -1) randomEmail = getRandomEmail();
+            else if(hasMailbox != 1){
                 console.log("hasMailbox: "+hasMailbox);
                 cy.createInbox().then(newInbox => {
                     console.log('Test message');
@@ -47,6 +48,7 @@ describe('Verify Choose a sponsorship flow', () => {
         let randomName = getRandomText();
         let randomLastName = getRandomText();
         //let randomEmail = getRandomEmail();
+        console.log("randomEmail:"+randomEmail);
         let randomPhone = getRandomNumber();
         homePage.clickChooseASponsorshipButton();
         sponsorshipPage.clickSponsorItem(infors.sponsorItemName);
@@ -60,7 +62,8 @@ describe('Verify Choose a sponsorship flow', () => {
         donationsPaymentPage.inputCreditCardTicket(infors.creditCardNumber, infors.creditCardVCV);
         donationsPaymentPage.clickPurchase();
         donationsPaymentPage.verifyTransactionFinish();
-        mailbox.verifyMailboxGetEmailSponsorshipSuccess(inboxId);
+        if(hasMailbox ==1 )
+            mailbox.verifyMailboxGetEmailSponsorshipSuccess(inboxId);
         usersPage.verifyTheUsersIsSponsor(infors.url+'users/'+infors.personRecieveCreditPage,randomName + ' '+randomLastName);
     })
 

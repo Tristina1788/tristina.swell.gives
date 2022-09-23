@@ -24,7 +24,8 @@ describe('Verify Give Now flow', () => {
     it.only('setup mailbox inbox',()=>{
         cy.readFile('./data/mailbox.json',{timeout:2000}).then((inbox)=> {
             hasMailbox = inbox.hasMailbox;
-            if(hasMailbox != 1){
+            if(hasMailbox == -1) randomEmail = getRandomEmail();
+            else if(hasMailbox != 1){
                 console.log("hasMailbox: "+hasMailbox);
                 cy.createInbox().then(newInbox => {
                     console.log('Test message');
@@ -62,7 +63,8 @@ describe('Verify Give Now flow', () => {
         donationsAmountPage.selectMakeGiftAnonymous();
         donationsAmountPage.clickPledgeButton();
         donationsAmountPage.verifyShowThankYouPledge();
-        mailbox.verifyMailboxGetEmailPledge(inboxId);
+        if(hasMailbox ==1 )
+            mailbox.verifyMailboxGetEmailPledge(inboxId);
         
     })
 
@@ -86,7 +88,8 @@ describe('Verify Give Now flow', () => {
         
         donationsPaymentPage.clickDonateButton(infors.amountGiveNowOtherFeeTest);
         donationsPaymentPage.verifyTransactionFinish();
-        mailbox.verifyMailboxGetEmailPurchaseSuccess(inboxId);
+        if(hasMailbox ==1 )
+            mailbox.verifyMailboxGetEmailPurchaseSuccess(inboxId);
     })
 
     it.only('Verify Give Now with fee even will make payment failed',()=>{

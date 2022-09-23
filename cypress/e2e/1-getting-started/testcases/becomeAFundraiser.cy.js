@@ -14,13 +14,14 @@ let inboxId = "";
 let randomEmail = "";
 let hasMailbox = 0;
 describe('Verify Become A fundraiser flow', () => {
-    it.only('clear the used inbox',()=>{
+    it('clear the used inbox',()=>{
         cy.writeFile('./data/mailbox.json',{inboxId:"", emailAddress:"",hasMailbox:0 })
     })
     it.only('setup mailbox inbox',()=>{
         cy.readFile('./data/mailbox.json',{timeout:2000}).then((inbox)=> {
             hasMailbox = inbox.hasMailbox;
-            if(hasMailbox != 1){
+            if(hasMailbox == -1) randomEmail = getRandomEmail();
+            else if(hasMailbox != 1){
                 console.log("hasMailbox: "+hasMailbox);
                 cy.createInbox().then(newInbox => {
                     console.log('Test message');
@@ -50,7 +51,8 @@ describe('Verify Become A fundraiser flow', () => {
         registerPage.inputRegisterForm(randomName, randomLastName, randomPhone, randomEmail);
         registerPage.clickRegisterButton();
         thankYouPage.verifyThankYouPageAfterFundraiserSuccess(randomName, randomLastName);
-        mailbox.verifyMailboxGetEmailFundraiserSuccess(inboxId);
+        if(hasMailbox ==1 )
+            mailbox.verifyMailboxGetEmailFundraiserSuccess(inboxId);
         thankYouPage.clickFundraiserUserLinks(randomName, randomLastName);
 
     })

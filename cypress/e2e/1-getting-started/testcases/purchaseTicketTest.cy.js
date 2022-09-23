@@ -22,7 +22,8 @@ describe('Verify Purchase Tickets flow', () => {
     it.only('setup mailbox inbox',()=>{
         cy.readFile('./data/mailbox.json',{timeout:2000}).then((inbox)=> {
             hasMailbox = inbox.hasMailbox;
-            if(hasMailbox != 1){
+            if(hasMailbox == -1) randomEmail = getRandomEmail();
+            else if(hasMailbox != 1){
                 console.log("hasMailbox: "+hasMailbox);
                 cy.createInbox().then(newInbox => {
                     console.log('Test message');
@@ -64,7 +65,8 @@ describe('Verify Purchase Tickets flow', () => {
         donationsPaymentPage.clickPurchase();
         donationsPaymentPage.verifyTransactionTicketsFinish();
         console.log("======inboxId===="+inboxId);
-        mailbox.verifyMailboxGetEmailPurchaseTicketSuccess(inboxId);
+        if(hasMailbox ==1 )
+            mailbox.verifyMailboxGetEmailPurchaseTicketSuccess(inboxId);
         
         /*cy.wait(60000);
         cy.visit(infors.url);
@@ -137,7 +139,8 @@ describe('Verify Purchase Tickets flow', () => {
         donationsPaymentPage.inputCreditCardTicket(infors.creditCardNumber, infors.creditCardVCV);
         donationsPaymentPage.clickPurchase();
         donationsPaymentPage.verifyTransactionTicketsFinish();
-        mailbox.verifyMailboxGetEmailPurchaseMultiTicketSuccess(inboxId);
+        if(hasMailbox ==1 )
+            mailbox.verifyMailboxGetEmailPurchaseMultiTicketSuccess(inboxId);
     })
     
 

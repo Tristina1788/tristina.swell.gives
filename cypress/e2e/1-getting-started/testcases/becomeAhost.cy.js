@@ -22,7 +22,8 @@ describe('Verify become a host flow', () => {
     it.only('setup mailbox inbox',()=>{
         cy.readFile('./data/mailbox.json',{timeout:2000}).then((inbox)=> {
             hasMailbox = inbox.hasMailbox;
-            if(hasMailbox != 1){
+            if(hasMailbox == -1) randomEmail = getRandomEmail();
+            else if(hasMailbox != 1){
                 console.log("hasMailbox: "+hasMailbox);
                 cy.createInbox().then(newInbox => {
                     console.log('Test message');
@@ -39,7 +40,6 @@ describe('Verify become a host flow', () => {
                 randomEmail = inbox.emailAddress;
             }
         });
-        console.log("inboxId :::::"+inboxId);
     })
 
     it.only('Verify information when become a host and verify payment for invalid infor and valid infor', () => {
@@ -110,7 +110,8 @@ describe('Verify become a host flow', () => {
         donationsPaymentPage.inputCreditCardTicket(infors.creditCardNumber, infors.creditCardVCV);
         donationsPaymentPage.clickPurchase();
         donationsRegisterTablePage.verifyEmailAdressIsDisplayed(randomEmail);
-        mailbox.verifyMailboxGetEmailBecomeHostSuccess(inboxId);
+        if(hasMailbox ==1 )
+            mailbox.verifyMailboxGetEmailBecomeHostSuccess(inboxId);
         donationsRegisterTablePage.clickNavigationTab('Your Table');
         donationsRegisterTablePage.verifyUserInformationInYourTableIsDisplayed(randomName, randomLastName, randomEmail);
         donationsRegisterTablePage.clickNavigationTab('Guest');
@@ -121,8 +122,8 @@ describe('Verify become a host flow', () => {
         // });
         donationsRegisterTablePage.inputGuestInformation(randomNameGuest, randomLastNameGuest, randomEmailGuest);
         donationsRegisterTablePage.clickInviteGuestButton();
-        
-        mailbox.verifyMailboxGetEmailBecomeHostGuestSuccess(inboxId, randomName);
+        if(hasMailbox ==1 )
+            mailbox.verifyMailboxGetEmailBecomeHostGuestSuccess(inboxId, randomName);
         donationsRegisterTablePage.verifyInviteSuccess(randomNameGuest, randomLastNameGuest, randomEmailGuest);
         donationsRegisterTablePage.clickCancelInviteGuestButton();
         donationsRegisterTablePage.verifyCancelInviteGuestSuccess();
