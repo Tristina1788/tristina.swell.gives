@@ -39,6 +39,8 @@ describe('Verify Choose a sponsorship flow', () => {
             } else {
                 inboxId = inbox.inboxId;
                 randomEmail = inbox.emailAddress;
+                console.log("inbox id111: " + inboxId);
+                console.log("randomEmail id111: " + randomEmail);
             }
         });
     })

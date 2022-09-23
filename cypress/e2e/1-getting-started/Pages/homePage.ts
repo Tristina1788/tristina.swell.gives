@@ -18,7 +18,10 @@ export class HomePage{
     contentPage = '.page-content-body';
     pageNotFoundMsg = 'Page Not Found'; //h2
     sponsorSection ='[ng-click="navigate(sponsor.url)"]';
-    
+    topFundraiserLB = '[type="donations"]';
+    mostSocialLB = '[type="social"]';
+    topTeamsLB = '[type="team"]';
+    topTableLB = '[type="table"]';
     clickGiveAHostButton(){
         cy.get(this.becomeAHost).click();
     }
@@ -182,7 +185,43 @@ export class HomePage{
         cy.get('[value="'+becomeSponsor+'"]').should('be.visible');
     }
 
+    verifySettingLeaderboardSuccessfully(isLB : boolean = true, isTopFundraiser : boolean = true, topFundraiserLB : string, isTable : boolean = true,
+        tableLB : string, isSocial : boolean = true, socialLB : string, isTeam : boolean = true, teamLB : string){
+        
+        if(isLB){
+            if(isTopFundraiser) {
+                cy.get(this.topFundraiserLB).invoke('attr','leaderboard').should('be.exist');
+                cy.get(this.topFundraiserLB).find('h4').contains(topFundraiserLB).should('be.visible');
+            } else {
+                cy.get(this.topFundraiserLB).should('be.not.exist');
+            }
 
+            if(isTable) {
+                cy.get(this.topTableLB).invoke('attr','leaderboard').should('be.exist');
+                cy.get(this.topTableLB).find('h4').contains(tableLB).should('be.visible');
+            } else {
+                cy.get(this.topTableLB).should('be.not.exist');
+            }
+
+            if(isSocial) {
+                cy.get(this.mostSocialLB).invoke('attr','leaderboard').should('be.exist');
+                cy.get(this.mostSocialLB).find('h4').contains(socialLB).should('be.visible');
+            } else {
+                cy.get(this.mostSocialLB).should('be.not.exist');
+                
+            }
+
+            if(isTeam) {
+                cy.get(this.topTeamsLB).invoke('attr','leaderboard').should('be.exist');
+                cy.get(this.topTeamsLB).find('h4').contains(teamLB).should('be.visible');
+            } else {
+                cy.get(this.topTeamsLB).should('be.not.exist');
+            }
+            
+        } else{
+            cy.get('div').invoke('attr','leaderboard').should('be.not.exist');
+        }
+    }
     
 }
 

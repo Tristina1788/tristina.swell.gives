@@ -1,27 +1,15 @@
 import { HomePage } from "../Pages/homePage";
-import { DetailSetupPage } from "../Pages/detailSetupPage";
-import { getCurrentDateTime, getCurrentTime, getRandomEmail, getRandomLocation, getRandomNumber, getRandomText } from "./generalFunction.cy";
-import { ThankYouPage } from "../Pages/thankYouPage";
-import { RegisterPage } from "../Pages/registerPage";
 import { LoginManagePage } from "../Pages/loginManagePage";
-import { TicketPage } from "../Pages/ticketPage";
-import { DonationsAddressPage } from "../Pages/donationsAddressPage";
-import { DonationsPaymentPage } from "../Pages/donationsPaymentPage";
 import { ButtonSettingPage } from "../Pages/buttonSettingPage";
 import { SettingSetupPage } from "../Pages/settingSetupPage";
 
 let homePage = new HomePage();
-let registerPage =new RegisterPage();
-let thankYouPage =new ThankYouPage();
 let loginManagePage =new LoginManagePage();
-let ticketPage = new TicketPage();
-let donationsAddressPage = new DonationsAddressPage();
 let buttonSettingPage = new ButtonSettingPage();
 let settingSetupPage = new SettingSetupPage();
 
 const infors = require('../utils/infor.js')
 const user = require('../../../fixtures/address.json')
-let detailSetupPage =new DetailSetupPage();
 let giveNowLLb = getRandomText();
 let purchaseLb = getRandomText();
 let becomeHostLb = getRandomText();
