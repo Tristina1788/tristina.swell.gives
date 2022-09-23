@@ -14,7 +14,7 @@ let inboxId = "";
 let randomEmail = "";
 let hasMailbox = 0;
 describe('Verify Become A fundraiser flow', () => {
-    it('clear the used inbox',()=>{
+    it.only('clear the used inbox',()=>{
         cy.writeFile('./data/mailbox.json',{inboxId:"", emailAddress:"",hasMailbox:0 })
     })
     it.only('setup mailbox inbox',()=>{
