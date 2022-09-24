@@ -148,6 +148,7 @@ export class TicketPage{
     selectAmountItem(amount : string){
         cy.get(this.amountSelection).contains(amount).click();
     }
+    
     inputOtherAmount(amount : string){
         cy.get(this.otherAmount).type(amount);   
     }
@@ -199,6 +200,16 @@ export class TicketPage{
     selectNoteam(){
         cy.get('select').select('No team');
     }
+
+    verifyNewTeamDisplayInTicketPage(newTeam: string) {
+        cy.get('select').select(newTeam);
+        cy.get('select').should('contain', newTeam);
+    }
+
+    verifyTeamIsNotExist(team: string) {
+        cy.get('option').contains(team).should('be.not.exist');
+    }
+
     verifyTicketGetCorrectInforFromTicketSetingForm(title: string, name: string, promo: string,teamselectiont : string, teamCreatetitle : string ,donatitle:string , enableNewTeam: boolean, enableDona: boolean, orderLb: string, donaLb: string) {
         cy.wait(3000);
         console.log("promo:"+promo);

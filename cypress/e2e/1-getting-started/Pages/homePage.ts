@@ -22,6 +22,8 @@ export class HomePage{
     mostSocialLB = '[type="social"]';
     topTeamsLB = '[type="team"]';
     topTableLB = '[type="table"]';
+    teamSelect = '#team-select';
+    
     clickGiveAHostButton(){
         cy.get(this.becomeAHost).click();
     }

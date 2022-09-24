@@ -9,6 +9,7 @@ export class RegisterPage{
     inforEvent = '.event-info';
     imgEvent = '.bg-stretch';
     imglogo = '.logo';
+    teamSelect = '#team-select';
 
     verifyImageLogoSetupCorrectInBranding(){
        
@@ -59,5 +60,14 @@ export class RegisterPage{
             });
             
         });
+    }
+
+    verifyNewTeamDisplayInRegisterPage(newTeam: string) {
+        cy.get(this.teamSelect).select(newTeam);
+        cy.get(this.teamSelect).should('contain', newTeam);
+    }
+
+    verifyTeamIsNotExist(team: string) {
+        cy.get('option').contains(team).should('be.not.exist');
     }
 }

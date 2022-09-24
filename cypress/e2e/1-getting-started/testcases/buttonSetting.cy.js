@@ -2,6 +2,7 @@ import { HomePage } from "../Pages/homePage";
 import { LoginManagePage } from "../Pages/loginManagePage";
 import { ButtonSettingPage } from "../Pages/buttonSettingPage";
 import { SettingSetupPage } from "../Pages/settingSetupPage";
+import { getRandomText } from "./generalFunction.cy";
 
 let homePage = new HomePage();
 let loginManagePage =new LoginManagePage();
