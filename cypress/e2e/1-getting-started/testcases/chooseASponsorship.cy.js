@@ -15,7 +15,7 @@ let donationsPaymentPage =new DonationsPaymentPage();
 const infors = require('../utils/infor.js')
 const user = require('../../../fixtures/address.json')
 let inboxId = "";
-let randomEmail = "";
+let randomEmail = getRandomEmail();
 let hasMailbox = 0;
 
 describe('Verify Choose a sponsorship flow', () => {
@@ -39,8 +39,6 @@ describe('Verify Choose a sponsorship flow', () => {
             } else {
                 inboxId = inbox.inboxId;
                 randomEmail = inbox.emailAddress;
-                console.log("inbox id111: " + inboxId);
-                console.log("randomEmail id111: " + randomEmail);
             }
         });
     })

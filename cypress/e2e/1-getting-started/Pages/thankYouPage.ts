@@ -1,6 +1,8 @@
 export class ThankYouPage{
     titleThankYouPage  = 'Thank you for supporting';
     fundraiserText = 'Your event fundraising page is located at:'; // h3
+    fundraiserSuccess = 'Your transaction was successful and we just sent you an email';//p
+    confirmPurchaseTxt = 'This confirms you purchased a ticket.';
     fundraiserLink = '[href="https://tristina.swell.gives/users/';
     imgEvent = '.bg-stretch';
     imglogo = '.logo';
@@ -23,6 +25,16 @@ export class ThankYouPage{
         cy.get('h3').contains(this.fundraiserText).should('be.visible');
         let link = this.fundraiserLink+fname+'.'+lname+'"]';
         cy.get(link.toLowerCase()).should('be.visible');
+    }
+
+    verifyThankYouPageAfterFundraiserSuccessForComp(fname:string, lname:string, ticketType : string){
+        cy.wait(6000);
+        cy.get('h1').contains(this.titleThankYouPage).should('be.visible');
+        cy.get('p').contains(this.fundraiserSuccess).should('be.visible');
+        let link = this.fundraiserLink+fname+'.'+lname+'"]';
+        //cy.get(link.toLowerCase()).should('be.visible');
+        cy.get('td').contains(ticketType).should('be.visible');
+        cy.get('th').contains(this.confirmPurchaseTxt).should('be.visible');
     }
 
     clickFundraiserUserLinks(fname:string, lname:string){

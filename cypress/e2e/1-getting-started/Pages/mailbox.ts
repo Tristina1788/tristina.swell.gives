@@ -208,4 +208,32 @@ export class Mailbox {
         cy.emptyInbox(inboxId);
     }
 
+    verifyMailboxGetEmailCompTicketSuccess(inboxId : string, name : string){
+        cy.wait(70000);
+        cy.waitForLatestEmail(inboxId, 120000).then(email => {
+            console.log('email :'+email);
+            console.log('email.from :'+email.from);
+            expect(email.from).to.eql('info@swellfundraising.com');
+            expect(email.subject).to.contain('Please register your guests for');
+            expect(email.body).to.contain('Here is a link for you to redeem your');
+            
+        });
+    
+        cy.emptyInbox(inboxId);
+    }
+
+    verifyMailboxGetEmailRegisterCompTicketSuccess(inboxId : string, name : string){
+        cy.wait(70000);
+        cy.waitForLatestEmail(inboxId, 120000).then(email => {
+            console.log('email :'+email);
+            console.log('email.from :'+email.from);
+            expect(email.from).to.eql('info@swellfundraising.com');
+            expect(email.subject).to.contain('Here is your ticket to');
+            expect(email.body).to.contain('You are confirmed to attend');
+            
+        });
+    
+        cy.emptyInbox(inboxId);
+    }
+
 }
