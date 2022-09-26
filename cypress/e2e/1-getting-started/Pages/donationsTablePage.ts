@@ -38,7 +38,6 @@ export class DonationsTablePage{
     }
 
     verifyTableDonationPage() {
-        // cy.get(this.tableRadio).should('be.selected');
          cy.get(this.tableLabel).should('be.visible');
          cy.get(this.amountSelection).should('be.visible');
      }
@@ -50,13 +49,11 @@ export class DonationsTablePage{
     }
 
     verifyTableIsExistAndSelectIt(tableName: string, tablePrice: string) {
-        // cy.get(this.tableRadio).should('be.selected');
         cy.get(this.tableLabel).contains(tableName).prev('span').contains('$'+tablePrice).should('be.visible');
         cy.get(this.tableLabel).contains(tableName).prev('span').contains('$'+tablePrice).prev('input').check();
      }
 
      verifyTableIsNotExist(tableName: string, tablePrice: string) {
-        // cy.get(this.tableRadio).should('be.selected');
         cy.get(this.tableLabel).contains(tableName).should('be.not.exist');
      }
 

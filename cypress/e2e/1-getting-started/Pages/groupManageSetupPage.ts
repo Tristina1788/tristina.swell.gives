@@ -39,11 +39,9 @@ export class GroupManageSetupPage{
     clickEditButton(name:string){
         cy.get(this.searchInput).type(name);
         cy.get(this.tableList).children('tbody').children('tr').children('td').contains(name).parent('tr').children('td').find(this.editBtn).click();
-        //cy.get(this.editBtn).click();
     }
 
     clickDeleteButton(name:string){
-        // cy.get(this.searchInput).type(url);
         this.inputSearch(name);
         cy.get(this.deleteBtn).click();
         cy.wait(2000);

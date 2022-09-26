@@ -43,7 +43,6 @@ export class CompManagePage{
     clickEditButton(code:string){
         cy.get(this.searchInput).type(code);
         cy.get(this.tableList).children('tbody').children('tr').children('td').contains(code).parent('tr').children('td').find(this.editBtn).click();
-        //cy.get(this.editBtn).click();
     }
 
     clickDeleteButton(code:string){

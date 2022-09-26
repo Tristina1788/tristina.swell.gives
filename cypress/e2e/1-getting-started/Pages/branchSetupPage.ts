@@ -125,8 +125,6 @@ export class BranchSetupPage  {
         cy.get('p').contains(this.errorTextMsg).should('not.be.visible');
 
         cy.get(this.socialImgBrowerBtn).selectFile('./data/img_test/a1080_565.jpg',{force: true});
-       // cy.get('h2').contains(this.errorText).should('not.be.visible');
-       // cy.get('p').contains(this.errorTextMsg).should('not.be.visible');
 
         cy.get(this.logoImgBrowerBtn).selectFile('./data/img_test/a261_166.jpg',{force: true});
         cy.get('h2').contains(this.errorText).should('not.be.visible');
@@ -149,10 +147,6 @@ export class BranchSetupPage  {
         cy.get('p').contains(this.errorTextMsg).should('not.be.visible');
 
         cy.get(this.leaderboardImgBrowserBtn).selectFile('./data/img_test/a1600_900.jpg',{force: true});
-       // cy.get('h2').contains(this.errorText).should('be.visible');
-       // cy.get('p').contains(this.errorTextMsg).should('be.visible');
-       // cy.get(this.errorConfirmBtn).click();
-
     }
 
     clickSaveBtn(){

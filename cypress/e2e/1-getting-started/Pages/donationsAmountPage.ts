@@ -32,7 +32,7 @@ export class DonationsAmountPage{
     honorNameInput = '[name="honoredName"]';
     inputDDLCredit(){
         cy.get(this.ddlBtn).click();
-        cy.get('li').contains(' ABC DEF - Team: grouest').click();
+        cy.get('li').eq(0).click();
 
     }
 

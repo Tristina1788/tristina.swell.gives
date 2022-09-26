@@ -1,3 +1,5 @@
+import { values } from "cypress/types/lodash";
+
 export class HomePage{
     giveNow = '[value="GIVE NOW"]';
     purchaseTickets = '[value="Purchase Tickets"]';
@@ -23,6 +25,7 @@ export class HomePage{
     topTeamsLB = '[type="team"]';
     topTableLB = '[type="table"]';
     teamSelect = '#team-select';
+    tweetTag = '.tweet-input';
     
     clickGiveAHostButton(){
         cy.get(this.becomeAHost).click();
@@ -48,7 +51,6 @@ export class HomePage{
         
         cy.get(this.boardTopFundraisers).find(this.inputSearchName).type(userName);
         cy.get(this.boardTopFundraisers).find(this.swellName).contains(userName).should('be.visible');
-        //cy.get(this.boardTopFundraisers).find(this.swellAmounts).contains('$'+amount).should('be.visible');
     }
 
     verifyUserInTopSocial(userName:string, amount:number){
@@ -157,15 +159,6 @@ export class HomePage{
         cy
         .get('@redirect')
         .should('be.calledWith', url1+'');
-        //cy.get('@redirect').contains(url1+'').should('be.visible')
-            // .should('have.value', 'https://secure.swell.gives/tristina/sponsor1');
-       // cy.get(this.sponsorSection).children('img').eq(1).parent('div').click()
-
-        //cy.get('@redirect').contains(url1+'').should('be.visible');
-            // .should('have.value', 'https://secure.swell.gives/tristina/sponsor1');
-        // cy.get(this.sponsorSection).children('img').eq(1).parent('div').invoke('removeAttr', 'target').click();
-        // cy.url()
-        //     .should('include', url1)
         cy.get(this.sponsorSection).children('img').eq(0).invoke('attr', 'src')
         .then(link => {
             
@@ -223,6 +216,12 @@ export class HomePage{
         } else{
             cy.get('div').invoke('attr','leaderboard').should('be.not.exist');
         }
+    }
+
+    verifyTweetTagCorrect(socicalTag : string){
+        cy.get(this.tweetTag).invoke('attr','placeholder').then(value=>{
+            expect(value).equal('Post your own tweet here using '+socicalTag+'!');
+        })
     }
     
 }
