@@ -58,7 +58,9 @@ export class SponsorManageSetupPage{
         cy.wait(2000);
         let linklogo = '';
         cy.get(this.tableList).children('tbody').children('tr').children('td').contains(name)
-        .next().contains(link).next('td').contains(order).next('td').children('img').invoke('attr', 'src')
+        .next().contains(link)
+        //.next('td').contains(order)
+        .next('td').children('img').invoke('attr', 'src')
         .then(linklog => {
             const link = linklog?.substring(linklog.length-29,linklog.length); //419/1661783284-76906394.jpg
             linklogo = link+'';

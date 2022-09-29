@@ -1,6 +1,6 @@
 export class RegisterPage{
     registerTitle = 'Register';
-    registerCompTitle = 'Register for the Event';
+    registerCompTitle = 'Confirm your Registration';
     firstNameRegisterInput = '[name="attendee_name-firstName"]';
     lastNameRegisterInput = '[name="attendee_name-lastName"]';
     phoneRegisterInput = '[name="attendee_phone"]';

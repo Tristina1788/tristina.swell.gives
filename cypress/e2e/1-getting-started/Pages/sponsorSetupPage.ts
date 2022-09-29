@@ -11,7 +11,7 @@ export class SponsorSetupPage{
         cy.get('li').contains(this.sponsorName).next('li').children('input').clear();
         cy.get('li').contains(this.sponsorName).next('li').children('input').type(sponsorName);
 
-        cy.get('li').contains(this.sortOrder).next('li').children('select').select(''+order);
+       // cy.get('li').contains(this.sortOrder).next('li').children('select').select(''+order);
         cy.get('li').contains(this.sponsorUrl).next('li').children('input').clear();
         cy.get('li').contains(this.sponsorUrl).next('li').children('input').type(url);
 

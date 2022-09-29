@@ -94,7 +94,6 @@ describe('Verify Give Now flow', () => {
 
     it.only('Verify Give Now with fee even will make payment failed',()=>{
         cy.forceVisit(infors.url);
-        
         homePage.clickGiveNowButton();
         donationsAmountPage.selectFee(infors.amountEvenGiveNowTest);
         donationsAmountPage.verifyFeeSelectionCorrect(infors.amountEvenGiveNowTest);
@@ -110,7 +109,6 @@ describe('Verify Give Now flow', () => {
 
     it.only('Verify Give Now with previous button',()=>{
         cy.forceVisit(infors.url);
-        
         homePage.clickGiveNowButton();
         donationsAmountPage.selectFee(infors.amountEvenGiveNowTest);
         donationsAmountPage.verifyFeeSelectionCorrect(infors.amountEvenGiveNowTest);

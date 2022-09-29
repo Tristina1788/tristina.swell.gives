@@ -3,12 +3,17 @@ import { UsersPage } from "../Pages/usersPage";
 import { FundraiserDetailPage } from "../Pages/FundraiserDetailPage";
 import { LoginManagePage } from "../Pages/loginManagePage";
 import { FundraiserManagePage } from "../Pages/fundraiserManagePage";
+import { RegisterPage } from "../Pages/registerPage";
+import { ThankYouPage } from "../Pages/thankYouPage";
+
 import { getRandomEmail, getRandomNumber, getRandomText } from "./generalFunction.cy";
 let homePage = new HomePage();
 let usersPage = new UsersPage();
 let loginManagePage = new LoginManagePage();
 let fundraiserDetailPage = new FundraiserDetailPage();
 let fundraiserManagePage = new FundraiserManagePage();
+let registerPage = new RegisterPage();
+let thankYouPage = new ThankYouPage();
 const infors = require('../utils/infor.js');
 let firstName = getRandomText();
 let lastName = getRandomText();
@@ -59,9 +64,30 @@ describe('Verify the fundraiser Manage flow', () => {
         loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/fundraisers');
         fundraiserManagePage.clickDeleteButton(firstName+'.'+ lastName);
-        fundraiserManagePage.clickConfirmDeleteButton();
+        fundraiserManagePage.clickOKButton();
         cy.reload();
         fundraiserManagePage.verifyFundraiserIsNotExist(updatedFirstName+' '+ updatedLastName);
         
     });
+
+    it.only('Verify information in manage when become a fundraiser ',()=>{
+        cy.forceVisit(infors.url);
+        let randomName = getRandomText();
+        let randomLastName = getRandomText();
+        let randomEmail = getRandomEmail();
+        let randomPhone = getRandomNumber();
+        homePage.clickBecomeAFundraiser();
+        registerPage.inputRegisterForm(randomName, randomLastName, randomPhone, randomEmail);
+        registerPage.clickRegisterButton();
+        thankYouPage.verifyThankYouPageAfterFundraiserSuccess(randomName, randomLastName);
+        thankYouPage.clickFundraiserUserLinks(randomName, randomLastName);
+        loginManagePage.visit(infors.urlManage);
+        loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
+        loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/fundraisers');
+        fundraiserManagePage.verifyFundraiserIsExist(randomName + ' '+ randomLastName ,randomName+'.'+ randomLastName , randomEmail, true, '');
+        fundraiserManagePage.clickDeleteButton(randomName);
+        fundraiserManagePage.clickOKButton();
+        cy.reload();
+        fundraiserManagePage.verifyFundraiserIsNotExist(randomName+' '+ randomLastName);
+    })
 })

@@ -15,7 +15,6 @@ const user = require('../../../fixtures/address.json')
 let proName = getRandomText();
 let proPrice = Math.floor(Math.random() * 20) + 1;
 let maxPro = Math.floor(Math.random() * 20) + 1;
-let proPerTB = Math.floor(Math.random() * 3) + 1;
 let proNameUpdate = getRandomText();
 let priceUpdate = Math.floor(Math.random() * 20) + 1;
 let maxUpdate = Math.floor(Math.random() * 20) + 1;

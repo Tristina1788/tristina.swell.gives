@@ -26,8 +26,6 @@ describe('Verify setup Button General Setting page', () => {
         leaderboardSettingPage.verifySaveSuccessfully();
         cy.forceVisit(infors.url);
         homePage.verifySettingLeaderboardSuccessfully(true,true,topFundraiserLb, true,topTableLb, true, mostsociallb,true,teamlb);
-
-       
     })
 
     it.only('Verify setup leaderboar Setting with leaderboard is false, another options are true and front end will update follow this setup',()=>{
@@ -40,7 +38,6 @@ describe('Verify setup Button General Setting page', () => {
         leaderboardSettingPage.verifySaveSuccessfully();
         cy.forceVisit(infors.url);
         homePage.verifySettingLeaderboardSuccessfully(false,true,topFundraiserLb, true,topTableLb, true, mostsociallb,true,teamlb);
-       
     })
 
     it.only('Verify setup leaderboar Setting with leaderboard is true, options are true/false and front end will update follow this setup',()=>{
@@ -53,7 +50,6 @@ describe('Verify setup Button General Setting page', () => {
         leaderboardSettingPage.verifySaveSuccessfully();
         cy.forceVisit(infors.url);
         homePage.verifySettingLeaderboardSuccessfully(true,true,topFundraiserLb, true,topTableLb, false, mostsociallb,false,teamlb);
-       
     })
 
     it.only('Verify setup leaderboar Setting with default and front end will update follow this setup',()=>{
@@ -66,7 +62,6 @@ describe('Verify setup Button General Setting page', () => {
         leaderboardSettingPage.verifySaveSuccessfully();
         cy.forceVisit(infors.url);
         homePage.verifySettingLeaderboardSuccessfully(true,true,"Top Fundraisers", true,"Table", true, "Most Social",true,"Teams");
-       
     })
 
 })

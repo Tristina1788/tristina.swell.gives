@@ -44,7 +44,6 @@ describe('Verify Purchase Tickets flow', () => {
 
     it.only('Verify purchase a ticket and selections amount',()=>{
         cy.forceVisit(infors.url);
-        
         let randomName = getRandomText();
         let randomLastName = getRandomText();
         let randomPhone = getRandomNumber();
@@ -78,7 +77,6 @@ describe('Verify Purchase Tickets flow', () => {
     
     it.only('Verify previous button on purchase a ticket ',()=>{
         cy.forceVisit(infors.url);
-        
         let randomName = getRandomText();
         let randomLastName = getRandomText();
         let randomPhone = getRandomNumber();

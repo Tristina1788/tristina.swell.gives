@@ -27,8 +27,6 @@ export class FundraiserManagePage{
 
     }
 
-    
-
     inputSearch(searchInfor:string){
         cy.get(this.searchInput).type(searchInfor);
     }
@@ -39,6 +37,7 @@ export class FundraiserManagePage{
     }
 
     clickDeleteButton(code:string){
+        cy.get(this.searchInput).clear();
         cy.get(this.searchInput).type(code);
         cy.get(this.deleteBtn).click();
         cy.wait(2000);
@@ -89,7 +88,4 @@ export class FundraiserManagePage{
         cy.visit(url);
     }
 
-    clickConfirmDeleteButton(){
-        cy.get('button').contains(this.confirmDeleteButton).click({force: true});
-    }
 }

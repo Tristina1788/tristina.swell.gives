@@ -58,8 +58,6 @@ describe('Verify setup product page for table/team ', () => {
         productSetupPage.inputProductForm('Table/Team', proName, true, false, proPrice, maxPro, proPerTB, "Virtual Test Ticket (51.00)");
         productSetupPage.clickSaveBtn();
         productsManageSetupPage.verifyNewProductIsCreated('Table', proName, true, false, proPrice, maxPro, proPerTB, "Virtual Test Ticket");
-
-
     })
 
 
@@ -97,7 +95,6 @@ describe('Verify setup product page for table/team ', () => {
         homePage.clickGiveAHostButton();
         donationsTablePage.verifyTableIsNotExist(proNameUpdate, priceUpdate);
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/products');
-
         productsManageSetupPage.clickEditButton(proNameUpdate);
         productSetupPage.editProductForm(proNameUpdate, true, false, priceUpdate, maxUpdate, proPerTB, "Test Ticket (33.00)");
         productSetupPage.clickSaveBtn();
@@ -107,7 +104,6 @@ describe('Verify setup product page for table/team ', () => {
         donationsTablePage.verifyTableIsExistAndSelectIt(proNameUpdate, priceUpdate);
         donationsTablePage.selectAmountItem(infors.amountTicket)
         donationsTablePage.verifySummaryAmount(infors.amountDonateTable, priceUpdate);
-
     })
 
     it.only('Verify delete table product page successfully and the code can not be used for frontend', () => {
@@ -117,8 +113,6 @@ describe('Verify setup product page for table/team ', () => {
         cy.forceVisit(infors.url);
         homePage.clickGiveAHostButton();
         donationsTablePage.verifyTableIsNotExist(proNameUpdate, priceUpdate);
-
     })
-
 
 })

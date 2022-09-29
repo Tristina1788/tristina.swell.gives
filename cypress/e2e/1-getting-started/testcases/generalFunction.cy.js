@@ -3,20 +3,16 @@ import { match } from "assert";
     export function makeid() {
         var text = "";
         var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    
         for (var i = 0; i < 10; i++)
         text += possible.charAt(Math.floor(Math.random() * possible.length));
-    
         return text;
     }
 
     export function getRandomNumber() {
         var text = "";
         var possible = "0123456789";
-    
         for (var i = 0; i < 10; i++)
         text += possible.charAt(Math.floor(Math.random() * possible.length));
-    
         return text;
     }
 
@@ -33,10 +29,8 @@ import { match } from "assert";
     export function getRandomText(){
         var text = "";
         var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    
         for (var i = 0; i < 10; i++)
         text += possible.charAt(Math.floor(Math.random() * possible.length));
-    
         return text;
     }
 
@@ -45,7 +39,6 @@ import { match } from "assert";
         var dd = String(today.getDate()).padStart(2, '0');
         var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
         var yyyy = today.getFullYear();
-
         return dd +"/"+ mm + "/" + yyyy;
     }
 
@@ -53,7 +46,6 @@ import { match } from "assert";
         var today = new Date();
         var hour = String(today.getHours());
         var min = String(today.getMinutes()); //January is 0!
-
         return hour +':'+ min;
     }
 
