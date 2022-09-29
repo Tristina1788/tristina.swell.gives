@@ -19,8 +19,7 @@ export class SocialNetworkManageSetupPage {
             cy.get(this.tweetDonateCb).check();
         else
             cy.get(this.tweetDonateCb).uncheck();
-        // cy.get(this.messagetoTweetInput).clear();
-        // cy.get(this.messagetoTweetInput).type(message);
+        // .
     }
 
     clickSaveChangesBtn() {
