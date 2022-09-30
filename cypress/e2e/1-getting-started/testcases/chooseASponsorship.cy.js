@@ -4,21 +4,51 @@ import { DonationsAddressPage } from "../Pages/donationsAddressPage";
 import {  getRandomEmail, getRandomNumber, getRandomText} from "./generalFunction.cy"
 import { DonationsPaymentPage } from "../Pages/donationsPaymentPage";
 import { UsersPage } from "../Pages/usersPage";
+import { Mailbox } from "../Pages/mailbox";
 
 let homePage = new HomePage();
 let sponsorshipPage =new SponsorshipPage();
 let usersPage =new UsersPage();
+let mailbox =new Mailbox();
 let donationsAddressPage =new DonationsAddressPage();
 let donationsPaymentPage =new DonationsPaymentPage();
 const infors = require('../utils/infor.js')
 const user = require('../../../fixtures/address.json')
+let inboxId = "";
+let randomEmail = getRandomEmail();
+let hasMailbox = 0;
+
 describe('Verify Choose a sponsorship flow', () => {
     
-    it('Verify information when Choose a sponsorship',()=>{
-        cy.visit(infors.url);
+    it.only('setup mailbox inbox',()=>{
+        cy.readFile('./data/mailbox.json',{timeout:2000}).then((inbox)=> {
+            hasMailbox = inbox.hasMailbox;
+            if(hasMailbox == -1) randomEmail = getRandomEmail();
+            else if(hasMailbox != 1){
+                console.log("hasMailbox: "+hasMailbox);
+                cy.createInbox().then(newInbox => {
+                    console.log('Test message');
+                    // verify a new inbox was created
+                    assert.isDefined(newInbox)
+                    console.log("inbox id: " + newInbox.id);
+                    console.log("inbox.emailAddress: " + newInbox.emailAddress);
+                    cy.writeFile('./data/mailbox.json',{inboxId:newInbox.id, emailAddress:newInbox.emailAddress, hasMailbox: 1})
+                    inboxId = newInbox.id;
+                    randomEmail = newInbox.emailAddress;
+                });
+            } else {
+                inboxId = inbox.inboxId;
+                randomEmail = inbox.emailAddress;
+            }
+        });
+    })
+    
+    it.only('Verify information when Choose a sponsorship',()=>{
+        cy.forceVisit(infors.url);
         let randomName = getRandomText();
         let randomLastName = getRandomText();
-        let randomEmail = getRandomEmail();
+        //let randomEmail = getRandomEmail();
+        console.log("randomEmail:"+randomEmail);
         let randomPhone = getRandomNumber();
         homePage.clickChooseASponsorshipButton();
         sponsorshipPage.clickSponsorItem(infors.sponsorItemName);
@@ -32,11 +62,13 @@ describe('Verify Choose a sponsorship flow', () => {
         donationsPaymentPage.inputCreditCardTicket(infors.creditCardNumber, infors.creditCardVCV);
         donationsPaymentPage.clickPurchase();
         donationsPaymentPage.verifyTransactionFinish();
+        if(hasMailbox ==1 )
+            mailbox.verifyMailboxGetEmailSponsorshipSuccess(inboxId);
         usersPage.verifyTheUsersIsSponsor(infors.url+'users/'+infors.personRecieveCreditPage,randomName + ' '+randomLastName);
     })
 
-    it('Verify previous button in Choose a sponsorship',()=>{
-        cy.visit(infors.url);
+    it.only('Verify previous button in Choose a sponsorship',()=>{
+        cy.forceVisit(infors.url);
         let randomName = getRandomText();
         let randomLastName = getRandomText();
         let randomEmail = getRandomEmail();

@@ -16,6 +16,7 @@ export class DonationsRegisterTablePage{
     cancelInviteBtn = '[data-action="cancel"]';
     imgEvent = '.event-image';
     imglogo = '.logo';
+    
 
     verifyImageLogoSetupCorrectInBranding(){
        
@@ -94,6 +95,11 @@ export class DonationsRegisterTablePage{
         cy.get(this.guestLNInput).should('be.visible');
         cy.get(this.guestEmailInput).should('be.visible');
 
+    }
+
+    verifyNumberTicketsInTable(amountk : string){
+        cy.wait(10000);
+        cy.get('body').contains('can have '+amountk).should('be.visible');
     }
 
 }

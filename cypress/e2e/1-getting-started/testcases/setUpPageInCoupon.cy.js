@@ -37,7 +37,7 @@ afterEach(() => {
 describe('Verify setup coupon page', () => {
    
     
-    it('Verify create coupon page successfully ',()=>{
+    it.only('Verify create coupon page successfully and enable to use on frontend',()=>{
         loginManagePage.visit(infors.urlManage);
         loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage+'events/'+infors.idProject+'/coupons');
@@ -68,7 +68,7 @@ describe('Verify setup coupon page', () => {
     })
 
 
-    it('Verify update coupon page successfully ',()=>{
+    it.only('Verify update coupon page successfully and enable to use on frontend ',()=>{
         loginManagePage.visit(infors.urlManage+'events/'+infors.idProject+'/coupons');
         
         couponManageSetupPage.clickEditButton(code);
@@ -96,7 +96,7 @@ describe('Verify setup coupon page', () => {
         
     })
 
-    it('Verify delete coupon page successfully and the code can not be used for frontend',()=>{
+    it.only('Verify delete coupon page successfully and the code can not be used for frontend',()=>{
         loginManagePage.visit(infors.urlManage+'events/'+infors.idProject+'/coupons');
         
         couponManageSetupPage.clickDeleteButton(code+'_update');

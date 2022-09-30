@@ -27,6 +27,10 @@ export class DonationsAddressPage{
             
         });
     }
+
+    verifyTitlePageCorrect(title :string){
+        cy.get('h1').contains(title).should('be.visible');
+    }
     
     verifyImageHeaderSetupCorrectInBranding(){
        
@@ -66,7 +70,6 @@ export class DonationsAddressPage{
         cy.get(this.cityTextbox).type(city);
         cy.get(this.stateTextbox).type(state);
         cy.get(this.zipTextbox).type(zip);
-        //cy.get(this.buttons).contains('Complete').click();
     }
 
     inputAddressInforTickets(company: string, address1: string, address2: string, city: string, state: string,
@@ -78,7 +81,6 @@ export class DonationsAddressPage{
         cy.get(this.cityTextbox).type(city);
         cy.get(this.stateTextbox).type(state);
         cy.get(this.zipTextbox).type(zip);
-        //cy.get(this.buttons).contains('Complete').click();
     }
 
     clickNextButton(){

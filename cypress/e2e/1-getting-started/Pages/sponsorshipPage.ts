@@ -38,6 +38,15 @@ export class SponsorshipPage{
     verifySponsershipPage(){
         cy.get(this.radioItem).should('be.visible');
     }
+
+    verifySponsorNameExist(spornsorItem:string, price:number){
+        cy.get(this.radioItem).contains(spornsorItem).prev().contains('$'+price).should('be.visible');
+    }
+
+    verifySponsorNameNotExist(spornsorItem:string){
+        cy.get(this.radioItem).contains(spornsorItem).should('be.not.exist');
+    }
+
     clickSponsorItem(spornsorItem:string){
         cy.get(this.radioItem).contains(spornsorItem).click();
     }
@@ -50,6 +59,11 @@ export class SponsorshipPage{
         cy.get(this.searchText).type(personName);
         cy.get(this.avaibleItem).contains(personName).click();
         
+    }
+
+    verifySponsorSettingCorrectly(pagetitle : string, sponsorTitle : string, sponsorLabel : string){
+        cy.get('span').contains(sponsorTitle).should('be.visible');
+        cy.get('div').contains(sponsorLabel).should('be.visible');
     }
 
 

@@ -1,5 +1,6 @@
 export class RegisterPage{
     registerTitle = 'Register';
+    registerCompTitle = 'Confirm your Registration';
     firstNameRegisterInput = '[name="attendee_name-firstName"]';
     lastNameRegisterInput = '[name="attendee_name-lastName"]';
     phoneRegisterInput = '[name="attendee_phone"]';
@@ -9,6 +10,13 @@ export class RegisterPage{
     inforEvent = '.event-info';
     imgEvent = '.bg-stretch';
     imglogo = '.logo';
+    teamSelect = '#team-select';
+    addAnotherTKBtn = 'Add Another Ticket';
+    removeTKBtn = 'Remove Ticket';
+    firstNameRegisterInput2 = '[name="attendee_name-section2-firstName"]';
+    lastNameRegisterInput2 = '[name="attendee_name-section2-lastName"]';
+    phoneRegisterInput2 = '[name="attendee_phone-section2"]';
+    emailAddress2 = '[name="attendee_email-section2"]';
 
     verifyImageLogoSetupCorrectInBranding(){
        
@@ -23,6 +31,9 @@ export class RegisterPage{
     }
     verifyRegisterPage(){
         cy.get('h1').contains(this.registerTitle).should('be.visible');
+    }
+    verifyRegisterPageForComp(){
+        cy.get('h1').contains(this.registerCompTitle).should('be.visible');
     }
 
     inputRegisterForm(fname : string, lname :string, phone : string, email:string){
@@ -59,5 +70,53 @@ export class RegisterPage{
             });
             
         });
+    }
+
+    clickButtonAddAnotherTicket(){
+        cy.get('button').contains(this.addAnotherTKBtn).should('be.visible');
+    }
+
+    verifyButtonAddAnotherTicketIsAvailable(){
+        cy.get('button').contains(this.addAnotherTKBtn).should('be.visible');
+    }
+
+    verifyButtonAddAnotherTicketIsNotAvailable(){
+        cy.get('button').contains(this.addAnotherTKBtn).should('be.not.visible');
+    }
+
+    clickButtonRemoveTicket(){
+        cy.get('button').contains(this.removeTKBtn).click();
+    }
+
+    verifyButtonRemoveTicketIsAvailable(){
+        cy.get('button').contains(this.removeTKBtn).should('be.visible');
+    }
+
+    verifyButtonRemoveTicketIsNotAvailable(){
+        cy.get('button').contains(this.removeTKBtn).should('be.not.visible');
+    }
+
+    clickAddAnotherTicket(){
+        cy.get('button').contains(this.addAnotherTKBtn).click();
+    }
+
+    clickRemoveTicketButton(){
+        cy.get('button').contains(this.removeTKBtn).click();
+    }
+
+    verifyRegisterFormForAttendees2(){
+        cy.get(this.firstNameRegisterInput2).should('be.visible');
+        cy.get(this.lastNameRegisterInput2).should('be.visible');
+        cy.get(this.phoneRegisterInput2).should('be.visible');
+        cy.get(this.emailAddress2).should('be.visible');
+    }
+
+    verifyNewTeamDisplayInRegisterPage(newTeam: string) {
+        cy.get(this.teamSelect).select(newTeam);
+        cy.get(this.teamSelect).should('contain', newTeam);
+    }
+
+    verifyTeamIsNotExist(team: string) {
+        cy.get('option').contains(team).should('be.not.exist');
     }
 }

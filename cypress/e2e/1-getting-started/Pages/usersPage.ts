@@ -69,4 +69,8 @@ export class UsersPage{
         cy.visit(userPage);
         cy.get('div').contains(sponsorName).should('be.visible');
     }
+
+    verifyTheUsersHasGroup(group : string){
+        cy.get('div').contains('Group: '+group).should('be.visible');
+    }
 }

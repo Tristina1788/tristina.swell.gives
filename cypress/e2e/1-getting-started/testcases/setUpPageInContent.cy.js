@@ -28,7 +28,7 @@ afterEach(() => {
 describe('Verify setup content page', () => {
    
     
-    it('Verify create content page successfully with active = true',()=>{
+    it.only('Verify create content page successfully with active = true',()=>{
         loginManagePage.visit(infors.urlManage);
         loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage+'events/'+infors.idProject+'/contents');
@@ -43,7 +43,7 @@ describe('Verify setup content page', () => {
 
     })
 
-    it('Verify order content page work correctly',()=>{
+    it.only('Verify order content page work correctly',()=>{
        
         loginManagePage.visit(infors.urlManage+'events/'+infors.idProject+'/contents');
         contentManageSetupPage.clickAddBtn();
@@ -62,7 +62,7 @@ describe('Verify setup content page', () => {
     })
 
    
-    it('Verify enable to update content page successfully',()=>{
+    it.only('Verify enable to update content page successfully',()=>{
         loginManagePage.visit(infors.urlManage+'events/'+infors.idProject+'/contents');
         contentManageSetupPage.clickEditButton(urlCt);
         contentSetupPage.verifyFormContent(urlCt, linkct, infors.sortOrder, true, false, contentct);
@@ -75,7 +75,7 @@ describe('Verify setup content page', () => {
         
     })
 
-    it('Verify enable to delete content page successfully',()=>{
+    it.only('Verify enable to delete content page successfully',()=>{
         cy.forceVisit(infors.urlManage+'events/'+infors.idProject+'/contents');
         contentManageSetupPage.clickDeleteButton(urlCt);
         contentManageSetupPage.verifyDeleteSuccess();
@@ -84,7 +84,7 @@ describe('Verify setup content page', () => {
     })
 
 
-    it('Verify create content page successfully with active = false',()=>{
+    it.only('Verify create content page successfully with active = false',()=>{
        
         loginManagePage.visit(infors.urlManage+'events/'+infors.idProject+'/contents');
         contentManageSetupPage.clickAddBtn();
