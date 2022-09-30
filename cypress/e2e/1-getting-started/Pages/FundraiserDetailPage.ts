@@ -25,6 +25,7 @@ export class FundraiserDetailPage{
         cy.get(this.companyInput).clear();
         cy.get(this.companyInput).type(company);
         cy.get(this.emailInput).clear();
+        if(email!='')
         cy.get(this.emailInput).type(email);
         if(isShowLb)
             cy.get(this.leadboardCheckbox).check();

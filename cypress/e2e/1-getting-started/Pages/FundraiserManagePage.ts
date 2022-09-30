@@ -13,6 +13,9 @@ export class FundraiserManagePage{
     confirmBtn = '.confirm';
     saveBtn = 'Save';
     confirmDeleteButton = 'Yes, delete it!';
+    emailButton = '.fa-envelope-o';
+    emailResendInput = '[data-parsley-id="4"]';
+    sendEmailBtn = '#send';
 
     clickRefreshBtn(){
         cy.get(this.refreshBtn).click();
@@ -70,11 +73,16 @@ export class FundraiserManagePage{
             .parent('td').next('td').contains(isLB)
             .next('td').contains(group)
             .should('be.visible');
-        else
+        else if(email!='')
             cy.get(this.tableList).children('tbody').children('tr').children('td').contains(name)
             .next('td').children('a').contains(code.toLowerCase())
             .parent('td').next('td').children('a').contains(email)
             .parent('td').next('td').contains(isLB)
+            .should('be.visible');
+        else
+            cy.get(this.tableList).children('tbody').children('tr').children('td').contains(name)
+            .next('td').children('a').contains(code.toLowerCase())
+            .parent('td').next('td').next('td').contains(isLB)
             .should('be.visible');
     }
 
@@ -87,5 +95,24 @@ export class FundraiserManagePage{
     visit(url: string){
         cy.visit(url);
     }
+
+    verifySendEmailExist(){
+        cy.get(this.emailButton).should('be.visible');
+    }
+
+    verifySendEmailIsNotExist(){
+        cy.get(this.emailButton).should('be.not.exist');
+    }
+
+    clickSendEmail(){
+        cy.get(this.emailButton).click();
+    }
+
+    inputEmailAndResend(email : string){
+        cy.get(this.emailResendInput).clear();
+        cy.get(this.emailResendInput).type(email);
+        cy.get(this.sendEmailBtn).click();
+    }
+
 
 }
