@@ -6,7 +6,10 @@ export class TableManageSetupPage{
     searchInput = '[type="search"]';
     editBtn = '.fa-edit';
     deleteBtn = '.fa-remove';
-    tableList = '#products-list';
+    emailBtn = '.fa-envelope-o';
+    registerBtn = '.fa-sign-in';
+    fundraisingBtn = '.fa-share-square-o';
+    tableList = '#eventtables-list';
     confirmDeleteBtn = 'Yes, delete it!';
     successMsg = 'Completed successfully!'; //p
     okBtn = 'OK';
@@ -20,6 +23,19 @@ export class TableManageSetupPage{
     clickAddBtn(){
         cy.get(this.addBtn).click();
     }
+
+    clickEmailBtn(){
+        cy.get(this.emailBtn).click();
+    }
+
+    clickRegisterBtn(){
+        cy.get(this.registerBtn).click();
+    }
+
+    clickFundraisingBtn(){
+        cy.get(this.fundraisingBtn).click();
+    }
+
 
     selectNumberEntry(num : number){
         cy.get(this.paginationSelection).select(num);
@@ -50,36 +66,40 @@ export class TableManageSetupPage{
         
     }
     
-    verifyProductPageIsNotExist(name:string){
+    verifyTableIsNotExist(name:string){
         cy.wait(2000);
         cy.get(this.searchInput).type(name);
         cy.get(this.tableList).children('tbody').children('tr').children('td').contains(name).should('not.exist');
-        
     }
 
-    verifyNewProductIsCreated(type : string, name : string, isActive : boolean, isHidden : boolean, price : number, maxPro : number, ticketPerTB : number =0, ticketType : string =''){
-        let active = 'Inactive';
-        if(isActive) active = 'Active';
-        
+    verifyTableIsExist(name : string, number : string, type : string, hostName : string, amount : number = 0, seats : number = 2, confirmNumber : number = 0, unconfirmNumber : number = 0)
+    {
+        let empty = seats - confirmNumber - unconfirmNumber;
         cy.wait(2000);
         cy.get(this.searchInput).type(name);
-        if(ticketType !='')
-            cy.get(this.tableList).children('tbody').children('tr').children('td').contains(type)
-            .next().contains(name)
-            .next().contains('$'+price +'.00')
-            .next().contains(active+'')
-            .next().contains(maxPro)
-            .next().contains(ticketType+'')
-            .next().contains(ticketPerTB)
+        if(amount > 0)
+            cy.get(this.tableList).children('tbody').children('tr').children('td').contains(name)
+            .next().contains(number)
+            .next('td').contains(type)
+            .next('td').contains(amount)
+            .next('td').contains(hostName)
+            .next('td').contains(seats)
+            .next('td').contains(confirmNumber)
+            .next('td').contains(unconfirmNumber)
+            .next('td').contains(empty)
             .should('be.visible');
-        else 
-            cy.get(this.tableList).children('tbody').children('tr').children('td').contains(type)
-            .next().contains(name)
-            .next().contains('$'+price +'.00')
-            .next().contains(active+'')
-            .next().contains(maxPro)
-            .next().next().contains(ticketPerTB)
+        else
+            cy.get(this.tableList).children('tbody').children('tr').children('td')
+            .children('a').contains(name).parent('td')
+            .next('td').children('b').contains(number).parent('td')
+            .next('td').contains(type)
+            .next('td').next('td').contains(hostName)
+            .next('td').children('a').contains(seats).parent('td')
+            .next('td').contains(confirmNumber)
+            .next('td').contains(unconfirmNumber)
+            .next('td').contains(empty)
             .should('be.visible');
+        
     }
 
     visit(url: string){
