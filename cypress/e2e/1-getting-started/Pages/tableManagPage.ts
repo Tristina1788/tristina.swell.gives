@@ -13,6 +13,10 @@ export class TableManageSetupPage{
     confirmDeleteBtn = 'Yes, delete it!';
     successMsg = 'Completed successfully!'; //p
     okBtn = 'OK';
+    sendEmailBtn = 'Yes - Send it!';
+    emailInput = '#recipient';
+    switchListView = '#send';
+    tableLabel = '.page-title'
 
     clickRefreshBtn(){
         cy.get(this.refreshBtn).click();
@@ -24,16 +28,31 @@ export class TableManageSetupPage{
         cy.get(this.addBtn).click();
     }
 
-    clickEmailBtn(){
+    clickEmailBtn(name : string){
+        cy.get(this.searchInput).clear();
+        cy.get(this.searchInput).type(name);
         cy.get(this.emailBtn).click();
+        
     }
 
-    clickRegisterBtn(){
+    inputEmailAndSend(email:string){
+        cy.get(this.emailInput).clear();
+        cy.get(this.emailInput).type(email);
+        cy.get('button').contains(this.sendEmailBtn).click({force: true});
+    }
+
+    clickRegisterBtn(name : string){
+        cy.get(this.searchInput).type(name);
         cy.get(this.registerBtn).click();
     }
 
-    clickFundraisingBtn(){
+    clickFundraisingBtn(name : string){
+        cy.get(this.searchInput).type(name);
         cy.get(this.fundraisingBtn).click();
+    }
+
+    clickSwitchListView(){
+        cy.get(this.switchListView).click();
     }
 
 
@@ -47,9 +66,9 @@ export class TableManageSetupPage{
     }
 
     clickEditButton(name:string){
-        cy.get(this.searchInput).type(name);
-        cy.get(this.tableList).children('tbody').children('tr').children('td').contains(name).parent('tr').children('td').find(this.editBtn).click();
-        //cy.get(this.editBtn).click();
+        //cy.get(this.tableList).children('tbody').children('tr').children('td').contains(name).parent('tr').children('td').find(this.editBtn).click();
+        cy.get(this.tableLabel).contains(name).click();
+
     }
 
     clickDeleteButton(name:string){
@@ -78,12 +97,13 @@ export class TableManageSetupPage{
         cy.wait(2000);
         cy.get(this.searchInput).type(name);
         if(amount > 0)
-            cy.get(this.tableList).children('tbody').children('tr').children('td').contains(name)
-            .next().contains(number)
+            cy.get(this.tableList).children('tbody').children('tr').children('td')
+            .children('a').contains(name).parent('td')
+            .next('td').children('b').contains(number).parent('td')
             .next('td').contains(type)
             .next('td').contains(amount)
-            .next('td').contains(hostName)
-            .next('td').contains(seats)
+            .next('td').next('td').contains(hostName)
+            .next('td').children('a').contains(seats).parent('td')
             .next('td').contains(confirmNumber)
             .next('td').contains(unconfirmNumber)
             .next('td').contains(empty)
@@ -99,7 +119,6 @@ export class TableManageSetupPage{
             .next('td').contains(unconfirmNumber)
             .next('td').contains(empty)
             .should('be.visible');
-        
     }
 
     visit(url: string){

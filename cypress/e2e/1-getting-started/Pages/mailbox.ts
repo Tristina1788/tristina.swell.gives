@@ -236,4 +236,14 @@ export class Mailbox {
         cy.emptyInbox(inboxId);
     }
 
+    verifyMailboxGetEmailHostingTableSuccess(inboxId : string, name : string){
+        cy.waitForLatestEmail(inboxId, 120000).then(email => {
+            expect(email.from).to.eql('info@swellfundraising.com');
+            expect(email.subject).to.contain('Thank you for supporting');
+            expect(email.body).to.contain('Thank you for hosting a Table');
+            
+        });
+    
+        cy.emptyInbox(inboxId);
+    }
 }
