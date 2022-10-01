@@ -18,23 +18,12 @@ let maxTicket = Math.floor(Math.random() * 20) + 1;
 let ticketProNameUpdate = getRandomText();
 let priceTicketUpdate = Math.floor(Math.random() * 20) + 1;
 let maxTicketUpdate = Math.floor(Math.random() * 20) + 1;
-
-Cypress.Cookies.defaults({
-    preserve: 'laravel_session'
-})
-
-beforeEach(() => {
-    cy.restoreLocalStorage();
+before(() => {
+    loginManagePage.visit(infors.urlManage);
+    loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
 });
-
-afterEach(() => {
-    cy.saveLocalStorage();
-});
-
 describe('Verify setup product page', () => {
     it.only('Verify create product page for ticket product successfully', () => {
-        loginManagePage.visit(infors.urlManage);
-        loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/products');
 
         productsManageSetupPage.clickAddBtn();
@@ -65,8 +54,6 @@ describe('Verify setup product page', () => {
     })
 
     it.only('Verify update ticket product setup page and the changing apply to frontend', () => {
-        loginManagePage.visit(infors.urlManage);
-        loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/products');
 
         productsManageSetupPage.clickEditButton(ticketProName);
@@ -111,8 +98,6 @@ describe('Verify setup product page', () => {
     })
 
     it.only('Verify create product page for  ticket - product successfully', () => {
-        loginManagePage.visit(infors.urlManage);
-        loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/products');
 
         productsManageSetupPage.clickAddBtn();

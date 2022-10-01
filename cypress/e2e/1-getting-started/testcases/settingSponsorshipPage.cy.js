@@ -25,24 +25,13 @@ let randomLastName = getRandomText();
 let randomEmail = getRandomEmail();
 let randomPhone = getRandomNumber();
 
-
-Cypress.Cookies.defaults({
-    preserve: 'laravel_session'
-})
-
-beforeEach(() => {
-    cy.restoreLocalStorage();
+before(() => {
+    loginManagePage.visit(infors.urlManage);
+    loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
 });
-
-afterEach(() => {
-    cy.saveLocalStorage();
-});
-
 describe('Verify setup sponsorship setting page', () => {
 
     it.only('setup sponsorship setting page with full input successfully', () => {
-        loginManagePage.visit(infors.urlManage);
-        loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/donation');
         settingSetupPage.openSettingSponsorshipPage();
         sponsorshipSettingPage.inputSponsorshipForm(pageTitle, sponsorTitle, sponsorLabel);
@@ -70,8 +59,6 @@ describe('Verify setup sponsorship setting page', () => {
     })
 
     it.only('setup sponsorship setting page with all empty input successfully', () => {
-        loginManagePage.visit(infors.urlManage);
-        loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/donation');
         settingSetupPage.openSettingSponsorshipPage();
         sponsorshipSettingPage.inputSponsorshipForm("", "", "Thank you for considering a sponsorship.<br>Please select the sponsorship type from the menu.<br>We will follow up about the details of your sponsorship package including your company logo,<br>complimentary tickets and additional perks.");

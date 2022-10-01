@@ -32,26 +32,14 @@ let teamselectiont = getRandomText();
 let teamCreatetitle = getRandomText();
 let donatitle = getRandomText();
 
-
-Cypress.Cookies.defaults({
-    preserve: 'laravel_session'
-})
-
-beforeEach(() => {
-    cy.restoreLocalStorage();
-});
-
-afterEach(() => {
-    cy.saveLocalStorage();
-});
-
 if(amount %2 == 0) amount= amount+1;
-
+before(() => {
+    loginManagePage.visit(infors.urlManage);
+    loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
+});
 describe('Verify setup setting - ticket page', () => {
     it.only('Verify update setting - ticket page successfully', () => {
         
-        loginManagePage.visit(infors.urlManage);
-        loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/donation');
 
         settingSetupPage.openSettingTicketPage();
@@ -91,9 +79,6 @@ describe('Verify setup setting - ticket page', () => {
     })
 
     it.only('update setting - ticket to setting ticket page with no select option successfully', () => {
-        
-        loginManagePage.visit(infors.urlManage);
-        loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/donation');
 
         settingSetupPage.openSettingTicketPage();
@@ -130,9 +115,6 @@ describe('Verify setup setting - ticket page', () => {
     })
 
     it.only('update setting - ticket to default page successfully', () => {
-        
-        loginManagePage.visit(infors.urlManage);
-        loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/donation');
 
         settingSetupPage.openSettingTicketPage();

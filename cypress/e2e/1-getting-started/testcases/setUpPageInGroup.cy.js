@@ -21,12 +21,13 @@ let name = getRandomText();
 let updatedName = getRandomText();
 ;
 
-
+before(() => {
+    loginManagePage.visit(infors.urlManage);
+    loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
+});
 describe('Verify setup Detail page', () => {
     
     it.only('Verify create group page successfully and enable to use on frontend',()=>{
-        loginManagePage.visit(infors.urlManage);
-        loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage+'events/'+infors.idProject+'/team');
         groupManageSetupPage.clickAddBtn();
         groupSetupPage.inputGroupName(name);
@@ -47,9 +48,6 @@ describe('Verify setup Detail page', () => {
     })
 
     it.only('Verify update group page successfully and enable to use on frontend',()=>{
-
-        loginManagePage.visit(infors.urlManage);
-        loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage+'events/'+infors.idProject+'/team');
         cy.reload();
         
@@ -72,9 +70,6 @@ describe('Verify setup Detail page', () => {
     })
 
     it.only('Verify delete group page successfully and the code can not be used for frontend',()=>{
-
-        loginManagePage.visit(infors.urlManage);
-        loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage+'events/'+infors.idProject+'/team');
         
         groupManageSetupPage.clickDeleteButton(updatedName);

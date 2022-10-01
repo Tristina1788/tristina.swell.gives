@@ -19,31 +19,20 @@ let proNameUpdate = getRandomText();
 let priceUpdate = Math.floor(Math.random() * 20) + 1;
 let maxUpdate = Math.floor(Math.random() * 20) + 1;
 
-Cypress.Cookies.defaults({
-    preserve: 'laravel_session'
-})
-
-beforeEach(() => {
-    cy.restoreLocalStorage();
-});
-
-afterEach(() => {
-    cy.saveLocalStorage();
+before(() => {
+    loginManagePage.visit(infors.urlManage);
+    loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
 });
 
 describe('Verify setup product page for sponsor ', () => {
 
     it.only('Verify create product page for  sponsor - product successfully', () => {
-        loginManagePage.visit(infors.urlManage);
-        loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/products');
 
         productsManageSetupPage.clickAddBtn();
         productSetupPage.inputProductForm('Sponsorship', proName, true, false, proPrice, maxPro, 0);
         productSetupPage.clickSaveBtn();
         productsManageSetupPage.verifyNewProductIsCreated('Sponsorship', proName, true, false, proPrice, maxPro, 0);
-
-
     })
 
     it.only('Verify sponsor product can be used in frontend successfully ', () => {
@@ -58,8 +47,6 @@ describe('Verify setup product page for sponsor ', () => {
 
     
     it.only('Verify  update sponsor product setup page and the changing apply to frontend', () => {
-        loginManagePage.visit(infors.urlManage);
-        loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/products');
 
         productsManageSetupPage.clickEditButton(proName);
