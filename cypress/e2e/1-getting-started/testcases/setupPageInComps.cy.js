@@ -1,5 +1,5 @@
 import { HomePage } from "../Pages/homePage";
-import { CompManagePage } from "../Pages/CompManagePage";
+import { CompManagePage } from "../Pages/compManagePage";
 import { CompSetupPage} from "../Pages/compSetupPage";
 import { RegisterPage} from "../Pages/registerPage";
 import { getRandomEmail, getRandomNumber, getRandomText } from "./generalFunction.cy";
@@ -31,7 +31,10 @@ let updateFname = fname + 'Update';
 let updateEmail = getRandomEmail();
 let inboxId = "";
 let hasMailbox = 0; 
-
+before(() => {
+    loginManagePage.visit(infors.urlManage);
+    loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
+});
 describe('Verify setup Comp ticket page', () => {
    
     it.only('setup mailbox inbox',()=>{

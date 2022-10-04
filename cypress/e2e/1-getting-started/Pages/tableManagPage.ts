@@ -16,8 +16,12 @@ export class TableManageSetupPage{
     sendEmailBtn = 'Yes - Send it!';
     emailInput = '#recipient';
     switchListView = '#send';
-    tableLabel = '.page-title'
-
+    tableLabel = '.page-title';
+    seatsLabel = '.guest-list';
+    iconGuestList = '.fa-group';
+    tableHeader = '.portlet-header';
+   // guestRow = '//div[@class="modal-body"]//table[contains(@class,"table-responsive")]//tr[contains(@id,"guest-ticket")]';
+    guestRow = '.modal-body';
     clickRefreshBtn(){
         cy.get(this.refreshBtn).click();
         
@@ -43,12 +47,16 @@ export class TableManageSetupPage{
 
     clickRegisterBtn(name : string){
         cy.get(this.searchInput).type(name);
-        cy.get(this.registerBtn).click();
+        cy.get(this.registerBtn).parent('a').invoke('attr','href').then(link=>{
+           cy.forceVisit(link);
+        });
     }
 
     clickFundraisingBtn(name : string){
         cy.get(this.searchInput).type(name);
-        cy.get(this.fundraisingBtn).click();
+        cy.get(this.fundraisingBtn).parent('a').invoke('attr','href').then(link=>{
+            cy.forceVisit(link);
+         });
     }
 
     clickSwitchListView(){
@@ -66,7 +74,6 @@ export class TableManageSetupPage{
     }
 
     clickEditButton(name:string){
-        //cy.get(this.tableList).children('tbody').children('tr').children('td').contains(name).parent('tr').children('td').find(this.editBtn).click();
         cy.get(this.tableLabel).contains(name).click();
 
     }
@@ -85,6 +92,12 @@ export class TableManageSetupPage{
         
     }
     
+    clickGetSeats(name : string){
+        cy.wait(2000);
+        cy.get(this.searchInput).type(name);
+        cy.get(this.seatsLabel).click();
+    }
+
     verifyTableIsNotExist(name:string){
         cy.wait(2000);
         cy.get(this.searchInput).type(name);
@@ -124,4 +137,15 @@ export class TableManageSetupPage{
     visit(url: string){
         cy.visit(url);
     }
+
+    clickGuestList(name : string){
+        cy.get(this.tableLabel).contains(name).parentsUntil(this.tableHeader).nextUntil(this.iconGuestList).click();
+    }
+
+    verifyInforOfGuest(guestName : string, email : string){
+        cy.get(this.guestRow).contains(guestName).should('be.visible');
+        cy.get(this.guestRow).contains(email).should('be.visible');
+    }
+
+
 }

@@ -16,6 +16,7 @@ export class DonationsRegisterTablePage{
     cancelInviteBtn = '[data-action="cancel"]';
     imgEvent = '.event-image';
     imglogo = '.logo';
+    emailBtn = '.fa-envelope-o';
     
 
     verifyImageLogoSetupCorrectInBranding(){
@@ -61,16 +62,23 @@ export class DonationsRegisterTablePage{
         cy.get(this.emailTextbox).should('have.value', email);
     }
 
+    verifyYourTableFromManagePageIsDisplayed(tableName:string, firstName: string, lastName: string, email: string){
+        cy.get(this.tableNameTextBox).should('have.value', tableName);
+        cy.get(this.firstNameTextbox).should('have.value', firstName);
+        cy.get(this.lastNameTextbox).should('have.value', lastName);
+        cy.get(this.emailTextbox).should('have.value', email);
+    }
+
     verifyUserInformationInGuestTableIsDisplayed(firstName: string, lastName: string, email: string){
         cy.get('h2').contains(firstName).should('be.visible')
         .parent().next().get('h2').contains(lastName).should('be.visible')
         .parent().next().get('h2').contains(email).should('be.visible');
     }
 
-    inputGuestInformation(firstName: string, lastName: string, email: string){
-        cy.get(this.guestFNInput).type(firstName);
-        cy.get(this.guestLNInput).type(lastName);
-        cy.get(this.guestEmailInput).type(email);
+    inputGuestInformation(firstName: string, lastName: string, email: string, guest : number = 0){
+        cy.get(this.guestFNInput).eq(guest).type(firstName);
+        cy.get(this.guestLNInput).eq(guest).type(lastName);
+        cy.get(this.guestEmailInput).eq(guest).type(email);
 
     }
 
@@ -86,8 +94,8 @@ export class DonationsRegisterTablePage{
         cy.get(this.cancelInviteBtn).should('be.visible');
     }
 
-    clickCancelInviteGuestButton(){
-        cy.get(this.cancelInviteBtn).click();
+    clickCancelInviteGuestButton(guest: number = 0){
+        cy.get(this.cancelInviteBtn).eq(guest).click();
     }
 
     verifyCancelInviteGuestSuccess(){
@@ -100,6 +108,10 @@ export class DonationsRegisterTablePage{
     verifyNumberTicketsInTable(amountk : string){
         cy.wait(10000);
         cy.get('body').contains('can have '+amountk).should('be.visible');
+    }
+
+    sendEmailGuest(guest:number){
+        cy.get(this.emailBtn).eq(guest).click();
     }
 
 }
