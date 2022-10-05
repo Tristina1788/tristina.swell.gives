@@ -173,7 +173,7 @@ export class Mailbox {
         });
     }
 
-    verifyMailboxGetEmailBecomeHostGuestSuccess(inboxId : string, name : string){
+    verifyMailboxGetEmailBecomeHostGuestSuccess(inboxId : string){
         cy.waitForLatestEmail(inboxId, 120000).then(latestEmail => {
             console.log(latestEmail.from);
             console.log("latestEmail:" + latestEmail);
@@ -186,7 +186,7 @@ export class Mailbox {
         cy.emptyInbox(inboxId);
     }
 
-    verifyMailboxGetEmailSponsorshipSuccess(inboxId : string, name : string){
+    verifyMailboxGetEmailSponsorshipSuccess(inboxId : string){
         cy.waitForLatestEmail(inboxId, 120000).then(email => {
             expect(email.from).to.eql('info@swellfundraising.com');
             expect(email.subject).to.contain('Thanks for your purchase supporting');
@@ -197,7 +197,7 @@ export class Mailbox {
         cy.emptyInbox(inboxId);
     }
 
-    verifyMailboxGetEmailFundraiserSuccess(inboxId : string, name : string){
+    verifyMailboxGetEmailFundraiserSuccess(inboxId : string){
         cy.waitForLatestEmail(inboxId, 120000).then(email => {
             expect(email.from).to.eql('info@swellfundraising.com');
             expect(email.subject).to.contain('Thanks for Registering as a fundraiser for');
@@ -208,7 +208,7 @@ export class Mailbox {
         cy.emptyInbox(inboxId);
     }
 
-    verifyMailboxGetEmailCompTicketSuccess(inboxId : string, name : string){
+    verifyMailboxGetEmailCompTicketSuccess(inboxId : string){
         cy.wait(70000);
         cy.waitForLatestEmail(inboxId, 120000).then(email => {
             console.log('email :'+email);
@@ -222,7 +222,7 @@ export class Mailbox {
         cy.emptyInbox(inboxId);
     }
 
-    verifyMailboxGetEmailRegisterCompTicketSuccess(inboxId : string, name : string){
+    verifyMailboxGetEmailRegisterCompTicketSuccess(inboxId : string){
         cy.wait(70000);
         cy.waitForLatestEmail(inboxId, 120000).then(email => {
             console.log('email :'+email);
@@ -236,4 +236,14 @@ export class Mailbox {
         cy.emptyInbox(inboxId);
     }
 
+    verifyMailboxGetEmailHostingTableSuccess(inboxId : string){
+        cy.waitForLatestEmail(inboxId, 120000).then(email => {
+            expect(email.from).to.eql('info@swellfundraising.com');
+            expect(email.subject).to.contain('Thank you for supporting');
+            expect(email.body).to.contain('Thank you for hosting a Table');
+            
+        });
+    
+        cy.emptyInbox(inboxId);
+    }
 }

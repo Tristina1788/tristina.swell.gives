@@ -1,10 +1,11 @@
 import { HomePage } from "../Pages/homePage";
 import { UsersPage } from "../Pages/usersPage";
-import { FundraiserDetailPage } from "../Pages/FundraiserDetailPage";
+import { FundraiserDetailPage } from "../Pages/fundraiserDetailPage";
 import { LoginManagePage } from "../Pages/loginManagePage";
 import { FundraiserManagePage } from "../Pages/fundraiserManagePage";
 import { RegisterPage } from "../Pages/registerPage";
 import { ThankYouPage } from "../Pages/thankYouPage";
+import { Mailbox } from "../Pages/mailbox";
 
 import { getRandomEmail, getRandomNumber, getRandomText } from "./generalFunction.cy";
 let homePage = new HomePage();
@@ -14,32 +15,59 @@ let fundraiserDetailPage = new FundraiserDetailPage();
 let fundraiserManagePage = new FundraiserManagePage();
 let registerPage = new RegisterPage();
 let thankYouPage = new ThankYouPage();
+let mailbox = new Mailbox();
 const infors = require('../utils/infor.js');
 let firstName = getRandomText();
 let lastName = getRandomText();
 let company = getRandomText();
-let email = getRandomEmail();
 let phone = getRandomNumber();
 let bidNumber = getRandomNumber();
 
 let updatedFirstName = getRandomText();
 let updatedLastName = getRandomText();
 let updatedCompany = getRandomText();
-let updatedEmail = getRandomEmail();
 let updatedPhone = getRandomNumber();
 let updatedBidNumber = getRandomNumber();
+let inboxId = "";
+let randomEmail = "";
+let hasMailbox = 0;
+
+
 describe('Verify the fundraiser Manage flow', () => {
-    
+    it.only('setup mailbox inbox',()=>{
+        cy.readFile('./data/mailbox.json',{timeout:2000}).then((inbox)=> {
+            hasMailbox = inbox.hasMailbox;
+            if(hasMailbox == -1) randomEmail = getRandomEmail();
+            else if(hasMailbox != 1){
+                console.log("hasMailbox: "+hasMailbox);
+                cy.createInbox().then(newInbox => {
+                    // verify a new inbox was created
+                    assert.isDefined(newInbox)
+                    console.log("inbox id: " + newInbox.id);
+                    console.log("inbox.emailAddress: " + newInbox.emailAddress);
+                    cy.writeFile('./data/mailbox.json',{inboxId:newInbox.id, emailAddress:newInbox.emailAddress, hasMailbox: 1})
+                    inboxId = newInbox.id;
+                    randomEmail = newInbox.emailAddress;
+                });
+            } else {
+                inboxId = inbox.inboxId;
+                randomEmail = inbox.emailAddress;
+            }
+        });
+    });
     it.only('Verify enable to create new fundraiser from manage Page',()=>{
-        loginManagePage.visit(infors.urlManage);
-        loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/fundraisers');
         fundraiserManagePage.clickAddBtn();
-        fundraiserDetailPage.inputFundraiserForm('No Referral', firstName, lastName, company, email, true, phone, bidNumber, 'Physical', 'grouest');
+        fundraiserDetailPage.inputFundraiserForm('No Referral', firstName, lastName, company, randomEmail, true, phone, bidNumber, 'Physical', 'grouest');
         fundraiserDetailPage.clickSaveBtn();
         fundraiserDetailPage.verifySaveSuccess();
         fundraiserDetailPage.clickConfirmButton();
-        fundraiserManagePage.verifyFundraiserIsExist(firstName + ' '+ lastName ,firstName+'.'+ lastName , email, true, 'grouest');
+        fundraiserManagePage.verifyFundraiserIsExist(firstName + ' '+ lastName ,firstName+'.'+ lastName , randomEmail, true, 'grouest');
+        fundraiserManagePage.verifySendEmailExist();
+        fundraiserManagePage.clickSendEmail();
+        fundraiserManagePage.inputEmailAndResend(randomEmail);
+        if(hasMailbox == 1)
+            mailbox.verifyMailboxGetEmailFundraiserSuccess(inboxId);
         cy.visit(infors.url+'/users/'+firstName+'.'+ lastName);
         cy.wait(5000);
         usersPage.verifyTheUsersHasGroup('grouest');
@@ -47,21 +75,17 @@ describe('Verify the fundraiser Manage flow', () => {
     });
 
     it.only('Verify enable to update fundraiser from manage Page',()=>{
-        loginManagePage.visit(infors.urlManage);
-        loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/fundraisers');
         fundraiserManagePage.clickEditButton(firstName);
-        fundraiserDetailPage.inputFundraiserForm('No Referral', updatedFirstName, updatedLastName, updatedCompany, updatedEmail, false, updatedPhone, updatedBidNumber, 'Virtual', '');
+        fundraiserDetailPage.inputFundraiserForm('No Referral', updatedFirstName, updatedLastName, updatedCompany, '', false, updatedPhone, updatedBidNumber, 'Virtual', '');
         fundraiserDetailPage.clickSaveBtn();
         fundraiserDetailPage.verifySaveSuccess();
         fundraiserDetailPage.clickConfirmButton();
-        fundraiserManagePage.verifyFundraiserIsExist(updatedFirstName+' '+ updatedLastName,firstName+'.'+ lastName , updatedEmail , false, '');
-        
+        fundraiserManagePage.verifyFundraiserIsExist(updatedFirstName+' '+ updatedLastName,firstName+'.'+ lastName , '' , false, '');
+        fundraiserManagePage.verifySendEmailIsNotExist();
     });
 
     it.only('Verify enable to delete fundraiser from manage Page',()=>{
-        loginManagePage.visit(infors.urlManage);
-        loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/fundraisers');
         fundraiserManagePage.clickDeleteButton(firstName+'.'+ lastName);
         fundraiserManagePage.clickOKButton();

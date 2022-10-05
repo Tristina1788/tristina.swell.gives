@@ -12,22 +12,13 @@ let twitterUsername = getRandomText();
 let socialHashtag = getRandomText();
 let message = getRandomText();
 
-Cypress.Cookies.defaults({
-    preserve: 'laravel_session'
-})
-
-beforeEach(() => {
-    cy.restoreLocalStorage();
-});
-
-afterEach(() => {
-    cy.saveLocalStorage();
+before(() => {
+    loginManagePage.visit(infors.urlManage);
+    loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
 });
 
 describe('Verify setup social network page', () => {
     it.only('Verify update social network page successfully and enable to use on frontend',()=>{
-        loginManagePage.visit(infors.urlManage);
-        loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage+'events/'+infors.idProject+'/social/settings');
         
         socialNetworkManageSetupPage.inputFormInfor(facebookID, twitterUsername, socialHashtag, message );

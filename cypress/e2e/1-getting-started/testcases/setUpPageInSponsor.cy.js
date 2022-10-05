@@ -16,23 +16,13 @@ let sponsorName = getRandomText();
 let randomeText =  getRandomText();
 let sponsorURL = 'https://secure.swell.gives/tristina/'+randomeText;
 
-Cypress.Cookies.defaults({
-    preserve: 'laravel_session'
-})
-
-beforeEach(() => {
-    cy.restoreLocalStorage();
+before(() => {
+    loginManagePage.visit(infors.urlManage);
+    loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
 });
-
-afterEach(() => {
-    cy.saveLocalStorage();
-});
-
 describe('Verify setup product page for sponsor ', () => {
 
     it.only('Verify create product page for  sponsor - product successfully', () => {
-        loginManagePage.visit(infors.urlManage);
-        loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/sponsors');
 
         sponsorManageSetupPage.clickAddBtn();

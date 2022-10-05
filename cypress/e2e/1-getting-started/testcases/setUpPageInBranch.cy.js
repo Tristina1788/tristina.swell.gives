@@ -29,11 +29,14 @@ let tablePage =new TablePage();
 const infors = require('../utils/infor.js')
 const user = require('../../../fixtures/address.json')
 let branchSetupPage =new BranchSetupPage();
+before(() => {
+    loginManagePage.visit(infors.urlManage);
+    loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
+});
+
 describe('Verify setup branch page', () => {
     
     it.only('Verify set up in branch page successfully',()=>{
-        loginManagePage.visit(infors.urlManage);
-        loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         branchSetupPage.visit(infors.urlManage+'events/'+infors.idProject+'/branding');
         branchSetupPage.verifyHaveAllUploadImages();
         branchSetupPage.verifyUnableToUploadWrongSizeImage();

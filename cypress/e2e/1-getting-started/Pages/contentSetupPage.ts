@@ -98,10 +98,5 @@ export class ContentSetupPage{
 
     clickBackManageContentPage(){
         cy.get('a').contains(this.returnToListLink).click();
-    }
-
-
-
-    
-    
+    }  
 }

@@ -31,19 +31,10 @@ let updateFname = fname + 'Update';
 let updateEmail = getRandomEmail();
 let inboxId = "";
 let hasMailbox = 0; 
-
-Cypress.Cookies.defaults({
-    preserve: 'laravel_session'
-})
-
-beforeEach(() => {
-    cy.restoreLocalStorage();
+before(() => {
+    loginManagePage.visit(infors.urlManage);
+    loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
 });
-
-afterEach(() => {
-    cy.saveLocalStorage();
-});
-
 describe('Verify setup Comp ticket page', () => {
    
     it.only('setup mailbox inbox',()=>{
@@ -69,8 +60,6 @@ describe('Verify setup Comp ticket page', () => {
         });
     }) 
     it.only('Verify create comps ticket page successfully',()=>{
-        loginManagePage.visit(infors.urlManage);
-        loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage+'events/'+infors.idProject+'/promos');
         
         compManagePage.clickAddBtn();
@@ -89,8 +78,6 @@ describe('Verify setup Comp ticket page', () => {
         let randomLastName1 = getRandomText();
         let randomEmail1 = getRandomEmail();
         let randomPhone1 = getRandomNumber();
-        loginManagePage.visit(infors.urlManage+'events/'+infors.idProject+'/contents');
-        loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage+'events/'+infors.idProject+'/promos');
         
         compManagePage.accessCompLink(code);
@@ -110,8 +97,6 @@ describe('Verify setup Comp ticket page', () => {
     })
 
     it.only('Update content page successfully with active = true',()=>{
-        loginManagePage.visit(infors.urlManage);
-        loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage+'events/'+infors.idProject+'/promos');
         
         compManagePage.clickEditButton(code);
@@ -124,8 +109,6 @@ describe('Verify setup Comp ticket page', () => {
     })
 
     it.only('Delete content page successfully with active = true',()=>{
-        loginManagePage.visit(infors.urlManage);
-        loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage+'events/'+infors.idProject+'/promos');
 
         compManagePage.clickDeleteButton(updateCode);

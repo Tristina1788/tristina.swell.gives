@@ -13,6 +13,10 @@ let loginManagePage =new LoginManagePage();
 const infors = require('../utils/infor.js')
 const user = require('../../../fixtures/address.json')
 let detailSetupPage =new DetailSetupPage();
+before(() => {
+    loginManagePage.visit(infors.urlManage);
+    loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
+});
 describe('Verify setup Detail page', () => {
     
     it.only('Verify set up page in detail page and front end will update follow this setup',()=>{
@@ -22,8 +26,6 @@ describe('Verify setup Detail page', () => {
         let dateCurrent = getCurrentDateTime();
         let time = getCurrentTime();
         let location = getRandomLocation();
-        loginManagePage.visit(infors.urlManage);
-        loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         detailSetupPage.visit(infors.urlManage+'events/'+infors.idProject+'/details');
         detailSetupPage.inputNonProfitNameDetails(noneProfitName);
         detailSetupPage.inputNameEventDetails(name);

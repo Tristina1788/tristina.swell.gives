@@ -34,24 +34,14 @@ let randomLastName = getRandomText();
 let randomEmail = getRandomEmail();
 let randomPhone = getRandomNumber();
 
-Cypress.Cookies.defaults({
-    preserve: 'laravel_session'
-})
-
-beforeEach(() => {
-    cy.restoreLocalStorage();
-});
-
-afterEach(() => {
-    cy.saveLocalStorage();
+before(() => {
+    loginManagePage.visit(infors.urlManage);
+    loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
 });
 
 if(proPrice % 2 == 0) proPrice = proPrice + 1;
 describe('Verify setup product page for table/team ', () => {
-
     it.only('Verify create prdouct page for table - product successfully', () => {
-        loginManagePage.visit(infors.urlManage);
-        loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/products');
 
         productsManageSetupPage.clickAddBtn();
@@ -84,8 +74,6 @@ describe('Verify setup product page for table/team ', () => {
     })
 
     it.only('Verify update table product setup page and the changing apply to frontend', () => {
-        loginManagePage.visit(infors.urlManage);
-        loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/products');
         productsManageSetupPage.clickEditButton(proName);
         productSetupPage.editProductForm(proNameUpdate, false, false, priceUpdate, maxUpdate, proPerTB, "Test Ticket (33.00)");

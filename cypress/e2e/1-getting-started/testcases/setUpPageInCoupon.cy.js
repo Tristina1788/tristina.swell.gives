@@ -22,24 +22,15 @@ let code = getRandomText();
 let discount = Math.floor(Math.random() * 20) + 1;
 let discountUpdate = Math.floor(Math.random() * 20) + 1;
 
-Cypress.Cookies.defaults({
-    preserve: 'laravel_session'
-})
-
-beforeEach(() => {
-    cy.restoreLocalStorage();
-});
-
-afterEach(() => {
-    cy.saveLocalStorage();
+before(() => {
+    loginManagePage.visit(infors.urlManage);
+    loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
 });
 
 describe('Verify setup coupon page', () => {
    
     
     it.only('Verify create coupon page successfully and enable to use on frontend',()=>{
-        loginManagePage.visit(infors.urlManage);
-        loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage+'events/'+infors.idProject+'/coupons');
         
         couponManageSetupPage.clickAddBtn();

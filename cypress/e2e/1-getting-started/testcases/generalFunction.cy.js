@@ -8,10 +8,10 @@ import { match } from "assert";
         return text;
     }
 
-    export function getRandomNumber() {
+    export function getRandomNumber(count = 1) {
         var text = "";
         var possible = "0123456789";
-        for (var i = 0; i < 10; i++)
+        for (var i = 0; i < count; i++)
         text += possible.charAt(Math.floor(Math.random() * possible.length));
         return text;
     }

@@ -27,25 +27,16 @@ let ctitle = getRandomText();
 let cSubtitle = getRandomText();
 let cdesc = getRandomText();
 let hornorName = getRandomText();
-Cypress.Cookies.defaults({
-    preserve: 'laravel_session'
-})
 
-beforeEach(() => {
-    cy.restoreLocalStorage();
-});
-
-afterEach(() => {
-    cy.saveLocalStorage();
+before(() => {
+    loginManagePage.visit(infors.urlManage);
+    loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
 });
 
 if(amount %2 == 0) amount= amount+1;
 
 describe('Verify setup setting - donation page', () => {
     it.only('Verify update setting - donation page successfully', () => {
-        
-        loginManagePage.visit(infors.urlManage);
-        loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/donation');
 
         settingSetupPage.openSettingDonationPage();
@@ -110,8 +101,6 @@ describe('Verify setup setting - donation page', () => {
      })
 
      it.only('Verify update setting - donation page with all selection to false successfully', () => {
-        loginManagePage.visit(infors.urlManage);
-        loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/donation');
 
         settingSetupPage.openSettingDonationPage();
@@ -132,8 +121,6 @@ describe('Verify setup setting - donation page', () => {
      })
 
      it.only('Back to setting - donation page with default setting ', () => {
-        loginManagePage.visit(infors.urlManage);
-        loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/donation');
 
         settingSetupPage.openSettingDonationPage();

@@ -13,24 +13,14 @@ let urlCt = getRandomText();
 let linkct = getRandomText();
 let contentct = getRandomText();
 
-Cypress.Cookies.defaults({
-    preserve: 'laravel_session'
-})
-
-beforeEach(() => {
-    cy.restoreLocalStorage();
+before(() => {
+    loginManagePage.visit(infors.urlManage);
+    loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
 });
-
-afterEach(() => {
-    cy.saveLocalStorage();
-});
-
 describe('Verify setup content page', () => {
    
     
     it.only('Verify create content page successfully with active = true',()=>{
-        loginManagePage.visit(infors.urlManage);
-        loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage+'events/'+infors.idProject+'/contents');
         
         contentManageSetupPage.clickAddBtn();
