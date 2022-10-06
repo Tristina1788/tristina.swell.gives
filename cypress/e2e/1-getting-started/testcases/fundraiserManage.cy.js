@@ -35,6 +35,7 @@ let hasMailbox = 0;
 
 describe('Verify the fundraiser Manage flow', () => {
     it.only('setup mailbox inbox',()=>{
+        randomEmail = getRandomEmail();
         cy.readFile('./data/mailbox.json',{timeout:2000}).then((inbox)=> {
             hasMailbox = inbox.hasMailbox;
             if(hasMailbox == -1) randomEmail = getRandomEmail();

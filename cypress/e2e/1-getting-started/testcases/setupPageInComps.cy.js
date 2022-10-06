@@ -61,7 +61,7 @@ describe('Verify setup Comp ticket page', () => {
     }) 
     it.only('Verify create comps ticket page successfully',()=>{
         loginManagePage.visit(infors.urlManage+'events/'+infors.idProject+'/promos');
-        
+        if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
         compManagePage.clickAddBtn();
         compSetupPage.inputCompTicketsForm(code, "Test Ticket", 2, internalNote,lname, fname, randomEmail);
         compSetupPage.clickSaveAndSendEmailButton();
@@ -79,7 +79,7 @@ describe('Verify setup Comp ticket page', () => {
         let randomEmail1 = getRandomEmail();
         let randomPhone1 = getRandomNumber();
         loginManagePage.visit(infors.urlManage+'events/'+infors.idProject+'/promos');
-        
+        if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
         compManagePage.accessCompLink(code);
         registerPage.verifyRegisterPageForComp();
         registerPage.verifyButtonAddAnotherTicketIsAvailable();

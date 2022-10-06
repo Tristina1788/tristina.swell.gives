@@ -62,6 +62,8 @@ describe('Verify the fundraiser Manage flow', () => {
     });
     it.only('Verify enable to create new table/team from manage Page',()=>{
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/tables');
+        if(hasMailbox ==1 )
+            cy.emptyInbox(inboxId);
         tableManageSetupPage.clickAddBtn();
         tableDetailPage.inputTableForm(firstName, 'Test Table', number, firstHostName, lastHostName, randomEmail, true);
         tableDetailPage.clickSaveBtn();
@@ -71,7 +73,7 @@ describe('Verify the fundraiser Manage flow', () => {
         tableManageSetupPage.clickEmailBtn(firstName);
         tableManageSetupPage.inputEmailAndSend(randomEmail);
         if(hasMailbox ==1 )
-            mailbox.verifyMailboxGetEmailBecomeHostSuccess(inboxId);
+            mailbox.verifyMailboxGetEmailHostingTableSuccess(inboxId);
     });
 
     it.only('Verify fundraising page from manage Page',()=>{
@@ -88,17 +90,17 @@ describe('Verify the fundraiser Manage flow', () => {
     it.only('Verify enable to registration from manage Page',()=>{
         randomEmailGuest = randomEmail;
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/tables');
+        if(hasMailbox ==1 ) 
+            cy.emptyInbox(inboxId);
         tableManageSetupPage.clickRegisterBtn(firstName);
         donationsRegisterTablePage.clickNavigationTab('Your Table');
         donationsRegisterTablePage.verifyYourTableFromManagePageIsDisplayed(firstName,firstHostName, lastHostName, randomEmail);
         donationsRegisterTablePage.clickNavigationTab('Guest');
         donationsRegisterTablePage.inputGuestInformation(randomNameGuest, randomLastNameGuest, randomEmailGuest, 0);
         donationsRegisterTablePage.inputGuestInformation(randomNameGuest2, randomLastNameGuest2, randomEmailGuest2, 1);
-        donationsRegisterTablePage.sendEmailGuest(0);
-        donationsRegisterTablePage.sendEmailGuest(1);
-        if(hasMailbox ==1 )
-            mailbox.verifyMailboxGetEmailBecomeHostGuestSuccess(inboxId);
         donationsRegisterTablePage.clickInviteGuestButton();
+        if(hasMailbox ==1 )
+            mailbox.verifyMailboxGetEmailBecomeHostGuestSuccess(inboxId,firstName);
         donationsRegisterTablePage.verifyInviteSuccess(randomNameGuest, randomLastNameGuest, randomEmailGuest);
         donationsRegisterTablePage.clickCancelInviteGuestButton(0);
         donationsRegisterTablePage.clickCancelInviteGuestButton(1);

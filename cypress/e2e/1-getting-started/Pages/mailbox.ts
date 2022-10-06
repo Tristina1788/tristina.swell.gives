@@ -6,7 +6,6 @@ export class Mailbox {
             expect(latestEmail.from).to.eql('info@swellfundraising.com');
             expect(latestEmail.headers.Subject).to.contain('Thanks for Pledging Support to');
         });
-        cy.emptyInbox(inboxId);
 
     }
 
@@ -18,9 +17,6 @@ export class Mailbox {
             expect(latestEmail.subject).to.contain('Thank you for supporting');
             expect(latestEmail.body).to.contain('This is your receipt confirming <u>your donation</u> of');
         });
-
-        cy.emptyInbox(inboxId);
-
     }
 
     verifyMailboxGetEmailPurchaseTicketSuccess(inboxId: string) {
@@ -68,7 +64,6 @@ export class Mailbox {
                 })
             }
         });
-        cy.emptyInbox(inboxId);
 
     }
 
@@ -118,7 +113,6 @@ export class Mailbox {
                 })
             }
              console.log("emails count:" + emails.length);
-             cy.emptyInbox(inboxId);
         });
     }
 
@@ -128,6 +122,7 @@ export class Mailbox {
         let email3 = 0;
         let email4 = 0;
         cy.wait(70000);
+        
         cy.getAllEmail(inboxId).then(emails => {
             expect(emails.length).to.equal(4);
             for (let i = 0; i < 4; i++) {
@@ -169,21 +164,19 @@ export class Mailbox {
                 })
             }
              console.log("emails count:" + emails.length);
-             cy.emptyInbox(inboxId);
         });
     }
 
-    verifyMailboxGetEmailBecomeHostGuestSuccess(inboxId : string){
-        cy.waitForLatestEmail(inboxId, 120000).then(latestEmail => {
+    verifyMailboxGetEmailBecomeHostGuestSuccess(inboxId : string, name : string){
+        cy.waitForLatestEmail(inboxId, 200000).then(latestEmail => {
             console.log(latestEmail.from);
             console.log("latestEmail:" + latestEmail);
             expect(latestEmail.from).to.eql('info@swellfundraising.com');
             expect(latestEmail.subject).to.contain('Hey! '+name+' invited you to');
-            expect(latestEmail.subject).to.contain('Please say you are going.');
+            expect(latestEmail.body).to.contain('I am hosting a Table to support');
+            //expect(latestEmail.subject).to.contain('Please say you are going.');
             
         });
-    
-        cy.emptyInbox(inboxId);
     }
 
     verifyMailboxGetEmailSponsorshipSuccess(inboxId : string){
@@ -193,8 +186,6 @@ export class Mailbox {
             expect(email.body).to.contain('This is your receipt confirming <u>you purchased</u>');
             
         });
-    
-        cy.emptyInbox(inboxId);
     }
 
     verifyMailboxGetEmailFundraiserSuccess(inboxId : string){
@@ -204,8 +195,6 @@ export class Mailbox {
             expect(email.body).to.contain('Way to go, you are now a fundraiser for');
             
         });
-    
-        cy.emptyInbox(inboxId);
     }
 
     verifyMailboxGetEmailCompTicketSuccess(inboxId : string){
@@ -218,8 +207,6 @@ export class Mailbox {
             expect(email.body).to.contain('Here is a link for you to redeem your');
             
         });
-    
-        cy.emptyInbox(inboxId);
     }
 
     verifyMailboxGetEmailRegisterCompTicketSuccess(inboxId : string){
@@ -232,18 +219,14 @@ export class Mailbox {
             expect(email.body).to.contain('You are confirmed to attend');
             
         });
-    
-        cy.emptyInbox(inboxId);
     }
 
     verifyMailboxGetEmailHostingTableSuccess(inboxId : string){
         cy.waitForLatestEmail(inboxId, 120000).then(email => {
             expect(email.from).to.eql('info@swellfundraising.com');
             expect(email.subject).to.contain('Thank you for supporting');
-            expect(email.body).to.contain('Thank you for hosting a Table');
+            expect(email.body).to.contain('Your commitment to our work makes a difference and we are so thankful');
             
         });
-    
-        cy.emptyInbox(inboxId);
     }
 }

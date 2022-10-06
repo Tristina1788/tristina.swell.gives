@@ -42,6 +42,7 @@ export class TableManageSetupPage{
     inputEmailAndSend(email:string){
         cy.get(this.emailInput).clear();
         cy.get(this.emailInput).type(email);
+        cy.wait(2000);
         cy.get('button').contains(this.sendEmailBtn).click({force: true});
     }
 
