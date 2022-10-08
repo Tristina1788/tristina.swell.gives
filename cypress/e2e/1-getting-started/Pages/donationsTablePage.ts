@@ -1,6 +1,6 @@
 export class DonationsTablePage{
-    // tableLabel = 'app-ticket div.radio-list span';
-    tableLabel = '.radio-cost';
+    tableLabel = 'app-ticket div.radio-list span';
+    //tableLabel = '.radio-cost';
     tableRadio = 'app-ticket div.radio-list input';
     nextButton = 'button[type="button"]';
     amountSelection = '.selector-button';
@@ -44,10 +44,10 @@ export class DonationsTablePage{
      }
 
     verifyTableIsSelectedAsDefault(tableName: string, tablePrice: string) {
-       // cy.get(this.tableRadio).should('be.selected');
-        // cy.get(this.tableLabel).contains(tableName).should('be.visible');
-        cy.get(this.tableLabel).next().contains(tableName).should('be.visible');
-        cy.get('li').contains(tableName + ' - $' + tablePrice).should('be.visible');
+       cy.get(this.tableRadio).should('be.selected');
+        cy.get(this.tableLabel).contains(tableName).should('be.visible');
+        // cy.get(this.tableLabel).next().contains(tableName).should('be.visible');
+        // cy.get('li').contains(tableName + ' - $' + tablePrice).should('be.visible');
     }
 
     verifyTableIsExistAndSelectIt(tableName: string, tablePrice: string) {

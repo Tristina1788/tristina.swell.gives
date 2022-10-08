@@ -93,7 +93,7 @@ describe('Verify become a host flow', () => {
 
     it.only('Verify information when become a host and enable to send invitation to email', () => {
         cy.forceVisit(infors.url);
-        f(hasMailbox ==1 ) cy.emptyInbox(inboxId);
+        if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
         let randomName = getRandomText();
         let randomLastName = getRandomText();
         

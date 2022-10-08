@@ -100,7 +100,7 @@ describe('Verify the fundraiser Manage flow', () => {
         donationsRegisterTablePage.inputGuestInformation(randomNameGuest2, randomLastNameGuest2, randomEmailGuest2, 1);
         donationsRegisterTablePage.clickInviteGuestButton();
         if(hasMailbox ==1 )
-            mailbox.verifyMailboxGetEmailBecomeHostGuestSuccess(inboxId,firstName);
+            mailbox.verifyMailboxGetEmailBecomeHostGuestSuccess(inboxId,firstHostName);
         donationsRegisterTablePage.verifyInviteSuccess(randomNameGuest, randomLastNameGuest, randomEmailGuest);
         donationsRegisterTablePage.clickCancelInviteGuestButton(0);
         donationsRegisterTablePage.clickCancelInviteGuestButton(1);

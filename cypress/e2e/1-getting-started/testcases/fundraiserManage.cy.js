@@ -63,6 +63,9 @@ describe('Verify the fundraiser Manage flow', () => {
         fundraiserDetailPage.clickSaveBtn();
         fundraiserDetailPage.verifySaveSuccess();
         fundraiserDetailPage.clickConfirmButton();
+        cy.reload();
+        if(hasMailbox == 1)
+        cy.emptyInbox(inboxId);
         fundraiserManagePage.verifyFundraiserIsExist(firstName + ' '+ lastName ,firstName+'.'+ lastName , randomEmail, true, 'grouest');
         fundraiserManagePage.verifySendEmailExist();
         fundraiserManagePage.clickSendEmail();

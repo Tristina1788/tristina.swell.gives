@@ -62,7 +62,7 @@ export class ProductsManageSetupPage {
         let active = 'Inactive';
         if(isActive) active = 'Active';
         
-        cy.wait(2000);
+        cy.wait(5000);
         cy.get(this.searchInput).type(name);
         if(ticketType !='')
             cy.get(this.tableList).children('tbody').children('tr').children('td').contains(type)
