@@ -46,6 +46,7 @@ export class TicketManagePage{
     }
 
     verifyDeleteSuccess(){
+        cy.wait(2000);
         cy.get('p').contains(this.successMsg).should('be.visible');
         
     }
@@ -57,29 +58,18 @@ export class TicketManagePage{
         
     }
 
-    verifyNewProductIsCreated(type : string, name : string, isActive : boolean, isHidden : boolean, price : number, maxPro : number, ticketPerTB : number =0, ticketType : string =''){
-        let active = 'Inactive';
-        if(isActive) active = 'Active';
-        
-        cy.wait(2000);
-        cy.get(this.searchInput).type(name);
-        if(ticketType !='')
-            cy.get(this.tableList).children('tbody').children('tr').children('td').contains(type)
-            .next().contains(name)
-            .next().contains('$'+price +'.00')
-            .next().contains(active+'')
-            .next().contains(maxPro)
-            .next().contains(ticketType+'')
-            .next().contains(ticketPerTB)
-            .should('be.visible');
-        else 
-            cy.get(this.tableList).children('tbody').children('tr').children('td').contains(type)
-            .next().contains(name)
-            .next().contains('$'+price +'.00')
-            .next().contains(active+'')
-            .next().contains(maxPro)
-            .next().next().contains(ticketPerTB)
-            .should('be.visible');
+    verifyTicketIsCreated(guest : string, email : string, ticket : string){
+        cy.get(this.searchInput).type(guest);
+        cy.get('td').contains(guest)
+        .next('td').contains(email)
+        .next('td').contains(ticket)
+        .should('be.visible');
+    }
+
+    verifyTicketIsNotPresent(guest : string, email : string, ticket : string){
+        cy.get(this.searchInput).type(guest);
+        cy.get('td').contains(guest)
+        .should('not.exist');
     }
 
     visit(url: string){

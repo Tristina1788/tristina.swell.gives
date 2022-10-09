@@ -121,6 +121,7 @@ describe('Verify become a host flow', () => {
         let randomLastNameGuest = getRandomText();
         let randomEmailGuest = randomEmail;// getEmailTest();
         // });
+        if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
         donationsRegisterTablePage.inputGuestInformation(randomNameGuest, randomLastNameGuest, randomEmailGuest);
         if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
         donationsRegisterTablePage.clickInviteGuestButton();

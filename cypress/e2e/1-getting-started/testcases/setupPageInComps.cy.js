@@ -79,7 +79,7 @@ describe('Verify setup Comp ticket page', () => {
         let randomEmail1 = getRandomEmail();
         let randomPhone1 = getRandomNumber();
         loginManagePage.visit(infors.urlManage+'events/'+infors.idProject+'/promos');
-        if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
+       
         compManagePage.accessCompLink(code);
         registerCompsPage.verifyRegisterPageForComp();
         registerCompsPage.verifyButtonAddTicketIsAvailable();
@@ -90,6 +90,7 @@ describe('Verify setup Comp ticket page', () => {
         registerCompsPage.verifyRegisterTicketIsPresent(1,randomEmail);
         registerCompsPage.inputRegisterForm(randomName1+'1', randomLastName1+'1', randomPhone1+'1', randomEmail1);
         registerCompsPage.clickAddTicket();
+        if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
         registerCompsPage.verifyButtonAddTicketIsAvailable();
         registerCompsPage.verifyOrderIsCorrect(2);
         registerCompsPage.verifyRegisterTicketIsPresent(2,randomEmail1);

@@ -211,14 +211,40 @@ export class Mailbox {
 
     verifyMailboxGetEmailRegisterCompTicketSuccess(inboxId : string){
         cy.wait(70000);
-        cy.waitForLatestEmail(inboxId, 120000).then(email => {
-            console.log('email :'+email);
-            console.log('email.from :'+email.from);
-            expect(email.from).to.eql('info@swellfundraising.com');
-            expect(email.subject).to.contain('Here is your ticket to');
-            expect(email.body).to.contain('You are confirmed to attend');
-            
+        let email1 = 0;
+        let email2 = 0;
+        cy.getAllEmail(inboxId).then(emails => {
+            expect(emails.length).to.equal(2);
+            for (let i = 0; i < 2; i++) {
+
+                cy.getEmail(emails[i].id).then(email => {
+                    console.log("subject:" + email.subject);
+                    let subject = email.subject;
+                    if (subject.includes('Thanks for your purchase supporting')) {
+                        expect(email.from).to.eql('info@swellfundraising.com');
+                        expect(email.subject).to.contain('Thanks for your purchase supporting');
+                        expect(email.body).to.contain('This is your receipt confirming <u>you purchased');
+                        
+                        // expect(email.body).to.contain('This is your receipt confirming <u>you purchased</u> 1 ticket(s) for $33.00');
+                        email1++;
+                        console.log("email1:" + email1);
+                    } else if (subject.includes('Thank you for supporting')) {
+                        console.log("subject:" + email.subject);
+                        expect(email.from).to.eql('info@swellfundraising.com');
+                        expect(email.subject).to.contain('Here is your ticket to');
+                        expect(email.body).to.contain('You are confirmed to attend');
+                        // expect(email.body).to.contain('This is your receipt confirming <u>your donation</u> of $75.00.');
+                        email2++;
+                        console.log("email2:" + email2);
+                    }
+                    if (i == 2) {
+                        expect(email1).equal(1);
+                        expect(email2).equal(1);
+                    }
+                })
+            }
         });
+       
     }
 
     verifyMailboxGetEmailHostingTableSuccess(inboxId : string){
