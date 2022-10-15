@@ -29,7 +29,7 @@ let updatedCompany = getRandomText();
 let updatedPhone = getRandomNumber();
 let updatedBidNumber = getRandomNumber();
 let inboxId = "";
-let randomEmail = "";
+var randomEmail = "";
 let hasMailbox = 0;
 
 
