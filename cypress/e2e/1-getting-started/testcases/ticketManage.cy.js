@@ -65,7 +65,7 @@ describe('Verify Tickets Manage flow', () => {
         ticketManagePage.clickDeleteButton(randomName);
         ticketManagePage.verifyTicketIsNotPresent(randomName + ' '+ randomLastName,randomEmail,'Test Ticket');
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/fundraisers');
-        fundraiserManagePage.verifyFundraiserIsExist(randomName + ' '+ randomLastName ,randomName+'.'+ randomLastName , randomEmail, true, 'grouest');
+        fundraiserManagePage.verifyFundraiserIsExist(randomName + ' '+ randomLastName ,randomName+'.'+ randomLastName , randomEmail, false, 'grouest');
         fundraiserManagePage.clickDeleteButton(randomName);
     });
 

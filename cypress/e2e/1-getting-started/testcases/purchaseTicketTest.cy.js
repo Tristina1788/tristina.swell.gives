@@ -4,12 +4,16 @@ import { Mailbox } from "../Pages/mailbox";
 import { getRandomEmail, getRandomNumber, getRandomText} from "./generalFunction.cy"
 import { DonationsAddressPage } from "../Pages/donationsAddressPage";
 import { DonationsPaymentPage } from "../Pages/donationsPaymentPage";
+import { TransactionManagePage } from "../Pages/transactionManagePage";//
+import { LoginManagePage } from "../Pages/loginManagePage";
 
 let homePage = new HomePage();
 let ticketPage = new TicketPage();
 let mailbox = new Mailbox();
 let donationsAddressPage =new DonationsAddressPage();
 let donationsPaymentPage =new DonationsPaymentPage();
+let loginManagePage =new LoginManagePage();
+let transactionManagePage =new TransactionManagePage();
 
 const infors = require('../utils/infor.js')
 const userFullFill = require('../../../fixtures/fullFillInfor.json')
@@ -68,11 +72,9 @@ describe('Verify Purchase Tickets flow', () => {
         if(hasMailbox ==1 )
             mailbox.verifyMailboxGetEmailPurchaseTicketSuccess(inboxId);
         
-        /*cy.wait(60000);
-        cy.visit(infors.url);
-        homePage.verifyUserInTopFundraiser(randomName + ' ' + randomLastName,(infors.amountTicket + 33));
-        homePage.verifyUserInTopSocial(randomName + ' ' + randomLastName,1);
-        */
+       loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/transactions');
+       transactionManagePage.verifyTransactionIsCreated('Ticket',randomName,randomLastName, randomEmail,'$33.00','',1);
+       transactionManagePage.verifyTransactionIsCreated('Donation',randomName,randomLastName, randomEmail,'$'+infors.amountTicket+'.00');
     })
 
     
@@ -138,6 +140,9 @@ describe('Verify Purchase Tickets flow', () => {
         donationsPaymentPage.inputCreditCardTicket(infors.creditCardNumber, infors.creditCardVCV);
         donationsPaymentPage.clickPurchase();
         donationsPaymentPage.verifyTransactionTicketsFinish();
+        loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/transactions');
+        transactionManagePage.verifyTransactionIsCreated('Ticket',randomName,randomLastName, randomEmail,'$117.00','',3); // 2 tickets 33$ and 1 tickets 51$
+        transactionManagePage.verifyTransactionIsCreated('Donation',randomName,randomLastName, randomEmail,'$'+infors.anotherAmountTicket+'.00');
         if(hasMailbox ==1 )
             mailbox.verifyMailboxGetEmailPurchaseMultiTicketSuccess(inboxId);
     })

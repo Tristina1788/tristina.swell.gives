@@ -54,19 +54,28 @@ export class TransactionManagePage{
         
     }
 
-    verifyTransactionIsCreated(type: string, fname : string, lname : string, email : string, amount : number){
+    verifyTransactionIsCreated(type: string, fname : string, lname : string, email : string, amount : number, group : string = '', ticket : number = 0){
         cy.get(this.searchInput).clear();
         cy.get(this.searchInput).type(fname);
-        let ticket = 0;
         if(type != 'Ticket') ticket = 0;
-        cy.get('td').contains(type)
-        .next('td').contains(fname)
-        .next('td').contains(lname)
-        .next('td').contains(email)
-        .next('td')
-        .next('td').contains(ticket)
-        .next('td').contains(amount)
-        .should('be.visible');
+        if(group == '')
+            cy.get('td').contains(type)
+            .next('td').contains(fname)
+            .next('td').contains(lname)
+            .next('td').contains(email)
+            .next('td')
+            .next('td').contains(ticket)
+            .next('td').contains(amount)
+            .should('be.visible');
+        else  
+            cy.get('td').contains(type)
+            .next('td').contains(fname)
+            .next('td').contains(lname)
+            .next('td').contains(email)
+            .next('td').contains(group)
+            .next('td').contains(ticket)
+            .next('td').contains(amount)
+            .should('be.visible');
     }
 
     verifyTransactionIsNotPresent(email : string){

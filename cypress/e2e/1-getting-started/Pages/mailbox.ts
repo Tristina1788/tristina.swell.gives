@@ -248,7 +248,7 @@ export class Mailbox {
     }
 
     verifyMailboxGetEmailHostingTableSuccess(inboxId : string){
-        cy.waitForLatestEmail(inboxId, 120000).then(email => {
+        cy.waitForLatestEmail(inboxId, 200000).then(email => {
             expect(email.from).to.eql('info@swellfundraising.com');
             expect(email.subject).to.contain('Thank you for supporting');
             expect(email.body).to.contain('Your commitment to our work makes a difference and we are so thankful');

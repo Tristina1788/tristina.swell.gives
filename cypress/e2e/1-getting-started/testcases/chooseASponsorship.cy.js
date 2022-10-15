@@ -5,6 +5,8 @@ import {  getRandomEmail, getRandomNumber, getRandomText} from "./generalFunctio
 import { DonationsPaymentPage } from "../Pages/donationsPaymentPage";
 import { UsersPage } from "../Pages/usersPage";
 import { Mailbox } from "../Pages/mailbox";
+import { TransactionManagePage } from "../Pages/transactionManagePage";//
+import { LoginManagePage } from "../Pages/loginManagePage";
 
 let homePage = new HomePage();
 let sponsorshipPage =new SponsorshipPage();
@@ -12,6 +14,8 @@ let usersPage =new UsersPage();
 let mailbox =new Mailbox();
 let donationsAddressPage =new DonationsAddressPage();
 let donationsPaymentPage =new DonationsPaymentPage();
+let loginManagePage =new LoginManagePage();
+let transactionManagePage =new TransactionManagePage();
 const infors = require('../utils/infor.js')
 const user = require('../../../fixtures/address.json')
 let inboxId = "";
@@ -66,6 +70,9 @@ describe('Verify Choose a sponsorship flow', () => {
         if(hasMailbox ==1 )
             mailbox.verifyMailboxGetEmailSponsorshipSuccess(inboxId);
         usersPage.verifyTheUsersIsSponsor(infors.url+'users/'+infors.personRecieveCreditPage,randomName + ' '+randomLastName);
+
+        loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/transactions');
+        transactionManagePage.verifyTransactionIsCreated('Sponsorship',randomName,randomLastName, randomEmail,'$501.00', 'grouest');
     })
 
     it.only('Verify previous button in Choose a sponsorship',()=>{
