@@ -55,9 +55,10 @@ export class TransactionManagePage{
     }
 
     verifyTransactionIsCreated(type: string, fname : string, lname : string, email : string, amount : number){
+        cy.get(this.searchInput).clear();
         cy.get(this.searchInput).type(fname);
         let ticket = 0;
-        if(type == 'Donation') ticket = 0;
+        if(type != 'Ticket') ticket = 0;
         cy.get('td').contains(type)
         .next('td').contains(fname)
         .next('td').contains(lname)

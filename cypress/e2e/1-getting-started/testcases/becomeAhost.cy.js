@@ -5,12 +5,17 @@ import { DonationsRegisterTablePage } from "../Pages/donationsRegisterTablePage"
 import { getEmailTest, getRandomEmail, getRandomNumber, getRandomText } from "./generalFunction.cy"
 import { DonationsPaymentPage } from "../Pages/donationsPaymentPage";
 import { Mailbox } from "../Pages/mailbox";
+import { TransactionManagePage } from "../Pages/transactionManagePage";//
+import { LoginManagePage } from "../Pages/loginManagePage";
+
 
 let homePage = new HomePage();
 let donationsTablePage = new DonationsTablePage();
 let donationsAddressPage = new DonationsAddressPage();
 let donationsRegisterTablePage = new DonationsRegisterTablePage();
 let donationsPaymentPage = new DonationsPaymentPage();
+let loginManagePage =new LoginManagePage();
+let transactionManagePage =new TransactionManagePage();
 let mailbox = new Mailbox();
 const infors = require('../utils/infor.js')
 const user = require('../../../fixtures/address.json')
@@ -83,12 +88,9 @@ describe('Verify become a host flow', () => {
         donationsRegisterTablePage.clickCancelInviteGuestButton();
         donationsRegisterTablePage.verifyCancelInviteGuestSuccess();
 
-
-        //cy.wait(60000);
-        //cy.visit(infors.url);
-        //homePage.verifyUserInTopFundraiser(randomName + ' ' + randomLastName,(infors.amountTicket));
-        //homePage.verifyUserInTopSocial(randomName + ' ' + randomLastName,1);
-        //homePage.verifyUserInTable(randomLastName + " Table",(infors.amountTicket))
+        loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/transactions');
+        transactionManagePage.verifyTransactionIsCreated('Table',randomName,randomLastName, randomEmail,'$1,201.00');
+        transactionManagePage.verifyTransactionIsCreated('Donation',randomName,randomLastName, randomEmail,'$75.00');
     })
 
     it.only('Verify information when become a host and enable to send invitation to email', () => {
