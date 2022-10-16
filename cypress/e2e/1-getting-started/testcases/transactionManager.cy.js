@@ -116,4 +116,6 @@ let randomAmount= Math.floor(Math.random() * 90) + 0;
         fundraiserManagePage.clickDeleteButton(randomNameUpdate);
     });
 
+    
+
 })

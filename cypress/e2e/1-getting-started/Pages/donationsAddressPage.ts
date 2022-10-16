@@ -60,6 +60,7 @@ export class DonationsAddressPage{
     inputAddressInfor(firstName: string, lastName: string, email: string, phone: string,
         company: string, address1: string, address2: string, city: string, state: string,
         zip: string){
+        cy.wait(2000);
         cy.get(this.fistNameTextbox).type(firstName);
         cy.get(this.lastNameTextbox).type(lastName);
         cy.get(this.emailTextbox).type(email);

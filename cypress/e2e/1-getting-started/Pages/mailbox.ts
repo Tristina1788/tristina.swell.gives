@@ -255,4 +255,16 @@ export class Mailbox {
             
         });
     }
+
+    verifyMailboxGetEmaiTemplateSuccess(inboxId : string, subject : string, content : string){
+        cy.wait(70000);
+        cy.waitForLatestEmail(inboxId, 200000).then(email => {
+            console.log('email :'+email);
+            console.log('email.from :'+email.from);
+            expect(email.from).to.eql('info@swellfundraising.com');
+            expect(email.subject).to.contain(subject);
+            expect(email.body).to.contain(content);
+            
+        });
+    }
 }

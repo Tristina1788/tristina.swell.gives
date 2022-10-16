@@ -87,6 +87,7 @@ export class TicketPage{
     }
 
     inputFormInforTc(item : number, fname : string, lname : string, email : string, phone : string){
+        cy.wait(2000);
         cy.get(this.ticketBoxItem).eq(item).find(this.firstNameTc).type(fname);
         cy.get(this.lastNameTc).type(lname);
         cy.get(this.emailTc).type(email);
