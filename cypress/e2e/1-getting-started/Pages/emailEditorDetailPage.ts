@@ -80,7 +80,7 @@ export class EmailEditorDetailPage {
         let tagArr = ["Direct Donation URL", "Event Beneficiary Name", "Event Beneficiary Url", "Event Date" , "Event Hashtag",
                       "Event Name", "Event Time", "Event URL", "Event Venue", "Fundraiser Email Address", "Fundraiser First Name",
                       "Fundraiser Last Name", "Fundraiser Profile Link", "Organization Name", "Table Host First Name",
-                      "Table Host Last Name", "Table Name", "Table Number", "Ticket Code", "Ticket Parent Product Name", "Ticket Price", "Ticket Seat Number"];
+                      "Table Host Last Name", "Table Number", "Ticket Code", "Ticket Parent Product Name", "Ticket Price", "Ticket Seat Number"];
     
         for(let i = 0; i < tagArr.length; i++)
             this.getIframeBody().find('a').contains(tagArr[i]).should('be.visible');

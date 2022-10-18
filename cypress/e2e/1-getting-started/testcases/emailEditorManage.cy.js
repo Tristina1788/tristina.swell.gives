@@ -46,7 +46,7 @@ describe('Verify Email Editor Manage', () => {
         emailEditorPage.verifyAllTemplateExist();
     })
 
-    it('Verify template Guest Check In work correct', () => {
+    it.only('Verify template Guest Check In work correct', () => {
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/email-editor',{timeout:200000});
         if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
         emailEditorPage.clickEmailTemplate('Guest Check In');
@@ -62,7 +62,7 @@ describe('Verify Email Editor Manage', () => {
         emailEditorDetailPage.updateSubject('Thanks *|fundraiserFirstName|* for Checking In to *|eventName|*');
     })
 
-    it('Verify template Fundraiser Registration work correct', () => {
+    it.only('Verify template Fundraiser Registration work correct', () => {
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/email-editor',{timeout:200000});
         if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
         emailEditorPage.clickEmailTemplate('Fundraiser Registration');
@@ -78,7 +78,7 @@ describe('Verify Email Editor Manage', () => {
         emailEditorDetailPage.updateSubject('Thanks for Registering as a fundraiser for *|eventName|*');
     })
 
-    it('Verify template Pledge Creation work correct', () => {
+    it.only('Verify template Pledge Creation work correct', () => {
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/email-editor',{timeout:200000});
         if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
         emailEditorPage.clickEmailTemplate('Pledge Creation');
@@ -94,7 +94,7 @@ describe('Verify Email Editor Manage', () => {
         emailEditorDetailPage.updateSubject('Thanks for Pledging Support to *|eventbeneficiaryName|*');
     })
 
-    it('Verify template Pledge Reminder work correct', () => {
+    it.only('Verify template Pledge Reminder work correct', () => {
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/email-editor',{timeout:200000});
         if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
         emailEditorPage.clickEmailTemplate('Pledge Reminder');
@@ -110,7 +110,7 @@ describe('Verify Email Editor Manage', () => {
         emailEditorDetailPage.updateSubject('Uh Oh! Did you forget you promised to support *|eventbeneficiaryName|*');
     })
 
-    it('Verify template In-Person Ticket Email work correct', () => {
+    it.only('Verify template In-Person Ticket Email work correct', () => {
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/email-editor',{timeout:200000});
         if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
         emailEditorPage.clickEmailTemplate('In-Person Ticket Email');
@@ -126,7 +126,7 @@ describe('Verify Email Editor Manage', () => {
         emailEditorDetailPage.updateSubject('Here is your ticket to *|eventName|*');
     })
 
-    it('Verify template Virtual Ticket Email work correct', () => {
+    it.only('Verify template Virtual Ticket Email work correct', () => {
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/email-editor',{timeout:200000});
         if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
         emailEditorPage.clickEmailTemplate('Virtual Ticket Email');
@@ -142,7 +142,7 @@ describe('Verify Email Editor Manage', () => {
         emailEditorDetailPage.updateSubject('Here is your virtual ticket to *|eventName|*');
     })
 
-    it('Verify template Ticket Purchase Receipt work correct', () => {
+    it.only('Verify template Ticket Purchase Receipt work correct', () => {
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/email-editor',{timeout:200000});
         if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
         emailEditorPage.clickEmailTemplate('Ticket Purchase Receipt');
