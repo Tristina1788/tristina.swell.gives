@@ -240,8 +240,5 @@ export class TicketPage{
             cy.get('span').contains(donatitle).should('be.not.exist');
         }
 
-        
-       
-
     }
 }

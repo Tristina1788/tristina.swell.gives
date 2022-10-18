@@ -11,6 +11,7 @@ export class EmailEditorDetailPage {
     contentArear = '#ui-tinymce-1';
     directDonationURLTag = 'Direct Donation URL';
     eventBeneficiaryNameTag = 'Event Beneficiary Name';
+    emailTag = 'Email';
     eventBeneficiaryUrlTag = 'Event Beneficiary Url';
     eventDateTag = 'Event Date';
     eventHashTag = 'Event Hashtag';
@@ -18,11 +19,16 @@ export class EmailEditorDetailPage {
     eventTimeTag = 'Event Time';
     eventUrlTag = 'Event URL';
     eventVenueTag = 'Event Venue';
+    firstNameTag = 'First Name';
+    lastNameTag = 'Last Name';
+    fullFillmentURLTag = 'Fulfillment URL';
     fundraiserEmailAddressTag = 'Fundraiser Email Address';
     fundraiserFirstNameTag = 'Fundraiser First Name';
     fundraiserLastNameTag = 'Fundraiser Last Name';
     fundraiserProfileLinkTag = 'Fundraiser Profile Link';
     organizationNameTag = 'Organization Name';
+    transactionAddressTag = 'Transaction Address';
+    transactionAmountTag = 'Transaction Amount';
     tableHostFirstNameTag = 'Table Host First Name';
     tableHostLastNameTag = 'Table Host Last Name';
     tableNumberTag = 'Table Number';
@@ -31,6 +37,7 @@ export class EmailEditorDetailPage {
     ticketPriceTag = 'Ticket Price';
     ticketSeatNumberTag = 'Ticket Seat Number';
     saveBtn = 'Save';
+    fullFillPledgeBtn = 'FULFILL YOUR PLEDGE';
 
     getIframeDocument = () => {
         return cy
@@ -54,72 +61,111 @@ export class EmailEditorDetailPage {
         .then(cy.wrap)
     }
 
-    verifyTemplateEmailHasAllParts(name: string) {
-        cy.wait(5000);
+    verifyMainPartTemplateIsPresent(name : string){
         this.getIframeBody().find('a').contains(this.backToSelectionTxt).should('be.visible');
         this.getIframeBody().find('div').contains(name).should('be.visible');
         this.getIframeBody().find('button').contains(this.sendPreviewBtn).should('be.visible');
         this.getIframeBody().find('button').contains(this.saveBtn).should('be.visible');
         this.getIframeBody().find(this.emailInput).should('be.visible');
-       // this.getIframeBody().find('div').contains(this.sendEmailSuccess).should('be.visible');
         this.getIframeBody().find(this.subjectPart).should('be.visible');
         this.getIframeBody().find(this.headerImg).should('be.visible');
         this.getIframeBody().find(this.emailContentPart).eq(0).should('be.visible');
         this.getIframeBody().find(this.emailContentPart).eq(1).should('be.visible');
-        this.getIframeBody().find(this.emailContentPart).eq(2).should('be.visible');
         this.getIframeBody().find(this.inputSubject).should('be.visible');
         this.getIframeBody().find(this.contentArear).should('be.exist');
-        this.getIframeBody().find('a').contains(this.directDonationURLTag).should('be.visible');
-        this.getIframeBody().find('a').contains(this.eventBeneficiaryNameTag).should('be.visible');
-        this.getIframeBody().find('a').contains(this.eventBeneficiaryUrlTag).should('be.visible');
-        this.getIframeBody().find('a').contains(this.eventDateTag).should('be.visible');
-        this.getIframeBody().find('a').contains(this.eventHashTag).should('be.visible');
-        this.getIframeBody().find('a').contains(this.eventNameTag).should('be.visible');
-        this.getIframeBody().find('a').contains(this.eventTimeTag).should('be.visible');
-        this.getIframeBody().find('a').contains(this.eventUrlTag).should('be.visible');
-        this.getIframeBody().find('a').contains(this.eventVenueTag).should('be.visible');
-        this.getIframeBody().find('a').contains(this.fundraiserEmailAddressTag).should('be.visible');
-        this.getIframeBody().find('a').contains(this.fundraiserFirstNameTag).should('be.visible');
-        this.getIframeBody().find('a').contains(this.fundraiserLastNameTag).should('be.visible');
-        this.getIframeBody().find('a').contains(this.fundraiserProfileLinkTag).should('be.visible');
-        this.getIframeBody().find('a').contains(this.organizationNameTag).should('be.visible');
-        this.getIframeBody().find('a').contains(this.tableHostFirstNameTag).should('be.visible');
-        this.getIframeBody().find('a').contains(this.tableHostLastNameTag).should('be.visible');
-        this.getIframeBody().find('a').contains(this.tableNumberTag).should('be.visible');
-        this.getIframeBody().find('a').contains(this.ticketCodeTag).should('be.visible');
-        this.getIframeBody().find('a').contains(this.ticketParentProductNameTag).should('be.visible');
-        this.getIframeBody().find('a').contains(this.ticketPriceTag).should('be.visible');
-        this.getIframeBody().find('a').contains(this.ticketSeatNumberTag).should('be.visible');
+    }
+    verifyTemplateEmailHasAllParts(name: string) {
+        this.verifyMainPartTemplateIsPresent(name);
+        this.getIframeBody().find(this.emailContentPart).eq(2).should('be.visible');
+        let tagArr = ["Direct Donation URL", "Event Beneficiary Name", "Event Beneficiary Url", "Event Date" , "Event Hashtag",
+                      "Event Name", "Event Time", "Event URL", "Event Venue", "Fundraiser Email Address", "Fundraiser First Name",
+                      "Fundraiser Last Name", "Fundraiser Profile Link", "Organization Name", "Table Host First Name",
+                      "Table Host Last Name", "Table Name", "Table Number", "Ticket Code", "Ticket Parent Product Name", "Ticket Price", "Ticket Seat Number"];
+    
+        for(let i = 0; i < tagArr.length; i++)
+            this.getIframeBody().find('a').contains(tagArr[i]).should('be.visible');
+        
     }
 
     verifyTemplateEmailFundraiserRegistrationHasAllParts(name: string) {
         cy.wait(3000);
-        this.getIframeBody().find('a').contains(this.backToSelectionTxt).should('be.visible');
-        this.getIframeBody().find('div').contains(name).should('be.visible');
-        this.getIframeBody().find('button').contains(this.sendPreviewBtn).should('be.visible');
-        this.getIframeBody().find('button').contains(this.saveBtn).should('be.visible');
-        this.getIframeBody().find(this.emailInput).should('be.visible');
-       // this.getIframeBody().find('div').contains(this.sendEmailSuccess).should('be.visible');
-        this.getIframeBody().find(this.subjectPart).should('be.visible');
-        this.getIframeBody().find(this.headerImg).should('be.visible');
-        this.getIframeBody().find(this.emailContentPart).eq(0).should('be.visible');
-        this.getIframeBody().find(this.emailContentPart).eq(1).should('be.visible');
+        this.verifyMainPartTemplateIsPresent(name);
         this.getIframeBody().find(this.emailContentPart).eq(2).should('be.visible');
-        this.getIframeBody().find(this.inputSubject).should('be.visible');
-        this.getIframeBody().find(this.contentArear).should('be.exist');
-        this.getIframeBody().find('a').contains(this.directDonationURLTag).should('be.visible');
-        this.getIframeBody().find('a').contains(this.eventBeneficiaryNameTag).should('be.visible');
-        this.getIframeBody().find('a').contains(this.eventBeneficiaryUrlTag).should('be.visible');
-        this.getIframeBody().find('a').contains(this.eventDateTag).should('be.visible');
-        this.getIframeBody().find('a').contains(this.eventHashTag).should('be.visible');
-        this.getIframeBody().find('a').contains(this.eventNameTag).should('be.visible');
-        this.getIframeBody().find('a').contains(this.eventTimeTag).should('be.visible');
-        this.getIframeBody().find('a').contains(this.eventUrlTag).should('be.visible');
-        this.getIframeBody().find('a').contains(this.fundraiserEmailAddressTag).should('be.visible');
-        this.getIframeBody().find('a').contains(this.fundraiserFirstNameTag).should('be.visible');
-        this.getIframeBody().find('a').contains(this.fundraiserLastNameTag).should('be.visible');
-        this.getIframeBody().find('a').contains(this.fundraiserProfileLinkTag).should('be.visible');
-        this.getIframeBody().find('a').contains(this.organizationNameTag).should('be.visible');
+        let tagArr = ["Direct Donation URL", "Event Beneficiary Name", "Event Beneficiary Url", "Event Date" , "Event Hashtag",
+                      "Event Name", "Event Time", "Event URL","Fundraiser Email Address", "Fundraiser First Name",
+                      "Fundraiser Last Name", "Fundraiser Profile Link", "Organization Name"];
+    
+        for(let i = 0; i < tagArr.length; i++)
+            this.getIframeBody().find('a').contains(tagArr[i]).should('be.visible');
+        
+    }
+
+    verifyTemplateEmailPledgeCreationHasAllParts(name: string) {
+        this.verifyMainPartTemplateIsPresent(name);
+        this.getIframeBody().find('a').contains(this.fullFillPledgeBtn).should('be.visible');
+        let tagArr = ["Direct Donation URL", "Event Beneficiary Name", "Event Beneficiary Url", "Event Date" , "Event Hashtag",
+                      "Event Name", "Event Time", "Event URL", "First Name", "Fulfillment URL",
+                      "Last Name", "Organization Name", "Transaction Amount"];
+    
+        for(let i = 0; i < tagArr.length; i++)
+            this.getIframeBody().find('a').contains(tagArr[i]).should('be.visible');
+    }
+
+    verifyTemplateEmailPledgeReminderHasAllParts(name: string) {
+        cy.wait(5000);
+        this.verifyMainPartTemplateIsPresent(name);
+        this.getIframeBody().find('a').contains(this.fullFillPledgeBtn).should('be.visible');
+        let tagArr = ["Direct Donation URL", "Event Beneficiary Name", "Event Beneficiary Url","Email", "Event Date" , "Event Hashtag",
+        "Event Name", "Event Time", "Event URL", "Event Venue", "First Name", "Fulfillment URL",
+        "Last Name", "Transaction Address", "Organization Name", "Transaction Amount"];
+
+        for(let i = 0; i < tagArr.length; i++)
+            this.getIframeBody().find('a').contains(tagArr[i]).should('be.visible');
+    }
+
+    verifyTemplateEmailTicketHasAllParts(name: string) {
+        this.verifyMainPartTemplateIsPresent(name);
+        let tagArr = ["Direct Donation URL", "Event Beneficiary Name", "Event Beneficiary Url", "Event Date" , "Event Hashtag",
+                      "Event Name", "Event Time", "Event URL", "Event Venue", "Fundraiser Email Address", "Fundraiser First Name",
+                      "Fundraiser Last Name", "Fundraiser Profile Link", "Organization Name", "Promotion Code", "Table Host Email Address",
+                      "Table Host First Name", "Table Host Last Name", "Table Name", "Table Number", "Table Profile URL","Table Type",
+                      "Ticket Code", "Ticket Parent Product Name", "Ticket Price", "Ticket Seat Number", "Total Seats"];
+    
+        for(let i = 0; i < tagArr.length; i++)
+            this.getIframeBody().find('a').contains(tagArr[i]).should('be.visible');
+    }
+
+    verifyTemplateVirtualTicketEmailtHasAllParts(name: string) {
+        this.verifyMainPartTemplateIsPresent(name);
+        this.getIframeBody().find(this.emailContentPart).eq(2).should('be.visible');
+        let tagArr = ["Direct Donation URL", "Event Beneficiary Name", "Event Beneficiary Url", "Event Date" , "Event Hashtag",
+                      "Event Name", "Event Time", "Event URL", "Fundraiser Email Address", "Fundraiser First Name",
+                      "Fundraiser Last Name", "Fundraiser Profile Link", "Organization Name", "Promotion Code", 
+                      "Ticket Code", "Ticket Parent Product Name", "Ticket Price"];
+    
+        for(let i = 0; i < tagArr.length; i++)
+            this.getIframeBody().find('a').contains(tagArr[i]).should('be.visible');
+    }
+
+    verifyTemplateTicketPurchaseReceipttHasAllParts(name: string) {
+        this.verifyMainPartTemplateIsPresent(name);
+        let tagArr = ["Direct Donation URL", "Email", "Event Beneficiary Name", "Event Beneficiary Url", "Event Date" , "Event Hashtag",
+                      "Event Name", "Event Time", "Event URL", "Event Venue", "First Name","Last Name","Organization Name", "Quantity purchased",
+                      "Referring user's first name", "Referring user's last name", "Referring user's URL", 
+                       "Ticket Price", "Transaction Address", "Transaction Amount" , "Transaction Date"];
+        for(let i = 0; i < tagArr.length; i++)
+            this.getIframeBody().find('a').contains(tagArr[i]).should('be.visible');
+    }
+
+    verifyTemplateLivestreamReminderEmailtHasAllParts(name: string) {
+        this.verifyMainPartTemplateIsPresent(name);
+        let tagArr = ["Direct Donation URL", "Event Beneficiary Name", "Event Beneficiary Url", "Event Date" , "Event Hashtag",
+                      "Event Name", "Event Time", "Event URL", "Organization Name", "Fundraiser Email Address", "Fundraiser First Name",
+                      "Fundraiser Last Name", "Fundraiser Profile Link", "Livestream Login Link",
+                      "Organization Name", "Promotion Code", "Ticket Code", "Ticket Parent Product Name",
+                       "Ticket Price"];
+        for(let i = 0; i < tagArr.length; i++)
+            this.getIframeBody().find('a').contains(tagArr[i]).should('be.visible');
     }
 
     clickSendPreview(){

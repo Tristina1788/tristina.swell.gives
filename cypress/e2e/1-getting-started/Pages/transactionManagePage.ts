@@ -55,7 +55,7 @@ export class TransactionManagePage{
     }
 
     verifyTransactionIsCreated(type: string, fname : string, lname : string, email : string, amount : number, group : string = '', ticket : number = 0){
-        cy.wait(2000);
+        cy.wait(3000);
         cy.get(this.searchInput).clear();
         cy.get(this.searchInput).type(fname);
         if(type != 'Ticket') ticket = 0;

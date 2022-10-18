@@ -6,8 +6,8 @@ export class UsersPage{
     becomeAFund = '[value="BECOME A FUNDRAISER"]';
     giveNowActionForm = 'donations';
     purchaseTicketsActionForm = 'tickets/#ticket';
-    becomeAsponsorActionForm = 'donations#/sponsorship';
-    becomeAHostActionForm = 'donations#/table';
+    becomeAsponsorActionForm = 'sponsorships#/sponsorship';
+    becomeAHostActionForm = 'tables#/table';
     becomeAFundraiserActionForm = 'register';
     individuallyRaisedText = 'Individually Raised';
     donorsReferredText = 'Donors Referred';

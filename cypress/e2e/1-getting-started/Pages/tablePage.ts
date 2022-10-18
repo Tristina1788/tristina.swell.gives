@@ -8,7 +8,7 @@ export class TablePage{
     giveNowActionForm = 'donations';
     purchaseTicketsActionForm = 'tickets/#ticket';
     becomeAsponsorActionForm = 'sponsorships#/sponsorship';
-    becomeAHostActionForm = 'donations#/table';
+    becomeAHostActionForm = 'tables#/table';
     becomeAFundraiserActionForm = 'register';
     tableRaisedText = 'Table Raised';
     socialScoreText = 'Social Score';
