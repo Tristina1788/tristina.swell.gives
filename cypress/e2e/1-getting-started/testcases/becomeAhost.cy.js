@@ -20,7 +20,7 @@ let mailbox = new Mailbox();
 const infors = require('../utils/infor.js')
 const user = require('../../../fixtures/address.json')
 let inboxId = "";
-let randomEmail = "";
+let randomEmail = getRandomEmail();
 let hasMailbox = 0;
 
 describe('Verify become a host flow', () => {

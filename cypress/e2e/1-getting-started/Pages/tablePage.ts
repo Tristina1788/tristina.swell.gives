@@ -7,7 +7,7 @@ export class TablePage{
     becomeAFund = '[value="BECOME A FUNDRAISER"]';
     giveNowActionForm = 'donations';
     purchaseTicketsActionForm = 'tickets/#ticket';
-    becomeAsponsorActionForm = 'donations#/sponsorship';
+    becomeAsponsorActionForm = 'sponsorships#/sponsorship';
     becomeAHostActionForm = 'donations#/table';
     becomeAFundraiserActionForm = 'register';
     tableRaisedText = 'Table Raised';

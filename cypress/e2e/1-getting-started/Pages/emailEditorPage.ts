@@ -46,7 +46,7 @@ export class EmailEditorPage{
     }
 
     verifyAllTemplateExist(){
-        cy.wait(3000);
+        cy.wait(5000);
         this. getIframeBody().find('h5').contains(this.guestCheckIn).parent(this.cardBody).children('div').children('a').invoke('text')
 
         .then(text=> {

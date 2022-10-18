@@ -69,7 +69,7 @@ describe('Verify Choose a sponsorship flow', () => {
         donationsPaymentPage.verifyTransactionFinish();
         if(hasMailbox ==1 )
             mailbox.verifyMailboxGetEmailSponsorshipSuccess(inboxId);
-        usersPage.verifyTheUsersIsSponsor(infors.url+'users/'+infors.personRecieveCreditPage,randomName + ' '+randomLastName);
+        
 
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/transactions');
         transactionManagePage.verifyTransactionIsCreated('Sponsorship',randomName,randomLastName, randomEmail,'$501.00', 'grouest');

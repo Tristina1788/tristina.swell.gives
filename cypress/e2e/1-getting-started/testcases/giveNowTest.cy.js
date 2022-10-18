@@ -18,13 +18,14 @@ const infors = require('../utils/infor.js')
 const userFullFill = require('../../../fixtures/fullFillInfor.json')
 const user = require('../../../fixtures/address.json')
 let inboxId = "";
-let randomEmail = "";
+let randomEmail = getRandomEmail();
 let hasMailbox = 0;
 
 
 describe('Verify Give Now flow', () => {
     
     it.only('setup mailbox inbox',()=>{
+        
         cy.readFile('./data/mailbox.json',{timeout:2000}).then((inbox)=> {
             hasMailbox = inbox.hasMailbox;
             if(hasMailbox == -1) randomEmail = getRandomEmail();
