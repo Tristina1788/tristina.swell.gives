@@ -70,7 +70,8 @@ export class EmailEditorDetailPage {
         this.getIframeBody().find(this.subjectPart).should('be.visible');
         this.getIframeBody().find(this.headerImg).should('be.visible');
         this.getIframeBody().find(this.emailContentPart).eq(0).should('be.visible');
-        this.getIframeBody().find(this.emailContentPart).eq(1).should('be.visible');
+        if (name != 'In-Person Event Reminder Email')
+            this.getIframeBody().find(this.emailContentPart).eq(1).should('be.visible');
         this.getIframeBody().find(this.inputSubject).should('be.visible');
         this.getIframeBody().find(this.contentArear).should('be.exist');
     }
@@ -164,6 +165,16 @@ export class EmailEditorDetailPage {
                       "Fundraiser Last Name", "Fundraiser Profile Link", "Livestream Login Link",
                       "Organization Name", "Promotion Code", "Ticket Code", "Ticket Parent Product Name",
                        "Ticket Price"];
+        for(let i = 0; i < tagArr.length; i++)
+            this.getIframeBody().find('a').contains(tagArr[i]).should('be.visible');
+    }
+
+    verifyTemplatePersonEventReminderEmailtHasAllParts(name: string) {
+        this.verifyMainPartTemplateIsPresent(name);
+        let tagArr = ["Direct Donation URL", "Event Beneficiary Name", "Event Beneficiary Url", "Event Date" , "Event Hashtag",
+                      "Event Name", "Event Time", "Event URL", "Event Venue", "Fundraiser Email Address", "Fundraiser First Name",
+                      "Fundraiser Last Name", "Fundraiser Profile Link", "Organization Name", "Promotion Code", "Ticket Code",
+                      "Ticket Parent Product Name", "Ticket Price"];
         for(let i = 0; i < tagArr.length; i++)
             this.getIframeBody().find('a').contains(tagArr[i]).should('be.visible');
     }
