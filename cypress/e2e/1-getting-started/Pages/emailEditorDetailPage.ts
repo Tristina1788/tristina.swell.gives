@@ -38,6 +38,7 @@ export class EmailEditorDetailPage {
     ticketSeatNumberTag = 'Ticket Seat Number';
     saveBtn = 'Save';
     fullFillPledgeBtn = 'FULFILL YOUR PLEDGE';
+    donateBtn = 'Donate now';
 
     getIframeDocument = () => {
         return cy
@@ -175,6 +176,29 @@ export class EmailEditorDetailPage {
                       "Event Name", "Event Time", "Event URL", "Event Venue", "Fundraiser Email Address", "Fundraiser First Name",
                       "Fundraiser Last Name", "Fundraiser Profile Link", "Organization Name", "Promotion Code", "Ticket Code",
                       "Ticket Parent Product Name", "Ticket Price"];
+        for(let i = 0; i < tagArr.length; i++)
+            this.getIframeBody().find('a').contains(tagArr[i]).should('be.visible');
+    }
+
+    verifyTemplateTableHostEmailtHasAllParts(name: string) {
+        this.verifyMainPartTemplateIsPresent(name);
+        let tagArr = ["Direct Donation URL", "Event Beneficiary Name", "Event Beneficiary Url", "Event Date" , "Event Hashtag",
+                      "Event Name", "Event Time", "Event URL", "Organization Name","Table Host Email Address",
+                      "Table Host First Name", "Table Host Last Name", "Table Management Link", "Table Name", "Table Number", 
+                      "Table Profile URL", "Table Type", "Total Seats"];
+        for(let i = 0; i < tagArr.length; i++)
+            this.getIframeBody().find('a').contains(tagArr[i]).should('be.visible');
+    }
+
+    verifyTemplateEmailtoGuestWhenGuestDeclinesHasAllParts(name: string) {
+        cy.wait(2000);
+        this.verifyMainPartTemplateIsPresent(name);
+        this.getIframeBody().find(this.emailContentPart).eq(2).should('be.visible');
+        cy.get('td').contains(this.donateBtn).should('be.visible');
+        let tagArr = ["Direct Donation URL", "Event Beneficiary Name", "Event Beneficiary Url", "Event Date" , "Event Hashtag",
+                      "Event Name", "Event Time", "Event URL", "Event Venue", "Organization Name","Table Guest Email Address",
+                      "Table Guest First Name", "Table Host Email Address",  "Table Host First Name", "Table Host Last Name", 
+                      "Table Name", "Table Number", "Table Profile URL","Table Type", "Total Seats"];
         for(let i = 0; i < tagArr.length; i++)
             this.getIframeBody().find('a').contains(tagArr[i]).should('be.visible');
     }
