@@ -38,8 +38,11 @@ export class EmailEditorDetailPage {
     ticketSeatNumberTag = 'Ticket Seat Number';
     saveBtn = 'Save';
     fullFillPledgeBtn = 'FULFILL YOUR PLEDGE';
+    confirmBtn = 'CONFIRM';
+    declineBtn = 'DECLINE';
     donateBtn = 'Donate now';
-
+    inviteBtn = 'Invite another guest';
+    
     getIframeDocument = () => {
         return cy
         .get('iframe.second-row')
@@ -53,6 +56,28 @@ export class EmailEditorDetailPage {
       }
       
     getIframeBody = () => {
+        // get the document
+        return this.getIframeDocument()
+        // automatically retries until body is loaded
+        .its('body').should('not.be.undefined')
+        // wraps "body" DOM element to allow
+        // chaining more Cypress commands, like ".find(...)"
+        .then(cy.wrap)
+    }
+
+    getIframeDocumentDetail = () => {
+        return cy
+        .get('iframe.second-row')
+        // Cypress yields jQuery element, which has the real
+        // DOM element under property "0".
+        // From the real DOM iframe element we can get
+        // the "document" element, it is stored in "contentDocument" property
+        // Cypress "its" command can access deep properties using dot notation
+        // https://on.cypress.io/its
+        .its('0.contentDocument').should('exist')
+      }
+      
+    getIframeBodyDetail = () => {
         // get the document
         return this.getIframeDocument()
         // automatically retries until body is loaded
@@ -194,11 +219,103 @@ export class EmailEditorDetailPage {
         cy.wait(2000);
         this.verifyMainPartTemplateIsPresent(name);
         this.getIframeBody().find(this.emailContentPart).eq(2).should('be.visible');
-        cy.get('td').contains(this.donateBtn).should('be.visible');
+        //this.getIframeBody().find(this.emailContentPart).eq(3).should('be.visible');
+        // this.getIframeBody().find(this.emailContentPart).eq(4).should('be.visible');
+        this.getIframeBody().find('a').contains(this.donateBtn).should('be.visible');
         let tagArr = ["Direct Donation URL", "Event Beneficiary Name", "Event Beneficiary Url", "Event Date" , "Event Hashtag",
                       "Event Name", "Event Time", "Event URL", "Event Venue", "Organization Name","Table Guest Email Address",
                       "Table Guest First Name", "Table Host Email Address",  "Table Host First Name", "Table Host Last Name", 
                       "Table Name", "Table Number", "Table Profile URL","Table Type", "Total Seats"];
+        for(let i = 0; i < tagArr.length; i++)
+            this.getIframeBody().find('a').contains(tagArr[i]).should('be.visible');
+    }
+
+    verifyTemplateEmailToHostWhenGuestDeclinesHasAllParts(name: string) {
+        cy.wait(2000);
+        this.verifyMainPartTemplateIsPresent(name);
+        //this.getIframeBody().find(this.emailContentPart).eq(2).should('be.visible');
+        this.getIframeBody().find('a').contains(this.inviteBtn).should('be.visible');
+        let tagArr = ["Direct Donation URL", "Event Beneficiary Name", "Event Beneficiary Url", "Event Date" , "Event Hashtag",
+                      "Event Name", "Event Time", "Event URL", "Event Venue", "Organization Name","Table Guest Email Address",
+                      "Table Guest First Name", "Table Host Email Address",  "Table Host First Name", "Table Host Last Name", 
+                      "Table Name", "Table Number", "Table Profile URL","Table Type", "Total Seats"];
+        for(let i = 0; i < tagArr.length; i++)
+            this.getIframeBody().find('a').contains(tagArr[i]).should('be.visible');
+    }
+
+    verifyTemplateEmailTableGuestInvitationHasAllParts(name: string) {
+        cy.wait(3000);
+        this.verifyMainPartTemplateIsPresent(name);
+        this.getIframeBody().find(this.emailContentPart).eq(2).should('be.visible');
+        this.getIframeBody().find(this.emailContentPart).eq(3).should('be.visible');
+        this.getIframeBody().find(this.emailContentPart).eq(4).should('be.visible');
+        this.getIframeBody().find('a').contains(this.confirmBtn).should('be.visible');
+        this.getIframeBody().find('a').contains(this.declineBtn).should('be.visible');
+        let tagArr = ["Direct Donation URL", "Event Beneficiary Name", "Event Beneficiary Url", "Event Date" , "Event Hashtag",
+                      "Event Name", "Event Time", "Event URL", "Event Venue", "Organization Name","Product Name", "Table Guest Confirm URL",
+                      "Table Guest Decline URL", "Table Guest First Name", "Table Guest Email Address",  "Table Guest Last Name", "Table Host First Name",
+                      "Table Host Last Name", "Table Name", "Table Number", "Table Profile URL","Table Type", "Total Seats"];
+        for(let i = 0; i < tagArr.length; i++)
+            this.getIframeBody().find('a').contains(tagArr[i]).should('be.visible');
+    }
+
+    verifyTemplateTablePurchaseReceiptHasAllParts(name: string) {
+        cy.wait(3000);
+        this.verifyMainPartTemplateIsPresent(name);
+        let tagArr = ["Direct Donation URL", "Event Beneficiary Name", "Event Beneficiary Url", "Event Date" , "Event Hashtag",
+                      "Event Name", "Event Time", "Event URL", "Event Venue", "First Name","Last Name", "Organization Name",
+                      "Table Type", "Total Seats",   "Transaction Address", "Transaction Amount",
+                      "Transaction Date"];
+        for(let i = 0; i < tagArr.length; i++)
+            this.getIframeBody().find('a').contains(tagArr[i]).should('be.visible');
+    }
+
+    verifyTemplateCompTicketEmailHasAllParts(name: string) {
+        cy.wait(3000);
+        this.verifyMainPartTemplateIsPresent(name);
+        let tagArr = ["Direct Donation URL", "Direct Donation URL", "Event Beneficiary Url", "Event Date", "Event Hashtag",
+                      "Event Name", "Event Time", "Event URL", "Event Venue", "Organization Name", "Product Name",
+                      "Promotion Code", "Promotion First Name", "Promotion Last Name", "Promotion Quantity", "Promotion Redemption Url"];
+        for(let i = 0; i < tagArr.length; i++)
+            this.getIframeBody().find('a').contains(tagArr[i]).should('be.visible');
+    }
+
+    verifyTemplateDonationReceiptHasAllParts(name: string) {
+        cy.wait(3000);
+        this.verifyMainPartTemplateIsPresent(name);
+        let tagArr = ["Direct Donation URL", "Email", "Event Beneficiary Name", "Event Beneficiary Url", "Event Date", "Event Hashtag",
+                      "Event Name", "Event Time", "Event URL", "First Name", "Last Name", "Organization Name", "Referring user's email address",
+                      "Referring user's first name", "Referring user's last name", "Referring user's URL", "Transaction Address", "Transaction Amount", "Transaction Date"];
+        for(let i = 0; i < tagArr.length; i++)
+            this.getIframeBody().find('a').contains(tagArr[i]).should('be.visible');
+    }
+
+    verifyTemplateReferralSuccessEmailHasAllParts(name: string) {
+        cy.wait(3000);
+        this.verifyMainPartTemplateIsPresent(name);
+        let tagArr = ["Donation Amount", "Donation Anonymous Status", "Donation Email", "Donation First Name", "Donation Last Name",
+                      "Event Beneficiary Name", "Event Name", "Fundraiser Profile Link", "Referrer First Name", "Referrer Last Name"];
+        for(let i = 0; i < tagArr.length; i++)
+            this.getIframeBody().find('a').contains(tagArr[i]).should('be.visible');
+    }
+
+    verifyTemplateRecurringDonationReceiptHasAllParts(name: string) {
+        cy.wait(3000);
+        this.verifyMainPartTemplateIsPresent(name);
+        let tagArr = ["Direct Donation URL", "Email", "Event Beneficiary Name", "Event Beneficiary Url", "Event Date", "Event Hashtag",
+                      "Event Name", "Event Time", "Event URL", "First Name", "Last Name", "Organization Name", "Referring user's email address",
+                      "Referring user's first name", "Referring user's last name", "Referring user's URL", "Transaction Address",
+                      "Transaction Amount", "Transaction Date"];
+        for(let i = 0; i < tagArr.length; i++)
+            this.getIframeBody().find('a').contains(tagArr[i]).should('be.visible');
+    }
+
+    verifyTemplateSponsorshipPurchaseReceiptHasAllParts(name: string) {
+        cy.wait(3000);
+        this.verifyMainPartTemplateIsPresent(name);
+        let tagArr = ["Direct Donation URL", "Email", "Event Beneficiary Name", "Event Beneficiary Url", "Event Date", "Event Hashtag",
+                      "Event Name", "Event Time", "Event URL", "Event Venue", "First Name", "Last Name", "Organization Name",
+                      "Transaction Address", "Transaction Amount", "Transaction Date"];
         for(let i = 0; i < tagArr.length; i++)
             this.getIframeBody().find('a').contains(tagArr[i]).should('be.visible');
     }
@@ -224,6 +341,7 @@ export class EmailEditorDetailPage {
     }
 
     inputEmail(email : string){
+        cy.wait(2000);
         this.getIframeBody().find(this.emailInput).clear();
         this.getIframeBody().find(this.emailInput).type(email);
     }

@@ -24,6 +24,9 @@ let randomLastName = getRandomText();
 let randomEmail= getRandomEmail();
 let randomNumber = getRandomNumber();
 let randomCompany = getRandomText();
+beforeEach(() => {
+   
+});
 describe('Verify Tickets Manage flow', () => {
     it.only('setup mailbox inbox',()=>{
         cy.readFile('./data/mailbox.json',{timeout:2000}).then((inbox)=> {
@@ -49,8 +52,9 @@ describe('Verify Tickets Manage flow', () => {
     })
 
     it.only('Verify enable to create new Ticket from manage Page',()=>{
-        cy.forceVisit(infors.urlManage);
         if(hasMailbox == 1 ) cy.emptyInbox(inboxId);
+        loginManagePage.visit(infors.urlManage);
+        loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/tickets');
         ticketManagePage.clickAddBtn();
         ticketDetailManagePage.inputTicketForm('','Test Ticket $33.00', true, 'abc table', 'test ticket',randomName,randomLastName,randomCompany,randomEmail,false, randomNumber,'grouest');

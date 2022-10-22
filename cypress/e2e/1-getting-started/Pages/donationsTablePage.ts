@@ -43,11 +43,6 @@ export class DonationsTablePage{
          cy.get(this.amountSelection).should('be.visible');
      }
 
-    // verifyTableIsSelectedAsDefault(tableName: string, tablePrice: string) {
-    //    cy.get(this.tableRadio).should('be.selected');
-    //     cy.get(this.tableLabel).contains(tableName).should('be.visible');
-    // }
-
     verifyTableIsSelectedAsDefault(tableName: string, tablePrice: string) {
         cy.get(this.tableLabel).next().contains(tableName).should('be.visible');
         cy.get('li').contains(tableName + ' - $' + tablePrice).should('be.visible');

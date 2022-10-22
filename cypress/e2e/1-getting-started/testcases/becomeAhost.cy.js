@@ -54,7 +54,7 @@ describe('Verify become a host flow', () => {
         let randomEmail = getRandomEmail();
         let randomPhone = getRandomNumber();
         homePage.clickGiveAHostButton();
-        donationsTablePage.verifyTableIsSelectedAsDefault(infors.tableItem, infors.tablePriceString);
+        donationsTablePage.verifyTableIsExistAndSelectIt(infors.tableItem, infors.tablePriceString);
         donationsTablePage.selectAmountItem(infors.amountTicket)
         donationsTablePage.verifySummaryAmount(infors.amountDonateTable, infors.tablePriceNumber);
         donationsTablePage.clickNextButton();
@@ -87,7 +87,8 @@ describe('Verify become a host flow', () => {
         donationsRegisterTablePage.verifyInviteSuccess(randomNameGuest, randomLastNameGuest, randomEmailGuest);
         donationsRegisterTablePage.clickCancelInviteGuestButton();
         donationsRegisterTablePage.verifyCancelInviteGuestSuccess();
-
+        loginManagePage.visit(infors.urlManage);
+        loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/transactions');
         transactionManagePage.verifyTransactionIsCreated('Table',randomName,randomLastName, randomEmail,'$1,201.00');
         transactionManagePage.verifyTransactionIsCreated('Donation',randomName,randomLastName, randomEmail,'$75.00');
@@ -102,7 +103,7 @@ describe('Verify become a host flow', () => {
         //let randomEmail = getRandomEmail();
         let randomPhone = getRandomNumber();
         homePage.clickGiveAHostButton();
-        donationsTablePage.verifyTableIsSelectedAsDefault(infors.tableItem, infors.tablePriceString);
+        donationsTablePage.verifyTableIsExistAndSelectIt(infors.tableItem, infors.tablePriceString);
         donationsTablePage.selectAmountItem(infors.amountTicket)
         donationsTablePage.verifySummaryAmount(infors.amountDonateTable, infors.tablePriceNumber);
         donationsTablePage.clickNextButton();
@@ -146,7 +147,7 @@ describe('Verify become a host flow', () => {
         let randomEmail = getRandomEmail();
         let randomPhone = getRandomNumber();
         homePage.clickGiveAHostButton();
-        donationsTablePage.verifyTableIsSelectedAsDefault(infors.tableItem, infors.tablePriceString);
+        donationsTablePage.verifyTableIsExistAndSelectIt(infors.tableItem, infors.tablePriceString);
         donationsTablePage.selectAmountItem(infors.amountTicket)
         donationsTablePage.verifySummaryAmount(infors.amountDonateTable, infors.tablePriceNumber);
         donationsTablePage.clickNextButton();

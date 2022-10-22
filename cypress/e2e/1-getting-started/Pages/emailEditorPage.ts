@@ -47,11 +47,7 @@ export class EmailEditorPage{
 
     verifyAllTemplateExist(){
         cy.wait(5000);
-        this. getIframeBody().find('h5').contains(this.guestCheckIn).parent(this.cardBody).children('div').children('a').invoke('text')
-
-        .then(text=> {
-            cy.log("text iframe:"+text);
-        });
+         this. getIframeBody().find('h2').contains(this.titlePage).should('be.visible');
 
         this. getIframeBody().find('h5').contains(this.guestCheckIn).parent(this.cardBody).children('div').children('a').should('be.visible');
         this. getIframeBody().find('h5').contains(this.fundraiserReg).parent(this.cardBody).children('div').children('a').should('be.visible');
@@ -76,7 +72,7 @@ export class EmailEditorPage{
     }
 
     clickEmailTemplate(name : string){
-        cy.wait(3000);
+        cy.wait(5000);
         this. getIframeBody().find('h5').contains(name).parent(this.cardBody).children('div').children('a').click();
     }
 

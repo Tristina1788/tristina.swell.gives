@@ -15,11 +15,11 @@ const userFullFill = require('../../../fixtures/fullFillInfor.json');
 const user = require('../../../fixtures/address.json');
 let inboxId = "";
 let hasMailbox = 0;
-let randomEmail = 0;
+let randomEmail = getRandomEmail();
 describe('Verify Email Editor Manage', () => {
 
-    it.only('setup mailbox inbox',()=>{
-        cy.readFile('./data/mailbox.json',{timeout:2000}).then((inbox)=> {
+    it('setup mailbox inbox',()=>{
+        cy.readFile('./data/mailbox.json',{timeout:20000}).then((inbox)=> {
             hasMailbox = inbox.hasMailbox;
             if(hasMailbox == -1) randomEmail = getRandomEmail();
             else if(hasMailbox != 1){
@@ -41,12 +41,12 @@ describe('Verify Email Editor Manage', () => {
         });
     })
 
-    it.only('Verify system has all template', () => {
+    it('Verify system has all template', () => {
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/email-editor',{timeout:200000});
         emailEditorPage.verifyAllTemplateExist();
     })
 
-    it.only('Verify template Guest Check In work correct', () => {
+    it('Verify template Guest Check In work correct', () => {
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/email-editor',{timeout:200000});
         if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
         emailEditorPage.clickEmailTemplate('Guest Check In');
@@ -62,7 +62,7 @@ describe('Verify Email Editor Manage', () => {
         emailEditorDetailPage.updateSubject('Thanks *|fundraiserFirstName|* for Checking In to *|eventName|*');
     })
 
-    it.only('Verify template Fundraiser Registration work correct', () => {
+    it('Verify template Fundraiser Registration work correct', () => {
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/email-editor',{timeout:200000});
         if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
         emailEditorPage.clickEmailTemplate('Fundraiser Registration');
@@ -78,7 +78,7 @@ describe('Verify Email Editor Manage', () => {
         emailEditorDetailPage.updateSubject('Thanks for Registering as a fundraiser for *|eventName|*');
     })
 
-    it.only('Verify template Pledge Creation work correct', () => {
+    it('Verify template Pledge Creation work correct', () => {
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/email-editor',{timeout:200000});
         if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
         emailEditorPage.clickEmailTemplate('Pledge Creation');
@@ -94,7 +94,7 @@ describe('Verify Email Editor Manage', () => {
         emailEditorDetailPage.updateSubject('Thanks for Pledging Support to *|eventbeneficiaryName|*');
     })
 
-    it.only('Verify template Pledge Reminder work correct', () => {
+    it('Verify template Pledge Reminder work correct', () => {
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/email-editor',{timeout:200000});
         if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
         emailEditorPage.clickEmailTemplate('Pledge Reminder');
@@ -110,7 +110,7 @@ describe('Verify Email Editor Manage', () => {
         emailEditorDetailPage.updateSubject('Uh Oh! Did you forget you promised to support *|eventbeneficiaryName|*');
     })
 
-    it.only('Verify template In-Person Ticket Email work correct', () => {
+    it('Verify template In-Person Ticket Email work correct', () => {
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/email-editor',{timeout:200000});
         if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
         emailEditorPage.clickEmailTemplate('In-Person Ticket Email');
@@ -126,7 +126,7 @@ describe('Verify Email Editor Manage', () => {
         emailEditorDetailPage.updateSubject('Here is your ticket to *|eventName|*');
     })
 
-    it.only('Verify template Virtual Ticket Email work correct', () => {
+    it('Verify template Virtual Ticket Email work correct', () => {
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/email-editor',{timeout:200000});
         if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
         emailEditorPage.clickEmailTemplate('Virtual Ticket Email');
@@ -142,7 +142,7 @@ describe('Verify Email Editor Manage', () => {
         emailEditorDetailPage.updateSubject('Here is your virtual ticket to *|eventName|*');
     })
 
-    it.only('Verify template Ticket Purchase Receipt work correct', () => {
+    it('Verify template Ticket Purchase Receipt work correct', () => {
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/email-editor',{timeout:200000});
         if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
         emailEditorPage.clickEmailTemplate('Ticket Purchase Receipt');
@@ -158,7 +158,7 @@ describe('Verify Email Editor Manage', () => {
         emailEditorDetailPage.updateSubject('Thanks for your purchase supporting *|eventname|*');
     })
 
-    it.only('Verify template Livestream Reminder Email work correct', () => {
+    it('Verify template Livestream Reminder Email work correct', () => {
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/email-editor',{timeout:200000});
         if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
         emailEditorPage.clickEmailTemplate('Livestream Reminder Email');
@@ -174,7 +174,7 @@ describe('Verify Email Editor Manage', () => {
         emailEditorDetailPage.updateSubject('*|eventname|* Starts in 1 Hour!');
     })
 
-    it.only('Verify template In-Person Event Reminder Email work correct', () => {
+    it('Verify template In-Person Event Reminder Email work correct', () => {
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/email-editor',{timeout:200000});
         if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
         emailEditorPage.clickEmailTemplate('In-Person Event Reminder Email');
@@ -190,7 +190,7 @@ describe('Verify Email Editor Manage', () => {
         emailEditorDetailPage.updateSubject('*|eventname|* Starts in 1 Hour!');
     })
 
-    it.only('Verify template Table Host Email work correct', () => {
+    it('Verify template Table Host Email work correct', () => {
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/email-editor',{timeout:200000});
         if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
         emailEditorPage.clickEmailTemplate('Table Host Email');
@@ -206,7 +206,7 @@ describe('Verify Email Editor Manage', () => {
         emailEditorDetailPage.updateSubject('Thank you for supporting *|eventName|* by hosting a *|tableType|*.  Invite your guests here.');
     })
 
-    it.only('Verify template Email to Guest When Guest Declines work correct', () => {
+    it('Verify template Email to Guest When Guest Declines work correct', () => {
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/email-editor',{timeout:200000});
         if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
         emailEditorPage.clickEmailTemplate('Email to Guest When Guest Declines');
@@ -221,4 +221,133 @@ describe('Verify Email Editor Manage', () => {
             mailbox.verifyMailboxGetEmaiTemplateSuccess(inboxId,'Testing : We will miss you at', 'Become a Fundraiser to join us in spirit!')
         emailEditorDetailPage.updateSubject('We will miss you at *|eventName|*');
     })
+
+    it('Verify template Table Guest Invitation work correct', () => {
+        loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/email-editor',{timeout:200000});
+        if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
+        emailEditorPage.clickEmailTemplate('Table Guest Invitation');
+        emailEditorDetailPage.verifyTemplateEmailTableGuestInvitationHasAllParts('Table Guest Invitation');
+        emailEditorDetailPage.updateSubject('Hey! *|tablehostfirstname|* invited you to *|eventname|*. Please say you are going. => Testing');
+        emailEditorDetailPage.clickSaveBtn();
+        emailEditorDetailPage.verifySubjectAfterUpdate('Hey! Marie invited you to The Good Dinner. Please say you are going. => Testing');
+        emailEditorDetailPage.inputEmail(randomEmail);
+        emailEditorDetailPage.clickSendEmail();
+        emailEditorDetailPage.verifySendEmailSuccess();
+        if(hasMailbox ==1 )
+            mailbox.verifyMailboxGetEmaiTemplateSuccess(inboxId,'Please say you are going. => Testing', 'Please confirm your invitation below.')
+        emailEditorDetailPage.updateSubject('Hey! *|tablehostfirstname|* invited you to *|eventname|*. Please say you are going.');
+    })
+
+    it('Verify template Email to Host When Guest Declines work correct', () => {
+        loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/email-editor',{timeout:200000});
+        if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
+        emailEditorPage.clickEmailTemplate('Email to Host When Guest Declines');
+        emailEditorDetailPage.verifyTemplateEmailToHostWhenGuestDeclinesHasAllParts('Email to Host When Guest Declines');
+        emailEditorDetailPage.updateSubject('Testing : Your guest, *|tableguestfirstname|*, declined your invitation.');
+        emailEditorDetailPage.clickSaveBtn();
+        emailEditorDetailPage.verifySubjectAfterUpdate('Testing : Your guest, Johny, declined your invitation.');
+        emailEditorDetailPage.inputEmail(randomEmail);
+        emailEditorDetailPage.clickSendEmail();
+        emailEditorDetailPage.verifySendEmailSuccess();
+        if(hasMailbox ==1 )
+            mailbox.verifyMailboxGetEmaiTemplateSuccess(inboxId,'Testing : Your guest', 'We are updating you that Johny Smith declined your invitation to The Good Dinner.')
+        emailEditorDetailPage.updateSubject('Your guest, *|tableguestfirstname|*, declined your invitation.');
+    })
+
+    it('Verify template Table Purchase Receipt work correct', () => {
+        loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/email-editor',{timeout:200000});
+        if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
+        emailEditorPage.clickEmailTemplate('Table Purchase Receipt');
+        emailEditorDetailPage.verifyTemplateTablePurchaseReceiptHasAllParts('Table Purchase Receipt');
+        emailEditorDetailPage.updateSubject('Testing : Thanks for your purchase supporting *|eventname|*');
+        emailEditorDetailPage.clickSaveBtn();
+        emailEditorDetailPage.verifySubjectAfterUpdate('Testing : Thanks for your purchase supporting The Good Dinner');
+        emailEditorDetailPage.inputEmail(randomEmail);
+        emailEditorDetailPage.clickSendEmail();
+        emailEditorDetailPage.verifySendEmailSuccess();
+        if(hasMailbox ==1 )
+            mailbox.verifyMailboxGetEmaiTemplateSuccess(inboxId,'Testing : Thanks for your purchase supporting', 'Instructions for inviting guests to your Table are sent in a separate email. Keep your eyes peeled and start inviting!')
+        emailEditorDetailPage.updateSubject('Thanks for your purchase supporting *|eventname|*');
+    })
+
+    it('Verify template Comp Ticket Email work correct', () => {
+        loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/email-editor',{timeout:200000});
+        if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
+        emailEditorPage.clickEmailTemplate('Comp Ticket Email');
+        emailEditorDetailPage.verifyTemplateCompTicketEmailHasAllParts('Comp Ticket Email');
+        emailEditorDetailPage.updateSubject('Testing : Please register your guests for  *|eventName|*');
+        emailEditorDetailPage.clickSaveBtn();
+        emailEditorDetailPage.verifySubjectAfterUpdate('Testing : Please register your guests for  The Good Dinner');
+        emailEditorDetailPage.inputEmail(randomEmail);
+        emailEditorDetailPage.clickSendEmail();
+        emailEditorDetailPage.verifySendEmailSuccess();
+        if(hasMailbox ==1 )
+            mailbox.verifyMailboxGetEmaiTemplateSuccess(inboxId,'Testing : Please register your guests for', 'Here is a link for you to redeem your');
+        emailEditorDetailPage.updateSubject('Please register your guests for  *|eventName|*');
+    })
+
+    it('Verify template Donation Receipt work correct', () => {
+        loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/email-editor',{timeout:200000});
+        if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
+        emailEditorPage.clickEmailTemplate('Donation Receipt');
+        emailEditorDetailPage.verifyTemplateDonationReceiptHasAllParts('Donation Receipt');
+        emailEditorDetailPage.updateSubject('Testing : Thank you for supporting *|eventbeneficiaryname|*');
+        emailEditorDetailPage.clickSaveBtn();
+        emailEditorDetailPage.verifySubjectAfterUpdate('Testing : Thank you for supporting The good non-profit');
+        emailEditorDetailPage.inputEmail(randomEmail);
+        emailEditorDetailPage.clickSendEmail();
+        emailEditorDetailPage.verifySendEmailSuccess();
+        if(hasMailbox ==1 )
+            mailbox.verifyMailboxGetEmaiTemplateSuccess(inboxId,'Testing : Thank you for supporting', 'This is your receipt confirming')
+        emailEditorDetailPage.updateSubject('Thank you for supporting *|eventbeneficiaryname|*');
+    })
+
+    it('Verify template Referral Success Email work correct', () => {
+        loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/email-editor',{timeout:200000});
+        if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
+        emailEditorPage.clickEmailTemplate('Referral Success Email');
+        emailEditorDetailPage.verifyTemplateReferralSuccessEmailHasAllParts('Referral Success Email');
+        emailEditorDetailPage.updateSubject('Testing : Well done! You helped increase the impact of *|eventbeneficiaryname|*');
+        emailEditorDetailPage.clickSaveBtn();
+        emailEditorDetailPage.verifySubjectAfterUpdate('Testing : Well done! You helped increase the impact of The good non-profit');
+        emailEditorDetailPage.inputEmail(randomEmail);
+        emailEditorDetailPage.clickSendEmail();
+        emailEditorDetailPage.verifySendEmailSuccess();
+        if(hasMailbox ==1 )
+            mailbox.verifyMailboxGetEmaiTemplateSuccess(inboxId,'Testing : Well done! You helped increase the impact of', 'The following donation or purchase was credited to your Fundraising Page for')
+        emailEditorDetailPage.updateSubject('Well done! You helped increase the impact of *|eventbeneficiaryname|*');
+    })
+
+    it('Verify template Recurring Donation Receipt work correct', () => {
+        loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/email-editor',{timeout:200000});
+        if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
+        emailEditorPage.clickEmailTemplate('Recurring Donation Receipt');
+        emailEditorDetailPage.verifyTemplateRecurringDonationReceiptHasAllParts('Recurring Donation Receipt');
+        emailEditorDetailPage.updateSubject('Testing : Thank you for supporting *|eventbeneficiaryname|*');
+        emailEditorDetailPage.clickSaveBtn();
+        emailEditorDetailPage.verifySubjectAfterUpdate('Testing : Thank you for supporting The good non-profit');
+        emailEditorDetailPage.inputEmail(randomEmail);
+        emailEditorDetailPage.clickSendEmail();
+        emailEditorDetailPage.verifySendEmailSuccess();
+        if(hasMailbox ==1 )
+            mailbox.verifyMailboxGetEmaiTemplateSuccess(inboxId,'Testing : Thank you for supporting', 'Donation schedule: This donation will occur monthly on the same day of each month.')
+        emailEditorDetailPage.updateSubject('Thank you for supporting *|eventbeneficiaryname|*');
+    })
+
+    it('Verify template Sponsorship Purchase Receipt work correct', () => {
+        loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/email-editor',{timeout:200000});
+        if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
+        emailEditorPage.clickEmailTemplate('Sponsorship Purchase Receipt');
+        emailEditorDetailPage.verifyTemplateSponsorshipPurchaseReceiptHasAllParts('Sponsorship Purchase Receipt');
+        emailEditorDetailPage.updateSubject('Testing : Thanks for your purchase supporting *|eventname|*');
+        emailEditorDetailPage.clickSaveBtn();
+        emailEditorDetailPage.verifySubjectAfterUpdate('Testing : Thanks for your purchase supporting The Good Dinner');
+        emailEditorDetailPage.inputEmail(randomEmail);
+        emailEditorDetailPage.clickSendEmail();
+        emailEditorDetailPage.verifySendEmailSuccess();
+        if(hasMailbox ==1 )
+            mailbox.verifyMailboxGetEmaiTemplateSuccess(inboxId,'Testing : Thanks for your purchase supporting', 'We will follow up with you if additional information is required or if complimentary tickets are a part of this package.')
+        emailEditorDetailPage.updateSubject('Thanks for your purchase supporting *|eventname|*');
+    })
+
 })
