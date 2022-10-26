@@ -58,15 +58,14 @@ describe('Verify setup setting - ticket page', () => {
         let randomEmail = getRandomEmail();
         let randomPhone = getRandomNumber();
         homePage.clickPurchaseTickets();
-        ticketPage.verifyIsScreenSelectTickets();
-        console.log("promo2222222:"+promo);
+        ticketPage.verifyIsScreenSelectTickets(name);
         ticketPage.verifyTicketGetCorrectInforFromTicketSetingForm(title, name, promo,teamselectiont, teamCreatetitle, donatitle, true, true, orderLb, donaLb);
         ticketPage.selectTestTicket(0);
         ticketPage.verifyFormInforTc(0);
         ticketPage.selectNoteam();
         ticketPage.inputFormInforTc(0,randomName, randomLastName,randomEmail,randomPhone);
-        ticketPage.clickAddTicket(0);
-        ticketPage.verifyTicketIsAdded(0, randomEmail);
+        ticketPage.clickAddTicket(0, name);
+        ticketPage.verifyTicketIsAdded(0, randomEmail, name);
         ticketPage.selectAmountItem('$'+infors.amountTicket);
         ticketPage.verifySummaryAmountSetup(true,false,infors.amountTicket,0,donaLb);
         ticketPage.clickButtonNext();

@@ -65,30 +65,8 @@ export class EmailEditorDetailPage {
         .then(cy.wrap)
     }
 
-    getIframeDocumentDetail = () => {
-        return cy
-        .get('iframe.second-row')
-        // Cypress yields jQuery element, which has the real
-        // DOM element under property "0".
-        // From the real DOM iframe element we can get
-        // the "document" element, it is stored in "contentDocument" property
-        // Cypress "its" command can access deep properties using dot notation
-        // https://on.cypress.io/its
-        .its('0.contentDocument').should('exist')
-      }
-      
-    getIframeBodyDetail = () => {
-        // get the document
-        return this.getIframeDocument()
-        // automatically retries until body is loaded
-        .its('body').should('not.be.undefined')
-        // wraps "body" DOM element to allow
-        // chaining more Cypress commands, like ".find(...)"
-        .then(cy.wrap)
-    }
-
     verifyMainPartTemplateIsPresent(name : string){
-        this.getIframeBody().find('a').contains(this.backToSelectionTxt).should('be.visible');
+        this.getIframeBody().find('.navbar-brand').next().contains(this.backToSelectionTxt).should('be.visible');
         this.getIframeBody().find('div').contains(name).should('be.visible');
         this.getIframeBody().find('button').contains(this.sendPreviewBtn).should('be.visible');
         this.getIframeBody().find('button').contains(this.saveBtn).should('be.visible');

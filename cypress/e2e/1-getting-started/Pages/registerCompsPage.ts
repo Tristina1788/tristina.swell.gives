@@ -11,7 +11,7 @@ export class RegisterCompsPage{
     imgEvent = '.bg-stretch';
     imglogo = '.logo';
     teamSelect = 'select';
-    addTKBtn = 'Add Ticket';
+    addTKBtn = 'Add ticket';
     removeTKBtn = '.fa-remove';
 
    
@@ -80,7 +80,7 @@ export class RegisterCompsPage{
 
     verifyOrderIsCorrect(numberTicket : number){
         cy.get(this.orderBtn).contains('Order '+numberTicket+' Ticket').should('be.visible');
-        cy.get('div').contains('There are '+(2 - numberTicket)+' Tickets remaining on this ticket link');
+        cy.get('div').contains('There are '+(2 - numberTicket)+' tickets remaining on this ticket link');
     }
 
     verifyTeamIsNotExist(team: string) {
