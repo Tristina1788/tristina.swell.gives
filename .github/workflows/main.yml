@@ -1,6 +1,14 @@
 name: Cypress Tests
 
-on: [push]
+on:
+  workflow_dispatch:
+    inputs:
+      testBranch:
+        description: "Which branch to checkout and run test"
+        required: false
+        default: master
+  schedule:
+    - cron: "0 0 * * 1-5"
 
 jobs:
   cypress-run:
@@ -8,9 +16,63 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      # Install NPM dependencies, cache them correctly
-      # and run all Cypress tests
-      - name: Cypress run
+
+      - name: Cypress install
         uses: cypress-io/github-action@v4
         with:
-          build: npm run run-test-html
+          runTests: false
+
+      - name: Run Tests
+        uses: cypress-io/github-action@v2
+        with:
+          install: false
+          command: npm run test 
+
+      - name: Generate Report
+        if: always()
+        run: npm run report
+
+      - name: Copy test execution videos
+        if: failure()
+        run: |
+            cp -r reports/screenshots cypress/reports/mochawesome-combine/screenshots
+            cp -r reports/videos cypress/reports/mochawesome-combine/videos
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: cypress-screenshots
+          path: reports/screenshots
+
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: cypress-videos
+          path: reports/videos
+            
+      - name: Deploy report to Github Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: cypress/reports/mochawesome-combine
+
+      - name: Sleep for 30 seconds
+        uses: jakejarvis/wait-action@master
+        with:
+          time: "30s"
+
+      - name: Slack Notification
+        if: always()
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          npx cypress-slack-reporter --report-dir cypress/reports/mochawesome-combine --ci-provider none --custom-text "Test Report: https://Tristina1788.github.io/tristina.swell.gives/"
+      - name: "Upload screenshots and videos to Slack"
+        uses: trymbill/cypress-slack-video-upload-action@v1.3.0
+        if: failure()
+        with:
+          token: ${{ secrets.SLACK_TOKEN }}
+          channels: "app-auto-testing"
+          message-text: "Failed Test ScreenShots"
+          workdir: reports/screenshots
