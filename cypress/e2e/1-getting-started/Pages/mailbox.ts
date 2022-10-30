@@ -1,6 +1,6 @@
 export class Mailbox {
     verifyMailboxGetEmailPledge(inboxId: string) {
-        cy.waitForLatestEmail(inboxId, 200000).then(latestEmail => {
+        cy.waitForLatestEmail(inboxId, 400000).then(latestEmail => {
             console.log(latestEmail.from);
             console.log("latestEmail:" + latestEmail);
             expect(latestEmail.from).to.eql('info@swellfundraising.com');
@@ -10,7 +10,7 @@ export class Mailbox {
     }
 
     verifyMailboxGetEmailPurchaseSuccess(inboxId: string) {
-        cy.waitForLatestEmail(inboxId, 120000).then(latestEmail => {
+        cy.waitForLatestEmail(inboxId, 400000).then(latestEmail => {
             console.log(latestEmail.from);
             console.log("latestEmail:" + latestEmail);
             expect(latestEmail.from).to.eql('info@swellfundraising.com');
@@ -168,7 +168,7 @@ export class Mailbox {
     }
 
     verifyMailboxGetEmailBecomeHostGuestSuccess(inboxId : string, name : string){
-        cy.waitForLatestEmail(inboxId, 200000).then(latestEmail => {
+        cy.waitForLatestEmail(inboxId, 400000).then(latestEmail => {
             console.log(latestEmail.from);
             console.log("latestEmail:" + latestEmail);
             expect(latestEmail.from).to.eql('info@swellfundraising.com');
@@ -180,7 +180,7 @@ export class Mailbox {
     }
 
     verifyMailboxGetEmailSponsorshipSuccess(inboxId : string){
-        cy.waitForLatestEmail(inboxId, 200000).then(email => {
+        cy.waitForLatestEmail(inboxId, 400000).then(email => {
             expect(email.from).to.eql('info@swellfundraising.com');
             expect(email.subject).to.contain('Thanks for your purchase supporting');
             expect(email.body).to.contain('This is your receipt confirming <u>you purchased</u>');
@@ -189,7 +189,7 @@ export class Mailbox {
     }
 
     verifyMailboxGetEmailFundraiserSuccess(inboxId : string){
-        cy.waitForLatestEmail(inboxId, 200000).then(email => {
+        cy.waitForLatestEmail(inboxId, 400000).then(email => {
             expect(email.from).to.eql('info@swellfundraising.com');
             expect(email.subject).to.contain('Thanks for Registering as a fundraiser for');
             expect(email.body).to.contain('Way to go, you are now a fundraiser for');
@@ -199,7 +199,7 @@ export class Mailbox {
 
     verifyMailboxGetEmailCompTicketSuccess(inboxId : string){
         cy.wait(70000);
-        cy.waitForLatestEmail(inboxId, 200000).then(email => {
+        cy.waitForLatestEmail(inboxId, 400000).then(email => {
             console.log('email :'+email);
             console.log('email.from :'+email.from);
             expect(email.from).to.eql('info@swellfundraising.com');
@@ -248,7 +248,7 @@ export class Mailbox {
     }
 
     verifyMailboxGetEmailHostingTableSuccess(inboxId : string){
-        cy.waitForLatestEmail(inboxId, 200000).then(email => {
+        cy.waitForLatestEmail(inboxId, 400000).then(email => {
             expect(email.from).to.eql('info@swellfundraising.com');
             expect(email.subject).to.contain('Thank you for supporting');
             expect(email.body).to.contain('Your commitment to our work makes a difference and we are so thankful');
@@ -258,7 +258,7 @@ export class Mailbox {
 
     verifyMailboxGetEmaiTemplateSuccess(inboxId : string, subject : string, content : string){
         cy.wait(70000);
-        cy.waitForLatestEmail(inboxId, 200000).then(email => {
+        cy.waitForLatestEmail(inboxId, 400000).then(email => {
             console.log('email :'+email);
             console.log('email.from :'+email.from);
             expect(email.from).to.eql('info@swellfundraising.com');

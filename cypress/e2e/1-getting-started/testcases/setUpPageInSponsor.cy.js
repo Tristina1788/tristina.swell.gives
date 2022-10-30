@@ -47,8 +47,5 @@ describe('Verify setup product page for sponsor ', () => {
         sponsorManageSetupPage.verifyCSposorPageIsNotExist(sponsorName);
         cy.forceVisit(infors.url);
         homePage.verifySponsorIsNotSetup();
-        
-        
-
     })
 })

@@ -16,6 +16,14 @@ import { match } from "assert";
         return text;
     }
 
+    export function getRandomColorHexCode(count = 6) {
+        var text = "";
+        var possible = "0123456789abcdefABCDEF";
+        for (var i = 0; i < count; i++)
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+        return '#'+text;
+    }
+
     export function getRandomEmail(){
         var today = new Date();
         var dd = String(today.getDate()).padStart(2, '0');

@@ -1,4 +1,3 @@
-import { TestPhoneNumberOptionsToJSON } from "mailslurp-client";
 
 export class SlideTabManagePage{
     settingBtn = '[ui-sref="app.settings"]';
@@ -9,7 +8,7 @@ export class SlideTabManagePage{
     tableBtn = 'Table';
     createSlideBtn = 'Create slide';
     saveSlideBtn = 'Save changes';
-    closeBtn = 'Close';
+    closeBtn = '.close';
     typeSlideSelect = '[ng-model="selected.type"]';
     titleInput = 'input[name="title"]';
     contentInput = 'textarea[name="title"]';
@@ -22,6 +21,14 @@ export class SlideTabManagePage{
     deleteSlideBtn = '[ng-click="deleteElement(slide)"]';
     editSlideBtn = '[ng-click="edit(slide,false)"]';
     sortKeyInput = '[role="spinbutton"]'
+    amountTag = '[ng-show="slide.showAmountRaised"]';
+    hagTag = '[ng-show="slide.showHashtag"]';
+    includeSlide = 'Included in slideshow';
+    fullScreen = 'Shown Fullscreen';
+    amountTagTB = 'Amount';
+    hagTagTB = 'Hashtag';
+    includeSlideTB = 'Included';
+    fullScreenTB = 'Fullscreen';
 
 
 
@@ -117,7 +124,7 @@ export class SlideTabManagePage{
         this.getIframeBody().find('button').contains(this.gridBtn).click();
     }
 
-    clickTableButton() {
+    clickTableTabButton() {
         this.getIframeBody().find('button').contains(this.tableBtn).click();
     }
 
@@ -129,11 +136,66 @@ export class SlideTabManagePage{
         this.getIframeBody().find('button').contains(this.saveSlideBtn).click();
     }
 
+    clickCloseSlideButton() {
+        this.getIframeBody().find(this.closeBtn).click();
+    }
+
+
     clickDeleteSlideButton(title: string) {
-        this.getIframeBody().find(this.deleteSlideBtn).eq(0).click({force:true});
+        this.getIframeBody().find('.card-block').contains(title).parentsUntil('.card-block').find(this.deleteSlideBtn).click({force:true});
     }
 
     clickEditSlideButton(title: string) {
-        this.getIframeBody().find(this.editSlideBtn).eq(0).click({force:true});
+        this.getIframeBody().find('.card-block').contains(title).parentsUntil('.card-block').find(this.editSlideBtn).click({force:true});
+    }
+
+    clickDeleteSlideButtonInTableTab(title: string) {
+        this.getIframeBody().find('.list-body').contains(title).parent('div').parent('.list-body').find(this.deleteSlideBtn).click({force:true});
+    }
+
+    clickEditSlideButtonInTableTab(title: string) {
+        this.getIframeBody().find('.list-body').contains(title).parent('div').parent('.list-body').find(this.editSlideBtn).eq(0).click({force:true});
+    }
+    verifyShowImageSlideInTableTab(title: string) {
+        cy.wait(3000);
+        this.getIframeBody().find('.list-body').contains(title).should('be.visible');
+    }
+
+    verifyShowImageSlideIsNotPresentInTableTab(title: string) {
+        cy.wait(3000);
+        this.getIframeBody().find('#content').then(($res) => {
+            if($res.find('.list-body').length)
+                this.getIframeBody().find('.list-body').contains(title).should('not.exist');
+            
+        });
+        
+    }
+
+    verifyHaveCorrectPropertiesSlide(title: string, isAutoPlay: boolean = false, isRaisedAmount: boolean = false, isHagTag: boolean = false, isFullScreen: boolean = false){
+        if(isRaisedAmount)
+            this.getIframeBody().find('.card-block').contains(title).parentsUntil('.card-block').find(this.amountTag).should('be.exist');
+        
+        if(isHagTag)
+            this.getIframeBody().find('.card-block').contains(title).parentsUntil('.card-block').find(this.hagTag).focus().should('be.exist');
+
+        if(isAutoPlay)
+        this.getIframeBody().find('.card-block').contains(title).parentsUntil('.card-block').contains(this.includeSlide).should('be.exist');
+
+        if(isFullScreen)
+        this.getIframeBody().find('.card-block').contains(title).parentsUntil('.card-block').contains(this.fullScreen).should('be.exist');
+    }
+
+    verifyHaveCorrectPropertiesSlideTB(title: string, isAutoPlay: boolean = false, isRaisedAmount: boolean = false, isHagTag: boolean = false, isFullScreen: boolean = false){
+        if(isRaisedAmount)
+        this.getIframeBody().find('.list-body').contains(title).parent('div').parent('.list-body').contains(this.amountTagTB).should('be.exist');
+        
+        if(isHagTag)
+        this.getIframeBody().find('.list-body').contains(title).parent('div').parent('.list-body').contains(this.hagTagTB).should('be.exist');
+
+        if(isAutoPlay)
+        this.getIframeBody().find('.list-body').contains(title).parent('div').parent('.list-body').contains(this.includeSlideTB).should('be.exist');
+
+        if(isFullScreen)
+        this.getIframeBody().find('.list-body').contains(title).parent('div').parent('.list-body').contains(this.fullScreenTB).should('be.exist');
     }
 }

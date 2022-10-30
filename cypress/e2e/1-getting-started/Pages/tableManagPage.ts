@@ -75,6 +75,7 @@ export class TableManageSetupPage{
     }
 
     clickEditButton(name:string){
+        cy.wait(5000);
         cy.get(this.tableLabel).contains(name).click();
 
     }
