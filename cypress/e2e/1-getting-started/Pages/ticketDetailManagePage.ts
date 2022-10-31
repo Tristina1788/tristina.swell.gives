@@ -17,6 +17,7 @@ export class TicketDetailManagePage{
     teamFundraiser = '#quick-team';
     saveFundraiserBtn = '[onclick="AttendeeManagement.quickAddAttendee()"]';
     OKBtn = 'OK';
+    confirmButton = '.confirm';
 
     inputTicketForm(fundraiser:string, ticket:string,isEnable : boolean, team : string, note : string, fname : string, lname : string, company : string, email : string, isLB : boolean,number : string, group : string){
         if(fundraiser!= '')
@@ -66,7 +67,6 @@ export class TicketDetailManagePage{
 
     clickSaveButton(){
         cy.get(this.saveBtn).click({force: true});
-        cy.reload();
     }
 
     clickSaveAndSendToGuestButton(){
@@ -83,6 +83,10 @@ export class TicketDetailManagePage{
 
     clickOKButton(){
         cy.get('button').contains(this.OKBtn).click({force: true});
+    }
+
+    clickConfirmButton(){
+        cy.get(this.confirmButton).click({force: true});
     }
 
 }

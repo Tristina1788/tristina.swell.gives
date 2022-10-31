@@ -59,7 +59,9 @@ describe('Verify Tickets Manage flow', () => {
         ticketManagePage.clickAddBtn();
         ticketDetailManagePage.inputTicketForm('','Test Ticket $33.00', true, 'abc table', 'test ticket',randomName,randomLastName,randomCompany,randomEmail,false, randomNumber,'grouest');
         ticketDetailManagePage.clickSaveButton();
-        cy.reload();
+        cy.wait(2000);
+        ticketDetailManagePage.clickConfirmButton();
+        //cy.reload();
         ticketManagePage.verifyTicketIsCreated(randomName + ' '+ randomLastName,randomEmail,'Test Ticket');
         
     })

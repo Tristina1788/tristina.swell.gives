@@ -59,6 +59,7 @@ export class TicketManagePage{
     }
 
     verifyTicketIsCreated(guest : string, email : string, ticket : string){
+        cy.wait(2000);
         cy.get(this.searchInput).type(guest);
         cy.get('td').contains(guest)
         .next('td').contains(email)

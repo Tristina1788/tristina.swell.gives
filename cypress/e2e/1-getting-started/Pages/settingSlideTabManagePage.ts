@@ -58,6 +58,7 @@ export class SettingSlideTabManagePage {
         this.getIframeBody().find(this.kColorValueInput).click({ force: true }).clear();
         this.getIframeBody().find(this.kColorValueInput).click({ force: true }).type(forceGroudColor+'');
         this.getIframeBody().contains(this.backgroundColor).next().find('.k-select').click({ force: true })
+        cy.wait(1000);
         this.getIframeBody().find(this.kColorValueInput).eq(1).click({ force: true }).clear();
         
         this.getIframeBody().find(this.kColorValueInput).eq(1).click({ force: true }).type(backgroudColor+'');

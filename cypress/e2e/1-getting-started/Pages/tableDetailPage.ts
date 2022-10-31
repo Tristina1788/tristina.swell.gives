@@ -6,7 +6,7 @@ export class TableDetailPage{
     hostLNameInput = '#created_last_name';
     hostEmailInput = '#created_email';
     participatingSelection = '#create_attendee';
-    saveBtn = 'Save';
+    saveBtn = 'button[name="save+only"]';
     closeBtn = 'Close';
     successText = 'Table/Team created!';
     confirmButton = '.confirm';
@@ -27,7 +27,7 @@ export class TableDetailPage{
     }
 
     clickSaveBtn(){
-        cy.get('button').contains(this.saveBtn).click();
+        cy.get(this.saveBtn).click();
     }
 
     clickCloseBtn(){
