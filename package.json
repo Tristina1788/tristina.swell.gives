@@ -9,7 +9,7 @@
         "test:open": "npx cypress open",
         "delete:reports": "rm -rf cypress/reports/* &&  rm -rf cypress/screenshots/*|| true",
         "combine-reports": "mkdir -p cypress/reports/mochawesome-combine && mochawesome-merge cypress/reports/mocha/*.json > cypress/reports/mochawesome-combine/index.json",
-        "run-test-htm": "marge cypress/reports/mochawesome-combine/index.json -f index -o cypress/reports/mochawesome-combine",
+        "generate-report": "marge cypress/reports/mochawesome-combine/index.json -f index -o cypress/reports/mochawesome-combine",
         "report": "npm run combine-reports && npm run generate-report"
     },
     "keywords": [],
