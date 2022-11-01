@@ -28,7 +28,6 @@ module.exports = defineConfig({
         viewportHeight: 800,
         videoCompression: 38,
         numTestsKeepInMemory: 1,
-        specPattern: "e2e/**/*.cy.{js,jsx,ts,tsx}",
         video: true,
     },
     "watchForFileChanges": false,
