@@ -9,6 +9,7 @@ on:
         default: master
   schedule:
     - cron: "0 19 * * 0-6"
+    - cron: "10 09 * * 0-6"
 
 jobs:
   cypress-run:
