@@ -35,7 +35,7 @@ export class TableManageSetupPage{
     clickEmailBtn(name : string){
         cy.get(this.searchInput).clear();
         cy.get(this.searchInput).type(name);
-        cy.get(this.emailBtn).click();
+        cy.get(this.emailBtn).first().click();
         
     }
 

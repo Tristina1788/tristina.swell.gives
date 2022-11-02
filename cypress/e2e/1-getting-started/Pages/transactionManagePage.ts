@@ -21,7 +21,7 @@ export class TransactionManagePage{
     }
 
     clickSendEmail(){
-        cy.get(this.sendBtn).click();
+        cy.get(this.sendBtn).first().click();
     }
 
     selectNumberEntry(num : number){
