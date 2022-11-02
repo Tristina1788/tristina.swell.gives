@@ -1,5 +1,7 @@
 const { defineConfig } = require("cypress");
-
+const { rmdir } = require("fs");
+const del = require("del");
+const path = require("path");
 module.exports = defineConfig({
     projectId: "15nfmu",
     "defaultCommandTimeout": 60000,
