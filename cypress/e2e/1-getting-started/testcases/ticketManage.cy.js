@@ -55,7 +55,7 @@ describe('Verify Tickets Manage flow', () => {
         if(hasMailbox == 1 ) cy.emptyInbox(inboxId);
         loginManagePage.visit(infors.urlManage);
         loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
-        loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/tickets');
+        loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/tickets', {timeout: 60000});
         ticketManagePage.clickAddBtn();
         ticketDetailManagePage.inputTicketForm('','Test Ticket $33.00', true, 'abc table', 'test ticket',randomName,randomLastName,randomCompany,randomEmail,false, randomNumber,'grouest');
         ticketDetailManagePage.clickSaveButton();
@@ -67,7 +67,7 @@ describe('Verify Tickets Manage flow', () => {
     })
 
     it.only('Verify enable to delete ticket from manage Page',()=>{
-        loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/tickets');
+        loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/tickets', {timeout: 60000});
         ticketManagePage.clickDeleteButton(randomName);
         ticketManagePage.verifyTicketIsNotPresent(randomName + ' '+ randomLastName,randomEmail,'Test Ticket');
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/fundraisers');
