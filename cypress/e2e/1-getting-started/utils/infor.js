@@ -1,6 +1,6 @@
-export const url = "https://tristina.swell.gives/";
-export const urlAction = "https://secure.swell.gives/tristina/";
-export const urlCheckoutAction = "https://checkout.swell.gives/tristina/";
+export const url = "https://event.swell.gives/";//"https://tristina.swell.gives/";
+export const urlAction = "https://secure.swell.gives/event/";//"https://secure.swell.gives/tristina/";
+export const urlCheckoutAction = "https://checkout.swell.gives/event/"; //"https://checkout.swell.gives/tristina/";
 export const amountGiveNowTest = "$75";
 export const amountGiveNowFeeTest = "$77.99";
 export const amountEvenGiveNowTest = "$50";
@@ -25,7 +25,7 @@ export const passGuest = "bl@ckr0ck";
 ////////////////////////////Variable Manage page///////////////////////////////////////
 //Setup Details
 export const urlManage = 'https://manage.swell.gives/';
-export const idProject = '1643';
+export const idProject = '1717'//'1643';
 export const dateEvent = '26/11/2023';
 export const timezone = "America/Chicago [CDT] - UTC/GMT -05:00";
 export const emailAdmin = "tristina1788@gmail.com";
@@ -35,3 +35,11 @@ export const urlCt = 'thank-you';
 export const linkct = 'thank-you-test-page';
 export const sortOrder = '2';
 export const contentct = "this is test for content page"
+export const PreCouponsCode = "COUPON1"
+export const PreCouponsPercent = "20"
+
+export const ticketName = "Test Ticket"
+export const ticketPrice = "33"
+export const virtualTicketName = "Virtual Test Ticket"
+export const virtualTicketPrice = "51"
+export const maxTicket = "100"

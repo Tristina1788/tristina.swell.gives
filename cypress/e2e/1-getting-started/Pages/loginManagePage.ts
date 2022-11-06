@@ -6,7 +6,7 @@ export class LoginManagePage {
     signInBtn = 'Sign In';
 
     visit(url: string) {
-        cy.visit(url,{ headers: { "Accept-Encoding": "gzip, deflate" } }, {setTimeout: 30000});
+        cy.visit(url,{ headers: { "Accept-Encoding": "gzip, deflate" } });
         Cypress.on('uncaught:exception', (err, runnable) => {
             return false;
         });

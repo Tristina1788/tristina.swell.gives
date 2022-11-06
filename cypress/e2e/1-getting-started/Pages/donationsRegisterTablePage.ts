@@ -95,7 +95,7 @@ export class DonationsRegisterTablePage{
     }
 
     clickCancelInviteGuestButton(guest: number = 0){
-        cy.get(this.cancelInviteBtn).eq(guest).click();
+        cy.get(this.cancelInviteBtn).eq(guest).click({force: true});
     }
 
     verifyCancelInviteGuestSuccess(){

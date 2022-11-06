@@ -106,6 +106,7 @@ let randomAmount= Math.floor(Math.random() * 90) + 0;
         transactionDetailManagePage.inputTranactionForm('',randomNameTrUpdate, randomLastNameTrUpdate, randomCompanyTrUpdate, randomEmailTrUpdate, randomPhoneTrUpdate,
         'Donation', randomAmountUpdate, randomHonorUpdate,false, randomDescUpdate, randomNameUpdate ,randomLastNameUpdate ,randomCompanyUpdate ,randomEmailUpdate,false, randomNumberUpdate,'');
         transactionDetailManagePage.clickSaveButton();
+        cy.wait(1000);
         cy.reload();
         transactionManagePage.verifyTransactionIsCreated('Donation',randomNameTrUpdate, randomLastNameTrUpdate, randomEmailUpdate,'$'+randomAmountUpdate+'.00');
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/fundraisers');

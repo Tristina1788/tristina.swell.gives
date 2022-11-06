@@ -30,7 +30,8 @@ export class ContentManageSetupPage{
     }
 
     clickEditButton(url:string){
-        cy.get(this.searchInput).type(url);
+        if(url != 'index')
+            cy.get(this.searchInput).type(url);
         cy.get(this.tableList).children('tbody').children('tr').children('td').contains(url).parent('tr').children('td').find(this.editBtn).click();
     }
 

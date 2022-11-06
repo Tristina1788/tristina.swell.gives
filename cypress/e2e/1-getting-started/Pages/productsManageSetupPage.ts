@@ -58,7 +58,7 @@ export class ProductsManageSetupPage {
         
     }
 
-    verifyNewProductIsCreated(type : string, name : string, isActive : boolean, isHidden : boolean, price : number, maxPro : number, ticketPerTB : number =0, ticketType : string =''){
+    verifyNewProductIsCreated(type : string, name : string, isActive : boolean, isHidden : boolean, price : string, maxPro : number, ticketPerTB : number =0, ticketType : string =''){
         let active = 'Inactive';
         if(isActive) active = 'Active';
         
