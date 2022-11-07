@@ -47,7 +47,7 @@ describe('Verify Purchase Tickets flow', () => {
     })
 
     it.only('Verify purchase a ticket and selections amount',()=>{
-        cy.forceVisit(infors.url);
+        cy.visit(infors.url);
         if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
         let randomName = getRandomText();
         let randomLastName = getRandomText();

@@ -49,7 +49,7 @@ describe('Verify Give Now flow', () => {
     })
     it.only('Verify Give Now with all options',()=>{
         if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
-        cy.forceVisit(infors.url);
+        cy.visit(infors.url);
         let randomName = getRandomText();
         let randomLastName = getRandomText();
         let randomPhone = getRandomNumber();

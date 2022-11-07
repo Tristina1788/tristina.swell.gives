@@ -145,10 +145,10 @@ export class HomePage{
     verifySponsorIsNotSetup(){
         cy.get(this.sponsorSection).should('be.not.exist')
     }
-    verifySponsorSetupCorrectly(url1:String){
+    verifySponsorSetupCorrectly(url1:String, url : string){
         cy.wait(5000);
         
-        cy.visit('https://tristina.swell.gives/')
+        cy.visit(url);
         let test;
         cy
             .window().then((win) => {

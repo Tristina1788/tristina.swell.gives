@@ -51,10 +51,10 @@ describe('Verify Become A fundraiser flow', () => {
         registerPage.verifyRegisterPage();
         registerPage.inputRegisterForm(randomName, randomLastName, randomPhone, randomEmail);
         registerPage.clickRegisterButton();
-        thankYouPage.verifyThankYouPageAfterFundraiserSuccess(randomName, randomLastName);
+        thankYouPage.verifyThankYouPageAfterFundraiserSuccess(randomName, randomLastName, infors.url);
         if(hasMailbox ==1 )
             mailbox.verifyMailboxGetEmailFundraiserSuccess(inboxId);
-        thankYouPage.clickFundraiserUserLinks(randomName, randomLastName);
+        thankYouPage.clickFundraiserUserLinks(randomName, randomLastName, infors.url);
 
     })
 })

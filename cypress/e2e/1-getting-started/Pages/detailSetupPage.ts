@@ -45,8 +45,8 @@ export class DetailSetupPage{
     }
 
     inputTimezoneEventDetails(timez:string){
-        cy.get(this.timeZone).clear();
-        cy.get(this.timeZone).type(timez);
+        //cy.get(this.timeZone).clear();
+        cy.get(this.timeZone).select(timez);
     }
 
     clickSaveBtn(){

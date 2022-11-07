@@ -1,3 +1,4 @@
+
 export class ThankYouPage{
     titleThankYouPage  = 'Thank you for supporting';
     titleThankYouPageForComp  = 'Your registration is complete. Thank you!';
@@ -7,7 +8,7 @@ export class ThankYouPage{
     fundraiserLink = '[href="https://tristina.swell.gives/users/';
     imgEvent = '.bg-stretch';
     imglogo = '.logo';
-
+    
     verifyImageLogoSetupCorrectInBranding(){
        
         cy.get(this.imglogo).eq(1).children('a').children('img').invoke('attr', 'src')
@@ -20,11 +21,12 @@ export class ThankYouPage{
             
         });
     }
-    verifyThankYouPageAfterFundraiserSuccess(fname:string, lname:string){
+    verifyThankYouPageAfterFundraiserSuccess(fname:string, lname:string, linkFO : string){
         cy.wait(6000);
         cy.get('h1').contains(this.titleThankYouPage).should('be.visible');
         cy.get('h3').contains(this.fundraiserText).should('be.visible');
-        let link = this.fundraiserLink+fname+'.'+lname+'"]';
+        
+        let link = '[href="'+linkFO+'users/'+fname+'.'+lname+'"]';
         cy.get(link.toLowerCase()).should('be.visible');
     }
 
@@ -37,8 +39,8 @@ export class ThankYouPage{
         // cy.get('th').contains(this.confirmPurchaseTxt).should('be.visible');
     }
 
-    clickFundraiserUserLinks(fname:string, lname:string){
-        let link = this.fundraiserLink+fname+'.'+lname+'"]';
+    clickFundraiserUserLinks(fname:string, lname:string, linkFO : string){
+        let link = '[href="'+linkFO+'users/'+fname+'.'+lname+'"]';
         cy.get(link.toLowerCase()).click();
     }
 

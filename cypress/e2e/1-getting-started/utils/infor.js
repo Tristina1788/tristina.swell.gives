@@ -27,7 +27,7 @@ export const passGuest = "bl@ckr0ck";
 export const urlManage = 'https://manage.swell.gives/';
 export const idProject = '1717'//'1643';
 export const dateEvent = '26/11/2023';
-export const timezone = "America/Chicago [CDT] - UTC/GMT -05:00";
+export const timezone = "America/Chicago";
 export const emailAdmin = "tristina1788@gmail.com";
 export const passAdmin = "Happy1702";
 //setup Content

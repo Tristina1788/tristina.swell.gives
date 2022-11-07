@@ -48,7 +48,7 @@ describe('Verify become a host flow', () => {
     })
 
     it.only('Verify information when become a host and verify payment for invalid infor and valid infor', () => {
-        cy.forceVisit(infors.url);
+        cy.visit(infors.url);
         let randomName = getRandomText();
         let randomLastName = getRandomText();
         let randomEmail = getRandomEmail();

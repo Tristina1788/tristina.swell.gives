@@ -48,7 +48,7 @@ describe('Verify Choose a sponsorship flow', () => {
     })
     
     it.only('Verify information when Choose a sponsorship',()=>{
-        cy.forceVisit(infors.url);
+        cy.visit(infors.url);
         if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
         let randomName = getRandomText();
         let randomLastName = getRandomText();

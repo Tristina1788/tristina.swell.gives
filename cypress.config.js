@@ -48,6 +48,6 @@ module.exports = defineConfig({
         "runMode": 2,
         // Configure retry attempts for `cypress open`
         // Default is 0
-        "openMode": 0
+        "openMode": 1
       }
 });

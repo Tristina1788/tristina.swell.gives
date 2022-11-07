@@ -107,8 +107,8 @@ describe('Verify the fundraiser Manage flow', () => {
         homePage.clickBecomeAFundraiser();
         registerPage.inputRegisterForm(randomName, randomLastName, randomPhone, randomEmail);
         registerPage.clickRegisterButton();
-        thankYouPage.verifyThankYouPageAfterFundraiserSuccess(randomName, randomLastName);
-        thankYouPage.clickFundraiserUserLinks(randomName, randomLastName);
+        thankYouPage.verifyThankYouPageAfterFundraiserSuccess(randomName, randomLastName, infors.url);
+        thankYouPage.clickFundraiserUserLinks(randomName, randomLastName, infors.url);
         loginManagePage.visit(infors.urlManage);
         loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/fundraisers');

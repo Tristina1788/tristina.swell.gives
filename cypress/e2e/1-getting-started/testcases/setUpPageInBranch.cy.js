@@ -69,7 +69,7 @@ describe('Verify setup branch page', () => {
 
         registerPage.inputRegisterForm(randomName, randomLastName, randomPhone, randomEmail);
         registerPage.clickRegisterButton();
-        thankYouPage.verifyThankYouPageAfterFundraiserSuccess(randomName, randomLastName);
+        thankYouPage.verifyThankYouPageAfterFundraiserSuccess(randomName, randomLastName, infors.url);
         thankYouPage.verifyImageHeaderSetupCorrectInBranding();
         thankYouPage.verifyImageLogoSetupCorrectInBranding();
 
