@@ -36,7 +36,7 @@ before(() => {
     loginManagePage.visit(infors.urlManage);
     loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
 });
-describe('Verify the fundraiser Manage flow', () => {
+describe('Verify the table Manage flow', () => {
     it.only('setup mailbox inbox',()=>{
         cy.readFile('./data/mailbox.json',{timeout:2000}).then((inbox)=> {
             hasMailbox = inbox.hasMailbox;

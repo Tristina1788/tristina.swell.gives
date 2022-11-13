@@ -39,11 +39,9 @@ before(() => {
 });
 describe('Verify setup setting - ticket page', () => {
     it.only('Verify update setting - ticket page successfully', () => {
-        
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/donation');
 
         settingSetupPage.openSettingTicketPage();
-        console.log("promo1111111:"+promo);
         ticketsSettingPage.inputTicketSetingForm(title, name, promo,teamselectiont, teamCreatetitle, donatitle, true, true, orderLb, donaLb);
         ticketsSettingPage.clickSaveButton();
         ticketsSettingPage.verifySaveSuccessfully();  

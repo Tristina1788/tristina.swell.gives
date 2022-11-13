@@ -17,7 +17,7 @@ export class EmailEditorPage{
     tablePurchase = 'Table Purchase Receipt';
     compEmail = 'Comp Ticket Email';
     donationReceipt = 'Donation Receipt';
-    successEmail = 'Referral Success Email';
+    successEmail = 'Fundraiser Success Email';
     recurringDonationReceipt = 'Recurring Donation Receipt';
     sponsorshipPurchaseReceipt = 'Sponsorship Purchase Receipt';
     startEditingBtn = 'Start editing';

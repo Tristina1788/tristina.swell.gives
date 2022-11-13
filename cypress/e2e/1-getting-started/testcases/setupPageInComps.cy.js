@@ -102,7 +102,7 @@ describe('Verify setup Comp ticket page', () => {
              mailbox.verifyMailboxGetEmailRegisterCompTicketSuccess(inboxId);
     })
 
-    it.only('Update content page successfully with active = true',()=>{
+    it.only('Update content page successfully',()=>{
         loginManagePage.visit(infors.urlManage+'events/'+infors.idProject+'/promos');
         
         compManagePage.clickEditButton(code);
@@ -114,7 +114,7 @@ describe('Verify setup Comp ticket page', () => {
 
     })
 
-    it.only('Delete content page successfully with active = true',()=>{
+    it.only('Delete content page successfully',()=>{
         loginManagePage.visit(infors.urlManage+'events/'+infors.idProject+'/promos');
 
         compManagePage.clickDeleteButton(updateCode);
