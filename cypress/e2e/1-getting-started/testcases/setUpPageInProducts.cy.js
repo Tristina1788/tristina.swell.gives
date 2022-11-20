@@ -93,7 +93,7 @@ describe('Verify setup product page', () => {
 
     })
 
-    it.only('Verify create product page for  ticket - product successfully', () => {
+    it.only('Verify create product page for Virtual ticket - product successfully', () => {
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/products');
         productsManageSetupPage.clickAddBtn();
         productSetupPage.inputProductForm('Virtual Ticket', ticketProName, true, false, priceTicket, maxTicket, 0);

@@ -16,7 +16,12 @@ const user = require('../../../fixtures/address.json');
 let inboxId = "";
 let hasMailbox = 0;
 let randomEmail = getRandomEmail();
+before(() => {
+    loginManagePage.visit(infors.urlManage);
+    loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
+})
 describe('Verify Email Editor Manage', () => {
+    ;
 
     it('setup mailbox inbox',()=>{
         cy.readFile('./data/mailbox.json',{timeout:20000}).then((inbox)=> {
@@ -305,8 +310,8 @@ describe('Verify Email Editor Manage', () => {
     it('Verify template Referral Success Email work correct', () => {
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/email-editor',{timeout:200000});
         if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
-        emailEditorPage.clickEmailTemplate('Referral Success Email');
-        emailEditorDetailPage.verifyTemplateReferralSuccessEmailHasAllParts('Referral Success Email');
+        emailEditorPage.clickEmailTemplate('Fundraiser Success Email');
+        emailEditorDetailPage.verifyTemplateReferralSuccessEmailHasAllParts('Fundraiser Success Email');
         emailEditorDetailPage.updateSubject('Testing : Well done! You helped increase the impact of *|eventbeneficiaryname|*');
         emailEditorDetailPage.clickSaveBtn();
         emailEditorDetailPage.verifySubjectAfterUpdate('Testing : Well done! You helped increase the impact of The good non-profit');

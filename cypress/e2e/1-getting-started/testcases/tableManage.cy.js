@@ -93,7 +93,7 @@ describe('Verify the table Manage flow', () => {
         if(hasMailbox ==1 ) 
             cy.emptyInbox(inboxId);
         tableManageSetupPage.clickRegisterBtn(firstName);
-        donationsRegisterTablePage.clickNavigationTab('Your Table');
+        donationsRegisterTablePage.clickNavigationTab('Your');
         donationsRegisterTablePage.verifyYourTableFromManagePageIsDisplayed(firstName,firstHostName, lastHostName, randomEmail);
         donationsRegisterTablePage.clickNavigationTab('Guest');
         donationsRegisterTablePage.inputGuestInformation(randomNameGuest, randomLastNameGuest, randomEmailGuest, 0);

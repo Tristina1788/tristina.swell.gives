@@ -1,6 +1,6 @@
 export class TablePage{
     giveNowBtn = '.expanded';
-    giveNowText = 'To give to this Table click a Guest and donate through their page.';
+    giveNowText = 'To give to this click a Guest and donate through their page.';
     purchaseTickets = '[value="Purchase Tickets"]';
     becomeASponser = '[value="BECOME A SPONSOR"]';
     becomeAHost = '[value="BECOME A HOST"]';
@@ -10,7 +10,7 @@ export class TablePage{
     becomeAsponsorActionForm = 'sponsorships#/sponsorship';
     becomeAHostActionForm = 'tables#/table';
     becomeAFundraiserActionForm = 'register';
-    tableRaisedText = 'Table Raised';
+    tableRaisedText = 'Raised';
     socialScoreText = 'Social Score';
     totalAmountRaised = 'Total Amount Raised';
     imgEvent = '.event-image';
