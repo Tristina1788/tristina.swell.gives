@@ -58,7 +58,7 @@ beforeEach(() => {
     loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
 });
 describe('Prepare new data for event testing', () => {
-    it.only('check if need set up pre data',()=>{
+    it('check if need set up pre data',()=>{
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject);
         cy.get("body").then($body => {
             if ($body.text().includes("Is Your Site Ready?"))  
@@ -69,7 +69,7 @@ describe('Prepare new data for event testing', () => {
         console.log("needSetup :"+needSetup);
     })
 
-    it.only('Set up detail page for pre data',()=>{
+    it('Set up detail page for pre data',()=>{
         if (!needSetup) return;
         let noneProfitName = getRandomText();
         let name = getRandomText();
@@ -90,7 +90,7 @@ describe('Prepare new data for event testing', () => {
 
     })
 
-    it.only('Setup Branding image for pre data',()=>{
+    it('Setup Branding image for pre data',()=>{
         if (!needSetup) return;
         branchSetupPage.visit(infors.urlManage+'events/'+infors.idProject+'/branding');
         branchSetupPage.verifyHaveAllUploadImages();
@@ -99,7 +99,7 @@ describe('Prepare new data for event testing', () => {
         branchSetupPage.clickSaveBtn();
     })
 
-    it.only('Setup social Network for pre data',()=>{
+    it('Setup social Network for pre data',()=>{
         if (!needSetup) return;
         let facebookID = getRandomText();
         let twitterUsername = getRandomText();
@@ -110,7 +110,7 @@ describe('Prepare new data for event testing', () => {
         socialNetworkManageSetupPage.clickSaveChangesBtn();
         socialNetworkManageSetupPage.verifySaveSuccessfully();
     })
-    it.only('Setup coupon page for pre data',()=>{
+    it('Setup coupon page for pre data',()=>{
         if (!needSetup) return;
         loginManagePage.visit(infors.urlManage+'events/'+infors.idProject+'/coupons');
         
@@ -122,7 +122,7 @@ describe('Prepare new data for event testing', () => {
         couponManageSetupPage.verifyCounponPageIsExist(infors.PreCouponsCode, infors.PreCouponsPercent);
     })
 
-    it.only('Setup products for pre data',()=>{
+    it('Setup products for pre data',()=>{
         if (!needSetup) return;
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/products');
         productsManageSetupPage.clickAddBtn();
@@ -147,7 +147,7 @@ describe('Prepare new data for event testing', () => {
 
     })
 
-    it.only('Verify create comps ticket page successfully',()=>{
+    it('Verify create comps ticket page successfully',()=>{
         if (!needSetup) return;
         let code = getRandomText();
         let internalNote = getRandomText();
@@ -164,7 +164,7 @@ describe('Prepare new data for event testing', () => {
 
     })
 
-    it.only('Setup setting - donation page pre test ', () => {
+    it('Setup setting - donation page pre test ', () => {
         if (!needSetup) return;
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/donation');
         settingSetupPage.openSettingDonationPage();
@@ -175,7 +175,7 @@ describe('Prepare new data for event testing', () => {
 
     })
 
-    it.only('Setup setting - ticket page pre test ', () => {
+    it('Setup setting - ticket page pre test ', () => {
         if (!needSetup) return;
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/donation');
 
@@ -187,7 +187,7 @@ describe('Prepare new data for event testing', () => {
 
     })
 
-    it.only('Setup setting - sponsorship page pre test ', () => {
+    it('Setup setting - sponsorship page pre test ', () => {
         if (!needSetup) return;
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/donation');
         settingSetupPage.openSettingSponsorshipPage();
@@ -197,7 +197,7 @@ describe('Prepare new data for event testing', () => {
         sponsorshipSettingPage.clickOKButton();
     })
 
-    it.only('Setup setting - Button pre test ', () => {
+    it('Setup setting - Button pre test ', () => {
         if (!needSetup) return;
         loginManagePage.visit(infors.urlManage);
         loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
@@ -208,7 +208,7 @@ describe('Prepare new data for event testing', () => {
         buttonSettingPage.verifySaveSuccessfully();
     })
 
-    it.only('Setup setting - Leaderboar pre test ', () => {
+    it('Setup setting - Leaderboar pre test ', () => {
         if (!needSetup) return;
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/donation');
         settingSetupPage.openSettingLeaderboardPage();
@@ -217,7 +217,7 @@ describe('Prepare new data for event testing', () => {
         leaderboardSettingPage.verifySaveSuccessfully();
     })
 
-    it.only('Setup setting - Email template pre test ', () => {
+    it('Setup setting - Email template pre test ', () => {
         if (!needSetup) return;
         let randomEmail = getRandomEmail();
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/email-editor',{timeout:200000});
@@ -233,7 +233,7 @@ describe('Prepare new data for event testing', () => {
         emailEditorDetailPage.updateSubject('Thanks *|fundraiserFirstName|* for Checking In to *|eventName|*');
     })
 
-    it.only('Verify setup content page pre test',()=>{
+    it('Verify setup content page pre test',()=>{
         if (!needSetup) return;
         let contentSetupPage =new ContentSetupPage();
         let contentManageSetupPage =new ContentManageSetupPage();
@@ -249,7 +249,7 @@ describe('Prepare new data for event testing', () => {
 
     })
 
-    it.only('Verify setup group pre test',()=>{
+    it('Verify setup group pre test',()=>{
         if (!needSetup) return;
         loginManagePage.visit(infors.urlManage+'events/'+infors.idProject+'/team');
         groupManageSetupPage.clickAddBtn();
@@ -259,7 +259,7 @@ describe('Prepare new data for event testing', () => {
 
     })
 
-    it.only('Verify setup fundraiser pre test',()=>{
+    it('Verify setup fundraiser pre test',()=>{
         if (!needSetup) return;
         let company = getRandomText();
         let phone = getRandomNumber();
@@ -270,6 +270,21 @@ describe('Prepare new data for event testing', () => {
         fundraiserDetailPage.clickSaveBtn();
         fundraiserDetailPage.verifySaveSuccess();
 
+    })
+
+    it('Finish Setup test',()=>{
+        if (!needSetup) return;
+        loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject );
+
+        cy.get('.task-done').then(($el) => { 
+            const itemCount = Cypress.$($el).length;
+            cy.log(itemCount)
+            if(itemCount == 5)
+            cy.get('button').contains('m Ready').click();
+            cy.get('button').contains('Yes, go live!',{timeout:10000}).click();
+            cy.get('button').contains('OK',{timeout:10000}).click();
+        })
+            
     })
 
     

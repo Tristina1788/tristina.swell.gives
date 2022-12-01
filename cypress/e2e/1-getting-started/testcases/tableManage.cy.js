@@ -7,11 +7,13 @@ import { Mailbox } from "../Pages/mailbox";
 import { getRandomEmail, getRandomNumber, getRandomText } from "./generalFunction.cy";
 import { TablePage } from "../Pages/tablePage";
 import { DonationSettingPage } from "../Pages/donationSettingPage";
+import {FundraiserDetailPage } from "../Pages/fundraiserDetailPage";
 
 let loginManagePage = new LoginManagePage();
 let tableDetailPage = new TableDetailPage();
 let tableManageSetupPage = new TableManageSetupPage();
 let donationsRegisterTablePage = new DonationsRegisterTablePage();
+let fundraiserDetailPage = new FundraiserDetailPage();
 let tablePage = new TablePage();
 let mailbox = new Mailbox();
 const infors = require('../utils/infor.js');
@@ -37,7 +39,7 @@ before(() => {
     loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
 });
 describe('Verify the table Manage flow', () => {
-    it.only('setup mailbox inbox',()=>{
+    it('setup mailbox inbox',()=>{
         cy.readFile('./data/mailbox.json',{timeout:2000}).then((inbox)=> {
             hasMailbox = inbox.hasMailbox;
             if(hasMailbox == -1) randomEmail = getRandomEmail();
@@ -60,7 +62,7 @@ describe('Verify the table Manage flow', () => {
             console.log("randomEmail:"+randomEmail);
         });
     });
-    it.only('Verify enable to create new table/team from manage Page',()=>{
+    it('Verify enable to create new table/team from manage Page',()=>{
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/tables');
         if(hasMailbox ==1 )
             cy.emptyInbox(inboxId);
@@ -70,13 +72,14 @@ describe('Verify the table Manage flow', () => {
         tableDetailPage.verifySaveSuccess();
         tableDetailPage.clickConfirmButton();
         tableManageSetupPage.verifyTableIsExist(firstName , number, 'Test Table', firstHostName+' '+lastHostName);
+        
         tableManageSetupPage.clickEmailBtn(firstName);
         tableManageSetupPage.inputEmailAndSend(randomEmail);
         if(hasMailbox ==1 )
             mailbox.verifyMailboxGetEmailHostingTableSuccess(inboxId);
     });
 
-    it.only('Verify fundraising page from manage Page',()=>{
+    it('Verify fundraising page from manage Page',()=>{
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/tables');
         tableManageSetupPage.clickFundraisingBtn(firstName);
         tablePage.VerifyGiveNowButtonHasCorrectAction(infors.urlAction);
@@ -87,7 +90,7 @@ describe('Verify the table Manage flow', () => {
         tablePage.verifyUIShowDonorInfo();
     });
 
-    it.only('Verify enable to registration from manage Page',()=>{
+    it('Verify enable to registration from manage Page',()=>{
         randomEmailGuest = randomEmail;
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/tables');
         if(hasMailbox ==1 ) 
@@ -111,7 +114,7 @@ describe('Verify the table Manage flow', () => {
        
     });
 
-    it.only('Verify guest list work correct from manage Page',()=>{
+    it('Verify guest list work correct from manage Page',()=>{
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/tables');
         tableManageSetupPage.clickSwitchListView();
         cy.wait(10000);
@@ -120,8 +123,42 @@ describe('Verify the table Manage flow', () => {
         tableManageSetupPage.verifyInforOfGuest(randomNameGuest2 + ' '+randomLastNameGuest2, randomEmailGuest2);
 
     });
+    it('Verify enable to add a seat/ticket for table/team from manage Page',()=>{
+        
+        loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/tables');
+        tableManageSetupPage.clickSwitchListView();
+        cy.wait(10000);
+        
+        tableManageSetupPage.clickGuestList(number+ ' '+firstName);
+        // tableManageSetupPage.clickGuestList('15832 lGRtbqGhFT');
+        tableManageSetupPage.clickAddASeatButton();
+        tableManageSetupPage.verifyPopupAddingSeat();
+        tableManageSetupPage.clickYesAddSeatBtn();
+        tableManageSetupPage.clickOKButtonInPopupConfirm();
+        tableManageSetupPage.verifyRemoveSeatIsDisabled(false);
+        tableManageSetupPage.clickAddressGuestButton();
+        tableManageSetupPage.clickNewFundraiser();
+        let fName = getRandomText();
+        let lastName = getRandomText();
+        let company = getRandomText();
+        let phone = getRandomNumber();
+        let email = getRandomEmail();
+        tableManageSetupPage.inputFundraiserTableForm(fName,lastName,email,company,"grouest");
+        tableManageSetupPage.clickSaveBtn();
+        tableManageSetupPage.clickOKButtonInPopupConfirm();
+        tableManageSetupPage.clickAssignBtn();
+        tableManageSetupPage.clickOKButtonInPopupConfirm();
+        tableManageSetupPage.verifyInforOfGuest(fName + ' '+lastName, email);
+        tableManageSetupPage.verifyRemoveSeatIsDisabled(true);
+        tableManageSetupPage.clickRemoveFundraiserBtn();
+        tableManageSetupPage.clickOKButtonInPopupConfirm();
+        tableManageSetupPage.verifyInforOfGuestDontExit(fName + ' '+lastName, email);
+        tableManageSetupPage.clickRemoveSeatBtn();
+        tableManageSetupPage.clickOKButtonInPopupConfirm();
+        tableManageSetupPage.verifyDeleteGuestSuccess();
+    });
 
-    it.only('Verify enable to update table/team from manage Page',()=>{
+    it('Verify enable to update table/team from manage Page',()=>{
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/tables');
         tableManageSetupPage.clickSwitchListView();
         tableManageSetupPage.clickEditButton(number+ ' '+firstName);
@@ -133,7 +170,9 @@ describe('Verify the table Manage flow', () => {
         tableManageSetupPage.verifyTableIsExist(firstName1 , number1, 'Test Table', firstHostName1+' '+lastHostName1,0,2,0,2);
     });
 
-    it.only('Verify enable to delete table/team from manage Page',()=>{
+    
+
+    it('Verify enable to delete table/team from manage Page',()=>{
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/tables');
         tableManageSetupPage.clickDeleteButton(firstName1);
         tableManageSetupPage.verifyTableIsNotExist(firstName1);

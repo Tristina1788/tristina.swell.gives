@@ -97,11 +97,11 @@ describe('Verify Transaction Manage flow', () => {
 
     it.only('Verify enable to update transaction from manage Page',()=>{
         
-let randomAmount= Math.floor(Math.random() * 90) + 0;
+        let randomAmount= Math.floor(Math.random() * 90) + 0;
         cy.forceVisit(infors.urlManage);
         if(hasMailbox == 1 ) cy.emptyInbox(inboxId);
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/transactions');
-        transactionManagePage.clickAddBtn();
+        transactionManagePage.clickEditButton(randomNameTr)
        
         transactionDetailManagePage.inputTranactionForm('',randomNameTrUpdate, randomLastNameTrUpdate, randomCompanyTrUpdate, randomEmailTrUpdate, randomPhoneTrUpdate,
         'Donation', randomAmountUpdate, randomHonorUpdate,false, randomDescUpdate, randomNameUpdate ,randomLastNameUpdate ,randomCompanyUpdate ,randomEmailUpdate,false, randomNumberUpdate,'');

@@ -23,13 +23,14 @@
         "@types/node": "^18.7.3",
         "cypress": "^10.4.0",
         "cypress-mailosaur": "^2.11.0",
+        "cypress-multi-reporters": "^1.6.1",
+        "cypress-plugin-tab": "^1.0.5",
+        "cypress-slack-reporter": "^1.5.0",
         "cypress-xpath": "^2.0.1",
+        "del": "6.0.0",
         "mailslurp-client": "^15.13.3",
         "mochawesome": "^7.1.3",
         "mochawesome-merge": "^4.2.1",
-        "mochawesome-report-generator": "^6.2.0",
-        "cypress-multi-reporters": "^1.6.1",
-        "cypress-slack-reporter": "^1.5.0",
-        "del": "6.0.0"
+        "mochawesome-report-generator": "^6.2.0"
     }
 }

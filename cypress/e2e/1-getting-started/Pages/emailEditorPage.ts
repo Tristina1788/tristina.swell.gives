@@ -46,34 +46,34 @@ export class EmailEditorPage{
     }
 
     verifyAllTemplateExist(){
-        cy.wait(5000);
-         this. getIframeBody().find('h2').contains(this.titlePage).should('be.visible');
+        cy.wait(10000);
+         this. getIframeBody().find('h2').contains(this.titlePage,{timeout:30000}).should('be.visible');
 
-        this. getIframeBody().find('h5').contains(this.guestCheckIn).parent(this.cardBody).children('div').children('a').should('be.visible');
-        this. getIframeBody().find('h5').contains(this.fundraiserReg).parent(this.cardBody).children('div').children('a').should('be.visible');
-        this. getIframeBody().find('h5').contains(this.pledgeCreatation).parent(this.cardBody).children('div').children('a').should('be.visible');
-        this. getIframeBody().find('h5').contains(this.pledgeReminder).parent(this.cardBody).children('div').children('a').should('be.visible');
-        this. getIframeBody().find('h5').contains(this.personTicketEmail).parent(this.cardBody).children('div').children('a').should('be.visible');
-        this. getIframeBody().find('h5').contains(this.virtualTicketEmail).parent(this.cardBody).children('div').children('a').should('be.visible');
-        this. getIframeBody().find('h5').contains(this.ticketPurchase).parent(this.cardBody).children('div').children('a').should('be.visible');
-        this. getIframeBody().find('h5').contains(this.liveStreamReminderEmail).parent(this.cardBody).children('div').children('a').should('be.visible');
-        this. getIframeBody().find('h5').contains(this.persionReminderEmail).parent(this.cardBody).children('div').children('a').should('be.visible');
-        this. getIframeBody().find('h5').contains(this.tableHostEmail).parent(this.cardBody).children('div').children('a').should('be.visible');
-        this. getIframeBody().find('h5').contains(this.emailToGuest).parent(this.cardBody).children('div').children('a').should('be.visible');
-        this. getIframeBody().find('h5').contains(this.tbGuestInvitation).parent(this.cardBody).children('div').children('a').should('be.visible');
-        this. getIframeBody().find('h5').contains(this.emailToHost).parent(this.cardBody).children('div').children('a').should('be.visible');
-        this. getIframeBody().find('h5').contains(this.tablePurchase).parent(this.cardBody).children('div').children('a').should('be.visible');
-        this. getIframeBody().find('h5').contains(this.compEmail).parent(this.cardBody).children('div').children('a').should('be.visible');
-        this. getIframeBody().find('h5').contains(this.donationReceipt).parent(this.cardBody).children('div').children('a').should('be.visible');
-        this. getIframeBody().find('h5').contains(this.successEmail).parent(this.cardBody).children('div').children('a').should('be.visible');
-        this. getIframeBody().find('h5').contains(this.recurringDonationReceipt).parent(this.cardBody).children('div').children('a').should('be.visible');
-        this. getIframeBody().find('h5').contains(this.sponsorshipPurchaseReceipt).parent(this.cardBody).children('div').children('a').should('be.visible');
+        this. getIframeBody().find('h5').contains(this.guestCheckIn,{timeout:30000}).parent(this.cardBody).children('div').children('a').should('be.visible');
+        this. getIframeBody().find('h5').contains(this.fundraiserReg,{timeout:30000}).parent(this.cardBody).children('div').children('a').should('be.visible');
+        this. getIframeBody().find('h5').contains(this.pledgeCreatation,{timeout:30000}).parent(this.cardBody).children('div').children('a').should('be.visible');
+        this. getIframeBody().find('h5').contains(this.pledgeReminder,{timeout:30000}).parent(this.cardBody).children('div').children('a').should('be.visible');
+        this. getIframeBody().find('h5').contains(this.personTicketEmail,{timeout:30000}).parent(this.cardBody).children('div').children('a').should('be.visible');
+        this. getIframeBody().find('h5').contains(this.virtualTicketEmail,{timeout:30000}).parent(this.cardBody).children('div').children('a').should('be.visible');
+        this. getIframeBody().find('h5').contains(this.ticketPurchase,{timeout:30000}).parent(this.cardBody).children('div').children('a').should('be.visible');
+        this. getIframeBody().find('h5').contains(this.liveStreamReminderEmail,{timeout:30000}).parent(this.cardBody).children('div').children('a').should('be.visible');
+        this. getIframeBody().find('h5').contains(this.persionReminderEmail,{timeout:30000}).parent(this.cardBody).children('div').children('a').should('be.visible');
+        this. getIframeBody().find('h5').contains(this.tableHostEmail,{timeout:30000}).parent(this.cardBody).children('div').children('a').should('be.visible');
+        this. getIframeBody().find('h5').contains(this.emailToGuest,{timeout:30000}).parent(this.cardBody).children('div').children('a').should('be.visible');
+        this. getIframeBody().find('h5').contains(this.tbGuestInvitation,{timeout:30000}).parent(this.cardBody).children('div').children('a').should('be.visible');
+        this. getIframeBody().find('h5').contains(this.emailToHost,{timeout:30000}).parent(this.cardBody).children('div').children('a').should('be.visible');
+        this. getIframeBody().find('h5').contains(this.tablePurchase,{timeout:30000}).parent(this.cardBody).children('div').children('a').should('be.visible');
+        this. getIframeBody().find('h5').contains(this.compEmail,{timeout:30000}).parent(this.cardBody).children('div').children('a').should('be.visible');
+        this. getIframeBody().find('h5').contains(this.donationReceipt,{timeout:30000}).parent(this.cardBody).children('div').children('a').should('be.visible');
+        this. getIframeBody().find('h5').contains(this.successEmail,{timeout:30000}).parent(this.cardBody).children('div').children('a').should('be.visible');
+        this. getIframeBody().find('h5').contains(this.recurringDonationReceipt,{timeout:30000}).parent(this.cardBody).children('div').children('a').should('be.visible');
+        this. getIframeBody().find('h5').contains(this.sponsorshipPurchaseReceipt,{timeout:30000}).parent(this.cardBody).children('div').children('a').should('be.visible');
         
     }
 
     clickEmailTemplate(name : string){
         cy.wait(5000);
-        this. getIframeBody().find('h5').contains(name).parent(this.cardBody).children('div').children('a').click();
+        this. getIframeBody().find('h5').contains(name,{timeout:10000}).parent(this.cardBody).children('div').children('a').click();
     }
 
     
