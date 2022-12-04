@@ -55,7 +55,7 @@ describe('Verify setup Button General Setting page', () => {
     it.only('Verify setup leaderboar Setting with default and front end will update follow this setup',()=>{
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/donation');
         settingSetupPage.openSettingLeaderboardPage();
-        leaderboardSettingPage.inputLeaderBoardSetting(true,true,"", true,"", true, "",true,"");
+        leaderboardSettingPage.inputLeaderBoardSetting(true,true,"", true,"Table", true, "",true,"");
         leaderboardSettingPage.clickSaveButton();
         leaderboardSettingPage.verifySaveSuccessfully();
         cy.forceVisit(infors.url);

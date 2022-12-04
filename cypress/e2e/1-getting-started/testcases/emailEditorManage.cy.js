@@ -179,7 +179,7 @@ describe('Verify Email Editor Manage', () => {
         emailEditorDetailPage.updateSubject('*|eventname|* Starts in 1 Hour!');
     })
 
-    it('Verify template In-Person Event Reminder Email work correct', () => {
+    it.only('Verify template In-Person Event Reminder Email work correct', () => {
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/email-editor',{timeout:200000});
         if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
         emailEditorPage.clickEmailTemplate('In-Person Event Reminder Email');
@@ -243,7 +243,7 @@ describe('Verify Email Editor Manage', () => {
         emailEditorDetailPage.updateSubject('Hey! *|tablehostfirstname|* invited you to *|eventname|*. Please say you are going.');
     })
 
-    it('Verify template Email to Host When Guest Declines work correct', () => {
+    it.only('Verify template Email to Host When Guest Declines work correct', () => {
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/email-editor',{timeout:200000});
         if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
         emailEditorPage.clickEmailTemplate('Email to Host When Guest Declines');
@@ -259,7 +259,7 @@ describe('Verify Email Editor Manage', () => {
         emailEditorDetailPage.updateSubject('Your guest, *|tableguestfirstname|*, declined your invitation.');
     })
 
-    it('Verify template Table Purchase Receipt work correct', () => {
+    it.only('Verify template Table Purchase Receipt work correct', () => {
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/email-editor',{timeout:200000});
         if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
         emailEditorPage.clickEmailTemplate('Table Purchase Receipt');

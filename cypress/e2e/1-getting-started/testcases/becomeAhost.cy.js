@@ -75,10 +75,13 @@ describe('Verify become a host flow', () => {
 
         donationsPaymentPage.clickPurchase();
         donationsRegisterTablePage.verifyEmailAdressIsDisplayed(randomEmail);
-        donationsRegisterTablePage.clickNavigationTab('Your Table');
-        donationsRegisterTablePage.verifyUserInformationInYourTableIsDisplayed(randomName, randomLastName, randomEmail);
+        if(infors.idProject == '1643')
+            donationsRegisterTablePage.clickNavigationTab('Your Table');
+        else
+        donationsRegisterTablePage.clickNavigationTab('Your');
+        donationsRegisterTablePage.verifyUserInformationInYourTableIsDisplayed(randomName, randomLastName, randomEmail, infors.idProject);
         donationsRegisterTablePage.clickNavigationTab('Guest');
-        donationsRegisterTablePage.verifyUserInformationInGuestTableIsDisplayed(randomName, randomLastName, randomEmail);
+        donationsRegisterTablePage.verifyUserInformationInGuestTableIsDisplayed(randomName, randomLastName, randomEmail, infors.idProject);
         let randomNameGuest = getRandomText();
         let randomLastNameGuest = getRandomText();
         let randomEmailGuest = getRandomEmail();
@@ -116,10 +119,13 @@ describe('Verify become a host flow', () => {
         donationsRegisterTablePage.verifyEmailAdressIsDisplayed(randomEmail);
         if(hasMailbox ==1 )
             mailbox.verifyMailboxGetEmailBecomeHostSuccess(inboxId);
-        donationsRegisterTablePage.clickNavigationTab('Your Table');
-        donationsRegisterTablePage.verifyUserInformationInYourTableIsDisplayed(randomName, randomLastName, randomEmail);
+        if(infors.idProject == '1643')
+            donationsRegisterTablePage.clickNavigationTab('Your Table');
+        else
+            donationsRegisterTablePage.clickNavigationTab('Your');
+        donationsRegisterTablePage.verifyUserInformationInYourTableIsDisplayed(randomName, randomLastName, randomEmail, infors.idProject);
         donationsRegisterTablePage.clickNavigationTab('Guest');
-        donationsRegisterTablePage.verifyUserInformationInGuestTableIsDisplayed(randomName, randomLastName, randomEmail);
+        donationsRegisterTablePage.verifyUserInformationInGuestTableIsDisplayed(randomName, randomLastName, randomEmail, infors.idProject);
         let randomNameGuest = getRandomText();
         let randomLastNameGuest = getRandomText();
         let randomEmailGuest = randomEmail;// getEmailTest();

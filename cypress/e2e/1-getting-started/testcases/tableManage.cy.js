@@ -82,7 +82,7 @@ describe('Verify the table Manage flow', () => {
     it('Verify fundraising page from manage Page',()=>{
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/tables');
         tableManageSetupPage.clickFundraisingBtn(firstName);
-        tablePage.VerifyGiveNowButtonHasCorrectAction(infors.urlAction);
+        tablePage.VerifyGiveNowButtonHasCorrectAction(infors.urlAction, infors.idProject);
         tablePage.verifyPurchaseTicketsButtonHasCorrectAction(infors.urlAction);
         tablePage.verifyBecomeASponsorshipButtonHasCorrectAction(infors.urlAction);
         tablePage.verifyBecomeAHostButtonHasCorrectAction(infors.urlAction);

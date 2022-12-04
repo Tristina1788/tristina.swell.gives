@@ -54,8 +54,10 @@ export class DonationsRegisterTablePage{
         cy.get(this.tabNavigation).contains(tabName).click();
     }
 
-    verifyUserInformationInYourTableIsDisplayed(firstName: string, lastName: string, email: string){
+    verifyUserInformationInYourTableIsDisplayed(firstName: string, lastName: string, email: string, projectId : string = '1643'){
         let tableName = lastName + " Table";
+        if(projectId != '1643')
+            tableName = lastName+' ';
         cy.get(this.tableNameTextBox).should('have.value', tableName);
         cy.get(this.firstNameTextbox).should('have.value', firstName);
         cy.get(this.lastNameTextbox).should('have.value', lastName);

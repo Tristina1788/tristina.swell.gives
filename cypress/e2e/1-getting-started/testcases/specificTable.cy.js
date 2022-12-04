@@ -11,7 +11,7 @@ describe('Verify table page', () => {
         cy.visit(infors.url);
         cy.wait(5000);
         homePage.clickFirstTableInTableBoard();
-        tablePage.VerifyGiveNowButtonHasCorrectAction(infors.urlAction);
+        tablePage.VerifyGiveNowButtonHasCorrectAction(infors.urlAction, infors.idProject);
         tablePage.verifyPurchaseTicketsButtonHasCorrectAction(infors.urlAction);
         tablePage.verifyBecomeASponsorshipButtonHasCorrectAction(infors.urlAction);
         tablePage.verifyBecomeAHostButtonHasCorrectAction(infors.urlAction);

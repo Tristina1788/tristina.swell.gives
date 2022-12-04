@@ -173,7 +173,7 @@ export class Mailbox {
             console.log("latestEmail:" + latestEmail);
             expect(latestEmail.from).to.eql('info@swellfundraising.com');
             expect(latestEmail.subject).to.contain('Hey! '+name+' invited you to');
-            expect(latestEmail.body).to.contain('I am hosting a Table to support');
+            expect(latestEmail.body).to.contain('I am hosting');
             //expect(latestEmail.subject).to.contain('Please say you are going.');
             
         });
@@ -248,7 +248,7 @@ export class Mailbox {
     }
 
     verifyMailboxGetEmailHostingTableSuccess(inboxId : string){
-        cy.wait(70000);
+        
         cy.waitForLatestEmail(inboxId, 400000).then(email => {
             expect(email.from).to.eql('info@swellfundraising.com');
             expect(email.subject).to.contain('Thank you for supporting');
