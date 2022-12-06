@@ -63,13 +63,13 @@ describe('Verify setup branch page', () => {
         let randomPhone = getRandomNumber();
         homePage.clickBecomeAFundraiser();
         
-        registerPage.verifyRegisterPage();
+        //registerPage.verifyRegisterPage();
         registerPage.verifyImageHeaderSetupCorrectInBranding();
         registerPage.verifyImageLogoSetupCorrectInBranding();
 
         registerPage.inputRegisterForm(randomName, randomLastName, randomPhone, randomEmail);
         registerPage.clickRegisterButton();
-        thankYouPage.verifyThankYouPageAfterFundraiserSuccess(randomName, randomLastName);
+        thankYouPage.verifyThankYouPageAfterFundraiserSuccess(randomName, randomLastName, infors.url);
         thankYouPage.verifyImageHeaderSetupCorrectInBranding();
         thankYouPage.verifyImageLogoSetupCorrectInBranding();
 

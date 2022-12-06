@@ -67,9 +67,9 @@ describe('Verify setup product page for table/team ', () => {
         donationsRegisterTablePage.verifyNumberTicketsInTable(proPerTB);
         loginManagePage.visit(infors.urlManage);
         loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
-        loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/tables');
+        loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/tables', {timeout: 60000});
         tableManageSetupPage.clickDeleteButton(randomLastName);
-        loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/tickets');
+        loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/tickets', {timeout: 60000});
         ticketManagePage.clickDeleteButton(proName);
     })
 

@@ -58,11 +58,11 @@ export class ProductsManageSetupPage {
         
     }
 
-    verifyNewProductIsCreated(type : string, name : string, isActive : boolean, isHidden : boolean, price : number, maxPro : number, ticketPerTB : number =0, ticketType : string =''){
+    verifyNewProductIsCreated(type : string, name : string, isActive : boolean, isHidden : boolean, price : string, maxPro : number, ticketPerTB : number =0, ticketType : string =''){
         let active = 'Inactive';
         if(isActive) active = 'Active';
         
-        cy.wait(2000);
+        cy.wait(5000);
         cy.get(this.searchInput).type(name);
         if(ticketType !='')
             cy.get(this.tableList).children('tbody').children('tr').children('td').contains(type)

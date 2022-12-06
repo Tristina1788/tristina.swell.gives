@@ -14,10 +14,10 @@ let ticketPage = new TicketPage();
 const user = require('../../../fixtures/address.json')
 let ticketProName = getRandomText();
 let priceTicket = Math.floor(Math.random() * 20) + 10;
-let maxTicket = Math.floor(Math.random() * 20) + 1;
+let maxTicket = Math.floor(Math.random() * 15) + 1;
 let ticketProNameUpdate = getRandomText();
 let priceTicketUpdate = Math.floor(Math.random() * 20) + 1;
-let maxTicketUpdate = Math.floor(Math.random() * 20) + 1;
+let maxTicketUpdate = Math.floor(Math.random() * 15) + 1;
 before(() => {
     loginManagePage.visit(infors.urlManage);
     loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
@@ -30,13 +30,10 @@ describe('Verify setup product page', () => {
         productSetupPage.inputProductForm('Ticket', ticketProName, true, false, priceTicket, maxTicket, 0);
         productSetupPage.clickSaveBtn();
         productsManageSetupPage.verifyNewProductIsCreated('Ticket', ticketProName, true, false, priceTicket, maxTicket, 0);
-
-
     })
 
     it.only('Verify ticket product can be used in frontend successfully ', () => {
         cy.forceVisit(infors.url);
-
         let randomName = getRandomText();
         let randomLastName = getRandomText();
         let randomEmail = getRandomEmail();
@@ -55,7 +52,6 @@ describe('Verify setup product page', () => {
 
     it.only('Verify update ticket product setup page and the changing apply to frontend', () => {
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/products');
-
         productsManageSetupPage.clickEditButton(ticketProName);
         productSetupPage.editProductForm(ticketProNameUpdate, false, false, priceTicketUpdate, maxTicketUpdate, 0);
         productSetupPage.clickSaveBtn();
@@ -97,20 +93,16 @@ describe('Verify setup product page', () => {
 
     })
 
-    it.only('Verify create product page for  ticket - product successfully', () => {
+    it.only('Verify create product page for Virtual ticket - product successfully', () => {
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/products');
-
         productsManageSetupPage.clickAddBtn();
         productSetupPage.inputProductForm('Virtual Ticket', ticketProName, true, false, priceTicket, maxTicket, 0);
         productSetupPage.clickSaveBtn();
         productsManageSetupPage.verifyNewProductIsCreated('Virtualticket', ticketProName, true, false, priceTicket, maxTicket, 0);
-
-
     })
 
     it.only('Verify virutal ticket product can be used in frontend successfully ', () => {
         cy.forceVisit(infors.url);
-
         let randomName = getRandomText();
         let randomLastName = getRandomText();
         let randomEmail = getRandomEmail();
@@ -170,8 +162,5 @@ describe('Verify setup product page', () => {
         cy.forceVisit(infors.url);
         homePage.clickPurchaseTickets();
         ticketPage.verifyTheTicketIsNotExist(ticketProNameUpdate);
-
     })
-
-
 })

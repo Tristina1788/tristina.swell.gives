@@ -33,6 +33,7 @@ describe('Verify setup Detail page', () => {
         detailSetupPage.inputDateEventDetails(dateCurrent);
         detailSetupPage.inputTimeEventDetails(time);
         detailSetupPage.inputLocationEventDetails(location);
+        detailSetupPage.inputTimezoneEventDetails(infors.timezone);
         detailSetupPage.clickSaveBtn();
         detailSetupPage.VerifyUpdateFormSuccess();
         cy.reload();
@@ -50,7 +51,7 @@ describe('Verify setup Detail page', () => {
         registerPage.verifyInforEventCorrect(dateCurrent,time,location);
         registerPage.inputRegisterForm(randomName, randomLastName, randomPhone, randomEmail);
         registerPage.clickRegisterButton();
-        thankYouPage.verifyThankYouPageAfterFundraiserSuccess(randomName, randomLastName);
+        thankYouPage.verifyThankYouPageAfterFundraiserSuccess(randomName, randomLastName, infors.url);
         thankYouPage.verifyNameSetupCorrect(name);
         thankYouPage.verifyNonProfitNameSetupCorrect(noneProfitName);
         

@@ -1,16 +1,17 @@
 export class TablePage{
     giveNowBtn = '.expanded';
     giveNowText = 'To give to this Table click a Guest and donate through their page.';
+    giveNowNotTBText = 'To give to this click a Guest and donate through their page.';
     purchaseTickets = '[value="Purchase Tickets"]';
     becomeASponser = '[value="BECOME A SPONSOR"]';
     becomeAHost = '[value="BECOME A HOST"]';
     becomeAFund = '[value="BECOME A FUNDRAISER"]';
     giveNowActionForm = 'donations';
     purchaseTicketsActionForm = 'tickets/#ticket';
-    becomeAsponsorActionForm = 'donations#/sponsorship';
-    becomeAHostActionForm = 'donations#/table';
+    becomeAsponsorActionForm = 'sponsorships#/sponsorship';
+    becomeAHostActionForm = 'tables#/table';
     becomeAFundraiserActionForm = 'register';
-    tableRaisedText = 'Table Raised';
+    tableRaisedText = 'Raised';
     socialScoreText = 'Social Score';
     totalAmountRaised = 'Total Amount Raised';
     imgEvent = '.event-image';
@@ -34,8 +35,11 @@ export class TablePage{
         cy.get('span').contains(this.totalAmountRaised).should('be.visible');
     }
     
-    VerifyGiveNowButtonHasCorrectAction(url:string){
-        cy.get(this.giveNowBtn).contains(this.giveNowText).should('be.visible');
+    VerifyGiveNowButtonHasCorrectAction(url:string, projectID: string){
+        if(projectID == '1643')
+        cy.get(this.giveNowBtn).contains(this.giveNowText, {matchCase: false}).should('be.visible');
+        else 
+        cy.get(this.giveNowBtn).contains(this.giveNowNotTBText, {matchCase: false}).should('be.visible');
     }
 
     verifyBecomeAHostButtonHasCorrectAction(url:string){

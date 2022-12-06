@@ -43,6 +43,8 @@ export class FundraiserDetailPage{
         
     }
 
+    
+
     clickSaveBtn(){
         cy.get('button').contains(this.saveBtn).click();
     }

@@ -37,10 +37,10 @@ export class RegisterPage{
     }
 
     inputRegisterForm(fname : string, lname :string, phone : string, email:string){
-        cy.get(this.firstNameRegisterInput).type(fname);
-        cy.get(this.lastNameRegisterInput).type(lname);
-        cy.get(this.phoneRegisterInput).type(phone);
-        cy.get(this.emailAddress).type(email);
+        cy.get(this.firstNameRegisterInput).type(fname, {force: true});
+        cy.get(this.lastNameRegisterInput).type(lname , {force: true});
+        cy.get(this.phoneRegisterInput).type(phone, {force: true});
+        cy.get(this.emailAddress).type(email , {force: true});
     }
 
     clickRegisterButton(){

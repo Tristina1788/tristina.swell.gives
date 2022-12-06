@@ -35,7 +35,7 @@ describe('Verify setup product page for sponsor ', () => {
     it.only('Verify sponsor product can be used in frontend successfully ', () => {
         cy.wait(3000);
         cy.forceVisit(infors.url);
-        homePage.verifySponsorSetupCorrectly(sponsorURL);
+        homePage.verifySponsorSetupCorrectly(sponsorURL, infors.url);
 
     })
 
@@ -47,8 +47,5 @@ describe('Verify setup product page for sponsor ', () => {
         sponsorManageSetupPage.verifyCSposorPageIsNotExist(sponsorName);
         cy.forceVisit(infors.url);
         homePage.verifySponsorIsNotSetup();
-        
-        
-
     })
 })

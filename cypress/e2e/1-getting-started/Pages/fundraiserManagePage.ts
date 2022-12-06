@@ -109,6 +109,7 @@ export class FundraiserManagePage{
     }
 
     inputEmailAndResend(email : string){
+        cy.wait(2000);
         cy.get(this.emailResendInput).clear();
         cy.get(this.emailResendInput).type(email);
         cy.get(this.sendEmailBtn).click();

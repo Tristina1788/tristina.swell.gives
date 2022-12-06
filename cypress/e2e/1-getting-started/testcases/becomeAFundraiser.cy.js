@@ -42,6 +42,7 @@ describe('Verify Become A fundraiser flow', () => {
     
     it.only('Verify information when become a fundraiser ',()=>{
         cy.forceVisit(infors.url);
+        if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
         let randomName = getRandomText();
         let randomLastName = getRandomText();
        // let randomEmail = getRandomEmail();
@@ -50,10 +51,10 @@ describe('Verify Become A fundraiser flow', () => {
         registerPage.verifyRegisterPage();
         registerPage.inputRegisterForm(randomName, randomLastName, randomPhone, randomEmail);
         registerPage.clickRegisterButton();
-        thankYouPage.verifyThankYouPageAfterFundraiserSuccess(randomName, randomLastName);
+        thankYouPage.verifyThankYouPageAfterFundraiserSuccess(randomName, randomLastName, infors.url);
         if(hasMailbox ==1 )
             mailbox.verifyMailboxGetEmailFundraiserSuccess(inboxId);
-        thankYouPage.clickFundraiserUserLinks(randomName, randomLastName);
+        thankYouPage.clickFundraiserUserLinks(randomName, randomLastName, infors.url);
 
     })
 })

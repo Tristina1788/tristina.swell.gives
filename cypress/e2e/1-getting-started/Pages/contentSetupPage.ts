@@ -51,8 +51,10 @@ export class ContentSetupPage{
     }
 
     updateFormContent(url : string, link : string, order : number, ct : string){
-        cy.get(this.pageUrl).clear();
-        cy.get(this.pageUrl).type(url);
+        if(url != 'index'){
+            cy.get(this.pageUrl).clear();
+            cy.get(this.pageUrl).type(url);
+        }
         cy.get(this.pageLink).clear();
         cy.get(this.pageLink).type(link);
         cy.get(this.sortOrder).clear();

@@ -8,12 +8,20 @@ import { match } from "assert";
         return text;
     }
 
-    export function getRandomNumber(count = 1) {
+    export function getRandomNumber(count = 8) {
         var text = "";
         var possible = "0123456789";
         for (var i = 0; i < count; i++)
         text += possible.charAt(Math.floor(Math.random() * possible.length));
         return text;
+    }
+
+    export function getRandomColorHexCode(count = 6) {
+        var text = "";
+        var possible = "0123456789abcdefABCDEF";
+        for (var i = 0; i < count; i++)
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+        return '#'+text;
     }
 
     export function getRandomEmail(){
@@ -69,9 +77,6 @@ import { match } from "assert";
                 // verify a new inbox was created
                 assert.isDefined(inbox)
 
-                // save the inboxId for later checking the emails
-                // inboxId = inbox.id
-                // emailAddress = inbox.emailAddress;
                 console.log("inbox id: " + inbox.id);
                 console.log("inbox.emailAddress: " + inbox.emailAddress);
                 cy.writeFile('./data/mailbox.json',{inboxId:inbox.id, emailAddress:inbox.emailAddress})

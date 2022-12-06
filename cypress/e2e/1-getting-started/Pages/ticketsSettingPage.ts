@@ -66,10 +66,9 @@ export class TicketsSettingPage {
             cy.get('label').contains(this.orderSumLabel).next('input').type(orderLb);
         }
          
-        cy.get('label').contains(this.donationSumLabel).next('input').clear();
+        cy.get('label').contains(this.donationSumLabel).next('input').clear({force:true});
         if(donaLb!= ""){
-            
-            cy.get('label').contains(this.donationSumLabel).next('input').type(donaLb);
+            cy.get('label').contains(this.donationSumLabel).next('input').type(donaLb,{force:true});
         }
             
 

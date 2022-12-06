@@ -1,7 +1,7 @@
 import { HomePage } from "../Pages/homePage";
 import { CompManagePage } from "../Pages/compManagePage";
 import { CompSetupPage} from "../Pages/compSetupPage";
-import { RegisterPage} from "../Pages/registerPage";
+import { RegisterCompsPage} from "../Pages/registerCompsPage";
 import { getRandomEmail, getRandomNumber, getRandomText } from "./generalFunction.cy";
 import { LoginManagePage } from "../Pages/loginManagePage";
 import { ThankYouPage } from "../Pages/thankYouPage";
@@ -12,7 +12,7 @@ let loginManagePage =new LoginManagePage();
 const infors = require('../utils/infor.js')
 let compManagePage =new CompManagePage();
 let compSetupPage =new CompSetupPage();
-let registerPage =new RegisterPage();
+let registerCompsPage =new RegisterCompsPage();
 let thankYouPage =new ThankYouPage();
 let mailbox =new Mailbox();
 
@@ -61,7 +61,7 @@ describe('Verify setup Comp ticket page', () => {
     }) 
     it.only('Verify create comps ticket page successfully',()=>{
         loginManagePage.visit(infors.urlManage+'events/'+infors.idProject+'/promos');
-        
+        if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
         compManagePage.clickAddBtn();
         compSetupPage.inputCompTicketsForm(code, "Test Ticket", 2, internalNote,lname, fname, randomEmail);
         compSetupPage.clickSaveAndSendEmailButton();
@@ -79,24 +79,30 @@ describe('Verify setup Comp ticket page', () => {
         let randomEmail1 = getRandomEmail();
         let randomPhone1 = getRandomNumber();
         loginManagePage.visit(infors.urlManage+'events/'+infors.idProject+'/promos');
-        
+       
         compManagePage.accessCompLink(code);
-        registerPage.verifyRegisterPageForComp();
-        registerPage.verifyButtonAddAnotherTicketIsAvailable();
-        registerPage.clickAddAnotherTicket();
-        registerPage.verifyRegisterFormForAttendees2();
-        registerPage.verifyButtonRemoveTicketIsAvailable();
-        registerPage.verifyButtonAddAnotherTicketIsNotAvailable();
-        registerPage.clickButtonRemoveTicket();
-        registerPage.inputRegisterForm(randomName1, randomLastName1, randomPhone1, randomEmail);
-        registerPage.clickRegisterButton();
+        registerCompsPage.verifyRegisterPageForComp();
+        registerCompsPage.verifyButtonAddTicketIsAvailable();
+        registerCompsPage.inputRegisterForm(randomName1, randomLastName1, randomPhone1, randomEmail);
+        registerCompsPage.clickAddTicket();
+        registerCompsPage.verifyButtonAddTicketIsAvailable();
+        registerCompsPage.verifyOrderIsCorrect(1);
+        registerCompsPage.verifyRegisterTicketIsPresent(1,randomEmail);
+        registerCompsPage.inputRegisterForm(randomName1+'1', randomLastName1+'1', randomPhone1+'1', randomEmail1);
+        registerCompsPage.clickAddTicket();
+        if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
+        registerCompsPage.verifyButtonAddTicketIsAvailable();
+        registerCompsPage.verifyOrderIsCorrect(2);
+        registerCompsPage.verifyRegisterTicketIsPresent(2,randomEmail1);
+        
+        registerCompsPage.clickOrderButton();
         thankYouPage.verifyThankYouPageAfterFundraiserSuccessForComp(randomName1, randomLastName1, "Test Ticket");
         
         if(hasMailbox ==1 )
              mailbox.verifyMailboxGetEmailRegisterCompTicketSuccess(inboxId);
     })
 
-    it.only('Update content page successfully with active = true',()=>{
+    it.only('Update content page successfully',()=>{
         loginManagePage.visit(infors.urlManage+'events/'+infors.idProject+'/promos');
         
         compManagePage.clickEditButton(code);
@@ -108,7 +114,7 @@ describe('Verify setup Comp ticket page', () => {
 
     })
 
-    it.only('Delete content page successfully with active = true',()=>{
+    it.only('Delete content page successfully',()=>{
         loginManagePage.visit(infors.urlManage+'events/'+infors.idProject+'/promos');
 
         compManagePage.clickDeleteButton(updateCode);

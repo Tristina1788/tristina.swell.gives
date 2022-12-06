@@ -1,4 +1,4 @@
-
+require("cypress-plugin-tab");
 export class TableManageSetupPage{
     refreshBtn = '.fa-refresh';
     addBtn = '.fa-plus-square';
@@ -20,8 +20,43 @@ export class TableManageSetupPage{
     seatsLabel = '.guest-list';
     iconGuestList = '.fa-group';
     tableHeader = '.portlet-header';
+    addASeaBtn = 'Add a Seat/Ticket';
+    cancelAddSeatBtn = 'No, leave the table alone!';
+    yesAddSeatBtn = 'Yes, add it!';
+    assignBtn = 'Assign';
    // guestRow = '//div[@class="modal-body"]//table[contains(@class,"table-responsive")]//tr[contains(@id,"guest-ticket")]';
     guestRow = '.modal-body';
+    guestAddressBtn = '.fa-address-book-o';
+    fnameInput ='[data-parsley-id="8"]';
+    lnameInput ='[data-parsley-id="10"]';
+    emailInputFundraiser ='[data-parsley-id="12"]';
+    companyInput ='[data-parsley-id="14"]';
+    groupSelection = '[data-parsley-id="16"]';
+    unSelectGroup = '.search-choice-close';
+    removeSeatBtn = '.remove-seat';
+    removeFundraiserBtn = '.fa-unlink';
+    getIframeDocument = () => {
+        return cy
+            .get('iframe.second-row')
+            // Cypress yields jQuery element, which has the real
+            // DOM element under property "0".
+            // From the real DOM iframe element we can get
+            // the "document" element, it is stored in "contentDocument" property
+            // Cypress "its" command can access deep properties using dot notation
+            // https://on.cypress.io/its
+            .its('0.contentDocument').should('exist')
+    }
+
+    getIframeBody = () => {
+        // get the document
+        return this.getIframeDocument()
+            // automatically retries until body is loaded
+            .its('body').should('not.be.undefined')
+            // wraps "body" DOM element to allow
+            // chaining more Cypress commands, like ".find(...)"
+            .then(cy.wrap)
+    }
+
     clickRefreshBtn(){
         cy.get(this.refreshBtn).click();
         
@@ -35,13 +70,14 @@ export class TableManageSetupPage{
     clickEmailBtn(name : string){
         cy.get(this.searchInput).clear();
         cy.get(this.searchInput).type(name);
-        cy.get(this.emailBtn).click();
+        cy.get(this.emailBtn).first().click();
         
     }
 
     inputEmailAndSend(email:string){
         cy.get(this.emailInput).clear();
         cy.get(this.emailInput).type(email);
+        cy.wait(2000);
         cy.get('button').contains(this.sendEmailBtn).click({force: true});
     }
 
@@ -74,7 +110,14 @@ export class TableManageSetupPage{
     }
 
     clickEditButton(name:string){
+        cy.wait(5000);
         cy.get(this.tableLabel).contains(name).click();
+
+    }
+
+    clickAddASeatButton(name:string){
+        cy.wait(1000);
+        cy.get('a').contains(this.addASeaBtn,{timeout:10000}).click();
 
     }
 
@@ -82,8 +125,8 @@ export class TableManageSetupPage{
         cy.get(this.searchInput).type(name);
         cy.get(this.deleteBtn).click();
         cy.wait(2000);
-        cy.get('button').contains(this.confirmDeleteBtn).click();
-        cy.get('button').contains(this.okBtn).click();
+        cy.get('button').contains(this.confirmDeleteBtn,{timeout:10000}).click();
+        cy.get('button').contains(this.okBtn,{timeout:10000}).click();
 
     }
 
@@ -147,5 +190,97 @@ export class TableManageSetupPage{
         cy.get(this.guestRow).contains(email).should('be.visible');
     }
 
+    verifyInforOfGuestDontExit(guestName : string, email : string){
+        cy.get(this.guestAddressBtn).parents('tr').should('not.contain', guestName);
+        cy.get(this.guestAddressBtn).parents('tr').should('not.contain', email);
+    }
 
+    verifyPopupAddingSeat(){
+        cy.wait(1000);
+        cy.get('p').contains('You will be adding an additional seat to the table!').should('be.visible');
+        cy.get('button').contains(this.cancelAddSeatBtn).should('be.visible');
+        cy.get('button').contains(this.yesAddSeatBtn).should('be.visible');
+    }
+
+    verifyPopupCancelSeat(){
+        cy.get('p').contains('Your table was left alone.').should('be.visible');
+    }
+
+    clickCancelAddSeatBtn(){
+       cy.get('.sweet-alert').find('button.cancel').contains(this.cancelAddSeatBtn).click({ multiple: true });
+        
+    }
+
+    clickYesAddSeatBtn(){
+        cy.wait(1000);
+        cy.get('.sweet-alert').find('button.confirm').contains(this.yesAddSeatBtn).click({ multiple: true });
+    }
+
+    verifyAddedSeatConfirmation(){
+        cy.get('p').contains('A new seat was added successfully!').should('be.visible');
+    }
+
+    clickOKButtonInPopupConfirm(){
+        cy.wait(1000)
+        cy.get('button').contains(this.okBtn).click();
+    }
+
+    clickAddressGuestButton(){
+        cy.get(this.guestAddressBtn).click();
+    }
+
+    clickNewFundraiser(){
+        cy.get('.fa-plus-circle').click();
+    }
+
+    clickSaveBtn(){
+        cy.get('button').contains('Save').click();
+    }
+
+    clickAssignBtn() {
+        cy.get('button').contains(this.assignBtn).click();
+    }
+
+    verifyRemoveSeatIsDisabled(isDisable: Boolean) {
+        switch(isDisable){
+            case true:
+                cy.get(this.removeSeatBtn).should('have.attr', 'disabled', 'disabled');
+                break;
+            case false:
+                cy.get(this.removeSeatBtn).should('not.have.attr', 'disabled');
+                break;
+        }
+    }
+
+    verifyDeleteGuestSuccess(){
+        cy.get(this.guestAddressBtn).should('not.exist');
+    }
+
+    clickRemoveSeatBtn(){
+        cy.get(this.removeSeatBtn).click();
+        cy.wait(2000)
+        cy.get('.sweet-alert').find('button.confirm').contains(this.confirmDeleteBtn).click({ force: true });
+    }
+
+    clickRemoveFundraiserBtn() {
+        cy.get(this.removeFundraiserBtn).click();
+    }
+
+    inputFundraiserTableForm(fname : string, lname : string, email : string,  company : string, group : string){
+        cy.wait(3000);
+        cy.get(this.fnameInput).clear();
+        cy.get(this.fnameInput).type(fname);
+        cy.get(this.lnameInput).clear();
+        cy.get(this.lnameInput).type(lname);
+        cy.get(this.companyInput).clear();
+        cy.get(this.companyInput).type(company);
+        cy.get(this.emailInputFundraiser).clear();
+        if(email!='')
+        cy.get(this.emailInputFundraiser).type(email);
+        if(group == '')
+            cy.get(this.unSelectGroup).click();
+        else 
+            cy.get(this.groupSelection).select(group,{force: true});
+        
+    }
 }

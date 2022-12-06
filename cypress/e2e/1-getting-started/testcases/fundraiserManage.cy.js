@@ -29,12 +29,13 @@ let updatedCompany = getRandomText();
 let updatedPhone = getRandomNumber();
 let updatedBidNumber = getRandomNumber();
 let inboxId = "";
-let randomEmail = "";
+var randomEmail = getRandomEmail();
 let hasMailbox = 0;
 
 
 describe('Verify the fundraiser Manage flow', () => {
     it.only('setup mailbox inbox',()=>{
+        randomEmail = getRandomEmail();
         cy.readFile('./data/mailbox.json',{timeout:2000}).then((inbox)=> {
             hasMailbox = inbox.hasMailbox;
             if(hasMailbox == -1) randomEmail = getRandomEmail();
@@ -62,6 +63,9 @@ describe('Verify the fundraiser Manage flow', () => {
         fundraiserDetailPage.clickSaveBtn();
         fundraiserDetailPage.verifySaveSuccess();
         fundraiserDetailPage.clickConfirmButton();
+        cy.reload();
+        if(hasMailbox == 1)
+            cy.emptyInbox(inboxId);
         fundraiserManagePage.verifyFundraiserIsExist(firstName + ' '+ lastName ,firstName+'.'+ lastName , randomEmail, true, 'grouest');
         fundraiserManagePage.verifySendEmailExist();
         fundraiserManagePage.clickSendEmail();
@@ -103,8 +107,8 @@ describe('Verify the fundraiser Manage flow', () => {
         homePage.clickBecomeAFundraiser();
         registerPage.inputRegisterForm(randomName, randomLastName, randomPhone, randomEmail);
         registerPage.clickRegisterButton();
-        thankYouPage.verifyThankYouPageAfterFundraiserSuccess(randomName, randomLastName);
-        thankYouPage.clickFundraiserUserLinks(randomName, randomLastName);
+        thankYouPage.verifyThankYouPageAfterFundraiserSuccess(randomName, randomLastName, infors.url);
+        thankYouPage.clickFundraiserUserLinks(randomName, randomLastName, infors.url);
         loginManagePage.visit(infors.urlManage);
         loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/fundraisers');

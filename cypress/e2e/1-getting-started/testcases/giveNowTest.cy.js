@@ -4,24 +4,28 @@ import { DonationsAmountPage} from "../Pages/donationsAmountPage";
 import { DonationsAddressPage } from "../Pages/donationsAddressPage";
 import { DonationsPaymentPage } from "../Pages/donationsPaymentPage";
 import { getInboxId, getRandomEmail, getRandomNumber, getRandomText} from "./generalFunction.cy"
+import { TransactionManagePage } from "../Pages/transactionManagePage";//
+import { LoginManagePage } from "../Pages/loginManagePage";
 
 let homePage = new HomePage();
 let mailbox = new Mailbox();
 let donationsAmountPage = new DonationsAmountPage();
 let donationsAddressPage =new DonationsAddressPage();
 let donationsPaymentPage =new DonationsPaymentPage();
-
+let loginManagePage =new LoginManagePage();
+let transactionManagePage =new TransactionManagePage();
 const infors = require('../utils/infor.js')
 const userFullFill = require('../../../fixtures/fullFillInfor.json')
 const user = require('../../../fixtures/address.json')
 let inboxId = "";
-let randomEmail = "";
+let randomEmail = getRandomEmail();
 let hasMailbox = 0;
 
 
 describe('Verify Give Now flow', () => {
     
     it.only('setup mailbox inbox',()=>{
+        
         cy.readFile('./data/mailbox.json',{timeout:2000}).then((inbox)=> {
             hasMailbox = inbox.hasMailbox;
             if(hasMailbox == -1) randomEmail = getRandomEmail();
@@ -44,8 +48,8 @@ describe('Verify Give Now flow', () => {
         });
     })
     it.only('Verify Give Now with all options',()=>{
-        
-        cy.forceVisit(infors.url);
+        if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
+        cy.visit(infors.url);
         let randomName = getRandomText();
         let randomLastName = getRandomText();
         let randomPhone = getRandomNumber();
@@ -63,6 +67,8 @@ describe('Verify Give Now flow', () => {
         donationsAmountPage.selectMakeGiftAnonymous();
         donationsAmountPage.clickPledgeButton();
         donationsAmountPage.verifyShowThankYouPledge();
+        loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/transactions');
+        transactionManagePage.verifyTransactionIsCreated('Pledge',randomName,randomLastName, randomEmail,'$77.99');
         if(hasMailbox ==1 )
             mailbox.verifyMailboxGetEmailPledge(inboxId);
         
@@ -70,7 +76,10 @@ describe('Verify Give Now flow', () => {
 
     it.only('Verify Give Now with other amount no option full fill later ',()=>{
         cy.forceVisit(infors.url);
-        
+        let randomName = getRandomText();
+        let randomLastName = getRandomText();
+        let randomPhone = getRandomNumber();
+        if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
         homePage.clickGiveNowButton();
         donationsAmountPage.inputOtherAmount(infors.anotherAmountTicketGiveNow+'.00')
         donationsAmountPage.selectCoverTransaction();
@@ -80,16 +89,19 @@ describe('Verify Give Now flow', () => {
         donationsAmountPage.selectOption1stBill();
         donationsAmountPage.selectMakeGiftAnonymous();
         donationsAmountPage.clickNextButton();
-        donationsAddressPage.inputAddressInfor(user.firstName, user.lastName, randomEmail, user.phone,
+        donationsAddressPage.inputAddressInfor(randomName, randomLastName, randomEmail, user.phone,
             user.company, user.address1, user.address2, user.city, user.state,
             user.zip);
         donationsAddressPage.clickNextButton();
-        donationsPaymentPage.inputCreditCard(infors.creditCardNumber, user.firstName, infors.creditCardVCV);
+        donationsPaymentPage.inputCreditCard(infors.creditCardNumber, randomName, infors.creditCardVCV);
         
         donationsPaymentPage.clickDonateButton(infors.amountGiveNowOtherFeeTest);
         donationsPaymentPage.verifyTransactionFinish();
         if(hasMailbox ==1 )
             mailbox.verifyMailboxGetEmailPurchaseSuccess(inboxId);
+
+        loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/transactions');
+        transactionManagePage.verifyTransactionIsCreated('Donation',randomName, randomLastName, randomEmail,'$43.68');
     })
 
     it.only('Verify Give Now with fee even will make payment failed',()=>{
@@ -127,8 +139,5 @@ describe('Verify Give Now flow', () => {
         donationsAddressPage.clickNextButton();
         //end script to verify previous button
     })
-
-    
-
 })
 

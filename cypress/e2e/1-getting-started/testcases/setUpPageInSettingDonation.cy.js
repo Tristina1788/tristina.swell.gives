@@ -47,7 +47,7 @@ describe('Verify setup setting - donation page', () => {
 
     })
 
-    it.only('Verify update setting enable apply to frontend with all options ', () => {
+    it('Verify update setting enable apply to frontend with all options ', () => {
        
         cy.forceVisit(infors.url);
         
