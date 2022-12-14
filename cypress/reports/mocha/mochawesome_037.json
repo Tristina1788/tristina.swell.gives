@@ -1,0 +1,186 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 5,
+    "passes": 5,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-12-04T01:21:50.805Z",
+    "end": "2022-12-04T01:22:59.898Z",
+    "duration": 69093,
+    "testsRegistered": 5,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "84d1b90e-37c8-4179-83d1-ec3cfe61b841",
+      "title": "",
+      "fullFile": "cypress\\e2e\\1-getting-started\\testcases\\setUpPageInSettingDonation.cy.js",
+      "file": "cypress\\e2e\\1-getting-started\\testcases\\setUpPageInSettingDonation.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "d0f2d2e8-7ded-4bc4-8fbe-7eac5b93367f",
+          "title": "Verify setup setting - donation page",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Verify update setting - donation page successfully",
+              "fullTitle": "Verify setup setting - donation page Verify update setting - donation page successfully",
+              "timedOut": null,
+              "duration": 12048,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/donation');\nsettingSetupPage.openSettingDonationPage();\ndonationSettingPage.inputFormDonationSetting(pageTitle, amount, true, true, true, true, true, true, hntitle, hndesc, hnselectiontitle, hnselectionplacehoder, hnselectionpMsg, true, ctitle, cSubtitle, cdesc);\ndonationSettingPage.clickSaveButton();\ndonationSettingPage.verifySaveSuccessfully();",
+              "err": {},
+              "uuid": "5081af2a-3ddb-44a5-b52c-5eec672b11d6",
+              "parentUUID": "d0f2d2e8-7ded-4bc4-8fbe-7eac5b93367f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify update setting enable apply to frontend with no option full fill later ",
+              "fullTitle": "Verify setup setting - donation page Verify update setting enable apply to frontend with no option full fill later ",
+              "timedOut": null,
+              "duration": 31476,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.forceVisit(infors.url);\nhomePage.clickGiveNowButton();\ndonationsAmountPage.verifyFormApplyFromSetting(pageTitle, amount, true, true, true, true, true, true, hntitle, hndesc, hnselectiontitle, hnselectionplacehoder, hnselectionpMsg, true, ctitle, cSubtitle, cdesc);\ndonationsAmountPage.selectFee(amount);\ndonationsAmountPage.verifyFeeSelectionCorrect(amount);\ndonationsAmountPage.selectRecurringContribution();\ndonationsAmountPage.verifyWarningBillTimeShow();\ndonationsAmountPage.selectOption1stBill();\ndonationsAmountPage.inputDDLCredit();\ndonationsAmountPage.inputHonorInfor(hornorName);\ndonationsAmountPage.selectMakeGiftAnonymous();\ndonationsAmountPage.clickNextButton();\ndonationsAddressPage.inputAddressInfor(user.firstName, user.lastName, user.email, user.phone, user.company, user.address1, user.address2, user.city, user.state, user.zip);\ndonationsAddressPage.clickNextButton();\ndonationsPaymentPage.inputCreditCard(infors.creditCardNumber, user.firstName, infors.creditCardVCV);\ndonationsPaymentPage.clickDonateButton();\ndonationsPaymentPage.verifyTransactionFinish();",
+              "err": {},
+              "uuid": "0bd5c364-46c1-4199-8827-20cfe760a68d",
+              "parentUUID": "d0f2d2e8-7ded-4bc4-8fbe-7eac5b93367f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify update setting - donation page with all selection to false successfully",
+              "fullTitle": "Verify setup setting - donation page Verify update setting - donation page with all selection to false successfully",
+              "timedOut": null,
+              "duration": 5968,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/donation');\nsettingSetupPage.openSettingDonationPage();\ndonationSettingPage.inputFormDonationSetting(pageTitle, amount, false, false, false, false, false, false, hntitle, hndesc, hnselectiontitle, hnselectionplacehoder, hnselectionpMsg, false, ctitle, cSubtitle, cdesc);\ndonationSettingPage.clickSaveButton();\ndonationSettingPage.verifySaveSuccessfully();",
+              "err": {},
+              "uuid": "cd1ec5c6-3a1e-4d92-bd63-f6a5cad521b3",
+              "parentUUID": "d0f2d2e8-7ded-4bc4-8fbe-7eac5b93367f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify update setting enable apply to frontend with all selection to false ",
+              "fullTitle": "Verify setup setting - donation page Verify update setting enable apply to frontend with all selection to false ",
+              "timedOut": null,
+              "duration": 10664,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.forceVisit(infors.url);\nhomePage.clickGiveNowButton();\ndonationsAmountPage.verifyFormApplyFromSetting(pageTitle, amount, false, false, false, false, false, false, hntitle, hndesc, hnselectiontitle, hnselectionplacehoder, hnselectionpMsg, false, ctitle, cSubtitle, cdesc);",
+              "err": {},
+              "uuid": "ef8365f1-9fa9-4382-afa7-92bf6bbf64da",
+              "parentUUID": "d0f2d2e8-7ded-4bc4-8fbe-7eac5b93367f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Back to setting - donation page with default setting ",
+              "fullTitle": "Verify setup setting - donation page Back to setting - donation page with default setting ",
+              "timedOut": null,
+              "duration": 6880,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/donation');\nsettingSetupPage.openSettingDonationPage();\ndonationSettingPage.inputFormDonationSetting(\"\", 0, true, true, true, true, true, true, \"\", \"\", \"\", \"\", \"\", false, \"\", \"\", \"\");\ndonationSettingPage.clickSaveButton();\ndonationSettingPage.verifySaveSuccessfully();",
+              "err": {},
+              "uuid": "76245d87-f055-4419-9590-e53d5269ced0",
+              "parentUUID": "d0f2d2e8-7ded-4bc4-8fbe-7eac5b93367f",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "5081af2a-3ddb-44a5-b52c-5eec672b11d6",
+            "0bd5c364-46c1-4199-8827-20cfe760a68d",
+            "cd1ec5c6-3a1e-4d92-bd63-f6a5cad521b3",
+            "ef8365f1-9fa9-4382-afa7-92bf6bbf64da",
+            "76245d87-f055-4419-9590-e53d5269ced0"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 67036,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "embeddedScreenshots": true,
+        "inlineAssets": true,
+        "reportPageTitle": "Cypress Tests"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

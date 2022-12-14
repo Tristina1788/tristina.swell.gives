@@ -1,0 +1,110 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-12-11T20:02:18.195Z",
+    "end": "2022-12-11T20:02:32.013Z",
+    "duration": 13818,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "59975c27-edf9-4ae6-b7ed-57fadd25b60a",
+      "title": "",
+      "fullFile": "cypress\\e2e\\1-getting-started\\testcases\\userManagement.cy.js",
+      "file": "cypress\\e2e\\1-getting-started\\testcases\\userManagement.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "8453522f-fd09-4139-9ee1-d52f1e4e4578",
+          "title": "Verify Transaction Manage flow",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Verify enable to update user management from manage Page",
+              "fullTitle": "Verify Transaction Manage flow Verify enable to update user management from manage Page",
+              "timedOut": null,
+              "duration": 12074,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "let firstName = (0, _generalFunction.getRandomText)();\nlet lastName = (0, _generalFunction.getRandomText)();\nuserManagementPage.clickUserEditButton('gEgAdpcsGE11062022@gmail.com');\nuserManagementDetailPage.inputUserForm(firstName, lastName, '', '', '', 'No', './data/img_test/logo2.jpg');\nuserManagementDetailPage.clickSaveButton();\nuserManagementPage.clickReloadButton();\nuserManagementPage.verifyUser(firstName, lastName, 'gEgAdpcsGE11062022@gmail.com', 'No');",
+              "err": {},
+              "uuid": "ca5633d0-0046-4dfe-9d26-d7958668496e",
+              "parentUUID": "8453522f-fd09-4139-9ee1-d52f1e4e4578",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "ca5633d0-0046-4dfe-9d26-d7958668496e"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 12074,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "embeddedScreenshots": true,
+        "inlineAssets": true,
+        "reportPageTitle": "Cypress Tests"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

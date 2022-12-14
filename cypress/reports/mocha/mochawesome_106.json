@@ -1,0 +1,148 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-12-13T15:28:33.608Z",
+    "end": "2022-12-13T15:29:49.047Z",
+    "duration": 75439,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "055c651a-bbe8-4a63-a1b0-b5152c9bbe02",
+      "title": "",
+      "fullFile": "cypress\\e2e\\1-getting-started\\testcases\\setUpPageInCoupon.cy.js",
+      "file": "cypress\\e2e\\1-getting-started\\testcases\\setUpPageInCoupon.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "f79e6247-2c68-41e2-a82e-2dcde4544d79",
+          "title": "Verify setup coupon page",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Verify create coupon page successfully and enable to use on frontend",
+              "fullTitle": "Verify setup coupon page Verify create coupon page successfully and enable to use on frontend",
+              "timedOut": null,
+              "duration": 28370,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/coupons');\ncouponManageSetupPage.clickAddBtn();\ncouponSetupPage.inputFormCoupon(code, discount);\ncouponSetupPage.clickSaveBtn();\ncouponManageSetupPage.clickOKButton();\ncouponManageSetupPage.verifyCounponPageIsExist(code, discount);\ncouponManageSetupPage.visit(infors.url);\nhomePage.clickPurchaseTickets();\nlet randomName = (0, _generalFunction.getRandomText)();\nlet randomLastName = (0, _generalFunction.getRandomText)();\nlet randomEmail = (0, _generalFunction.getRandomEmail)();\nlet randomPhone = (0, _generalFunction.getRandomNumber)();\nticketPage.verifyIsScreenSelectTickets();\nticketPage.selectTestTicket(0);\nticketPage.verifyFormInforTc(0);\nticketPage.inputFormInforTc(0, randomName, randomLastName, randomEmail, randomPhone);\nticketPage.clickAddTicket(0);\nticketPage.verifyTicketIsAdded(0, randomEmail);\nticketPage.selectAmountItem('$' + infors.amountTicket);\nticketPage.verifyPromoEnableToApplyInFrontEnd();\nticketPage.addPromotoTicket(code);\nticketPage.verifySummaryAmount(true, false, infors.amountTicket, discount);",
+              "err": {},
+              "uuid": "c69e1b9c-d954-427f-ba34-8b29832e70ae",
+              "parentUUID": "f79e6247-2c68-41e2-a82e-2dcde4544d79",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify update coupon page successfully and enable to use on frontend ",
+              "fullTitle": "Verify setup coupon page Verify update coupon page successfully and enable to use on frontend ",
+              "timedOut": null,
+              "duration": 23353,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/coupons');\ncouponManageSetupPage.clickEditButton(code);\ncouponSetupPage.inputFormCoupon(code + '_update', discountUpdate);\ncouponSetupPage.clickSaveBtn();\ncouponManageSetupPage.clickOKButton();\ncouponManageSetupPage.verifyCounponPageIsExist(code + '_update', discountUpdate);\ncouponManageSetupPage.visit(infors.url);\nhomePage.clickPurchaseTickets();\nlet randomName = (0, _generalFunction.getRandomText)();\nlet randomLastName = (0, _generalFunction.getRandomText)();\nlet randomEmail = (0, _generalFunction.getRandomEmail)();\nlet randomPhone = (0, _generalFunction.getRandomNumber)();\nticketPage.verifyIsScreenSelectTickets();\nticketPage.selectTestTicket(0);\nticketPage.verifyFormInforTc(0);\nticketPage.inputFormInforTc(0, randomName, randomLastName, randomEmail, randomPhone);\nticketPage.clickAddTicket(0);\nticketPage.verifyTicketIsAdded(0, randomEmail);\nticketPage.selectAmountItem('$' + infors.amountTicket);\nticketPage.verifyPromoEnableToApplyInFrontEnd();\nticketPage.addPromotoTicket(code + '_update');\nticketPage.verifySummaryAmount(true, false, infors.amountTicket, discountUpdate);",
+              "err": {},
+              "uuid": "a70a28cf-17d2-4d53-8b0a-abbbc978bd66",
+              "parentUUID": "f79e6247-2c68-41e2-a82e-2dcde4544d79",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify delete coupon page successfully and the code can not be used for frontend",
+              "fullTitle": "Verify setup coupon page Verify delete coupon page successfully and the code can not be used for frontend",
+              "timedOut": null,
+              "duration": 21735,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/coupons');\ncouponManageSetupPage.clickDeleteButton(code + '_update');\ncouponManageSetupPage.clickOKButton();\ncouponManageSetupPage.verifyCounponPageIsNotExist(code + '_update', discountUpdate);\ncouponManageSetupPage.visit(infors.url);\nhomePage.clickPurchaseTickets();\nlet randomName = (0, _generalFunction.getRandomText)();\nlet randomLastName = (0, _generalFunction.getRandomText)();\nlet randomEmail = (0, _generalFunction.getRandomEmail)();\nlet randomPhone = (0, _generalFunction.getRandomNumber)();\nticketPage.verifyIsScreenSelectTickets();\nticketPage.selectTestTicket(0);\nticketPage.verifyFormInforTc(0);\nticketPage.inputFormInforTc(0, randomName, randomLastName, randomEmail, randomPhone);\nticketPage.clickAddTicket(0);\nticketPage.verifyTicketIsAdded(0, randomEmail);\nticketPage.selectAmountItem('$' + infors.amountTicket);\nticketPage.verifyPromoEnableToApplyInFrontEnd();\nticketPage.addPromotoTicket(code + '_update');\nticketPage.verifySummaryAmount(true, false, infors.amountTicket);",
+              "err": {},
+              "uuid": "4b362c48-6fe6-4c84-98c9-3fbf8afc11a2",
+              "parentUUID": "f79e6247-2c68-41e2-a82e-2dcde4544d79",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "c69e1b9c-d954-427f-ba34-8b29832e70ae",
+            "a70a28cf-17d2-4d53-8b0a-abbbc978bd66",
+            "4b362c48-6fe6-4c84-98c9-3fbf8afc11a2"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 73458,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "embeddedScreenshots": true,
+        "inlineAssets": true,
+        "reportPageTitle": "Cypress Tests"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

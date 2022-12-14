@@ -1,0 +1,167 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 4,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-12-11T18:54:52.764Z",
+    "end": "2022-12-11T18:55:24.280Z",
+    "duration": 31516,
+    "testsRegistered": 4,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "9ef710e9-66b1-4288-bd9a-deea6ddc6dfa",
+      "title": "",
+      "fullFile": "cypress\\e2e\\1-getting-started\\testcases\\leaderboardSetting.cy.js",
+      "file": "cypress\\e2e\\1-getting-started\\testcases\\leaderboardSetting.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "fdd962e6-64b2-4054-8eca-34a9ad712b6f",
+          "title": "Verify setup Button General Setting page",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Verify setup leaderboar Setting with all options true and front end will update follow this setup",
+              "fullTitle": "Verify setup Button General Setting page Verify setup leaderboar Setting with all options true and front end will update follow this setup",
+              "timedOut": null,
+              "duration": 9759,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/donation');\nsettingSetupPage.openSettingLeaderboardPage();\nleaderboardSettingPage.inputLeaderBoardSetting(true, true, topFundraiserLb, true, topTableLb, true, mostsociallb, true, teamlb);\nleaderboardSettingPage.clickSaveButton();\nleaderboardSettingPage.verifySaveSuccessfully();\ncy.forceVisit(infors.url);\nhomePage.verifySettingLeaderboardSuccessfully(true, true, topFundraiserLb, true, topTableLb, true, mostsociallb, true, teamlb);",
+              "err": {},
+              "uuid": "932baf60-d1cc-48b7-8243-e47b8ed694b6",
+              "parentUUID": "fdd962e6-64b2-4054-8eca-34a9ad712b6f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify setup leaderboar Setting with leaderboard is false, another options are true and front end will update follow this setup",
+              "fullTitle": "Verify setup Button General Setting page Verify setup leaderboar Setting with leaderboard is false, another options are true and front end will update follow this setup",
+              "timedOut": null,
+              "duration": 5963,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/donation');\nsettingSetupPage.openSettingLeaderboardPage();\nleaderboardSettingPage.inputLeaderBoardSetting(false, true, topFundraiserLb, true, topTableLb, true, mostsociallb, true, teamlb);\nleaderboardSettingPage.clickSaveButton();\nleaderboardSettingPage.verifySaveSuccessfully();\ncy.forceVisit(infors.url);\nhomePage.verifySettingLeaderboardSuccessfully(false, true, topFundraiserLb, true, topTableLb, true, mostsociallb, true, teamlb);",
+              "err": {},
+              "uuid": "a22104a7-305a-408e-8166-48a4d40834b0",
+              "parentUUID": "fdd962e6-64b2-4054-8eca-34a9ad712b6f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify setup leaderboar Setting with leaderboard is true, options are true/false and front end will update follow this setup",
+              "fullTitle": "Verify setup Button General Setting page Verify setup leaderboar Setting with leaderboard is true, options are true/false and front end will update follow this setup",
+              "timedOut": null,
+              "duration": 6133,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/donation');\nsettingSetupPage.openSettingLeaderboardPage();\nleaderboardSettingPage.inputLeaderBoardSetting(true, true, topFundraiserLb, true, topTableLb, false, mostsociallb, false, teamlb);\nleaderboardSettingPage.clickSaveButton();\nleaderboardSettingPage.verifySaveSuccessfully();\ncy.forceVisit(infors.url);\nhomePage.verifySettingLeaderboardSuccessfully(true, true, topFundraiserLb, true, topTableLb, false, mostsociallb, false, teamlb);",
+              "err": {},
+              "uuid": "98313e92-08ef-4a67-82bc-edc526b93f6c",
+              "parentUUID": "fdd962e6-64b2-4054-8eca-34a9ad712b6f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify setup leaderboar Setting with default and front end will update follow this setup",
+              "fullTitle": "Verify setup Button General Setting page Verify setup leaderboar Setting with default and front end will update follow this setup",
+              "timedOut": null,
+              "duration": 7338,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/donation');\nsettingSetupPage.openSettingLeaderboardPage();\nleaderboardSettingPage.inputLeaderBoardSetting(true, true, \"\", true, \"Table\", true, \"\", true, \"\");\nleaderboardSettingPage.clickSaveButton();\nleaderboardSettingPage.verifySaveSuccessfully();\ncy.forceVisit(infors.url);\nhomePage.verifySettingLeaderboardSuccessfully(true, true, \"Top Fundraisers\", true, \"Table\", true, \"Most Social\", true, \"Teams\");",
+              "err": {},
+              "uuid": "05b66dc9-b4c2-49d6-9ffa-4dd5a47436d6",
+              "parentUUID": "fdd962e6-64b2-4054-8eca-34a9ad712b6f",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "932baf60-d1cc-48b7-8243-e47b8ed694b6",
+            "a22104a7-305a-408e-8166-48a4d40834b0",
+            "98313e92-08ef-4a67-82bc-edc526b93f6c",
+            "05b66dc9-b4c2-49d6-9ffa-4dd5a47436d6"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 29193,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "embeddedScreenshots": true,
+        "inlineAssets": true,
+        "reportPageTitle": "Cypress Tests"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

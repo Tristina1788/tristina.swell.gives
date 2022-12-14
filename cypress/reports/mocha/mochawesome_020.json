@@ -1,0 +1,148 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-12-04T01:00:24.876Z",
+    "end": "2022-12-04T01:01:40.410Z",
+    "duration": 75534,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "8cc8c731-ca56-447f-a9a7-1fc0326d40b2",
+      "title": "",
+      "fullFile": "cypress\\e2e\\1-getting-started\\testcases\\emailEditorManage.cy.js",
+      "file": "cypress\\e2e\\1-getting-started\\testcases\\emailEditorManage.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "c15722f6-b6b8-4463-867a-1b6385e28f9d",
+          "title": "Verify Email Editor Manage",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Verify template In-Person Event Reminder Email work correct",
+              "fullTitle": "Verify Email Editor Manage Verify template In-Person Event Reminder Email work correct",
+              "timedOut": null,
+              "duration": 25676,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/email-editor', {\n  timeout: 200000\n});\nif (hasMailbox == 1) cy.emptyInbox(inboxId);\nemailEditorPage.clickEmailTemplate('In-Person Event Reminder Email');\nemailEditorDetailPage.verifyTemplatePersonEventReminderEmailtHasAllParts('In-Person Event Reminder Email');\nemailEditorDetailPage.updateSubject('*|eventname|* Starts in 1 Hour! => Testing');\nemailEditorDetailPage.clickSaveBtn();\nemailEditorDetailPage.verifySubjectAfterUpdate('The Good Dinner Starts in 1 Hour! => Testing');\nemailEditorDetailPage.inputEmail(randomEmail);\nemailEditorDetailPage.clickSendEmail();\nemailEditorDetailPage.verifySendEmailSuccess();\nif (hasMailbox == 1) mailbox.verifyMailboxGetEmaiTemplateSuccess(inboxId, 'Starts in 1 Hour! => Testing', 'We look forward to seeing you at 2 PM at the Pizitz.');\nemailEditorDetailPage.updateSubject('*|eventname|* Starts in 1 Hour!');",
+              "err": {},
+              "uuid": "c84fee48-af24-4e25-b203-fa2b9a660a5a",
+              "parentUUID": "c15722f6-b6b8-4463-867a-1b6385e28f9d",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify template Email to Host When Guest Declines work correct",
+              "fullTitle": "Verify Email Editor Manage Verify template Email to Host When Guest Declines work correct",
+              "timedOut": null,
+              "duration": 24534,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/email-editor', {\n  timeout: 200000\n});\nif (hasMailbox == 1) cy.emptyInbox(inboxId);\nemailEditorPage.clickEmailTemplate('Email to Host When Guest Declines');\nemailEditorDetailPage.verifyTemplateEmailToHostWhenGuestDeclinesHasAllParts('Email to Host When Guest Declines');\nemailEditorDetailPage.updateSubject('Testing : Your guest, *|tableguestfirstname|*, declined your invitation.');\nemailEditorDetailPage.clickSaveBtn();\nemailEditorDetailPage.verifySubjectAfterUpdate('Testing : Your guest, Johny, declined your invitation.');\nemailEditorDetailPage.inputEmail(randomEmail);\nemailEditorDetailPage.clickSendEmail();\nemailEditorDetailPage.verifySendEmailSuccess();\nif (hasMailbox == 1) mailbox.verifyMailboxGetEmaiTemplateSuccess(inboxId, 'Testing : Your guest', 'We are updating you that Johny Smith declined your invitation to The Good Dinner.');\nemailEditorDetailPage.updateSubject('Your guest, *|tableguestfirstname|*, declined your invitation.');",
+              "err": {},
+              "uuid": "38f194f7-a476-4370-a5aa-031b9fb7c1ef",
+              "parentUUID": "c15722f6-b6b8-4463-867a-1b6385e28f9d",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify template Table Purchase Receipt work correct",
+              "fullTitle": "Verify Email Editor Manage Verify template Table Purchase Receipt work correct",
+              "timedOut": null,
+              "duration": 23416,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/email-editor', {\n  timeout: 200000\n});\nif (hasMailbox == 1) cy.emptyInbox(inboxId);\nemailEditorPage.clickEmailTemplate('Table Purchase Receipt');\nemailEditorDetailPage.verifyTemplateTablePurchaseReceiptHasAllParts('Table Purchase Receipt');\nemailEditorDetailPage.updateSubject('Testing : Thanks for your purchase supporting *|eventname|*');\nemailEditorDetailPage.clickSaveBtn();\nemailEditorDetailPage.verifySubjectAfterUpdate('Testing : Thanks for your purchase supporting The Good Dinner');\nemailEditorDetailPage.inputEmail(randomEmail);\nemailEditorDetailPage.clickSendEmail();\nemailEditorDetailPage.verifySendEmailSuccess();\nif (hasMailbox == 1) mailbox.verifyMailboxGetEmaiTemplateSuccess(inboxId, 'Testing : Thanks for your purchase supporting', 'Instructions for inviting guests to your Table are sent in a separate email. Keep your eyes peeled and start inviting!');\nemailEditorDetailPage.updateSubject('Thanks for your purchase supporting *|eventname|*');",
+              "err": {},
+              "uuid": "5072d56d-708b-4943-9565-5faf1b4e0450",
+              "parentUUID": "c15722f6-b6b8-4463-867a-1b6385e28f9d",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "c84fee48-af24-4e25-b203-fa2b9a660a5a",
+            "38f194f7-a476-4370-a5aa-031b9fb7c1ef",
+            "5072d56d-708b-4943-9565-5faf1b4e0450"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 73626,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "embeddedScreenshots": true,
+        "inlineAssets": true,
+        "reportPageTitle": "Cypress Tests"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

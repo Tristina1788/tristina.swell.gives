@@ -1,0 +1,186 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 5,
+    "passes": 5,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-12-03T08:18:51.084Z",
+    "end": "2022-12-03T08:22:15.589Z",
+    "duration": 204505,
+    "testsRegistered": 5,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "6cb173c3-fac1-442f-9eeb-463aa06edc0d",
+      "title": "",
+      "fullFile": "cypress\\e2e\\1-getting-started\\testcases\\giveNowTest.cy.js",
+      "file": "cypress\\e2e\\1-getting-started\\testcases\\giveNowTest.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "b96b6827-f2fd-43ad-9cdb-3cedda5bc437",
+          "title": "Verify Give Now flow",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "setup mailbox inbox",
+              "fullTitle": "Verify Give Now flow setup mailbox inbox",
+              "timedOut": null,
+              "duration": 32,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.readFile('./data/mailbox.json', {\n  timeout: 2000\n}).then(inbox => {\n  hasMailbox = inbox.hasMailbox;\n  if (hasMailbox == -1) randomEmail = (0, _generalFunction.getRandomEmail)();else if (hasMailbox != 1) {\n    console.log(\"hasMailbox: \" + hasMailbox);\n    cy.createInbox().then(newInbox => {\n      console.log('Test message'); // verify a new inbox was created\n      assert.isDefined(newInbox);\n      console.log(\"inbox id: \" + newInbox.id);\n      console.log(\"inbox.emailAddress: \" + newInbox.emailAddress);\n      cy.writeFile('./data/mailbox.json', {\n        inboxId: newInbox.id,\n        emailAddress: newInbox.emailAddress,\n        hasMailbox: 1\n      });\n      inboxId = newInbox.id;\n      randomEmail = newInbox.emailAddress;\n    });\n  } else {\n    inboxId = inbox.inboxId;\n    randomEmail = inbox.emailAddress;\n  }\n});",
+              "err": {},
+              "uuid": "a31aca46-d6da-4e95-89c4-5ec6db57b25c",
+              "parentUUID": "b96b6827-f2fd-43ad-9cdb-3cedda5bc437",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify Give Now with all options",
+              "fullTitle": "Verify Give Now flow Verify Give Now with all options",
+              "timedOut": null,
+              "duration": 47767,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if (hasMailbox == 1) cy.emptyInbox(inboxId);\ncy.visit(infors.url);\nlet randomName = (0, _generalFunction.getRandomText)();\nlet randomLastName = (0, _generalFunction.getRandomText)();\nlet randomPhone = (0, _generalFunction.getRandomNumber)();\nhomePage.clickGiveNowButton();\ndonationsAmountPage.selectFee(infors.amountGiveNowTest);\ndonationsAmountPage.verifyFeeSelectionCorrect(infors.amountGiveNowTest);\ndonationsAmountPage.selectCoverTransaction();\ndonationsAmountPage.verifyAmountAfterFee(infors.amountGiveNowFeeTest);\ndonationsAmountPage.selectRecurringContribution();\ndonationsAmountPage.verifyWarningBillTimeShow();\ndonationsAmountPage.selectOption1stBill();\ndonationsAmountPage.selectfullFillGiftLater();\ndonationsAmountPage.verifyWarningFullFillShow();\nrandomPhone;\ndonationsAmountPage.inputFormFullFillLater(randomName, randomLastName, randomEmail, randomPhone);\ndonationsAmountPage.selectMakeGiftAnonymous();\ndonationsAmountPage.clickPledgeButton();\ndonationsAmountPage.verifyShowThankYouPledge();\nloginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/transactions');\ntransactionManagePage.verifyTransactionIsCreated('Pledge', randomName, randomLastName, randomEmail, '$77.99');\nif (hasMailbox == 1) mailbox.verifyMailboxGetEmailPledge(inboxId);",
+              "err": {},
+              "uuid": "c6fed341-74e5-49c3-8cf2-32f227e56626",
+              "parentUUID": "b96b6827-f2fd-43ad-9cdb-3cedda5bc437",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify Give Now with other amount no option full fill later ",
+              "fullTitle": "Verify Give Now flow Verify Give Now with other amount no option full fill later ",
+              "timedOut": null,
+              "duration": 58878,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.forceVisit(infors.url);\nlet randomName = (0, _generalFunction.getRandomText)();\nlet randomLastName = (0, _generalFunction.getRandomText)();\nlet randomPhone = (0, _generalFunction.getRandomNumber)();\nif (hasMailbox == 1) cy.emptyInbox(inboxId);\nhomePage.clickGiveNowButton();\ndonationsAmountPage.inputOtherAmount(infors.anotherAmountTicketGiveNow + '.00');\ndonationsAmountPage.selectCoverTransaction();\ndonationsAmountPage.verifyAmountAfterFee(infors.amountGiveNowOtherFeeTest);\ndonationsAmountPage.selectRecurringContribution();\ndonationsAmountPage.verifyWarningBillTimeShow();\ndonationsAmountPage.selectOption1stBill();\ndonationsAmountPage.selectMakeGiftAnonymous();\ndonationsAmountPage.clickNextButton();\ndonationsAddressPage.inputAddressInfor(randomName, randomLastName, randomEmail, user.phone, user.company, user.address1, user.address2, user.city, user.state, user.zip);\ndonationsAddressPage.clickNextButton();\ndonationsPaymentPage.inputCreditCard(infors.creditCardNumber, randomName, infors.creditCardVCV);\ndonationsPaymentPage.clickDonateButton(infors.amountGiveNowOtherFeeTest);\ndonationsPaymentPage.verifyTransactionFinish();\nif (hasMailbox == 1) mailbox.verifyMailboxGetEmailPurchaseSuccess(inboxId);\nloginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/transactions');\ntransactionManagePage.verifyTransactionIsCreated('Donation', randomName, randomLastName, randomEmail, '$43.68');",
+              "err": {},
+              "uuid": "dc6037a9-d5bc-48df-908d-17ddd832fa1e",
+              "parentUUID": "b96b6827-f2fd-43ad-9cdb-3cedda5bc437",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify Give Now with fee even will make payment failed",
+              "fullTitle": "Verify Give Now flow Verify Give Now with fee even will make payment failed",
+              "timedOut": null,
+              "duration": 51896,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.forceVisit(infors.url);\nhomePage.clickGiveNowButton();\ndonationsAmountPage.selectFee(infors.amountEvenGiveNowTest);\ndonationsAmountPage.verifyFeeSelectionCorrect(infors.amountEvenGiveNowTest);\ndonationsAmountPage.clickNextButton();\ndonationsAddressPage.inputAddressInfor(user.firstName, user.lastName, user.email, user.phone, user.company, user.address1, user.address2, user.city, user.state, user.zip);\ndonationsAddressPage.clickNextButton();\ndonationsPaymentPage.inputCreditCard(infors.creditCardNumber, user.firstName, infors.creditCardVCV);\ndonationsPaymentPage.clickDonateButton(infors.amountEvenGiveNowTest);\ndonationsPaymentPage.verifyTransactionFailed();",
+              "err": {},
+              "uuid": "bb425cb3-19b3-4988-b9ca-47f8033eb2e1",
+              "parentUUID": "b96b6827-f2fd-43ad-9cdb-3cedda5bc437",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify Give Now with previous button",
+              "fullTitle": "Verify Give Now flow Verify Give Now with previous button",
+              "timedOut": null,
+              "duration": 42308,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.forceVisit(infors.url);\nhomePage.clickGiveNowButton();\ndonationsAmountPage.selectFee(infors.amountEvenGiveNowTest);\ndonationsAmountPage.verifyFeeSelectionCorrect(infors.amountEvenGiveNowTest);\ndonationsAmountPage.clickNextButton();\ndonationsAddressPage.inputAddressInfor(user.firstName, user.lastName, user.email, user.phone, user.company, user.address1, user.address2, user.city, user.state, user.zip);\ndonationsAddressPage.clickNextButton();\ndonationsPaymentPage.inputCreditCard(infors.creditCardNumber, user.firstName, infors.creditCardVCV); //start script to verify previous button\ndonationsPaymentPage.clickPreviousButton();\ndonationsAddressPage.verifyAddressInforPage();\ndonationsAddressPage.clickPreviousButton();\ndonationsAmountPage.verifyDonationAmountPage();\ndonationsAmountPage.clickNextButton();\ndonationsAddressPage.clickNextButton(); //end script to verify previous button",
+              "err": {},
+              "uuid": "e2651f27-6b5f-4298-9b86-983ba06cb92f",
+              "parentUUID": "b96b6827-f2fd-43ad-9cdb-3cedda5bc437",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "a31aca46-d6da-4e95-89c4-5ec6db57b25c",
+            "c6fed341-74e5-49c3-8cf2-32f227e56626",
+            "dc6037a9-d5bc-48df-908d-17ddd832fa1e",
+            "bb425cb3-19b3-4988-b9ca-47f8033eb2e1",
+            "e2651f27-6b5f-4298-9b86-983ba06cb92f"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 200881,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "embeddedScreenshots": true,
+        "inlineAssets": true,
+        "reportPageTitle": "Cypress Tests"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

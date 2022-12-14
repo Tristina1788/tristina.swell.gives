@@ -78,7 +78,6 @@ describe('Verify Transaction Manage flow', () => {
         cy.forceVisit(infors.urlManage);
         if(hasMailbox ==1 ) 
             cy.emptyInbox(inboxId);
-        if(hasMailbox == 1 ) cy.emptyInbox(inboxId);
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/transactions');
         transactionManagePage.clickAddBtn();
        

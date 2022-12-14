@@ -42,7 +42,7 @@ export class FundraiserManagePage{
     clickDeleteButton(code:string){
         cy.get(this.searchInput).clear();
         cy.get(this.searchInput).type(code);
-        cy.get(this.deleteBtn).click();
+        cy.get(this.deleteBtn).first().click();
         cy.wait(2000);
         cy.get('button').contains(this.confirmDeleteBtn).click();
 

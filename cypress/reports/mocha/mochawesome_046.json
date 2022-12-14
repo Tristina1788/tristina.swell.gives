@@ -1,0 +1,148 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-12-04T01:32:11.099Z",
+    "end": "2022-12-04T01:32:58.128Z",
+    "duration": 47029,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "bee15084-891a-41cb-8b8f-d1107e33ba66",
+      "title": "",
+      "fullFile": "cypress\\e2e\\1-getting-started\\testcases\\tableSetting.cy.js",
+      "file": "cypress\\e2e\\1-getting-started\\testcases\\tableSetting.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "a201fb5d-b23b-41c9-94cc-6bacd6ec6493",
+          "title": "Verify setup Button General Setting page",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Verify setup Table Setting with Donation true and front end will update follow this setup",
+              "fullTitle": "Verify setup Button General Setting page Verify setup Table Setting with Donation true and front end will update follow this setup",
+              "timedOut": null,
+              "duration": 20891,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "let pageTitle = (0, _generalFunction.getRandomText)();\nlet tableType = (0, _generalFunction.getRandomText)();\nlet tableSection = (0, _generalFunction.getRandomText)();\nlet donationTitle = (0, _generalFunction.getRandomText)();\nlet orderSummary = (0, _generalFunction.getRandomText)();\nlet donationSummary = (0, _generalFunction.getRandomText)();\nloginManagePage.visit(infors.urlManage);\nloginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);\nloginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/donation');\nsettingSetupPage.openSettingTablePage();\ntableSettingPage.inputGeneralTableSetting(pageTitle, tableType, tableSection, donationTitle, orderSummary, donationSummary, true);\ntableSettingPage.clickSaveButton();\ntableSettingPage.verifySaveSuccessfully();\ncy.forceVisit(infors.url);\nhomePage.clickGiveAHostButton();\ndonationsTablePage.verifySettingTableSuccessfully(pageTitle, tableType, tableSection, donationTitle, orderSummary, donationSummary, true);",
+              "err": {},
+              "uuid": "e9ddb8e0-10aa-40a6-8093-a78a6fa859af",
+              "parentUUID": "a201fb5d-b23b-41c9-94cc-6bacd6ec6493",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify setup Table Setting with Donation false and front end will update follow this setup",
+              "fullTitle": "Verify setup Button General Setting page Verify setup Table Setting with Donation false and front end will update follow this setup",
+              "timedOut": null,
+              "duration": 12637,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "let pageTitle = (0, _generalFunction.getRandomText)();\nlet tableType = (0, _generalFunction.getRandomText)();\nlet tableSection = (0, _generalFunction.getRandomText)();\nlet donationTitle = (0, _generalFunction.getRandomText)();\nlet orderSummary = (0, _generalFunction.getRandomText)();\nlet donationSummary = (0, _generalFunction.getRandomText)();\nloginManagePage.visit(infors.urlManage);\nloginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);\nloginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/donation');\nsettingSetupPage.openSettingTablePage();\ntableSettingPage.inputGeneralTableSetting(pageTitle, tableType, tableSection, donationTitle, orderSummary, donationSummary, false);\ntableSettingPage.clickSaveButton();\ntableSettingPage.verifySaveSuccessfully();\ncy.forceVisit(infors.url);\nhomePage.clickGiveAHostButton();\ndonationsTablePage.verifySettingTableSuccessfully(pageTitle, tableType, tableSection, donationTitle, orderSummary, donationSummary, false);",
+              "err": {},
+              "uuid": "cbaf2926-1637-4365-af25-fc98729c7ea4",
+              "parentUUID": "a201fb5d-b23b-41c9-94cc-6bacd6ec6493",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify setup Table Setting as default and front end will update follow this setup",
+              "fullTitle": "Verify setup Button General Setting page Verify setup Table Setting as default and front end will update follow this setup",
+              "timedOut": null,
+              "duration": 11513,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginManagePage.visit(infors.urlManage);\nloginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);\nloginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/donation');\nsettingSetupPage.openSettingTablePage();\ntableSettingPage.inputGeneralTableSetting('', '', '', '', '', '', true);\ntableSettingPage.clickSaveButton();\ntableSettingPage.verifySaveSuccessfully();\ncy.forceVisit(infors.url);\nhomePage.clickGiveAHostButton();\ndonationsTablePage.verifySettingTableSuccessfully();",
+              "err": {},
+              "uuid": "63157a7e-5250-4265-b86c-fe60947dccae",
+              "parentUUID": "a201fb5d-b23b-41c9-94cc-6bacd6ec6493",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "e9ddb8e0-10aa-40a6-8093-a78a6fa859af",
+            "cbaf2926-1637-4365-af25-fc98729c7ea4",
+            "63157a7e-5250-4265-b86c-fe60947dccae"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 45041,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "embeddedScreenshots": true,
+        "inlineAssets": true,
+        "reportPageTitle": "Cypress Tests"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

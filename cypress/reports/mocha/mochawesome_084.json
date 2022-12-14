@@ -1,0 +1,167 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 4,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-12-11T20:00:26.725Z",
+    "end": "2022-12-11T20:02:11.119Z",
+    "duration": 104394,
+    "testsRegistered": 4,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "32bc9400-804a-43c4-88cd-401571a68fca",
+      "title": "",
+      "fullFile": "cypress\\e2e\\1-getting-started\\testcases\\transactionManager.cy.js",
+      "file": "cypress\\e2e\\1-getting-started\\testcases\\transactionManager.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "e3477955-e4a5-4409-b578-661d729a03bf",
+          "title": "Verify Transaction Manage flow",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "setup mailbox inbox",
+              "fullTitle": "Verify Transaction Manage flow setup mailbox inbox",
+              "timedOut": null,
+              "duration": 2951,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.readFile('./data/mailbox.json', {\n  timeout: 2000\n}).then(inbox => {\n  hasMailbox = inbox.hasMailbox;\n  if (hasMailbox == -1) randomEmail = (0, _generalFunction.getRandomEmail)();else if (hasMailbox != 1) {\n    console.log(\"hasMailbox: \" + hasMailbox);\n    cy.createInbox().then(newInbox => {\n      console.log('Test message'); // verify a new inbox was created\n      assert.isDefined(newInbox);\n      console.log(\"inbox id: \" + newInbox.id);\n      console.log(\"inbox.emailAddress: \" + newInbox.emailAddress);\n      cy.writeFile('./data/mailbox.json', {\n        inboxId: newInbox.id,\n        emailAddress: newInbox.emailAddress,\n        hasMailbox: 1\n      });\n      inboxId = newInbox.id;\n      randomEmail = newInbox.emailAddress;\n    });\n  } else {\n    inboxId = inbox.inboxId;\n    randomEmail = inbox.emailAddress;\n  }\n});",
+              "err": {},
+              "uuid": "04af8963-9104-4820-a755-85cfca385fba",
+              "parentUUID": "e3477955-e4a5-4409-b578-661d729a03bf",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify enable to create new transaction from manage Page",
+              "fullTitle": "Verify Transaction Manage flow Verify enable to create new transaction from manage Page",
+              "timedOut": null,
+              "duration": 64937,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.forceVisit(infors.urlManage);\nif (hasMailbox == 1) cy.emptyInbox(inboxId);\nif (hasMailbox == 1) cy.emptyInbox(inboxId);\nloginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/transactions');\ntransactionManagePage.clickAddBtn();\ntransactionDetailManagePage.inputTranactionForm('', randomNameTr, randomLastNameTr, randomCompanyTr, randomEmailTr, randomPhoneTr, 'Donation', randomAmount, randomHonor, true, randomDesc, randomName, randomLastName, randomCompany, randomEmail, false, randomNumber, '');\ntransactionDetailManagePage.clickSaveButton();\ncy.reload();\ntransactionManagePage.verifyTransactionIsCreated('Donation', randomNameTr, randomLastNameTr, randomEmail, '$' + randomAmount + '.00');\ntransactionManagePage.clickSendEmail();\nif (hasMailbox == 1) mailbox.verifyMailboxGetEmailPurchaseSuccess(inboxId);\nloginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/fundraisers');\nfundraiserManagePage.verifyFundraiserIsExist(randomName + ' ' + randomLastName, randomName + '.' + randomLastName, randomEmail, false, '');",
+              "err": {},
+              "uuid": "23154ac6-3c96-4324-9966-ae6d7feafc60",
+              "parentUUID": "e3477955-e4a5-4409-b578-661d729a03bf",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify enable to update transaction from manage Page",
+              "fullTitle": "Verify Transaction Manage flow Verify enable to update transaction from manage Page",
+              "timedOut": null,
+              "duration": 24754,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "let randomAmount = Math.floor(Math.random() * 90) + 0;\ncy.forceVisit(infors.urlManage);\nif (hasMailbox == 1) cy.emptyInbox(inboxId);\nloginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/transactions');\ntransactionManagePage.clickEditButton(randomNameTr);\ntransactionDetailManagePage.inputTranactionForm('', randomNameTrUpdate, randomLastNameTrUpdate, randomCompanyTrUpdate, randomEmailTrUpdate, randomPhoneTrUpdate, 'Donation', randomAmountUpdate, randomHonorUpdate, false, randomDescUpdate, randomNameUpdate, randomLastNameUpdate, randomCompanyUpdate, randomEmailUpdate, false, randomNumberUpdate, '');\ntransactionDetailManagePage.clickSaveButton();\ncy.wait(1000);\ncy.reload();\ntransactionManagePage.verifyTransactionIsCreated('Donation', randomNameTrUpdate, randomLastNameTrUpdate, randomEmailUpdate, '$' + randomAmountUpdate + '.00');\nloginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/fundraisers');\nfundraiserManagePage.verifyFundraiserIsExist(randomNameUpdate + ' ' + randomLastNameUpdate, randomNameUpdate + '.' + randomLastNameUpdate, randomEmailUpdate, false, '');",
+              "err": {},
+              "uuid": "51123e9f-2ea2-42b4-a5df-ee6db3c92ecb",
+              "parentUUID": "e3477955-e4a5-4409-b578-661d729a03bf",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify enable to delete transaction from manage Page",
+              "fullTitle": "Verify Transaction Manage flow Verify enable to delete transaction from manage Page",
+              "timedOut": null,
+              "duration": 9414,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/transactions');\ntransactionManagePage.clickDeleteButton(randomNameTrUpdate);\ntransactionManagePage.verifyTransactionIsNotPresent(randomNameTrUpdate);\nloginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/fundraisers');\nfundraiserManagePage.clickDeleteButton(randomNameUpdate);",
+              "err": {},
+              "uuid": "786703e5-1b3a-4155-9e37-102cb7995b86",
+              "parentUUID": "e3477955-e4a5-4409-b578-661d729a03bf",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "04af8963-9104-4820-a755-85cfca385fba",
+            "23154ac6-3c96-4324-9966-ae6d7feafc60",
+            "51123e9f-2ea2-42b4-a5df-ee6db3c92ecb",
+            "786703e5-1b3a-4155-9e37-102cb7995b86"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 102056,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "embeddedScreenshots": true,
+        "inlineAssets": true,
+        "reportPageTitle": "Cypress Tests"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

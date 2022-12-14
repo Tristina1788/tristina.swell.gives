@@ -1,0 +1,148 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-12-13T15:37:11.937Z",
+    "end": "2022-12-13T15:37:56.702Z",
+    "duration": 44765,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "45097b22-b191-4e65-9d2d-d7d49765e619",
+      "title": "",
+      "fullFile": "cypress\\e2e\\1-getting-started\\testcases\\setUpPageInSponsor.cy.js",
+      "file": "cypress\\e2e\\1-getting-started\\testcases\\setUpPageInSponsor.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "11fc4894-a2f5-4c29-b223-962beb3ef639",
+          "title": "Verify setup product page for sponsor ",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Verify create product page for  sponsor - product successfully",
+              "fullTitle": "Verify setup product page for sponsor  Verify create product page for  sponsor - product successfully",
+              "timedOut": null,
+              "duration": 18636,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/sponsors');\nsponsorManageSetupPage.clickAddBtn();\nsponsorSetupPage.inputSponsorFormSetupPage(sponsorName, 2, sponsorURL, './data/img_test/logo2.jpg');\nsponsorSetupPage.clickSaveBtn();\nsponsorSetupPage.clickOKButton();\nsponsorManageSetupPage.verifySposorIsExist(sponsorName, sponsorURL, 2);",
+              "err": {},
+              "uuid": "e1b79482-af7e-4b9f-a700-3619aec82e78",
+              "parentUUID": "11fc4894-a2f5-4c29-b223-962beb3ef639",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify sponsor product can be used in frontend successfully ",
+              "fullTitle": "Verify setup product page for sponsor  Verify sponsor product can be used in frontend successfully ",
+              "timedOut": null,
+              "duration": 13472,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.wait(3000);\ncy.forceVisit(infors.url);\nhomePage.verifySponsorSetupCorrectly(sponsorURL, infors.url);",
+              "err": {},
+              "uuid": "94632dc6-f0cf-4f01-80bb-2c4cdb850676",
+              "parentUUID": "11fc4894-a2f5-4c29-b223-962beb3ef639",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify delete sponsor product page successfully and the code can not be used for frontend",
+              "fullTitle": "Verify setup product page for sponsor  Verify delete sponsor product page successfully and the code can not be used for frontend",
+              "timedOut": null,
+              "duration": 10474,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/sponsors');\nsponsorManageSetupPage.clickDeleteButton(sponsorName);\nsponsorManageSetupPage.clickOKButton();\nsponsorManageSetupPage.verifyCSposorPageIsNotExist(sponsorName);\ncy.forceVisit(infors.url);\nhomePage.verifySponsorIsNotSetup();",
+              "err": {},
+              "uuid": "12441ff0-03eb-4ff9-8e7f-7eaed0e0c363",
+              "parentUUID": "11fc4894-a2f5-4c29-b223-962beb3ef639",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "e1b79482-af7e-4b9f-a700-3619aec82e78",
+            "94632dc6-f0cf-4f01-80bb-2c4cdb850676",
+            "12441ff0-03eb-4ff9-8e7f-7eaed0e0c363"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 42582,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "embeddedScreenshots": true,
+        "inlineAssets": true,
+        "reportPageTitle": "Cypress Tests"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

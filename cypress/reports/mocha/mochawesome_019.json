@@ -1,0 +1,110 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-12-04T01:00:15.715Z",
+    "end": "2022-12-04T01:00:21.778Z",
+    "duration": 6063,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "d1e9d90d-2d3e-4cc6-99ba-9c0dcb0b47c7",
+      "title": "",
+      "fullFile": "cypress\\e2e\\1-getting-started\\testcases\\dashboardManage.cy.js",
+      "file": "cypress\\e2e\\1-getting-started\\testcases\\dashboardManage.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "2036dd68-05dd-499d-aa31-cb17e68c6b40",
+          "title": "Verify the Dashboard Evensts Manage flow",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Verify dashboard Manage Page",
+              "fullTitle": "Verify the Dashboard Evensts Manage flow Verify dashboard Manage Page",
+              "timedOut": null,
+              "duration": 3826,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginManagePage.visit(infors.urlManage);\nloginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);\nloginManagePage.visit(infors.urlManage + 'events/' + infors.idProject);\ndashboardManagePage.verifySummaryTable();\ndashboardManagePage.verifyStatsTable();",
+              "err": {},
+              "uuid": "bce3dcd8-5a05-402e-b94a-f0ebba1b97c5",
+              "parentUUID": "2036dd68-05dd-499d-aa31-cb17e68c6b40",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "bce3dcd8-5a05-402e-b94a-f0ebba1b97c5"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 3826,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "embeddedScreenshots": true,
+        "inlineAssets": true,
+        "reportPageTitle": "Cypress Tests"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

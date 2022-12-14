@@ -1,0 +1,186 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 5,
+    "passes": 5,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-12-11T18:51:33.049Z",
+    "end": "2022-12-11T18:53:16.997Z",
+    "duration": 103948,
+    "testsRegistered": 5,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "80f08286-97bf-4e79-91b3-906061cc95eb",
+      "title": "",
+      "fullFile": "cypress\\e2e\\1-getting-started\\testcases\\fundraiserManage.cy.js",
+      "file": "cypress\\e2e\\1-getting-started\\testcases\\fundraiserManage.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "98cbe6ad-523d-44c3-a63d-982c2af23a64",
+          "title": "Verify the fundraiser Manage flow",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "setup mailbox inbox",
+              "fullTitle": "Verify the fundraiser Manage flow setup mailbox inbox",
+              "timedOut": null,
+              "duration": 32,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "randomEmail = (0, _generalFunction.getRandomEmail)();\ncy.readFile('./data/mailbox.json', {\n  timeout: 2000\n}).then(inbox => {\n  hasMailbox = inbox.hasMailbox;\n  if (hasMailbox == -1) randomEmail = (0, _generalFunction.getRandomEmail)();else if (hasMailbox != 1) {\n    console.log(\"hasMailbox: \" + hasMailbox);\n    cy.createInbox().then(newInbox => {\n      // verify a new inbox was created\n      assert.isDefined(newInbox);\n      console.log(\"inbox id: \" + newInbox.id);\n      console.log(\"inbox.emailAddress: \" + newInbox.emailAddress);\n      cy.writeFile('./data/mailbox.json', {\n        inboxId: newInbox.id,\n        emailAddress: newInbox.emailAddress,\n        hasMailbox: 1\n      });\n      inboxId = newInbox.id;\n      randomEmail = newInbox.emailAddress;\n    });\n  } else {\n    inboxId = inbox.inboxId;\n    randomEmail = inbox.emailAddress;\n  }\n});",
+              "err": {},
+              "uuid": "6c921d4c-bf80-401c-bd74-eb82d0ebfc9a",
+              "parentUUID": "98cbe6ad-523d-44c3-a63d-982c2af23a64",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify enable to create new fundraiser from manage Page",
+              "fullTitle": "Verify the fundraiser Manage flow Verify enable to create new fundraiser from manage Page",
+              "timedOut": null,
+              "duration": 34767,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/fundraisers');\nfundraiserManagePage.clickAddBtn();\nfundraiserDetailPage.inputFundraiserForm('No Referral', firstName, lastName, company, randomEmail, true, phone, bidNumber, 'Physical', 'grouest');\nfundraiserDetailPage.clickSaveBtn();\nfundraiserDetailPage.verifySaveSuccess();\nfundraiserDetailPage.clickConfirmButton();\ncy.reload();\nif (hasMailbox == 1) cy.emptyInbox(inboxId);\nfundraiserManagePage.verifyFundraiserIsExist(firstName + ' ' + lastName, firstName + '.' + lastName, randomEmail, true, 'grouest');\nfundraiserManagePage.verifySendEmailExist();\nfundraiserManagePage.clickSendEmail();\nfundraiserManagePage.inputEmailAndResend(randomEmail);\nif (hasMailbox == 1) mailbox.verifyMailboxGetEmailFundraiserSuccess(inboxId);\ncy.visit(infors.url + '/users/' + firstName + '.' + lastName);\ncy.wait(5000);\nusersPage.verifyTheUsersHasGroup('grouest');",
+              "err": {},
+              "uuid": "b308cd6d-07a7-4b64-979e-9d9dbf74562f",
+              "parentUUID": "98cbe6ad-523d-44c3-a63d-982c2af23a64",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify enable to update fundraiser from manage Page",
+              "fullTitle": "Verify the fundraiser Manage flow Verify enable to update fundraiser from manage Page",
+              "timedOut": null,
+              "duration": 15992,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/fundraisers');\nfundraiserManagePage.clickEditButton(firstName);\nfundraiserDetailPage.inputFundraiserForm('No Referral', updatedFirstName, updatedLastName, updatedCompany, '', false, updatedPhone, updatedBidNumber, 'Virtual', '');\nfundraiserDetailPage.clickSaveBtn();\nfundraiserDetailPage.verifySaveSuccess();\nfundraiserDetailPage.clickConfirmButton();\nfundraiserManagePage.verifyFundraiserIsExist(updatedFirstName + ' ' + updatedLastName, firstName + '.' + lastName, '', false, '');\nfundraiserManagePage.verifySendEmailIsNotExist();",
+              "err": {},
+              "uuid": "0cb4896c-b0ab-4a10-a76f-77abf2f13131",
+              "parentUUID": "98cbe6ad-523d-44c3-a63d-982c2af23a64",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify enable to delete fundraiser from manage Page",
+              "fullTitle": "Verify the fundraiser Manage flow Verify enable to delete fundraiser from manage Page",
+              "timedOut": null,
+              "duration": 10718,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/fundraisers');\nfundraiserManagePage.clickDeleteButton(firstName + '.' + lastName);\nfundraiserManagePage.clickOKButton();\ncy.reload();\nfundraiserManagePage.verifyFundraiserIsNotExist(updatedFirstName + ' ' + updatedLastName);",
+              "err": {},
+              "uuid": "9e6eb2fa-6d94-4dd4-a660-53b9de75ea07",
+              "parentUUID": "98cbe6ad-523d-44c3-a63d-982c2af23a64",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify information in manage when become a fundraiser ",
+              "fullTitle": "Verify the fundraiser Manage flow Verify information in manage when become a fundraiser ",
+              "timedOut": null,
+              "duration": 39893,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.forceVisit(infors.url);\nlet randomName = (0, _generalFunction.getRandomText)();\nlet randomLastName = (0, _generalFunction.getRandomText)();\nlet randomEmail = (0, _generalFunction.getRandomEmail)();\nlet randomPhone = (0, _generalFunction.getRandomNumber)();\nhomePage.clickBecomeAFundraiser();\nregisterPage.inputRegisterForm(randomName, randomLastName, randomPhone, randomEmail);\nregisterPage.clickRegisterButton();\nthankYouPage.verifyThankYouPageAfterFundraiserSuccess(randomName, randomLastName, infors.url);\nthankYouPage.clickFundraiserUserLinks(randomName, randomLastName, infors.url);\nloginManagePage.visit(infors.urlManage);\nloginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);\nloginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/fundraisers');\nfundraiserManagePage.verifyFundraiserIsExist(randomName + ' ' + randomLastName, randomName + '.' + randomLastName, randomEmail, true, '');\nfundraiserManagePage.clickDeleteButton(randomName);\nfundraiserManagePage.clickOKButton();\ncy.reload();\nfundraiserManagePage.verifyFundraiserIsNotExist(randomName + ' ' + randomLastName);",
+              "err": {},
+              "uuid": "bed5752b-78ae-4b5c-8baa-99d15dff0b8b",
+              "parentUUID": "98cbe6ad-523d-44c3-a63d-982c2af23a64",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "6c921d4c-bf80-401c-bd74-eb82d0ebfc9a",
+            "b308cd6d-07a7-4b64-979e-9d9dbf74562f",
+            "0cb4896c-b0ab-4a10-a76f-77abf2f13131",
+            "9e6eb2fa-6d94-4dd4-a660-53b9de75ea07",
+            "bed5752b-78ae-4b5c-8baa-99d15dff0b8b"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 101402,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "embeddedScreenshots": true,
+        "inlineAssets": true,
+        "reportPageTitle": "Cypress Tests"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

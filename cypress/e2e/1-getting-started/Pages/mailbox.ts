@@ -1,3 +1,5 @@
+import cypress from "cypress";
+
 export class Mailbox {
     verifyMailboxGetEmailPledge(inboxId: string) {
         cy.waitForLatestEmail(inboxId, 400000).then(latestEmail => {
@@ -80,6 +82,7 @@ export class Mailbox {
                 cy.getEmail(emails[i].id).then(email => {
                     console.log("subject:" + email.subject);
                     let subject = email.subject;
+                    cy.log("subject "+i+" :"+email.subject);
                     if (subject.includes('Thanks for your purchase supporting')) {
                         expect(email.from).to.eql('info@swellfundraising.com');
                         expect(email.subject).to.contain('Thanks for your purchase supporting');
@@ -104,6 +107,10 @@ export class Mailbox {
                         email4++;
                     }
 
+                    cy.log("email1 : "+email1);
+                    cy.log("email2 : "+email2);
+                    cy.log("email3 : "+email3);
+                    cy.log("email4 : "+email4);
                     if (i == 4) {
                         expect(email1).equal(1);
                         expect(email2).equal(1);
@@ -193,6 +200,22 @@ export class Mailbox {
             expect(email.from).to.eql('info@swellfundraising.com');
             expect(email.subject).to.contain('Thanks for Registering as a fundraiser for');
             expect(email.body).to.contain('Way to go, you are now a fundraiser for');
+            
+        });
+    }
+
+    verifyMailboxGetEmailNewUserSuccess(inboxId : string){
+        cy.waitForLatestEmail(inboxId, 400000).then(email => {
+            expect(email.from).to.eql('info@swellfundraising.com');
+            expect(email.subject).to.contain("You'll need this to let us know you are you.");
+            expect(email.body).to.contain("Thanks for creating an account with Swell Fundraising. We can't wait to work with you!");
+            expect(email.body).to.contain("Thanks for creating an account with Swell Fundraising. We can't wait to work with you!");
+            let html = email.body;
+            
+            let linkUser = html.substring(html.indexOf('https://mandrillapp.com/track/click/30928270/manage.swell.gives'), html.indexOf('see, I told ya it was quick.'));
+            cy.log("html:"+linkUser);
+            let saveLink = linkUser.substring(0, (linkUser.length - 263))
+            cy.writeFile('./data/data.json',{verifyLink:saveLink});
             
         });
     }

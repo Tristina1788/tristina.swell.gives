@@ -1,0 +1,167 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 4,
+    "failures": -3,
+    "start": "2022-12-13T15:47:40.856Z",
+    "end": "2022-12-13T15:47:40.877Z",
+    "duration": 21,
+    "testsRegistered": 4,
+    "passPercent": null,
+    "pendingPercent": 100,
+    "other": 3,
+    "hasOther": true,
+    "skipped": 4,
+    "hasSkipped": true
+  },
+  "results": [
+    {
+      "uuid": "8c4a761c-4270-45fa-8c2b-6c975fe0e6cf",
+      "title": "",
+      "fullFile": "cypress\\e2e\\1-getting-started\\testcases\\userManage.cy.js",
+      "file": "cypress\\e2e\\1-getting-started\\testcases\\userManage.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "02c67d90-55fa-4905-b630-bfec952c8d32",
+          "title": "Verify the user Manage flow",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "setup mailbox inbox",
+              "fullTitle": "Verify the user Manage flow setup mailbox inbox",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "randomEmail = (0, _generalFunction.getRandomEmail)();\ncy.readFile('./data/mailbox.json', {\n  timeout: 2000\n}).then(inbox => {\n  hasMailbox = inbox.hasMailbox;\n  console.log(\"hasMailbox: \" + hasMailbox);\n  cy.createInbox().then(newInbox => {\n    // verify a new inbox was created\n    assert.isDefined(newInbox);\n    console.log(\"inbox id: \" + newInbox.id);\n    console.log(\"inbox.emailAddress: \" + newInbox.emailAddress);\n    cy.writeFile('./data/mailbox.json', {\n      inboxId: newInbox.id,\n      emailAddress: newInbox.emailAddress,\n      hasMailbox: 1\n    });\n    inboxId = newInbox.id;\n    randomEmail = newInbox.emailAddress;\n  });\n});",
+              "err": {},
+              "uuid": "1a96f58a-0f0d-4625-b19a-fb4a9d6c23a2",
+              "parentUUID": "02c67d90-55fa-4905-b630-bfec952c8d32",
+              "isHook": false,
+              "skipped": true
+            },
+            {
+              "title": "Verify enable to create new user from manage Page",
+              "fullTitle": "Verify the user Manage flow Verify enable to create new user from manage Page",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/transactions');\nloginManagePage.visit(infors.urlManage + 'users');",
+              "err": {},
+              "uuid": "d63a9260-259b-475f-98e8-664e6060865e",
+              "parentUUID": "02c67d90-55fa-4905-b630-bfec952c8d32",
+              "isHook": false,
+              "skipped": true
+            },
+            {
+              "title": "Verify enable to create new user from manage Page",
+              "fullTitle": "Verify the user Manage flow Verify enable to create new user from manage Page",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginManagePage.visit(infors.urlManage + 'users');\nuserManagePage.clickAddBtn();\nuserManagePage.addNewUser(firstName, lastName, 'User', randomEmail, infors.passAdmin, \"Yes\", './data/img_test/a740_288.jpg');\nuserManagePage.clickSaveBtn();\nuserManagePage.verifySaveSuccess();\nuserManagePage.clickConfirmButton();\ncy.reload();\nif (hasMailbox == 1) cy.emptyInbox(inboxId);\nuserManagePage.verifyUserIsExist(firstName, lastName, randomEmail, 'User', infors.passAdmin, \"Yes\");\nif (hasMailbox == 1) mailbox.verifyMailboxGetEmailNewUserSuccess(inboxId); //mailbox.verifyMailboxGetEmailNewUserSuccess('fca7edc7-9d39-46e6-bfe6-63f8a8eebf16');\ndashboardPage.logoutManagePage();\nuserManagePage.visitVerifyLink(); //loginManagePage.inputloginForm(infors.randomEmail, infors.passAdmin);\nloginManagePage.inputloginForm('fca7edc7-9d39-46e6-bfe6-63f8a8eebf16@mailslurp.com', infors.passAdmin);\ndashboardPage.verifyLoginSuccess();",
+              "err": {},
+              "uuid": "8d81d00a-befc-49df-bd62-0f9e74517ca1",
+              "parentUUID": "02c67d90-55fa-4905-b630-bfec952c8d32",
+              "isHook": false,
+              "skipped": true
+            },
+            {
+              "title": "Verify enable to update user from manage Page",
+              "fullTitle": "Verify the user Manage flow Verify enable to update user from manage Page",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "let firstNameUpdate = (0, _generalFunction.getRandomText)();\nlet lastNameUpdate = (0, _generalFunction.getRandomText)();\ndashboardPage.clickProfileBtn();\nuserManagePage.updateUser(firstNameUpdate, lastNameUpdate, 'User', randomEmail, infors.passAdmin, './data/img_test/a740_288.jpg');\nuserManagePage.clickSaveBtn();\nuserManagePage.verifySaveSuccess();\nuserManagePage.clickConfirmButton();\ncy.reload();\nuserManagePage.verifyNewUserIsExist(firstNameUpdate, lastNameUpdate, 'User', randomEmail, infors.passAdmin, \"yes\");",
+              "err": {},
+              "uuid": "0a6b482b-a3c4-407a-b4f8-5041ab439459",
+              "parentUUID": "02c67d90-55fa-4905-b630-bfec952c8d32",
+              "isHook": false,
+              "skipped": true
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [
+            "1a96f58a-0f0d-4625-b19a-fb4a9d6c23a2",
+            "d63a9260-259b-475f-98e8-664e6060865e",
+            "8d81d00a-befc-49df-bd62-0f9e74517ca1",
+            "0a6b482b-a3c4-407a-b4f8-5041ab439459"
+          ],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "embeddedScreenshots": true,
+        "inlineAssets": true,
+        "reportPageTitle": "Cypress Tests"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

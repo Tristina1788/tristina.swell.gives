@@ -1,0 +1,148 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-12-04T01:10:34.535Z",
+    "end": "2022-12-04T01:11:57.872Z",
+    "duration": 83337,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "4f1c7c4f-98fc-486b-8157-6e00edaaf34d",
+      "title": "",
+      "fullFile": "cypress\\e2e\\1-getting-started\\testcases\\setUpPageInBranch.cy.js",
+      "file": "cypress\\e2e\\1-getting-started\\testcases\\setUpPageInBranch.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "2aeca9a4-318f-4979-96ca-760083e911e7",
+          "title": "Verify setup branch page",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Verify set up in branch page successfully",
+              "fullTitle": "Verify setup branch page Verify set up in branch page successfully",
+              "timedOut": null,
+              "duration": 21527,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "branchSetupPage.visit(infors.urlManage + 'events/' + infors.idProject + '/branding');\nbranchSetupPage.verifyHaveAllUploadImages();\nbranchSetupPage.verifyUnableToUploadWrongSizeImage();\nbranchSetupPage.verifyEnableToUploadCorrectSizeImage();\nbranchSetupPage.clickSaveBtn();\nbranchSetupPage.VerifyUpdateFormSuccess();\ncy.reload();\nbranchSetupPage.getImageHeaderSetupInBranding(); // cy.forceVisit(infors.url);\n// homePage.verifyImageHeaderSetupCorrectInBranding();",
+              "err": {},
+              "uuid": "982779f4-7b9a-4cb9-bbec-ae759265a252",
+              "parentUUID": "2aeca9a4-318f-4979-96ca-760083e911e7",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify set up page in branch page and image header and logo will update follow this setup",
+              "fullTitle": "Verify setup branch page Verify set up page in branch page and image header and logo will update follow this setup",
+              "timedOut": null,
+              "duration": 46490,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "Cypress.on('uncaught:exception', (err, runnable) => {\n  return false;\n});\ncy.forceVisit(infors.url);\nhomePage.verifyImageHeaderSetupCorrectInBranding();\nhomePage.verifyImageLogoSetupCorrectInBranding();\nlet randomName = (0, _generalFunction.getRandomText)();\nlet randomLastName = (0, _generalFunction.getRandomText)();\nlet randomEmail = (0, _generalFunction.getRandomEmail)();\nlet randomPhone = (0, _generalFunction.getRandomNumber)();\nhomePage.clickBecomeAFundraiser(); //registerPage.verifyRegisterPage();\nregisterPage.verifyImageHeaderSetupCorrectInBranding();\nregisterPage.verifyImageLogoSetupCorrectInBranding();\nregisterPage.inputRegisterForm(randomName, randomLastName, randomPhone, randomEmail);\nregisterPage.clickRegisterButton();\nthankYouPage.verifyThankYouPageAfterFundraiserSuccess(randomName, randomLastName, infors.url);\nthankYouPage.verifyImageHeaderSetupCorrectInBranding();\nthankYouPage.verifyImageLogoSetupCorrectInBranding();\ncy.forceVisit(infors.url);\nhomePage.clickPurchaseTickets();\nticketPage.verifyImageHeaderSetupCorrectInBranding();\nticketPage.verifyImageLogoSetupCorrectInBranding();\nticketPage.verifyIsScreenSelectTickets();\nticketPage.selectTestTicket(0);\nticketPage.verifyFormInforTc(0);\nticketPage.inputFormInforTc(0, randomName, randomLastName, randomEmail, randomPhone);\nticketPage.clickAddTicket(0);\nticketPage.selectAmountItem('$' + infors.amountTicket);\nticketPage.clickButtonNext();\ndonationsAddressPage.verifyImageHeaderSetupCorrectInBranding();\ndonationsAddressPage.verifyImageLogoSetupCorrectInBranding();\ndonationsAddressPage.inputAddressInforTickets(user.company, user.address1, user.address2, user.city, user.state, user.zip);\ndonationsAddressPage.clickNextButton();\ndonationsPaymentPage.inputCreditCardTicket(infors.creditCardNumber, infors.creditCardVCV);\ndonationsPaymentPage.verifyImageHeaderSetupCorrectInBranding();\ndonationsPaymentPage.verifyImageLogoSetupCorrectInBranding();\ncy.forceVisit(infors.url);\nhomePage.clickChooseASponsorshipButton();\nsponsorshipPage.verifyImageHeaderSetupCorrectInBranding();\nsponsorshipPage.verifyImageLogoSetupCorrectInBranding();\ncy.forceVisit(infors.url);\nhomePage.clickGiveAHostButton();\ndonationsTablePage.verifyImageHeaderSetupCorrectInBranding();\ndonationsTablePage.verifyImageLogoSetupCorrectInBranding();\ncy.forceVisit(infors.url);\nhomePage.clickGiveNowButton();\ndonationsAmountPage.verifyImageHeaderSetupCorrectInBranding();\ndonationsAmountPage.verifyImageLogoSetupCorrectInBranding();",
+              "err": {},
+              "uuid": "b57237ab-a646-4c64-9458-6e297b4a93cc",
+              "parentUUID": "2aeca9a4-318f-4979-96ca-760083e911e7",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify set up page in branch page and image profile header will update to user and table page follow this setup",
+              "fullTitle": "Verify setup branch page Verify set up page in branch page and image profile header will update to user and table page follow this setup",
+              "timedOut": null,
+              "duration": 12979,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.forceVisit(infors.url);\nhomePage.clickFirstUserInTopFundraiser();\nusersPage.verifyImageHeadergoSetupCorrectInBranding();\ncy.visit(infors.url);\nhomePage.clickFirstTableInTableBoard();\ntablePage.verifyImageHeadergoSetupCorrectInBranding();",
+              "err": {},
+              "uuid": "ac77f1a6-d219-4b0e-a63b-32bb01c3227f",
+              "parentUUID": "2aeca9a4-318f-4979-96ca-760083e911e7",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "982779f4-7b9a-4cb9-bbec-ae759265a252",
+            "b57237ab-a646-4c64-9458-6e297b4a93cc",
+            "ac77f1a6-d219-4b0e-a63b-32bb01c3227f"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 80996,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "embeddedScreenshots": true,
+        "inlineAssets": true,
+        "reportPageTitle": "Cypress Tests"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

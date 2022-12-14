@@ -1,0 +1,148 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-12-13T15:08:25.399Z",
+    "end": "2022-12-13T15:08:53.437Z",
+    "duration": 28038,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "f81bbd71-23fd-4065-bc12-49f244e7ba72",
+      "title": "",
+      "fullFile": "cypress\\e2e\\1-getting-started\\testcases\\buttonSetting.cy.js",
+      "file": "cypress\\e2e\\1-getting-started\\testcases\\buttonSetting.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "0c87e7e2-42f3-43ed-8c47-d29018619a52",
+          "title": "Verify setup Button General Setting page",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Verify setup Button Setting with fundraiser true and front end will update follow this setup",
+              "fullTitle": "Verify setup Button General Setting page Verify setup Button Setting with fundraiser true and front end will update follow this setup",
+              "timedOut": null,
+              "duration": 11037,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginManagePage.visit(infors.urlManage);\nloginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);\nloginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/donation');\nsettingSetupPage.openSettingButtonPage();\nbuttonSettingPage.inputGeneralButtonSetting(giveNowLLb, purchaseLb, becomeHostLb, becomeFundraiser, becomeSponsor);\nbuttonSettingPage.clickSaveButton();\nbuttonSettingPage.verifySaveSuccessfully();\ncy.forceVisit(infors.url);\nhomePage.verifySettingButtonSuccessfully(giveNowLLb, purchaseLb, becomeHostLb, becomeFundraiser, becomeSponsor);",
+              "err": {},
+              "uuid": "c43a5eb0-9e34-4fbc-bab7-1c2ee0957665",
+              "parentUUID": "0c87e7e2-42f3-43ed-8c47-d29018619a52",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify setup Button Setting with fundraiser false and front end will update follow this setup",
+              "fullTitle": "Verify setup Button General Setting page Verify setup Button Setting with fundraiser false and front end will update follow this setup",
+              "timedOut": null,
+              "duration": 7778,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginManagePage.visit(infors.urlManage);\nloginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);\nloginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/donation');\nsettingSetupPage.openSettingButtonPage();\nbuttonSettingPage.inputGeneralButtonSetting(giveNowLLb, purchaseLb, becomeHostLb, becomeFundraiser, becomeSponsor, false);\nbuttonSettingPage.clickSaveButton();\nbuttonSettingPage.verifySaveSuccessfully();\ncy.forceVisit(infors.url);\nhomePage.verifySettingButtonSuccessfully(giveNowLLb, purchaseLb, becomeHostLb, becomeFundraiser, becomeSponsor, false);",
+              "err": {},
+              "uuid": "e3e44393-c689-4cdc-ae4b-5b7555df8ac4",
+              "parentUUID": "0c87e7e2-42f3-43ed-8c47-d29018619a52",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify setup Button Setting as default and front end will update follow this setup",
+              "fullTitle": "Verify setup Button General Setting page Verify setup Button Setting as default and front end will update follow this setup",
+              "timedOut": null,
+              "duration": 6994,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginManagePage.visit(infors.urlManage);\nloginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);\nloginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/donation');\nsettingSetupPage.openSettingButtonPage();\nbuttonSettingPage.inputGeneralButtonSetting(\"\", \"\", \"\", \"\", \"\", true);\nbuttonSettingPage.clickSaveButton();\nbuttonSettingPage.verifySaveSuccessfully();\ncy.forceVisit(infors.url);\nhomePage.verifySettingButtonSuccessfully(\"GIVE NOW\", \"Purchase Tickets\", \"BECOME A HOST\", \"BECOME A FUNDRAISER\", \"BECOME A SPONSOR\", true);",
+              "err": {},
+              "uuid": "a4ad3cea-23cc-44b2-95cd-e97c1cbba181",
+              "parentUUID": "0c87e7e2-42f3-43ed-8c47-d29018619a52",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "c43a5eb0-9e34-4fbc-bab7-1c2ee0957665",
+            "e3e44393-c689-4cdc-ae4b-5b7555df8ac4",
+            "a4ad3cea-23cc-44b2-95cd-e97c1cbba181"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 25809,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "embeddedScreenshots": true,
+        "inlineAssets": true,
+        "reportPageTitle": "Cypress Tests"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

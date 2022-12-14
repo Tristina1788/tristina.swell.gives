@@ -1,0 +1,157 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 1,
+    "pending": 0,
+    "failures": 2,
+    "start": "2022-12-11T20:02:14.298Z",
+    "end": "2022-12-11T20:02:15.121Z",
+    "duration": 823,
+    "testsRegistered": 3,
+    "passPercent": 33.33333333333333,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "4bd3329e-28cb-4d33-8196-512743724d95",
+      "title": "",
+      "fullFile": "cypress\\e2e\\1-getting-started\\testcases\\userManage.cy.js",
+      "file": "cypress\\e2e\\1-getting-started\\testcases\\userManage.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "dccfdc47-d9ad-4146-8c45-cbadc63689cb",
+          "title": "Verify the fundraiser Manage flow",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "setup mailbox inbox",
+              "fullTitle": "Verify the fundraiser Manage flow setup mailbox inbox",
+              "timedOut": null,
+              "duration": 26,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "randomEmail = (0, _generalFunction.getRandomEmail)();\ncy.readFile('./data/mailbox.json', {\n  timeout: 2000\n}).then(inbox => {\n  hasMailbox = inbox.hasMailbox;\n  if (hasMailbox == -1) randomEmail = (0, _generalFunction.getRandomEmail)();else if (hasMailbox != 1) {\n    console.log(\"hasMailbox: \" + hasMailbox);\n    cy.createInbox().then(newInbox => {\n      // verify a new inbox was created\n      assert.isDefined(newInbox);\n      console.log(\"inbox id: \" + newInbox.id);\n      console.log(\"inbox.emailAddress: \" + newInbox.emailAddress);\n      cy.writeFile('./data/mailbox.json', {\n        inboxId: newInbox.id,\n        emailAddress: newInbox.emailAddress,\n        hasMailbox: 1\n      });\n      inboxId = newInbox.id;\n      randomEmail = newInbox.emailAddress;\n    });\n  } else {\n    inboxId = inbox.inboxId;\n    randomEmail = inbox.emailAddress;\n  }\n});",
+              "err": {},
+              "uuid": "6bee05c0-e804-49d1-9081-2829ccdf2947",
+              "parentUUID": "dccfdc47-d9ad-4146-8c45-cbadc63689cb",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify enable to create new user from manage Page",
+              "fullTitle": "Verify the fundraiser Manage flow Verify enable to create new user from manage Page",
+              "timedOut": null,
+              "duration": 116,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": "[\n  \"screenshots/userManage.cy.js/Verify the fundraiser Manage flow -- Verify enable to create new user from manage Page (failed).png\",\n  \"videos/userManage.cy.js.mp4\"\n]",
+              "code": "loginManagePage.visit(infors.urlManage + 'users');\nuserManagePage.clickAddBtn();\nuserManagePage.addNewUser(firstName, lastName, 'User', randomEmail, infors.passAdmin, \"yes\", './data/img_test/a740_288.jpg');\nuserManagePage.clickSaveBtn();\nuserManagePage.verifySaveSuccess();\nuserManagePage.clickConfirmButton();\ncy.reload();\nif (hasMailbox == 1) cy.emptyInbox(inboxId);\nuserManagePage.verifyNewUserIsExist(firstName, lastName, 'User', randomEmail, infors.passAdmin, \"yes\");\nif (hasMailbox == 1) mailbox.verifyMailboxGetEmailNewUserSuccess(inboxId);\ndashboardPage.logoutManagePage();\ncy.readFile('./data/data.json', {\n  timeout: 2000\n}).then(data => {\n  cy.visit(data.verifyLink);\n});\nloginManagePage.inputloginForm(infors.randomEmail, infors.passAdmin);\ndashboardPage.verifyLoginSuccess();",
+              "err": {
+                "message": "TypeError: userManagePage.clickSaveBtn is not a function",
+                "estack": "TypeError: userManagePage.clickSaveBtn is not a function\n    at Context.eval (webpack:///./cypress/e2e/1-getting-started/testcases/userManage.cy.js:55:23)",
+                "diff": null
+              },
+              "uuid": "15aaa1ce-2e77-4429-9c3f-7799fdd344d5",
+              "parentUUID": "dccfdc47-d9ad-4146-8c45-cbadc63689cb",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verify enable to update user from manage Page",
+              "fullTitle": "Verify the fundraiser Manage flow Verify enable to update user from manage Page",
+              "timedOut": null,
+              "duration": 132,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": "[\n  \"screenshots/userManage.cy.js/Verify the fundraiser Manage flow -- Verify enable to update user from manage Page (failed).png\",\n  \"videos/userManage.cy.js.mp4\"\n]",
+              "code": "let firstNameUpdate = getRandomTex1t();\nlet lastNameUpdate = (0, _generalFunction.getRandomText)();\ndashboardPage.clickProfileBtn();\nuserManagePage.updateUser(firstNameUpdate, lastNameUpdate, 'User', randomEmail, infors.passAdmin, './data/img_test/a740_288.jpg');\nuserManagePage.clickSaveBtn();\nuserManagePage.verifySaveSuccess();\nuserManagePage.clickConfirmButton();\ncy.reload();\nuserManagePage.verifyNewUserIsExist(firstNameUpdate, lastNameUpdate, 'User', randomEmail, infors.passAdmin, \"yes\");",
+              "err": {
+                "message": "ReferenceError: getRandomTex1t is not defined",
+                "estack": "ReferenceError: getRandomTex1t is not defined\n    at Context.eval (webpack:///./cypress/e2e/1-getting-started/testcases/userManage.cy.js:74:30)",
+                "diff": null
+              },
+              "uuid": "910b33a2-6e97-41b8-923e-0d409d1c8750",
+              "parentUUID": "dccfdc47-d9ad-4146-8c45-cbadc63689cb",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "6bee05c0-e804-49d1-9081-2829ccdf2947"
+          ],
+          "failures": [
+            "15aaa1ce-2e77-4429-9c3f-7799fdd344d5",
+            "910b33a2-6e97-41b8-923e-0d409d1c8750"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 274,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "embeddedScreenshots": true,
+        "inlineAssets": true,
+        "reportPageTitle": "Cypress Tests"
+      },
+      "version": "6.2.0"
+    }
+  }
+}
