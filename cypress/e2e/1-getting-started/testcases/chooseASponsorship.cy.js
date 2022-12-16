@@ -72,7 +72,7 @@ describe('Verify Choose a sponsorship flow', () => {
         
 
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/transactions');
-        transactionManagePage.verifyTransactionIsCreated('Sponsorship',randomName,randomLastName, randomEmail,'$501.00', 'grouest');
+        transactionManagePage.verifyTransactionIsCreated('Sponsorship',randomName,randomLastName, randomEmail,'$501.00', '');
     })
 
     it.only('Verify previous button in Choose a sponsorship',()=>{
