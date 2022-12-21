@@ -167,7 +167,7 @@ describe('Verify the table Manage flow',{
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/tables');
         cy.wait(2000);
         tableManageSetupPage.clickSwitchListView();
-        cy.wait(2000);
+        cy.wait(10000);
         tableManageSetupPage.clickEditButton(number+ ' '+firstName);
         tableDetailPage.inputTableForm(firstName1, 'Test Table', number1, firstHostName1, lastHostName1, randomEmail, true);
         tableDetailPage.clickSaveBtn();
