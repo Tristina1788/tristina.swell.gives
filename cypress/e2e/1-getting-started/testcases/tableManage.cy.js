@@ -165,6 +165,7 @@ describe('Verify the table Manage flow',{
 
     it('Verify enable to update table/team from manage Page',()=>{
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/tables');
+        cy.wait(2000);
         tableManageSetupPage.clickSwitchListView();
         tableManageSetupPage.clickEditButton(number+ ' '+firstName);
         tableDetailPage.inputTableForm(firstName1, 'Test Table', number1, firstHostName1, lastHostName1, randomEmail, true);
