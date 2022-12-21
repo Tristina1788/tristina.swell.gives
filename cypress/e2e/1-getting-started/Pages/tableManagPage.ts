@@ -35,6 +35,7 @@ export class TableManageSetupPage{
     unSelectGroup = '.search-choice-close';
     removeSeatBtn = '.remove-seat';
     removeFundraiserBtn = '.fa-unlink';
+    guestBodyListRow = '.table-responsive >tbody >tr';
     getIframeDocument = () => {
         return cy
             .get('iframe.second-row')
@@ -111,7 +112,7 @@ export class TableManageSetupPage{
 
     clickEditButton(name:string){
         cy.wait(5000);
-        cy.get(this.tableLabel).contains(name).click();
+        cy.get(this.tableLabel).contains(name, {timeout: 5000}).click();
 
     }
 
@@ -226,7 +227,9 @@ export class TableManageSetupPage{
     }
 
     clickAddressGuestButton(){
-        cy.get(this.guestAddressBtn).click();
+        cy.wait(1000);
+        cy.get(this.guestBodyListRow).last().children('td').children('button').first().click();
+        // cy.get(this.guestAddressBtn).click();
     }
 
     clickNewFundraiser(){
@@ -242,12 +245,15 @@ export class TableManageSetupPage{
     }
 
     verifyRemoveSeatIsDisabled(isDisable: Boolean) {
+        cy.wait(1000);
         switch(isDisable){
             case true:
-                cy.get(this.removeSeatBtn).should('have.attr', 'disabled', 'disabled');
+                cy.get(this.guestBodyListRow).last().children('td').last().children(this.removeSeatBtn).should('have.attr', 'disabled', 'disabled');
+                // cy.get(this.removeSeatBtn).should('have.attr', 'disabled', 'disabled');
                 break;
             case false:
-                cy.get(this.removeSeatBtn).should('not.have.attr', 'disabled');
+                cy.get(this.guestBodyListRow).last().children('td').last().children(this.removeSeatBtn).should('not.have.attr', 'disabled');
+                // cy.get(this.removeSeatBtn).last().should('not.have.attr', 'disabled');
                 break;
         }
     }
@@ -257,13 +263,13 @@ export class TableManageSetupPage{
     }
 
     clickRemoveSeatBtn(){
-        cy.get(this.removeSeatBtn).click();
+        cy.get(this.guestBodyListRow).last().children('td').last().children(this.removeSeatBtn).click();
         cy.wait(2000)
         cy.get('.sweet-alert').find('button.confirm').contains(this.confirmDeleteBtn).click({ force: true });
     }
 
     clickRemoveFundraiserBtn() {
-        cy.get(this.removeFundraiserBtn).click();
+        cy.get(this.guestBodyListRow).last().children('td').last().children('button').click();
     }
 
     inputFundraiserTableForm(fname : string, lname : string, email : string,  company : string, group : string){
