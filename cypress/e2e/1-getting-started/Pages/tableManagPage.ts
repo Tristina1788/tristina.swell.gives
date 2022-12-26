@@ -223,7 +223,7 @@ export class TableManageSetupPage{
 
     clickOKButtonInPopupConfirm(){
         cy.wait(1000)
-        cy.get('button').contains(this.okBtn).click();
+        cy.get('button').contains(this.okBtn,{timeout:5000}).click();
     }
 
     clickAddressGuestButton(){
@@ -241,7 +241,8 @@ export class TableManageSetupPage{
     }
 
     clickAssignBtn() {
-        cy.get('button').contains(this.assignBtn).click();
+        cy.wait(1000)
+        cy.get('button').contains(this.assignBtn,{timeout:5000}).click();
     }
 
     verifyRemoveSeatIsDisabled(isDisable: Boolean) {

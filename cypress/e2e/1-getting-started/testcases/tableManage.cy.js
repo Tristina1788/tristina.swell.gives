@@ -174,6 +174,7 @@ describe('Verify the table Manage flow',{
         tableDetailPage.verifySaveSuccess();
         tableDetailPage.clickConfirmButton();
         tableManageSetupPage.clickSwitchListView();
+        cy.wait(10000);
         tableManageSetupPage.verifyTableIsExist(firstName1 , number1, 'Test Table', firstHostName1+' '+lastHostName1,0,2,0,2);
     });
 
