@@ -229,7 +229,6 @@ export class TableManageSetupPage{
     clickAddressGuestButton(){
         cy.wait(1000);
         cy.get(this.guestBodyListRow).last().children('td').children('button').first().click();
-        // cy.get(this.guestAddressBtn).click();
     }
 
     clickNewFundraiser(){
@@ -250,17 +249,21 @@ export class TableManageSetupPage{
         switch(isDisable){
             case true:
                 cy.get(this.guestBodyListRow).last().children('td').last().children(this.removeSeatBtn).should('have.attr', 'disabled', 'disabled');
-                // cy.get(this.removeSeatBtn).should('have.attr', 'disabled', 'disabled');
                 break;
             case false:
                 cy.get(this.guestBodyListRow).last().children('td').last().children(this.removeSeatBtn).should('not.have.attr', 'disabled');
-                // cy.get(this.removeSeatBtn).last().should('not.have.attr', 'disabled');
                 break;
         }
     }
 
     verifyDeleteGuestSuccess(){
         cy.get(this.guestAddressBtn).should('not.exist');
+    }
+
+    getGuestNumber(){
+        cy.get(this.guestBodyListRow).then((row)=>{
+            return row.length;
+        })
     }
 
     clickRemoveSeatBtn(){

@@ -17,14 +17,15 @@ let fundraiserDetailPage = new FundraiserDetailPage();
 let tablePage = new TablePage();
 let mailbox = new Mailbox();
 const infors = require('../utils/infor.js');
-let firstName = getRandomText();
+let firstName = '';
 let firstHostName = getRandomText();
 let lastHostName = getRandomText();
 let number = Math.floor(Math.random() * 100000) + 1;
-let firstName1 = getRandomText();
+let firstName1 = '';
 let firstHostName1 = getRandomText();
 let lastHostName1 = getRandomText();
 let number1 = Math.floor(Math.random() * 100000) + 1;
+let seatNumber;
 let inboxId = "";
 let randomEmail = "";
 let hasMailbox = 0;
@@ -68,6 +69,7 @@ describe('Verify the table Manage flow',{
         });
     });
     it('Verify enable to create new table/team from manage Page',()=>{
+        firstName = getRandomText();
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/tables');
         if(hasMailbox ==1 )
             cy.emptyInbox(inboxId);
@@ -161,9 +163,11 @@ describe('Verify the table Manage flow',{
         tableManageSetupPage.clickRemoveSeatBtn();
         tableManageSetupPage.clickOKButtonInPopupConfirm();
         tableManageSetupPage.verifyDeleteGuestSuccess();
+        seatNumber = tableManageSetupPage.getGuestNumber();
     });
 
     it('Verify enable to update table/team from manage Page',()=>{
+        firstName1 = getRandomText();
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/tables');
         cy.wait(2000);
         tableManageSetupPage.clickSwitchListView();
@@ -175,7 +179,7 @@ describe('Verify the table Manage flow',{
         tableDetailPage.clickConfirmButton();
         tableManageSetupPage.clickSwitchListView();
         cy.wait(10000);
-        tableManageSetupPage.verifyTableIsExist(firstName1 , number1, 'Test Table', firstHostName1+' '+lastHostName1,0,2,0,2);
+        tableManageSetupPage.verifyTableIsExist(firstName1 , number1, 'Test Table', firstHostName1+' '+lastHostName1,0,seatNumber,0,2);
     });
 
     
