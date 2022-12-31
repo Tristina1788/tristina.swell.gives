@@ -124,6 +124,7 @@ describe('Verify the table Manage flow',{
     it('Verify guest list work correct from manage Page',()=>{
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/tables');
         tableManageSetupPage.clickSwitchListView();
+        cy.get('body').should('not.have.class', 'loading');
         cy.wait(10000);
         tableManageSetupPage.clickGuestList(number+ ' '+firstName);
         tableManageSetupPage.verifyInforOfGuest(randomNameGuest + ' '+randomLastNameGuest, randomEmailGuest);
@@ -134,6 +135,7 @@ describe('Verify the table Manage flow',{
         
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/tables');
         tableManageSetupPage.clickSwitchListView();
+        cy.get('body').should('not.have.class', 'loading');
         cy.wait(10000);
         
         tableManageSetupPage.clickGuestList(number+ ' '+firstName);
@@ -171,6 +173,7 @@ describe('Verify the table Manage flow',{
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/tables');
         cy.wait(2000);
         tableManageSetupPage.clickSwitchListView();
+        cy.get('body').should('not.have.class', 'loading');
         cy.wait(10000);
         tableManageSetupPage.clickEditButton(number+ ' '+firstName);
         tableDetailPage.inputTableForm(firstName1, 'Test Table', number1, firstHostName1, lastHostName1, randomEmail, true);
@@ -178,6 +181,7 @@ describe('Verify the table Manage flow',{
         tableDetailPage.verifySaveSuccess();
         tableDetailPage.clickConfirmButton();
         tableManageSetupPage.clickSwitchListView();
+        cy.get('body').should('not.have.class', 'loading');
         cy.wait(10000);
         tableManageSetupPage.verifyTableIsExist(firstName1 , number1, 'Test Table', firstHostName1+' '+lastHostName1,0,seatNumber,0,2);
     });
