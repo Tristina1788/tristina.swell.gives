@@ -1,4 +1,4 @@
-
+Almost out of storage … If you run out, you can't create or edit files, send or receive email on Gmail, or back up to Google Photos.
 import { TableDetailPage } from "../Pages/tableDetailPage";
 import { LoginManagePage } from "../Pages/loginManagePage";
 import { TableManageSetupPage } from "../Pages/tableManagPage";
@@ -20,11 +20,11 @@ const infors = require('../utils/infor.js');
 let firstName = '';
 let firstHostName = getRandomText();
 let lastHostName = getRandomText();
-let number = Math.floor(Math.random() * 100000) + 1;
+let number;
 let firstName1 = '';
 let firstHostName1 = getRandomText();
 let lastHostName1 = getRandomText();
-let number1 = Math.floor(Math.random() * 100000) + 1;
+let number1;
 let seatNumber;
 let inboxId = "";
 let randomEmail = "";
@@ -70,6 +70,7 @@ describe('Verify the table Manage flow',{
     });
     it('Verify enable to create new table/team from manage Page',()=>{
         firstName = getRandomText();
+        number = Math.floor(Math.random() * 100000) + 1;
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/tables');
         if(hasMailbox ==1 )
             cy.emptyInbox(inboxId);
@@ -84,6 +85,8 @@ describe('Verify the table Manage flow',{
         tableManageSetupPage.inputEmailAndSend(randomEmail);
         if(hasMailbox ==1 )
             mailbox.verifyMailboxGetEmailHostingTableSuccess(inboxId);
+        firstName1 = getRandomText();
+        number1 = Math.floor(Math.random() * 100000) + 1;
     });
 
     it('Verify fundraising page from manage Page',()=>{
@@ -141,6 +144,7 @@ describe('Verify the table Manage flow',{
         tableManageSetupPage.clickGuestList(number+ ' '+firstName);
         // tableManageSetupPage.clickGuestList('74405 YFaDznhpjh');
         tableManageSetupPage.clickAddASeatButton();
+        cy.get('body').should('not.have.class', 'loading');
         tableManageSetupPage.verifyPopupAddingSeat();
         tableManageSetupPage.clickYesAddSeatBtn();
         tableManageSetupPage.clickOKButtonInPopupConfirm();
@@ -169,7 +173,7 @@ describe('Verify the table Manage flow',{
     });
 
     it('Verify enable to update table/team from manage Page',()=>{
-        firstName1 = getRandomText();
+        
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/tables');
         cy.wait(2000);
         tableManageSetupPage.clickSwitchListView();

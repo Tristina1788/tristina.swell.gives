@@ -1,3 +1,4 @@
+Almost out of storage … If you run out, you can't create or edit files, send or receive email on Gmail, or back up to Google Photos.
 require("cypress-plugin-tab");
 export class TableManageSetupPage{
     refreshBtn = '.fa-refresh';
@@ -98,6 +99,7 @@ export class TableManageSetupPage{
 
     clickSwitchListView(){
         cy.get(this.switchListView).click();
+        cy.wait(10000);
     }
 
 
@@ -119,7 +121,6 @@ export class TableManageSetupPage{
     clickAddASeatButton(name:string){
         cy.wait(1000);
         cy.get('a').contains(this.addASeaBtn,{timeout:10000}).click();
-
     }
 
     clickDeleteButton(name:string){
@@ -197,7 +198,7 @@ export class TableManageSetupPage{
     }
 
     verifyPopupAddingSeat(){
-        cy.wait(1000);
+        cy.wait(3000);
         cy.get('p').contains('You will be adding an additional seat to the table!').should('be.visible');
         cy.get('button').contains(this.cancelAddSeatBtn).should('be.visible');
         cy.get('button').contains(this.yesAddSeatBtn).should('be.visible');
@@ -213,7 +214,7 @@ export class TableManageSetupPage{
     }
 
     clickYesAddSeatBtn(){
-        cy.wait(1000);
+        cy.wait(3000);
         cy.get('.sweet-alert').find('button.confirm').contains(this.yesAddSeatBtn).click({ multiple: true });
     }
 
@@ -222,12 +223,12 @@ export class TableManageSetupPage{
     }
 
     clickOKButtonInPopupConfirm(){
-        cy.wait(1000)
+        cy.wait(3000)
         cy.get('button').contains(this.okBtn,{timeout:5000}).click();
     }
 
     clickAddressGuestButton(){
-        cy.wait(1000);
+        cy.wait(3000);
         cy.get(this.guestBodyListRow).last().children('td').children('button').first().click();
     }
 
@@ -240,12 +241,12 @@ export class TableManageSetupPage{
     }
 
     clickAssignBtn() {
-        cy.wait(1000)
+        cy.wait(3000)
         cy.get('button').contains(this.assignBtn,{timeout:5000}).click();
     }
 
     verifyRemoveSeatIsDisabled(isDisable: Boolean) {
-        cy.wait(1000);
+        cy.wait(3000);
         switch(isDisable){
             case true:
                 cy.get(this.guestBodyListRow).last().children('td').last().children(this.removeSeatBtn).should('have.attr', 'disabled', 'disabled');
@@ -268,7 +269,7 @@ export class TableManageSetupPage{
 
     clickRemoveSeatBtn(){
         cy.get(this.guestBodyListRow).last().children('td').last().children(this.removeSeatBtn).click();
-        cy.wait(2000)
+        cy.wait(3000)
         cy.get('.sweet-alert').find('button.confirm').contains(this.confirmDeleteBtn).click({ force: true });
     }
 
