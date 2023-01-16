@@ -150,6 +150,7 @@ export class BranchSetupPage  {
     }
 
     clickSaveBtn(){
+        cy.wait(2000);
         cy.get('button').contains(this.saveBtn).click();
     }
 

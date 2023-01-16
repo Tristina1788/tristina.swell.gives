@@ -1,4 +1,4 @@
-export const eventName = "testing";//"https://tristina.swell.gives/";
+export const eventName = "tests";//"https://tristina.swell.gives/";
 export const url = "https://"+eventName+".swell.gives/";//"https://tristina.swell.gives/";
 export const urlAction = "https://secure.swell.gives/"+eventName+"/";//"https://secure.swell.gives/tristina/";
 export const urlCheckoutAction = "https://checkout.swell.gives/"+eventName+"/"; //"https://checkout.swell.gives/tristina/";
@@ -26,8 +26,8 @@ export const passGuest = "bl@ckr0ck";
 ////////////////////////////Variable Manage page///////////////////////////////////////
 //Setup Details
 export const urlManage = 'https://manage.swell.gives/';
-export const idProject = '1766'//'1717'//'1643';
-export const dateEvent = '26/11/2023';
+export const idProject = '1775'//'1717'//'1643';
+export const dateEvent = '26/11/2025';
 export const timezone = "America/Chicago";
 export const emailAdmin = "tristina1788@gmail.com";
 export const passAdmin = "Happy1702";

@@ -78,7 +78,8 @@ export class DonationsRegisterTablePage{
     }
 
     inputGuestInformation(firstName: string, lastName: string, email: string, guest : number = 0){
-        cy.get(this.guestFNInput).eq(guest).type(firstName);
+        cy.wait(5000);
+        cy.get(this.guestFNInput, {timeout: 5000}).eq(guest).type(firstName);
         cy.get(this.guestLNInput).eq(guest).type(lastName);
         cy.get(this.guestEmailInput).eq(guest).type(email);
 

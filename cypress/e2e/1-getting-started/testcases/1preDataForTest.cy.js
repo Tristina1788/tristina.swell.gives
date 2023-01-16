@@ -128,22 +128,22 @@ describe('Prepare new data for event testing', () => {
         productsManageSetupPage.clickAddBtn();
         productSetupPage.inputProductForm('Ticket', infors.ticketName, true, false, infors.ticketPrice, infors.maxTicket, 0);
         productSetupPage.clickSaveBtn();
-        productsManageSetupPage.verifyNewProductIsCreated('Ticket', infors.ticketName, true, false, infors.ticketPrice, infors.maxTicket, 0);
+        productsManageSetupPage.verifyNewProductIsCreated('Ticket', infors.ticketName, true, false, infors.ticketPrice, '10,000', 0);
 
         productsManageSetupPage.clickAddBtn();
         productSetupPage.inputProductForm('Ticket', infors.virtualTicketName, true, false, infors.virtualTicketPrice, infors.maxTicket, 0);
         productSetupPage.clickSaveBtn();
-        productsManageSetupPage.verifyNewProductIsCreated('Ticket', infors.virtualTicketName, true, false, infors.virtualTicketPrice, infors.maxTicket, 0);
+        productsManageSetupPage.verifyNewProductIsCreated('Ticket', infors.virtualTicketName, true, false, infors.virtualTicketPrice, '10,000', 0);
 
         productsManageSetupPage.clickAddBtn();
         productSetupPage.inputProductForm('Sponsorship', infors.sponsorItemName, true, false,  infors.sponsorItemPice, infors.maxTicket, 0);
         productSetupPage.clickSaveBtn();
-        productsManageSetupPage.verifyNewProductIsCreated('Sponsorship', infors.sponsorItemName, true, false,  infors.sponsorItemPice, infors.maxTicket, 0);
+        productsManageSetupPage.verifyNewProductIsCreated('Sponsorship', infors.sponsorItemName, true, false,  infors.sponsorItemPice, '10,000', 0);
 
         productsManageSetupPage.clickAddBtn();
         productSetupPage.inputProductForm('Table/Team', infors.tableItem, true, false, infors.tablePriceNumber,  infors.maxTicket, 2, "Virtual Test Ticket (51.00)");
         productSetupPage.clickSaveBtn();
-        productsManageSetupPage.verifyNewProductIsCreated('Table', infors.tableItem, true, false, "1,201",  infors.maxTicket, 2, "Virtual Test Ticket");
+        productsManageSetupPage.verifyNewProductIsCreated('Table', infors.tableItem, true, false, "1,201",  '10,000', 2, "Virtual Test Ticket");
 
     })
 
@@ -280,9 +280,12 @@ describe('Prepare new data for event testing', () => {
             const itemCount = Cypress.$($el).length;
             cy.log(itemCount)
             if(itemCount == 5)
-            cy.get('button').contains('m Ready').click();
+            cy.get('button.go-live-btn').click({force:true});
+            cy.wait(1000);
             cy.get('button').contains('Yes, go live!',{timeout:10000}).click();
+            cy.wait(1000);
             cy.get('button').contains('OK',{timeout:10000}).click();
+            cy.wait(1000);
         })
             
     })

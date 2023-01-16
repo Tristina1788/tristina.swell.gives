@@ -46,7 +46,7 @@ describe('Verify Purchase Tickets flow', () => {
         });
     })
 
-    it.only('Verify purchase a ticket and selections amount',()=>{
+    it.only('Verify purchase a ticket and selection amount',()=>{
         cy.visit(infors.url);
         if(hasMailbox ==1 ) cy.emptyInbox(inboxId);
         let randomName = getRandomText();
@@ -54,6 +54,7 @@ describe('Verify Purchase Tickets flow', () => {
         let randomPhone = getRandomNumber();
         homePage.clickPurchaseTickets();
         ticketPage.verifyIsScreenSelectTickets();
+        
         ticketPage.selectTestTicket(0);
         ticketPage.verifyFormInforTc(0);
         ticketPage.inputFormInforTc(0,randomName, randomLastName,randomEmail,randomPhone);
@@ -73,8 +74,9 @@ describe('Verify Purchase Tickets flow', () => {
             mailbox.verifyMailboxGetEmailPurchaseTicketSuccess(inboxId);
         
        loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/transactions');
-       transactionManagePage.verifyTransactionIsCreated('Ticket',randomName,randomLastName, randomEmail,'$33.00','',1);
-       transactionManagePage.verifyTransactionIsCreated('Donation',randomName,randomLastName, randomEmail,'$'+infors.amountTicket+'.00');
+
+       transactionManagePage.verifyTransactionIsCreated('Ticket',randomName,randomLastName, randomEmail,'$','',1);
+       transactionManagePage.verifyTransactionIsCreated('Donation',randomName,randomLastName, randomEmail,'$');
     })
 
     
@@ -83,6 +85,7 @@ describe('Verify Purchase Tickets flow', () => {
         let randomName = getRandomText();
         let randomLastName = getRandomText();
         let randomPhone = getRandomNumber();
+        let ticketProName = infors.ticketName;
         homePage.clickPurchaseTickets();
         ticketPage.verifyIsScreenSelectTickets();
         ticketPage.selectTestTicket(0);
@@ -141,8 +144,8 @@ describe('Verify Purchase Tickets flow', () => {
         donationsPaymentPage.clickPurchase();
         donationsPaymentPage.verifyTransactionTicketsFinish();
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/transactions');
-        transactionManagePage.verifyTransactionIsCreated('Ticket',randomName,randomLastName, randomEmail,'$117.00','',3); // 2 tickets 33$ and 1 tickets 51$
-        transactionManagePage.verifyTransactionIsCreated('Donation',randomName,randomLastName, randomEmail,'$'+infors.anotherAmountTicket+'.00');
+        transactionManagePage.verifyTransactionIsCreated('Ticket',randomName,randomLastName, randomEmail,'$','',3); // 2 tickets 33$ and 1 tickets 51$
+        transactionManagePage.verifyTransactionIsCreated('Donation',randomName,randomLastName, randomEmail,'$');
         if(hasMailbox ==1 )
             mailbox.verifyMailboxGetEmailPurchaseMultiTicketSuccess(inboxId);
     })

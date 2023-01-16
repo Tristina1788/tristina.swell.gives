@@ -6,7 +6,7 @@ export class LoginManagePage {
     signInBtn = 'Sign In';
 
     visit(url: string) {
-        cy.visit(url,{ headers: { "Accept-Encoding": "gzip, deflate" } });
+        cy.visit(url,{ headers: { "Accept-Encoding": "gzip, deflate" }, });
         Cypress.on('uncaught:exception', (err, runnable) => {
             return false;
         });
@@ -20,8 +20,16 @@ export class LoginManagePage {
                 cy.get('button').contains(this.signInBtn).click();
             }
         });
-       
-        
+    }
 
+    logoutManagePage(email: string, pass: string) {
+        
+        cy.get('li').find('.dropdown').first().click();
+        cy.get('a').contains('Log Out').click();
+        
+    }
+
+    verifyLoginSuccess(){
+        cy.get('span').contains('Dashboard').should('be.visible');
     }
 }

@@ -1,4 +1,4 @@
-
+Almost out of storage … If you run out, you can't create or edit files, send or receive email on Gmail, or back up to Google Photos.
 import { TableDetailPage } from "../Pages/tableDetailPage";
 import { LoginManagePage } from "../Pages/loginManagePage";
 import { TableManageSetupPage } from "../Pages/tableManagPage";
@@ -17,14 +17,15 @@ let fundraiserDetailPage = new FundraiserDetailPage();
 let tablePage = new TablePage();
 let mailbox = new Mailbox();
 const infors = require('../utils/infor.js');
-let firstName = getRandomText();
+let firstName = '';
 let firstHostName = getRandomText();
 let lastHostName = getRandomText();
-let number = Math.floor(Math.random() * 100000) + 1;
-let firstName1 = getRandomText();
+let number;
+let firstName1 = '';
 let firstHostName1 = getRandomText();
 let lastHostName1 = getRandomText();
-let number1 = Math.floor(Math.random() * 100000) + 1;
+let number1;
+let seatNumber;
 let inboxId = "";
 let randomEmail = "";
 let hasMailbox = 0;
@@ -38,7 +39,12 @@ before(() => {
     loginManagePage.visit(infors.urlManage);
     loginManagePage.inputloginForm(infors.emailAdmin, infors.passAdmin);
 });
-describe('Verify the table Manage flow', () => {
+describe('Verify the table Manage flow',{
+    retries: {
+      runMode: 2,
+      openMode: 1,
+    }
+  }, () => {
     it('setup mailbox inbox',()=>{
         cy.readFile('./data/mailbox.json',{timeout:2000}).then((inbox)=> {
             hasMailbox = inbox.hasMailbox;
@@ -63,6 +69,8 @@ describe('Verify the table Manage flow', () => {
         });
     });
     it('Verify enable to create new table/team from manage Page',()=>{
+        firstName = getRandomText();
+        number = Math.floor(Math.random() * 100000) + 1;
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/tables');
         if(hasMailbox ==1 )
             cy.emptyInbox(inboxId);
@@ -77,6 +85,8 @@ describe('Verify the table Manage flow', () => {
         tableManageSetupPage.inputEmailAndSend(randomEmail);
         if(hasMailbox ==1 )
             mailbox.verifyMailboxGetEmailHostingTableSuccess(inboxId);
+        firstName1 = getRandomText();
+        number1 = Math.floor(Math.random() * 100000) + 1;
     });
 
     it('Verify fundraising page from manage Page',()=>{
@@ -117,6 +127,7 @@ describe('Verify the table Manage flow', () => {
     it('Verify guest list work correct from manage Page',()=>{
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/tables');
         tableManageSetupPage.clickSwitchListView();
+        cy.get('body').should('not.have.class', 'loading');
         cy.wait(10000);
         tableManageSetupPage.clickGuestList(number+ ' '+firstName);
         tableManageSetupPage.verifyInforOfGuest(randomNameGuest + ' '+randomLastNameGuest, randomEmailGuest);
@@ -127,11 +138,13 @@ describe('Verify the table Manage flow', () => {
         
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/tables');
         tableManageSetupPage.clickSwitchListView();
+        cy.get('body').should('not.have.class', 'loading');
         cy.wait(10000);
         
         tableManageSetupPage.clickGuestList(number+ ' '+firstName);
-        // tableManageSetupPage.clickGuestList('15832 lGRtbqGhFT');
+        // tableManageSetupPage.clickGuestList('74405 YFaDznhpjh');
         tableManageSetupPage.clickAddASeatButton();
+        cy.get('body').should('not.have.class', 'loading');
         tableManageSetupPage.verifyPopupAddingSeat();
         tableManageSetupPage.clickYesAddSeatBtn();
         tableManageSetupPage.clickOKButtonInPopupConfirm();
@@ -156,18 +169,25 @@ describe('Verify the table Manage flow', () => {
         tableManageSetupPage.clickRemoveSeatBtn();
         tableManageSetupPage.clickOKButtonInPopupConfirm();
         tableManageSetupPage.verifyDeleteGuestSuccess();
+        seatNumber = tableManageSetupPage.getGuestNumber();
     });
 
     it('Verify enable to update table/team from manage Page',()=>{
+        
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/tables');
+        cy.wait(2000);
         tableManageSetupPage.clickSwitchListView();
+        cy.get('body').should('not.have.class', 'loading');
+        cy.wait(10000);
         tableManageSetupPage.clickEditButton(number+ ' '+firstName);
         tableDetailPage.inputTableForm(firstName1, 'Test Table', number1, firstHostName1, lastHostName1, randomEmail, true);
         tableDetailPage.clickSaveBtn();
         tableDetailPage.verifySaveSuccess();
         tableDetailPage.clickConfirmButton();
         tableManageSetupPage.clickSwitchListView();
-        tableManageSetupPage.verifyTableIsExist(firstName1 , number1, 'Test Table', firstHostName1+' '+lastHostName1,0,2,0,2);
+        cy.get('body').should('not.have.class', 'loading');
+        cy.wait(10000);
+        tableManageSetupPage.verifyTableIsExist(firstName1 , number1, 'Test Table', firstHostName1+' '+lastHostName1,0,seatNumber,0,2);
     });
 
     

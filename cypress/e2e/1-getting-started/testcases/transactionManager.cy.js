@@ -19,7 +19,7 @@ const userFullFill = require('../../../fixtures/fullFillInfor.json')
 const user = require('../../../fixtures/address.json')
 let inboxId = "";
 let hasMailbox = 0;
-let randomNameTr = getRandomText();
+let randomNameTr = '';
 let randomLastNameTr = getRandomText();
 let randomEmailTr= getRandomEmail();
 let randomPhoneTr = getRandomNumber();
@@ -33,7 +33,7 @@ let randomEmail= getRandomEmail();
 let randomNumber = getRandomNumber();
 let randomCompany = getRandomText();
 
-let randomNameTrUpdate = getRandomText();
+let randomNameTrUpdate = '';
 let randomLastNameTrUpdate = getRandomText();
 let randomEmailTrUpdate = getRandomEmail();
 let randomPhoneTrUpdate = getRandomNumber();
@@ -75,10 +75,10 @@ describe('Verify Transaction Manage flow', () => {
     })
     
     it.only('Verify enable to create new transaction from manage Page',()=>{
+        randomNameTr = getRandomText();
         cy.forceVisit(infors.urlManage);
         if(hasMailbox ==1 ) 
-            cy.emptyInbox(inboxId);
-        if(hasMailbox == 1 ) cy.emptyInbox(inboxId);
+        cy.emptyInbox(inboxId);
         loginManagePage.visit(infors.urlManage + 'events/' + infors.idProject + '/transactions');
         transactionManagePage.clickAddBtn();
        
@@ -96,7 +96,7 @@ describe('Verify Transaction Manage flow', () => {
     })
 
     it.only('Verify enable to update transaction from manage Page',()=>{
-        
+        randomNameTrUpdate = getRandomText();
         let randomAmount= Math.floor(Math.random() * 90) + 0;
         cy.forceVisit(infors.urlManage);
         if(hasMailbox == 1 ) cy.emptyInbox(inboxId);

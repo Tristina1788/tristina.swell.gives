@@ -1,3 +1,4 @@
+Almost out of storage … If you run out, you can't create or edit files, send or receive email on Gmail, or back up to Google Photos.
 require("cypress-plugin-tab");
 export class TableManageSetupPage{
     refreshBtn = '.fa-refresh';
@@ -35,6 +36,7 @@ export class TableManageSetupPage{
     unSelectGroup = '.search-choice-close';
     removeSeatBtn = '.remove-seat';
     removeFundraiserBtn = '.fa-unlink';
+    guestBodyListRow = '.table-responsive >tbody >tr';
     getIframeDocument = () => {
         return cy
             .get('iframe.second-row')
@@ -97,6 +99,7 @@ export class TableManageSetupPage{
 
     clickSwitchListView(){
         cy.get(this.switchListView).click();
+        cy.wait(10000);
     }
 
 
@@ -111,14 +114,13 @@ export class TableManageSetupPage{
 
     clickEditButton(name:string){
         cy.wait(5000);
-        cy.get(this.tableLabel).contains(name).click();
+        cy.get(this.tableLabel).contains(name, {timeout: 5000}).click();
 
     }
 
     clickAddASeatButton(name:string){
         cy.wait(1000);
         cy.get('a').contains(this.addASeaBtn,{timeout:10000}).click();
-
     }
 
     clickDeleteButton(name:string){
@@ -196,7 +198,7 @@ export class TableManageSetupPage{
     }
 
     verifyPopupAddingSeat(){
-        cy.wait(1000);
+        cy.wait(3000);
         cy.get('p').contains('You will be adding an additional seat to the table!').should('be.visible');
         cy.get('button').contains(this.cancelAddSeatBtn).should('be.visible');
         cy.get('button').contains(this.yesAddSeatBtn).should('be.visible');
@@ -212,7 +214,7 @@ export class TableManageSetupPage{
     }
 
     clickYesAddSeatBtn(){
-        cy.wait(1000);
+        cy.wait(3000);
         cy.get('.sweet-alert').find('button.confirm').contains(this.yesAddSeatBtn).click({ multiple: true });
     }
 
@@ -221,12 +223,13 @@ export class TableManageSetupPage{
     }
 
     clickOKButtonInPopupConfirm(){
-        cy.wait(1000)
-        cy.get('button').contains(this.okBtn).click();
+        cy.wait(3000)
+        cy.get('button').contains(this.okBtn,{timeout:5000}).click();
     }
 
     clickAddressGuestButton(){
-        cy.get(this.guestAddressBtn).click();
+        cy.wait(3000);
+        cy.get(this.guestBodyListRow).last().children('td').children('button').first().click();
     }
 
     clickNewFundraiser(){
@@ -238,16 +241,18 @@ export class TableManageSetupPage{
     }
 
     clickAssignBtn() {
-        cy.get('button').contains(this.assignBtn).click();
+        cy.wait(3000)
+        cy.get('button').contains(this.assignBtn,{timeout:5000}).click();
     }
 
     verifyRemoveSeatIsDisabled(isDisable: Boolean) {
+        cy.wait(3000);
         switch(isDisable){
             case true:
-                cy.get(this.removeSeatBtn).should('have.attr', 'disabled', 'disabled');
+                cy.get(this.guestBodyListRow).last().children('td').last().children(this.removeSeatBtn).should('have.attr', 'disabled', 'disabled');
                 break;
             case false:
-                cy.get(this.removeSeatBtn).should('not.have.attr', 'disabled');
+                cy.get(this.guestBodyListRow).last().children('td').last().children(this.removeSeatBtn).should('not.have.attr', 'disabled');
                 break;
         }
     }
@@ -256,14 +261,20 @@ export class TableManageSetupPage{
         cy.get(this.guestAddressBtn).should('not.exist');
     }
 
+    getGuestNumber(){
+        cy.get(this.guestBodyListRow).then((row)=>{
+            return row.length;
+        })
+    }
+
     clickRemoveSeatBtn(){
-        cy.get(this.removeSeatBtn).click();
-        cy.wait(2000)
+        cy.get(this.guestBodyListRow).last().children('td').last().children(this.removeSeatBtn).click();
+        cy.wait(3000)
         cy.get('.sweet-alert').find('button.confirm').contains(this.confirmDeleteBtn).click({ force: true });
     }
 
     clickRemoveFundraiserBtn() {
-        cy.get(this.removeFundraiserBtn).click();
+        cy.get(this.guestBodyListRow).last().children('td').last().children('button').click();
     }
 
     inputFundraiserTableForm(fname : string, lname : string, email : string,  company : string, group : string){

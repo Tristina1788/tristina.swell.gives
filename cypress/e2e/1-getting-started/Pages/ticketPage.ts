@@ -111,28 +111,47 @@ export class TicketPage {
 
     verifyTicketIsAdded(item: number, email: string, ticketName : string = '') {
         let summaryTextTc = '';
+        let price1 = 0;
+            let price2 = 0;
         if(ticketName != ''){
             cy.get(this.ticketBoxItem).eq(item).contains(ticketName+' added to your basket').should('be.visible');
             cy.get(this.ticketBoxItem).eq(item).contains('Add another '+ticketName).should('be.visible');
-            if (item == 0) {
-                summaryTextTc += ticketName+' #1 $33 - ' + email;
-                cy.get('li').contains(summaryTextTc).should('be.visible');
-            }
-            if (item == 1) {
-                summaryTextTc += ticketName+' #2 $51 - ' + email;
-                cy.get('li').contains(summaryTextTc).should('be.visible');
-            }
+            
+            cy.get(this.ticketBoxItem).eq(0).find('label').invoke('text').then(text =>{
+                price1 = Number(text.replace('$',''));
+                cy.get(this.ticketBoxItem).eq(1).find('label').invoke('text').then( text2 =>{
+                    price2 = Number(text2.replace('$',''));
+                    if (item == 0) {
+                        summaryTextTc += ticketName+' #1 $'+price1+' - ' + email;
+                        cy.get('li').contains(summaryTextTc).should('be.visible');
+                    }
+                    if (item == 1) {
+                        summaryTextTc += ticketName+' #2 '+price2+' - ' + email;
+                        cy.get('li').contains(summaryTextTc).should('be.visible');
+                    }
+                })
+            
+            }) 
+            
         }else {
             cy.get(this.ticketBoxItem).eq(item).contains(this.ticketAddedText).should('be.visible');
             cy.get(this.ticketBoxItem).eq(item).contains(this.addAnotherTicketbtn).should('be.visible');
-            if (item == 0) {
-                summaryTextTc += 'Ticket #1 $33 - ' + email;
-                cy.get('li').contains(summaryTextTc).should('be.visible');
-            }
-            if (item == 1) {
-                summaryTextTc += 'Ticket #2 $51 - ' + email;
-                cy.get('li').contains(summaryTextTc).should('be.visible');
-            }
+            cy.get(this.ticketBoxItem).eq(0).find('label').invoke('text').then(text =>{
+                price1 = Number(text.replace('$',''));
+                cy.get(this.ticketBoxItem).eq(1).find('label').invoke('text').then( text2 =>{
+                    price2 = Number(text2.replace('$',''));
+                    if (item == 0) {
+                        summaryTextTc += 'Ticket #1 $'+price1+' - ' + email;
+                        cy.get('li').contains(summaryTextTc).should('be.visible');
+                    }
+                    if (item == 1) {
+                        summaryTextTc += 'Ticket #2 $'+price2+' - ' + email;
+                        cy.get('li').contains(summaryTextTc).should('be.visible');
+                    }
+                })
+            
+            }) 
+            
         }
         
         
@@ -178,17 +197,41 @@ export class TicketPage {
 
     verifySummaryAmountSetup(numTicket1: number, numTicket2: number, amount: number, promoDiscount: number = 0, donaLb: string) {
         console.log("donaLb: " + donaLb);
-        let sumAmount = amount + numTicket1 * 33 + numTicket2 * 51 - promoDiscount;
-        if (amount > 0)
-            cy.get('li').contains(donaLb + ' $' + amount).should('be.visible');
-        cy.get('span').contains(this.textTotal + '' + sumAmount).should('be.visible');
+        let price1 = 0;
+        let price2 = 0;
+        cy.get(this.ticketBoxItem).eq(0).find('label').invoke('text').then(text =>{
+            price1 = Number(text.replace('$',''));
+            cy.log("price1 : "+price1);
+            cy.get(this.ticketBoxItem).eq(1).find('label').invoke('text').then( text2 =>{
+                price2 = Number(text2.replace('$',''));
+                cy.log("price2 : "+price2);
+                let sumAmount = amount + numTicket1 * price1 + numTicket2 * price2 - promoDiscount;
+                if (amount > 0)
+                    cy.get('li').contains(donaLb + ' $' + amount).should('be.visible');
+                cy.get('span').contains(this.textTotal + '' + sumAmount).should('be.visible');
+            })
+           
+        }) 
+        
 
     }
 
     verifySummaryAmount(numTicket1: number, numTicket2: number, amount: number, promoDiscount: number = 0,) {
-        let sumAmount = amount + numTicket1 * 33 + numTicket2 * 51 - promoDiscount;
-        cy.get('li').contains(this.textDonation + '' + amount).should('be.visible');
-        cy.get('span').contains(this.textTotal + '' + sumAmount).should('be.visible');
+        let price1 = 0;
+        let price2 = 0;
+        cy.get(this.ticketBoxItem).eq(0).find('label').invoke('text').then(text =>{
+            price1 = Number(text.replace('$',''));
+            cy.log("price1 : "+price1);
+            cy.get(this.ticketBoxItem).eq(1).find('label').invoke('text').then( text2 =>{
+                price2 = Number(text2.replace('$',''));
+                cy.log("price2 : "+price2);
+                let sumAmount = amount + numTicket1 * price1 + numTicket2 * price2 - promoDiscount;
+                cy.get('li').contains(this.textDonation + '' + amount).should('be.visible');
+                cy.get('span').contains(this.textTotal + '' + sumAmount).should('be.visible');
+            })
+           
+        }) 
+        
 
     }
 
