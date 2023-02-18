@@ -14,7 +14,7 @@ let sponsorshipPage = new SponsorshipPage();
 const user = require('../../../fixtures/address.json')
 let sponsorName = getRandomText();
 let randomeText =  getRandomText();
-let sponsorURL = 'https://secure.swell.gives/tristina/'+randomeText;
+let sponsorURL = 'https://secure.swellbuilds.com/tristina/'+randomeText;
 
 before(() => {
     loginManagePage.visit(infors.urlManage);

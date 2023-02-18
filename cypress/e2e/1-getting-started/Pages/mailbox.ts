@@ -212,7 +212,7 @@ export class Mailbox {
             expect(email.body).to.contain("Thanks for creating an account with Swell Fundraising. We can't wait to work with you!");
             let html = email.body;
             
-            let linkUser = html.substring(html.indexOf('https://mandrillapp.com/track/click/30928270/manage.swell.gives'), html.indexOf('see, I told ya it was quick.'));
+            let linkUser = html.substring(html.indexOf('https://mandrillapp.com/track/click/30928270/manage.swellbuilds.com'), html.indexOf('see, I told ya it was quick.'));
             cy.log("html:"+linkUser);
             let saveLink = linkUser.substring(0, (linkUser.length - 263))
             cy.writeFile('./data/data.json',{verifyLink:saveLink});

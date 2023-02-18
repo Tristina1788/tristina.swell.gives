@@ -1,7 +1,7 @@
-export const eventName = "tests";//"https://tristina.swell.gives/";
-export const url = "https://"+eventName+".swell.gives/";//"https://tristina.swell.gives/";
-export const urlAction = "https://secure.swell.gives/"+eventName+"/";//"https://secure.swell.gives/tristina/";
-export const urlCheckoutAction = "https://checkout.swell.gives/"+eventName+"/"; //"https://checkout.swell.gives/tristina/";
+export const eventName = "tests";//"https://tristina.swellbuilds.com/";
+export const url = "https://"+eventName+".swellbuilds.com/";//"https://tristina.swellbuilds.com/";
+export const urlAction = "https://secure.swellbuilds.com/"+eventName+"/";//"https://secure.swellbuilds.com/tristina/";
+export const urlCheckoutAction = "https://checkout.swellbuilds.com/"+eventName+"/"; //"https://checkout.swellbuilds.com/tristina/";
 export const amountGiveNowTest = "$75";
 export const amountGiveNowFeeTest = "$77.99";
 export const amountEvenGiveNowTest = "$50";
@@ -25,7 +25,7 @@ export const passGuest = "bl@ckr0ck";
 //export const CYPRESS_API_KEY = "3732aa032a8967c689aaa91509f0a8f63c37246b6f2427a643c020800794289a";
 ////////////////////////////Variable Manage page///////////////////////////////////////
 //Setup Details
-export const urlManage = 'https://manage.swell.gives/';
+export const urlManage = 'https://manage.swellbuilds.com/';
 export const idProject = '1775'//'1717'//'1643';
 export const dateEvent = '26/11/2025';
 export const timezone = "America/Chicago";

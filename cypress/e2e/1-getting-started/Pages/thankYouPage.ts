@@ -5,7 +5,7 @@ export class ThankYouPage{
     fundraiserText = 'Your event fundraising page is located at:'; // h3
     fundraiserSuccess = 'Your transaction was successful and we just sent you an email';//p
     confirmPurchaseTxt = 'This confirms you purchased a ticket.';
-    fundraiserLink = '[href="https://tristina.swell.gives/users/';
+    fundraiserLink = '[href="https://tristina.swellbuilds.com/users/';
     imgEvent = '.bg-stretch';
     imglogo = '.logo';
     
